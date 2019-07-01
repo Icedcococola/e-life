@@ -11,10 +11,19 @@
 		9559D5AD22CAF52A00916AB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9559D5AC22CAF52A00916AB1 /* Assets.xcassets */; };
 		957129E822C9DADF0059DCEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957129E722C9DADF0059DCEE /* AppDelegate.swift */; };
 		957129EA22C9DADF0059DCEE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957129E922C9DADF0059DCEE /* LoginViewController.swift */; };
-		957129ED22C9DADF0059DCEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957129EB22C9DADF0059DCEE /* Main.storyboard */; };
+		957129ED22C9DADF0059DCEE /* LoginAndRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957129EB22C9DADF0059DCEE /* LoginAndRegister.storyboard */; };
 		957129F222C9DAE00059DCEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957129F022C9DAE00059DCEE /* LaunchScreen.storyboard */; };
 		957129FA22C9E0930059DCEE /* bus.json in Resources */ = {isa = PBXBuildFile; fileRef = 957129F922C9E0930059DCEE /* bus.json */; };
 		95D3932D22CC2F68002A3867 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3932C22CC2F68002A3867 /* RegisterViewController.swift */; };
+		95DD032622D2D54D0096E89D /* MainPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DD032522D2D54D0096E89D /* MainPages.storyboard */; };
+		95DD032822D2D61E0096E89D /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DD032722D2D61E0096E89D /* Home.storyboard */; };
+		95DD032A22D2D6270096E89D /* Services.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DD032922D2D6270096E89D /* Services.storyboard */; };
+		95DD032C22D2D62F0096E89D /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DD032B22D2D62F0096E89D /* Me.storyboard */; };
+		95DD032E22D2D62F0096E89D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD032D22D2D62F0096E89D /* HomeViewController.swift */; };
+		95DD033022D2D62F0096E89D /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD032F22D2D62F0096E89D /* CollectionViewCell.swift */; };
+		95DD033422D2D62F0096E89D /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD033322D2D62F0096E89D /* ServicesViewController.swift */; };
+		95DD033A22D2D62F0096E89D /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD033922D2D62F0096E89D /* MeViewController.swift */; };
+		95DD033C22D2D62F0096E89D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD033B22D2D62F0096E89D /* TableViewCell.swift */; };
 		95EB54C922CC888F00E25003 /* PasswordRecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB54C822CC888F00E25003 /* PasswordRecoveryViewController.swift */; };
 		95EB54CD22CC963E00E25003 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB54CC22CC963E00E25003 /* NewPasswordViewController.swift */; };
 		95EB54CF22CC9DA900E25003 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB54CE22CC9DA900E25003 /* MainViewController.swift */; };
@@ -28,11 +37,20 @@
 		957129E422C9DADF0059DCEE /* e-life.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "e-life.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		957129E722C9DADF0059DCEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		957129E922C9DADF0059DCEE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		957129EC22C9DADF0059DCEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		957129EC22C9DADF0059DCEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginAndRegister.storyboard; sourceTree = "<group>"; };
 		957129F122C9DAE00059DCEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		957129F322C9DAE00059DCEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		957129F922C9E0930059DCEE /* bus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = bus.json; path = "e-life/Animation/bus.json"; sourceTree = SOURCE_ROOT; };
 		95D3932C22CC2F68002A3867 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		95DD032522D2D54D0096E89D /* MainPages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainPages.storyboard; sourceTree = "<group>"; };
+		95DD032722D2D61E0096E89D /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		95DD032922D2D6270096E89D /* Services.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Services.storyboard; sourceTree = "<group>"; };
+		95DD032B22D2D62F0096E89D /* Me.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
+		95DD032D22D2D62F0096E89D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		95DD032F22D2D62F0096E89D /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionViewCell.swift; path = "e-life/Controller/CollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		95DD033322D2D62F0096E89D /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
+		95DD033922D2D62F0096E89D /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		95DD033B22D2D62F0096E89D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		95EB54C822CC888F00E25003 /* PasswordRecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryViewController.swift; sourceTree = "<group>"; };
 		95EB54CC22CC963E00E25003 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		95EB54CE22CC9DA900E25003 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +133,11 @@
 				95EB54C822CC888F00E25003 /* PasswordRecoveryViewController.swift */,
 				95EB54CC22CC963E00E25003 /* NewPasswordViewController.swift */,
 				95EB54CE22CC9DA900E25003 /* MainViewController.swift */,
+				95DD032D22D2D62F0096E89D /* HomeViewController.swift */,
+				95DD032F22D2D62F0096E89D /* CollectionViewCell.swift */,
+				95DD033322D2D62F0096E89D /* ServicesViewController.swift */,
+				95DD033922D2D62F0096E89D /* MeViewController.swift */,
+				95DD033B22D2D62F0096E89D /* TableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -122,7 +145,11 @@
 		95EB54CB22CC88D800E25003 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				957129EB22C9DADF0059DCEE /* Main.storyboard */,
+				957129EB22C9DADF0059DCEE /* LoginAndRegister.storyboard */,
+				95DD032522D2D54D0096E89D /* MainPages.storyboard */,
+				95DD032722D2D61E0096E89D /* Home.storyboard */,
+				95DD032922D2D6270096E89D /* Services.storyboard */,
+				95DD032B22D2D62F0096E89D /* Me.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,9 +215,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				957129F222C9DAE00059DCEE /* LaunchScreen.storyboard in Resources */,
+				95DD032622D2D54D0096E89D /* MainPages.storyboard in Resources */,
 				957129FA22C9E0930059DCEE /* bus.json in Resources */,
+				95DD032822D2D61E0096E89D /* Home.storyboard in Resources */,
 				9559D5AD22CAF52A00916AB1 /* Assets.xcassets in Resources */,
-				957129ED22C9DADF0059DCEE /* Main.storyboard in Resources */,
+				95DD032A22D2D6270096E89D /* Services.storyboard in Resources */,
+				95DD032C22D2D62F0096E89D /* Me.storyboard in Resources */,
+				957129ED22C9DADF0059DCEE /* LoginAndRegister.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,11 +279,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95DD033A22D2D62F0096E89D /* MeViewController.swift in Sources */,
 				95EB54C922CC888F00E25003 /* PasswordRecoveryViewController.swift in Sources */,
 				95D3932D22CC2F68002A3867 /* RegisterViewController.swift in Sources */,
+				95DD033022D2D62F0096E89D /* CollectionViewCell.swift in Sources */,
 				957129EA22C9DADF0059DCEE /* LoginViewController.swift in Sources */,
 				95EB54CF22CC9DA900E25003 /* MainViewController.swift in Sources */,
+				95DD033C22D2D62F0096E89D /* TableViewCell.swift in Sources */,
 				95EB54CD22CC963E00E25003 /* NewPasswordViewController.swift in Sources */,
+				95DD033422D2D62F0096E89D /* ServicesViewController.swift in Sources */,
+				95DD032E22D2D62F0096E89D /* HomeViewController.swift in Sources */,
 				957129E822C9DADF0059DCEE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,12 +296,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		957129EB22C9DADF0059DCEE /* Main.storyboard */ = {
+		957129EB22C9DADF0059DCEE /* LoginAndRegister.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				957129EC22C9DADF0059DCEE /* Base */,
 			);
-			name = Main.storyboard;
+			name = LoginAndRegister.storyboard;
 			sourceTree = "<group>";
 		};
 		957129F022C9DAE00059DCEE /* LaunchScreen.storyboard */ = {
