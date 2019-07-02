@@ -1,0 +1,172 @@
+项目名称
+Project Name	密级
+Confidentiality Level
+e-life智能生活小区	仅供收件方查阅
+项目编号
+Project ID	版本
+Version	文档编号
+Document Code
+	V1.0	Project ID_INIT_002 
+
+
+E-life Intelligent Housing Estate 
+Project Start Report
+E-life智能生活小区系统项目立项报告
+
+
+
+
+
+Prepared by 
+拟制	孙良辰	Date
+日期	2019-07-01
+Reviewed by 
+评审人		Date
+日期	yyyy-mm-dd
+Approved by
+批准		Date
+日期	yyyy-mm-dd
+  
+武汉市软酷网络科技有限公司
+版权所有  不得复制
+Copyright © Ruankosoft Technologies(WuHan) Co., Ltd.
+  All Rights Reserved
+
+Revision Record
+修订记录
+Date
+日期	Revision Version
+修订版本	CR ID /Defect ID
+CR/ Defect号	Sec No.
+修改章节	Change Description
+修改描述	Author
+作者
+2019.07.01	V1.0		全篇	初稿	孙良辰
+					
+					
+					
+					
+					
+					
+					
+					
+					
+
+
+Catalog 
+目  录
+1	Project Proposal项目提出	7
+2	Team building and Schedule开发团队组成和计划时间	7
+3	Budget项目预计支出	8
+4	Risks Evaluating and Mitigating风险评估和规避	9
+
+
+1Project Proposal项目提出
+项目ID：
+
+项目简介：
+e-Life其英文直译为电子生活、资讯生活。在这里，将其定义为一种物业服务企业依托现代智能科技、移动互联网及云计算技术，融基础物业管理和社区服务于一体的全新物业管理经营方式。
+e-Life智能生活小区系统能够将社区生活所需的例如交物业管理费、社区通知、周边商家优惠、快递点、论坛交流等功能集合在一个手机app中，显然能够大大的方便人们获取社区各种信息和发展邻里关系、构建和谐美好的社区生活。
+ e-Life的实质是拓展传统物业管理服务的界限，由对物的管理延展至物业所有人/使用人的服务，为社区住户提供除基础物业管理服务外的增值服务以创造商业价值。
+项目目标：
+本项目“e-Life智能生活小区”，将原本分散在各个不同地点的单个小型社区服务集成在一套完整的系统中，构建统一的物业智能服务系统。
+本项目的目标人群为小区居民和该小区的物业管理员。
+本项目的总体目标是：开发适合居民大众使用的物业生活管理系统，支持居民使用社区生活各项服务，包括浏览小区资讯、接收物业通知、快递提醒、小区服务、小区团购、小区话题交流、周边优惠、物业缴费等，有效支持用户生活娱乐等需求。 同时提供给物业管理员发布信息通知，用户管理等的权限。
+系统边界：
+   软件范围：
+对于用户设计Android原生APP来提供用户所需功能；
+对于物业管理员设计web网页来提供管理员权限。
+工作量估计：
+模块	子模块	工作量估计（人天）	说明
+
+
+用户管理	用户登录	2	
+	用户注册	2	
+	密码找回	5	
+	好友管理	10	包括好友申请，好友删除，验证信息处理
+	真实信息绑定	5	
+通知模块	紧急通知、最新资讯、活动安排	10	
+物业通知	物业通知	5	
+邮包提醒	邮包提醒	7	
+	上门寄件服务	7	
+小区服务	超市送货、物业维修、电脑维修	5	
+小区团购	需求发布	7	
+	小区团购	2	
+小区话题	小区论坛搭建	8	
+	发布新帖	5	
+	评论	5	
+
+周边优惠	地图定位	6	
+	优惠商品地图标注	4	
+	优惠商品搜索	4	
+
+物业缴费	物业管理费查询	1	功能类似，可实现代码复用
+	停车费查询	1	
+	物业管理费家缴纳	1	功能类似，可实现代码复用
+	停车费缴纳	1	
+总工作量（人天）：	103
+表 1工作量估算
+备注：“人天”即1个人工作8小时的量就是1人天
+2Team building and Schedule开发团队组成和计划时间
+Project Plan： 2019-07-01——2019-09-08
+项目计划： 2019年 7 月 1 日 - 2019年 9 月 8  日 （计2 月）
+
+Chief Project Manager：   Number：    1     Name：Yu Yang
+项目总监： 1 人				  姓名：虞洋
+
+Project Manager：  Number：     1     Name：Sun Liangchen
+项目经理： 1 人	              姓名： 孙良辰
+
+Project Team Member Number：     
+项目成员：  4 人                 
+
+
+Source of Staff人员来源：
+孙良辰 上海交通大学 电子信息与电气工程学院软件工程 F1703703
+郑柏熙 上海交通大学 电子信息与电气工程学院软件工程 F1703703
+张静漪 上海交通大学 电子信息与电气工程学院软件工程 F1703701
+HOKHY TANN 上海交通大学 电子信息与电气工程学院软件工程 F1603701
+3Budget项目预计支出
+Cost on facilities and office设备,场地占用费:
+None 无
+Local staff salary本地人员工资(管理费) ：
+(average salary+ management fee)* number of staff * months= 100000
+(平均工资+管理费)*人员数目*月份= 100000
+Supporting staff salary外协人员工资：
+None
+无
+
+Call-back pay加班费：
+None
+无
+Traffic fee 交通费：
+None
+无
+Accommodation fee 住宿费：
+None
+无
+Other fees其它费用（如业务交往,招待,办公等）：
+None
+无
+
+Total总计：None 无
+
+Remark说明： None  无
+
+4Risks Evaluating and Mitigating风险评估和规避
+Technical Risks技术风险：
+1.缺少对在地图等API使用的经验
+Resolution解决:
+寻找成熟的API接口，学习接口的使用。
+Management Risks管理风险：
+1.项目进度管理安排，包括工作量安排和个人工作进度调度
+2.项目管理风险，包括代码提交和更新是否及时，项目代码丢失或损毁的风险
+Resolution解决：
+合理安排每个人的工作量，根据预先工作量估计分配工作任务，对预先估计不合理的工作量进行及时的调整。对进度较慢的团队成员给予鼓励和督促。遇到的困难团队共同解决。
+使用git项目管理工具进行项目的管理，及时提交和更新代码和文档，避免代码丢失与损毁。Other Risks其它风险：
+1.天气等不可抗因素
+2.安全问题
+Resolution解决：由于不可抗因素耽误的项目进度，通过分配到其他工作时间和使用课余时间赶上进度。时时刻刻注意人身安全。
+
+
+
