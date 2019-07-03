@@ -35,17 +35,16 @@ class LoginViewController: UIViewController {
         print(self.view.frame.size.height)
         if (self.view.frame.size.height < 600) {
             animationView.frame = CGRect(x: 0, y: self.view.frame.size.height-150, width: self.view.frame.size.width, height: 150)
-            bottomConstraint.constant = 170
             logoHeight.constant -= 30
         } else if (self.view.frame.size.height < 668) {
             animationView.frame = CGRect(x: 0, y: self.view.frame.size.height-200, width: self.view.frame.size.width, height: 200)
-            bottomConstraint.constant = 220
+           
         } else if (self.view.frame.size.height < 800)  {
             animationView.frame = CGRect(x: 0, y: self.view.frame.size.height-250, width: self.view.frame.size.width, height: 250)
-            bottomConstraint.constant = 255
+         
         } else {
             animationView.frame = CGRect(x: 0, y: self.view.frame.size.height-250, width: self.view.frame.size.width, height: 250)
-            bottomConstraint.constant = 320
+  
         }
         animationView.contentMode = .scaleAspectFill
         self.view.addSubview(animationView)
