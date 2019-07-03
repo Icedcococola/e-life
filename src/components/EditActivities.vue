@@ -17,7 +17,7 @@
     <el-col :span="3">
        标题
      </el-col>
-     <el-col :span="15">
+     <el-col :span="17">
       <el-input
       type="textarea"
       :rows="2"
@@ -31,7 +31,7 @@
     <el-col :span="3">
       正文
     </el-col>
-    <el-col :span="15">
+    <el-col :span="17">
       <el-input
       type="textarea"
       :rows="16"
@@ -40,10 +40,27 @@
       </el-input>
     </el-col>
   </el-row>
+  
+  <el-row style="margin:20px;">
+    <el-col>
+      <el-upload
+        class="upload-demo"
+        drag
+        action="https://jsonplaceholder.typicode.com/posts/"
+        multiple>
+        <i class="el-icon-upload"></i>
+        <div class="el-upload__text">将文件拖到此处，或点击上传</div>
+         <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+      </el-upload>
+    </el-col>
+  </el-row>
+
 
   <el-row style="height:100px; margin-top:30px;">
     <el-button type="primary" @click="confirm1">提交活动安排</el-button>
   </el-row>
+
+
 
 
 
@@ -59,7 +76,10 @@ export default {
       this.$confirm('确认内容并提交？',
                     '提示',
                     {confirmButtonText:'确定',cancelButtonText:'取消',type:'warning'}
-      ).then(()=>{this.$message({type:'success',message:'提交成功!'});
+      ).then(()=>{
+        
+        this.$message({type:'success',message:'提交成功!'});
+        this.$router.push({name:"活动详情页"});
          
       });
     }

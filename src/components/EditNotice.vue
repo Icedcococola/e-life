@@ -17,7 +17,7 @@
     <el-col :span="3">
        标题
      </el-col>
-     <el-col :span="15">
+     <el-col :span="17">
       <el-input
       type="textarea"
       :rows="2"
@@ -31,7 +31,7 @@
     <el-col :span="3">
       正文
     </el-col>
-    <el-col :span="15">
+    <el-col :span="17">
       <el-input
       type="textarea"
       :rows="16"
@@ -58,9 +58,10 @@ export default {
     {
       this.$confirm('确认内容并提交？',
                     '提示',
-                    {confirmButtonText:'确定',cancelButtonText:'取消',type:'warning'}
-      ).then(()=>{this.$message({type:'success',message:'提交成功!'});
-         
+                    {confirmButtonText:'确定',cancelButtonText:'取消'}
+      ).then(()=>{
+        this.$message({type:'success',message:'提交成功!'});
+        this.$router.push({name:"物业详情页"});
       });
     }
   },
