@@ -9,6 +9,9 @@ import LaunchedActivities from "@/components/LaunchedActivities"
 import LaunchedNews from "@/components/LaunchedNews"
 import LaunchedNotice from "@/components/LaunchedNotice"
 import LaunchedUrgent from "@/components/LaunchedUrgent"
+import messagePageAct from "@/components/messagePageAct"
+import messagePageUrg from "@/components/messagePageUrg"
+
 
 
 Vue.use(Router)
@@ -71,7 +74,19 @@ export default new Router({
           path:'/EditUrgent',
           component:EditUrgent,
           name:'紧急通知'
-        }
+        },
+        {
+          path:'/messagePageAct',
+          component:messagePageAct,
+          name:'活动详情页'
+        },
+        {
+          path:'/messagePageUrg',
+          component:messagePageUrg,
+          name:'紧急详情页'
+        },
+
+        
       ]
     }
   ]

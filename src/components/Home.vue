@@ -1,9 +1,9 @@
 <template>
   <el-container >
       
-    <el-header style="background:#2282db; font-size: 30px; height: 65px;">
-      <el-row >
-        <el-col :span="5">
+    <el-header style="background:#2282db; font-size: 200%; height: 65px;">
+      <el-row style="margin-top:10px;" >
+        <el-col :span="6">
           e-life后台管理系统
         </el-col>
       </el-row>
@@ -24,7 +24,7 @@
           <i class="el-icon-news"></i>
           <span>查看已发布信息</span>
         </template>
-      <el-menu-item-group style="background:#c8d8e7;">
+      <el-menu-item-group style="background:#e9ecf5ee;">
         <template slot="title"></template>
         <el-menu-item index="/LaunchedActivities" >活动安排</el-menu-item>
         <el-menu-item index="/LaunchedNews" >最新资讯</el-menu-item>
@@ -37,7 +37,7 @@
           <i class="el-icon-edit"></i>
           <span>编辑新通知</span>
         </template>
-      <el-menu-item-group style="background:#c8d8e7;">
+      <el-menu-item-group style="background:#e9ecf5ee;">
         <template slot="title"></template>
         <el-menu-item index="/EditActivities">活动安排</el-menu-item>
         <el-menu-item index="/EditNews" >最新资讯</el-menu-item>
@@ -60,5 +60,5 @@
 
 
 <style>
-  .id{background: #110202ee;}
+  id{background: #a8a8a8fa;}
 </style>
