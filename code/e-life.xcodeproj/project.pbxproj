@@ -15,6 +15,9 @@
 		957129F222C9DAE00059DCEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957129F022C9DAE00059DCEE /* LaunchScreen.storyboard */; };
 		957129FA22C9E0930059DCEE /* bus.json in Resources */ = {isa = PBXBuildFile; fileRef = 957129F922C9E0930059DCEE /* bus.json */; };
 		95D3932D22CC2F68002A3867 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3932C22CC2F68002A3867 /* RegisterViewController.swift */; };
+		95EB54C922CC888F00E25003 /* PasswordRecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB54C822CC888F00E25003 /* PasswordRecoveryViewController.swift */; };
+		95EB54CD22CC963E00E25003 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB54CC22CC963E00E25003 /* NewPasswordViewController.swift */; };
+		95EB54CF22CC9DA900E25003 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB54CE22CC9DA900E25003 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		957129F322C9DAE00059DCEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		957129F922C9E0930059DCEE /* bus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = bus.json; path = "e-life/Animation/bus.json"; sourceTree = SOURCE_ROOT; };
 		95D3932C22CC2F68002A3867 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		95EB54C822CC888F00E25003 /* PasswordRecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryViewController.swift; sourceTree = "<group>"; };
+		95EB54CC22CC963E00E25003 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
+		95EB54CE22CC9DA900E25003 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,9 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				957129E722C9DADF0059DCEE /* AppDelegate.swift */,
-				957129E922C9DADF0059DCEE /* LoginViewController.swift */,
-				95D3932C22CC2F68002A3867 /* RegisterViewController.swift */,
-				957129EB22C9DADF0059DCEE /* Main.storyboard */,
+				95EB54CA22CC88C000E25003 /* Controller */,
+				95EB54CB22CC88D800E25003 /* View */,
 				9559D5AC22CAF52A00916AB1 /* Assets.xcassets */,
 				95712A0122CA062C0059DCEE /* Animation */,
 				957129F022C9DAE00059DCEE /* LaunchScreen.storyboard */,
@@ -100,6 +105,26 @@
 				957129F922C9E0930059DCEE /* bus.json */,
 			);
 			path = Animation;
+			sourceTree = "<group>";
+		};
+		95EB54CA22CC88C000E25003 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				957129E922C9DADF0059DCEE /* LoginViewController.swift */,
+				95D3932C22CC2F68002A3867 /* RegisterViewController.swift */,
+				95EB54C822CC888F00E25003 /* PasswordRecoveryViewController.swift */,
+				95EB54CC22CC963E00E25003 /* NewPasswordViewController.swift */,
+				95EB54CE22CC9DA900E25003 /* MainViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		95EB54CB22CC88D800E25003 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				957129EB22C9DADF0059DCEE /* Main.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,8 +248,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95EB54C922CC888F00E25003 /* PasswordRecoveryViewController.swift in Sources */,
 				95D3932D22CC2F68002A3867 /* RegisterViewController.swift in Sources */,
 				957129EA22C9DADF0059DCEE /* LoginViewController.swift in Sources */,
+				95EB54CF22CC9DA900E25003 /* MainViewController.swift in Sources */,
+				95EB54CD22CC963E00E25003 /* NewPasswordViewController.swift in Sources */,
 				957129E822C9DADF0059DCEE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

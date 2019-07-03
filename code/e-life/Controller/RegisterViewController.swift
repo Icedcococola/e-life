@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Lottie
 
 class RegisterViewController: UIViewController {
 
@@ -48,6 +49,8 @@ class RegisterViewController: UIViewController {
             
         } else if (screenHeight < 669){
             logoHeight.constant -= 30.0
+        } else {
+            busAnimation()
         }
     }
     
@@ -61,6 +64,20 @@ class RegisterViewController: UIViewController {
         textFieldDesign(texfield: phonenumber, icon_name: "password_icon", placeHolder: "手机号码")
         textFieldDesign(texfield: verification, icon_name: "password_icon", placeHolder: "验证码")
     }
+    
+    
+    //bus animation
+    func busAnimation(){
+        let animationView = AnimationView(name: "bus")
+        print(self.view.frame.size.height)
+        animationView.frame = CGRect(x: 0, y: self.view.frame.size.height-250, width: self.view.frame.size.width, height: 250)
+        animationView.contentMode = .scaleAspectFill
+        self.view.addSubview(animationView)
+        self.view.sendSubviewToBack(animationView)
+        animationView.loopMode = .loop
+        animationView.play()
+    }
+    
     
     //customize textfield
     func textFieldDesign (texfield : UITextField, icon_name : String, placeHolder : String){
