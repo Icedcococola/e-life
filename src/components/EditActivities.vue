@@ -60,10 +60,6 @@
     <el-button type="primary" @click="confirm1">提交活动安排</el-button>
   </el-row>
 
-
-
-
-
   </div>
 </template>
 
@@ -75,11 +71,11 @@ export default {
     {
       this.$confirm('确认内容并提交？',
                     '提示',
-                    {confirmButtonText:'确定',cancelButtonText:'取消',type:'warning'}
+                    {confirmButtonText:'确定',cancelButtonText:'取消'}
       ).then(()=>{
         
         this.$message({type:'success',message:'提交成功!'});
-        this.$router.push({name:"活动详情页"});
+        this.$router.push({name:"查看活动安排"});
          
       });
     }

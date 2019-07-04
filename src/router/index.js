@@ -16,13 +16,16 @@ import messagePageNot from "@/components/messagePageNot"
 import login from "@/components/login"
 import wuyeLogin from "@/components/wuyeLogin"
 import parcelLogin from "@/components/parcelLogin"
+import parcelHome from "@/components/parcelHome"
+import LaunchedParcel from "@/components/LaunchedParcel"
+import EditParcel from "@/components/EditParcel"
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/Home',
       name: '已发布的信息',
       component: Home,
       iconCls: 'el-icon-message',
@@ -30,23 +33,23 @@ export default new Router({
         {
           path:'/LaunchedActivities',
           component:LaunchedActivities,
-          name:'活动安排',
+          name:'查看活动安排',
           hidden:true
         },
         {
           path:'/LaunchedNews',
           component:LaunchedNews,
-          name:'最新资讯'
+          name:'查看最新资讯'
         },
         {
           path:'/LaunchedNotice',
           component:LaunchedNotice,
-          name:'物业通知'
+          name:'查看物业通知'
         },
         {
           path:'/LaunchedUrgent',
           component:LaunchedUrgent,
-          name:'紧急通知'
+          name:'查看紧急通知'
         },
         {
           path:'/messagePageAct',
@@ -72,7 +75,7 @@ export default new Router({
       
     },
     {
-      path:'/',
+      path:'/Home',
       name:'编辑新发布的信息',
       component:Home,
       iconCls: 'el-icon-message',
@@ -80,28 +83,28 @@ export default new Router({
         {
           path:'/EditActivities',
           component:EditActivities,
-          name:'活动安排',
+          name:'编辑活动安排',
           hidden:true
         },
         { 
           path:'/EditNews',
           component:EditNews,
-          name:'最新资讯'
+          name:'编辑最新资讯'
         },
         {
           path:'/EditNotice',
           component:EditNotice,
-          name:'物业通知'
+          name:'编辑物业通知'
         },
         {
           path:'/EditUrgent',
           component:EditUrgent,
-          name:'紧急通知'
+          name:'编辑紧急通知'
         },
       ]
     },
     {
-      path:'/login',
+      path:'/',
       component:login,
       name:'login',
       
@@ -115,7 +118,25 @@ export default new Router({
       path:'/parcelLogin',
       component:parcelLogin,
       name:'parcelLogin'
-    }
+    },
+    {
+      path:'/parcelHome',
+      component:parcelHome,
+      name:'parcelHome',
+      children:[
+        {
+          path:'/LaunchedParcel',
+          component:LaunchedParcel,
+          name:'LaunchedParcel'
+        },
+        {
+          path:'/EditParcel',
+          component:EditParcel,
+          name:'EditParcel'
+        }
+      ]
+    },
+    
 
   ]
 })

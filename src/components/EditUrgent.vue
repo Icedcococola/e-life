@@ -58,10 +58,10 @@ export default {
     {
       this.$confirm('确认内容并提交？',
                     '提示',
-                    {confirmButtonText:'确定',cancelButtonText:'取消',type:'warning'}
+                    {confirmButtonText:'确定',cancelButtonText:'取消'}
       ).then(()=>{
         this.$message({type:'success',message:'提交成功!'});
-        this.$router.push({name:"紧急详情页"});
+        this.$router.push({name:"查看紧急通知"});
       });
     }
   },

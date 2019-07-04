@@ -2,7 +2,7 @@
   <div id="l-ac">
     <el-row type="flex" class="row-bg" justify="end">
       <el-col :span="14">
-        <div style="font-size:190%; height:50px; color:#858585fa;text-align:left;"><i class="el-icon-document"></i>活动安排
+        <div style="font-size:190%; height:50px; color:#858585fa;text-align:left;"><i class="el-icon-document"></i>未通知邮包
         </div>
       </el-col>
       <el-col :span='8'>
@@ -24,15 +24,20 @@
       
       <el-table-column
         prop="no"
-        label="序号"
+        label="邮包编号"
         width="180"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="title"
-        label="标题"
+        prop="company"
+        label="快递公司"
         align="center">
-      </el-table-column>      
+      </el-table-column> 
+      <el-table-column
+        prop="phonenum"
+        label="手机号"
+        align="center">
+      </el-table-column>     
       <el-table-column
         prop="date"
         label="日期"
@@ -46,8 +51,8 @@
         align="center"
         fixed="right">
         <template>
-            <el-button type="primary" @click="topage" round>查看</el-button>
-            <el-button type="danger" @click="deleteLine(index)" round >删除</el-button>
+            <el-button type="primary" round>已通知</el-button>
+            <el-button type="danger" round >删除</el-button>
           </template>
       </el-table-column>
     </el-table>
@@ -58,23 +63,6 @@
  export default {
       methods:
       {
-        topage(){
-          this.$router.push({
-            name:"活动详情页"
-          });
-
-        },
-
-        deleteLine(index){
-          this.$confirm('确认删除？',
-                        '提示',
-                        {confirmButtonText:'确定',cancelButtonText:'取消'}
-          ).then(()=>{
-            this.tableData.splice(index,1);
-            this.$message({type:'success',message:'删除成功!'});
-          }
-          )
-        },
       },
       data() {
         return {
@@ -82,19 +70,23 @@
           tableData: [{
             date: '2019-07-02',
             no: '1',
-            title: 'balabala'
+            company: 'balabala',
+            phonenum:'12345678901'
           }, {
             date: '2019-07-04',
             no: '3',
-            title: 'balabala'
+            company: 'balabala',
+            phonenum:'23456789012'
           }, {
             date: '2019-07-01',
             no: '4',
-            title: 'baalballab'
+            company: 'baalballab',
+            phonenum:'34567890123'
           }, {
             date: '2019-07-03',
             no: '2',
-            title: 'balbalbalba'
+            company: 'balbalbalba',
+            phonenum:'45678901234'
           }]
         }
       }

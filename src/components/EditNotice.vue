@@ -61,7 +61,7 @@ export default {
                     {confirmButtonText:'确定',cancelButtonText:'取消'}
       ).then(()=>{
         this.$message({type:'success',message:'提交成功!'});
-        this.$router.push({name:"物业详情页"});
+        this.$router.push({name:"查看物业通知"});
       });
     }
   },

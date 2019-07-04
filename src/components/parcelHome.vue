@@ -6,7 +6,7 @@
 
         <el-col :span="24">
           <div style="font-size:100%; font-weight:bold;height:50px; color:#2A8FF7;text-align:left;" @click="toHome">
-              elife后台管理系统
+              elife邮包通知系统
           </div>
         </el-col>
 
@@ -14,7 +14,7 @@
            <div style="font-size:50%; height:50px; color:#2A8FF7;display:flex;align-items:center;justify-content:flex-end;">
             <el-dropdown @command="tologin">
               <span class="el-dropdown-link" style="color:#2a8ff7;">
-              <el-button type="text" class="button">物业管理员<i class="el-icon-arrow-down el-icon--right"></i>
+              <el-button type="text" class="button">邮包管理员<i class="el-icon-arrow-down el-icon--right"></i>
               </el-button>
               
               </span>
@@ -38,32 +38,15 @@
       class="el-menu-vertical-demo"
       router
       style="background:#ffffff;">
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-news"></i>
-          <span>查看已发布信息</span>
-        </template>
-      <el-menu-item-group style="background:#ffffff;">
-        <template slot="title"></template>
-        <el-menu-item index="/LaunchedActivities" >活动安排</el-menu-item>
-        <el-menu-item index="/LaunchedNews" >最新资讯</el-menu-item>
-        <el-menu-item index="/LaunchedNotice" >物业通知</el-menu-item>
-        <el-menu-item index="/LaunchedUrgent" >紧急通知</el-menu-item>
-      </el-menu-item-group>
-      </el-submenu>
-      <el-submenu index="2">
-        <template slot="title">
-          <i class="el-icon-edit"></i>
-          <span>编辑新通知</span>
-        </template>
-      <el-menu-item-group style="background:#ffffff;">
-        <template slot="title"></template>
-        <el-menu-item index="/EditActivities">活动安排</el-menu-item>
-        <el-menu-item index="/EditNews" >最新资讯</el-menu-item>
-        <el-menu-item index="/EditNotice" >物业通知</el-menu-item>
-        <el-menu-item index="/EditUrgent" >紧急通知</el-menu-item>
-      </el-menu-item-group>
-      </el-submenu>
+      <el-menu-item index="/LaunchedParcel">
+        <i class="el-icon-menu"></i>
+        <span slot="title">查看已通知的邮包</span>
+      </el-menu-item> 
+      <el-menu-item index="/EditParcel">
+        <i class="el-icon-edit"></i>
+        <span slot="title">编辑新的邮包通知</span>
+      </el-menu-item>
+
     </el-menu>
     </el-aside>
     <el-aside style="width:10px;">
@@ -95,7 +78,7 @@ export default {
     toHome()
     {
       this.$router.push({
-        name:"已发布的信息"
+        name:"parcelHome"
       })
     }
   },
