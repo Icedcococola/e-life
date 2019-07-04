@@ -5,7 +5,7 @@
     <el-col :span="6">
       
      <el-card :body-style="{ padding: '0px' }" >
-      <img src="../assets/logo.png" class="image" @click="wuye">
+      <img src="@/assets/logo.png" class="image" @click="wuye">
       <div style="padding: 14px;">
         <span>我是物业管理员</span>
         <div class="bottom clearfix">
@@ -17,7 +17,7 @@
 
     <el-col :span="6">
      <el-card :body-style="{ padding: '0px' }" >
-      <img src="../assets/logo.png" class="image" @click="parcel">
+      <img src="@/assets/logo.png" class="image" @click="parcel">
       <div style="padding: 14px;">
         <span>我是邮包管理员</span>
         <div class="bottom clearfix">

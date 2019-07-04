@@ -23,7 +23,7 @@
       :default-sort="{prop:'no',order:'ascending'}">
       
       <el-table-column
-        prop="no"
+        type="index"
         label="序号"
         width="180"
         align="center">
@@ -45,9 +45,9 @@
         width="210"
         align="center"
         fixed="right">
-        <template>
+        <template slot-scope="scope">
             <el-button type="primary" @click="topage" round>查看</el-button>
-            <el-button type="danger" @click="deleteLine(index)" round >删除</el-button>
+            <el-button type="danger" @click="deleteLine(scope.$index)" round >删除</el-button>
           </template>
       </el-table-column>
     </el-table>
@@ -81,20 +81,16 @@
           input: '',
           tableData: [{
             date: '2019-07-02',
-            no: '1',
-            title: 'balabala'
+            title: '广场舞大赛'
           }, {
             date: '2019-07-04',
-            no: '3',
-            title: 'balabala'
+            title: '划龙舟大赛'
           }, {
             date: '2019-07-01',
-            no: '4',
-            title: 'baalballab'
+            title: '包粽子大赛'
           }, {
             date: '2019-07-03',
-            no: '2',
-            title: 'balbalbalba'
+            title: '欢乐斗地主'
           }]
         }
       }

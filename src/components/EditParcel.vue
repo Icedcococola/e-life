@@ -62,7 +62,7 @@
         fixed="right">
         <template slot-scope="scope">
             <el-button type="danger" @click="deleteLine(scope.$index)" round >删除</el-button>
-          </template>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -103,7 +103,8 @@
           //
           
           //这里把表格清空
-          this.$confirm('确认全部提交？',
+          
+        this.$confirm('确认全部提交？',
                         '提示',
                         {confirmButtonText:'确定提交',cancelButtonText:'取消'}
           ).then(()=>{
@@ -111,8 +112,10 @@
             this.tableData=newTable; 
             this.$message({type:'success',message:'提交成功!'});
           }
-          )
+          );
         }
+          
+        
 
       },
       data() {

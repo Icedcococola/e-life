@@ -23,7 +23,7 @@
       :default-sort="{prop:'no',order:'ascending'}">
       
       <el-table-column
-        prop="no"
+        type="index"
         label="序号"
         width="180"
         align="center">
@@ -45,9 +45,9 @@
         width="210"
         align="center"
         fixed="right">
-        <template>
+        <template slot-scope="scope">
             <el-button type="primary" @click="topage" round>查看</el-button>
-            <el-button type="danger" round >删除</el-button>
+            <el-button type="danger" @click="deleteLine(scope.$index)" round >删除</el-button>
           </template>
       </el-table-column>
     </el-table>
@@ -63,27 +63,34 @@
             name:"资讯详情页"
           });
 
-        }
+        },
+        
+        deleteLine(index){
+          this.$confirm('确认删除？',
+                        '提示',
+                        {confirmButtonText:'确定',cancelButtonText:'取消'}
+          ).then(()=>{
+            this.tableData.splice(index,1);
+            this.$message({type:'success',message:'删除成功!'});
+          }
+          )
+        },
       },
       data() {
         return {
           input: '',
           tableData: [{
             date: '2019-07-02',
-            no: '1',
-            title: 'balabala'
+            title: 'b哈哈哈哈a'
           }, {
             date: '2019-07-04',
-            no: '3',
-            title: 'balabala'
+            title: 'b嘿嘿嘿嘿la'
           }, {
             date: '2019-07-01',
-            no: '4',
-            title: 'baalballab'
+            title: 'b呵呵呵呵呵b'
           }, {
             date: '2019-07-03',
-            no: '2',
-            title: 'balbalbalba'
+            title: 'ba吼吼吼吼ba'
           }]
         }
       }

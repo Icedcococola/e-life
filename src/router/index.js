@@ -19,6 +19,7 @@ import parcelLogin from "@/components/parcelLogin"
 import parcelHome from "@/components/parcelHome"
 import LaunchedParcel from "@/components/LaunchedParcel"
 import EditParcel from "@/components/EditParcel"
+import welcome from "@/components/welcome"
 
 Vue.use(Router)
 
@@ -135,7 +136,7 @@ export default new Router({
           name:'EditParcel'
         }
       ]
-    },
+    }
     
 
   ]

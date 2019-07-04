@@ -21,7 +21,13 @@
       :data="tableData"
       style="width: 100%"
       :default-sort="{prop:'no',order:'ascending'}">
-      
+      <el-table-column
+      type="index"
+      label="序号"
+      width="150"
+      align="center">
+
+      </el-table-column>
       <el-table-column
         prop="no"
         label="邮包编号"
@@ -41,17 +47,17 @@
       <el-table-column
         prop="date"
         label="日期"
-        width="210"
+        width="150"
         align="center">
       </el-table-column>     
       <el-table-column
         prop="op"
         label="操作"
-        width="210"
+        width="150"
         align="center"
         fixed="right">
         <template>
-            <el-button type="danger" round >删除</el-button>
+            <el-button type="danger" @click="deleteLine(index)"  round >删除</el-button>
           </template>
       </el-table-column>
     </el-table>
@@ -67,29 +73,40 @@
             name:"活动详情页"
           });
 
-        }
+        },
+        
+        deleteLine(index){
+          this.$confirm('确认删除？',
+                        '提示',
+                        {confirmButtonText:'确定',cancelButtonText:'取消'}
+          ).then(()=>{
+            this.tableData.splice(index,1);
+            this.$message({type:'success',message:'删除成功!'});
+          }
+          )
+        },
       },
       data() {
         return {
           input: '',
           tableData: [{
             date: '2019-07-02',
-            no: '1',
+            no: '254123',
             company: 'balabala',
             phonenum:'12345678901'
           }, {
             date: '2019-07-04',
-            no: '3',
+            no: '5423654',
             company: 'balabala',
             phonenum:'23456789012'
           }, {
             date: '2019-07-01',
-            no: '4',
+            no: '67565423',
             company: 'baalballab',
             phonenum:'34567890123'
           }, {
             date: '2019-07-03',
-            no: '2',
+            no: '15625',
             company: 'balbalbalba',
             phonenum:'45678901234'
           }]
