@@ -5,33 +5,21 @@
     <el-col :span="11">
       
      <el-card>
-      <el-row style="height:50px;display:flex;align-items:center;color:#272727c7;font-size:25px;" type="flex" justify="center">物业管理员登录 
-      </el-row>
+      <el-row style="height:50px;display:flex;align-items:center;color:#272727c7;font-size:25px;margin-bottom:9%;" type="flex" justify="center">物业管理员登录 
+      </el-row >
       
-      <el-row style="margin-top:30px;display:flex;align-items:center;">
-        <el-col :span="6">
-          用户名
-        </el-col>
-        <el-col :span="16">
-          <el-input v-model="username" placeholder="请输入用户名"></el-input>
-        </el-col>
-      </el-row>
+<el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+  <el-form-item label="用户名" prop="username" style="margin-bottom:7%">
+    <el-input v-model="ruleForm.username"></el-input>
+  </el-form-item>
+  <el-form-item label="密码" prop="password">
+    <el-input v-model="ruleForm.password"></el-input>
+  </el-form-item>
+</el-form>
+     
+     
+    <el-button type="primary" @click="toHome('ruleForm')" >确定</el-button>
 
-      <el-row style="margin-top:40px;display:flex;align-items:center;">
-        <el-col :span="6">
-          密码
-        </el-col>
-        <el-col :span="16">
-          <el-input v-model="password" placeholder="请输入密码"></el-input>
-        </el-col>
-      </el-row>
-
-      <el-row style="margin-top:40px;display:flex;align-items:center;">
-        <el-col >
-          <el-button type="primary" @click="toHome">确认</el-button>
-        </el-col>
-      </el-row>
-      
      </el-card>
 
     </el-col>
@@ -43,17 +31,44 @@
 <script>
 export default {
   methods:{
-    toHome(){
-      this.$router.push({
-          name:'已发布的信息'
-        });
+    toHome(formName){
+       this.$refs[formName].validate((valid)=>{
+         if(valid){
+           this.$router.push({
+             name:'已发布的信息'
+           });
+         }else{
+           this.$alert('请完整填写用户名和密码', '提示', {
+           confirmButtonText: '确定',
+           callback: action => {
+           }
+          });
+           return false;
+         }
+       })
+      
     },
+    cancel(){
+      this.$router.push({
+        name:'login'
+      });
+    }
   },
   
   data() {
     return {
-      username: '',
-      password: ''
+      ruleForm: {
+        username:'',
+        password:''
+      },
+      rules: {
+        username:[
+          {required: true, message:'请输入用户名',trigger:'blur'}
+        ],
+        password:[
+          {required: true, message:'请输入密码', trigger:'blur'}
+        ]
+      }
     }
   }
   

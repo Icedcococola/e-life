@@ -1,13 +1,44 @@
 <template>
   <div id="l-ac">
-    lalalanew
+    <el-row type="flex" class="row-bg" justify="center">
+      <el-col :span="14">
+        <div style="font-size:190%; height:50px; color:#858585fa;text-align:center;">
+            <div v-for="item in tableData" :key='item'>
+               {{item.title}}
+            </div>
+        </div>
+      </el-col>
+    </el-row>
+
+    <el-row>
+    <div style="width:100%;background:#c4c4c4fa;height:1px;margin-top:10px;margin-bottom:30px;padding:0px;overflow:hidden;"></div>
+    </el-row>
+
+    <el-row type="flex" justify="center">
+
+      <el-col :span="14">
+        <div style="font-size:100%; height:50px; color:#858585fa;text-align:center;">
+            <div v-for="item in tableData" :key='item'>
+               {{item.detail}}
+            </div>
+        </div>
+      </el-col>
+    </el-row>    
+
   </div>
 </template>
 
 <script>
- export default {
-      data() {
-        return {}
-      }
+export default {
+  data () {
+    return {
+      tableData: [
+        {
+          title:'elife小区首届广场舞大赛开始报名！',
+          detail:'时间：2019年8月2日，\n地点：小区花园，\n报名方式：到楼组长或居委会处填写报名表，\n报名截止日期：2019年8月1日'
+        }
+      ]
     }
+  }
+}
 </script>

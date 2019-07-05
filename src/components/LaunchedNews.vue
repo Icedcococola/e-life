@@ -6,7 +6,7 @@
         </div>
       </el-col>
       <el-col :span='8'>
-        <el-input v-model="input" placeholder="请输入要查询的关键字"></el-input>
+        <el-input v-model="search" class="search" icon="search" placeholder="请输入搜索内容"></el-input>
       </el-col>
       <el-col :span="2">
         <el-button icon="el-icon-search" circle></el-button>
@@ -18,7 +18,7 @@
     </el-row>
     
     <el-table
-      :data="tableData"
+      :data="searchData"
       style="width: 100%"
       :default-sort="{prop:'no',order:'ascending'}">
       
@@ -56,6 +56,23 @@
 
 <script>
  export default {
+      computed:{
+
+        searchData:function(){
+          var search = this.search;
+          if(search)   {
+            return this.tableData.filter(function(dt){
+              return Object.keys(dt).some(function(key){
+                return String(dt[key]).toLowerCase().indexOf(search) > -1
+              })
+            })
+          }  
+          return this.tableData                 
+        }
+
+      },
+
+
       methods:
       {
         topage(){
@@ -79,6 +96,7 @@
       data() {
         return {
           input: '',
+          search:'',
           tableData: [{
             date: '2019-07-02',
             title: 'b哈哈哈哈a'
