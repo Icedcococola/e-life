@@ -11,4 +11,5 @@ import UIKit
 class TableViewCell: UITableViewCell {
 
     @IBOutlet var cellLabel: UILabel!
+    @IBOutlet var icon: UILabel!
 }

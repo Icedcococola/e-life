@@ -8,19 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		5372C8A9419536758A4D0E79 /* Pods_e_life.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7916DD5BCA42922CB2DC81AA /* Pods_e_life.framework */; };
+		9505FFE022CB34F400462721 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9505FFDF22CB34F400462721 /* PayViewController.swift */; };
+		9505FFE222CB371700462721 /* ParkingPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9505FFE122CB371700462721 /* ParkingPaymentViewController.swift */; };
+		9505FFE422CB437100462721 /* WuYeNotiTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9505FFE322CB437100462721 /* WuYeNotiTableTableViewController.swift */; };
+		9505FFE622CB522B00462721 /* MailNotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9505FFE522CB522B00462721 /* MailNotificationTableViewController.swift */; };
+		952793B722C99C1300A4C472 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952793B622C99C1300A4C472 /* CollectionViewCell.swift */; };
 		9559D5AD22CAF52A00916AB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9559D5AC22CAF52A00916AB1 /* Assets.xcassets */; };
 		957129E822C9DADF0059DCEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957129E722C9DADF0059DCEE /* AppDelegate.swift */; };
 		957129EA22C9DADF0059DCEE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957129E922C9DADF0059DCEE /* LoginViewController.swift */; };
 		957129ED22C9DADF0059DCEE /* LoginAndRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957129EB22C9DADF0059DCEE /* LoginAndRegister.storyboard */; };
 		957129F222C9DAE00059DCEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957129F022C9DAE00059DCEE /* LaunchScreen.storyboard */; };
 		957129FA22C9E0930059DCEE /* bus.json in Resources */ = {isa = PBXBuildFile; fileRef = 957129F922C9E0930059DCEE /* bus.json */; };
+		95B8449122C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B8449022C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift */; };
+		95B8449322C9B3CC00D84A65 /* SendPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B8449222C9B3CC00D84A65 /* SendPostViewController.swift */; };
 		95D3932D22CC2F68002A3867 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3932C22CC2F68002A3867 /* RegisterViewController.swift */; };
 		95DD032622D2D54D0096E89D /* MainPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DD032522D2D54D0096E89D /* MainPages.storyboard */; };
 		95DD032822D2D61E0096E89D /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DD032722D2D61E0096E89D /* Home.storyboard */; };
 		95DD032A22D2D6270096E89D /* Services.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DD032922D2D6270096E89D /* Services.storyboard */; };
 		95DD032C22D2D62F0096E89D /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DD032B22D2D62F0096E89D /* Me.storyboard */; };
 		95DD032E22D2D62F0096E89D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD032D22D2D62F0096E89D /* HomeViewController.swift */; };
-		95DD033022D2D62F0096E89D /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD032F22D2D62F0096E89D /* CollectionViewCell.swift */; };
 		95DD033422D2D62F0096E89D /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD033322D2D62F0096E89D /* ServicesViewController.swift */; };
 		95DD033A22D2D62F0096E89D /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD033922D2D62F0096E89D /* MeViewController.swift */; };
 		95DD033C22D2D62F0096E89D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD033B22D2D62F0096E89D /* TableViewCell.swift */; };
@@ -33,6 +39,11 @@
 		1CC3ECF2AEB79E555C689118 /* Pods-e-life.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-e-life.release.xcconfig"; path = "Target Support Files/Pods-e-life/Pods-e-life.release.xcconfig"; sourceTree = "<group>"; };
 		218E7FAA27A5ECC7C691DB87 /* Pods-e-life.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-e-life.debug.xcconfig"; path = "Target Support Files/Pods-e-life/Pods-e-life.debug.xcconfig"; sourceTree = "<group>"; };
 		7916DD5BCA42922CB2DC81AA /* Pods_e_life.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_e_life.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9505FFDF22CB34F400462721 /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
+		9505FFE122CB371700462721 /* ParkingPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingPaymentViewController.swift; sourceTree = "<group>"; };
+		9505FFE322CB437100462721 /* WuYeNotiTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WuYeNotiTableTableViewController.swift; sourceTree = "<group>"; };
+		9505FFE522CB522B00462721 /* MailNotificationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailNotificationTableViewController.swift; sourceTree = "<group>"; };
+		952793B622C99C1300A4C472 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		9559D5AC22CAF52A00916AB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		957129E422C9DADF0059DCEE /* e-life.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "e-life.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		957129E722C9DADF0059DCEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,13 +52,14 @@
 		957129F122C9DAE00059DCEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		957129F322C9DAE00059DCEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		957129F922C9E0930059DCEE /* bus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = bus.json; path = "e-life/Animation/bus.json"; sourceTree = SOURCE_ROOT; };
+		95B8449022C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyNoticeTableViewController.swift; sourceTree = "<group>"; };
+		95B8449222C9B3CC00D84A65 /* SendPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPostViewController.swift; sourceTree = "<group>"; };
 		95D3932C22CC2F68002A3867 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		95DD032522D2D54D0096E89D /* MainPages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainPages.storyboard; sourceTree = "<group>"; };
 		95DD032722D2D61E0096E89D /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		95DD032922D2D6270096E89D /* Services.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Services.storyboard; sourceTree = "<group>"; };
 		95DD032B22D2D62F0096E89D /* Me.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
 		95DD032D22D2D62F0096E89D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		95DD032F22D2D62F0096E89D /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionViewCell.swift; path = "e-life/Controller/CollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		95DD033322D2D62F0096E89D /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		95DD033922D2D62F0096E89D /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		95DD033B22D2D62F0096E89D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -83,6 +95,46 @@
 				7916DD5BCA42922CB2DC81AA /* Pods_e_life.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9505FFDE22CB33D400462721 /* Items in ServicesPages */ = {
+			isa = PBXGroup;
+			children = (
+				9505FFDF22CB34F400462721 /* PayViewController.swift */,
+				9505FFE122CB371700462721 /* ParkingPaymentViewController.swift */,
+			);
+			path = "Items in ServicesPages";
+			sourceTree = "<group>";
+		};
+		952793B322C99B8500A4C472 /* Login&Register */ = {
+			isa = PBXGroup;
+			children = (
+				957129E922C9DADF0059DCEE /* LoginViewController.swift */,
+				95D3932C22CC2F68002A3867 /* RegisterViewController.swift */,
+				95EB54C822CC888F00E25003 /* PasswordRecoveryViewController.swift */,
+				95EB54CC22CC963E00E25003 /* NewPasswordViewController.swift */,
+			);
+			path = "Login&Register";
+			sourceTree = "<group>";
+		};
+		952793B422C99B9D00A4C472 /* Main Pages */ = {
+			isa = PBXGroup;
+			children = (
+				95EB54CE22CC9DA900E25003 /* MainViewController.swift */,
+				95DD032D22D2D62F0096E89D /* HomeViewController.swift */,
+				95DD033322D2D62F0096E89D /* ServicesViewController.swift */,
+				95DD033922D2D62F0096E89D /* MeViewController.swift */,
+			);
+			path = "Main Pages";
+			sourceTree = "<group>";
+		};
+		952793B522C99BAE00A4C472 /* Helper Class */ = {
+			isa = PBXGroup;
+			children = (
+				95DD033B22D2D62F0096E89D /* TableViewCell.swift */,
+				952793B622C99C1300A4C472 /* CollectionViewCell.swift */,
+			);
+			path = "Helper Class";
 			sourceTree = "<group>";
 		};
 		957129DB22C9DADF0059DCEE = {
@@ -125,19 +177,25 @@
 			path = Animation;
 			sourceTree = "<group>";
 		};
+		95B8448F22C9AF5800D84A65 /* Items in HomePages */ = {
+			isa = PBXGroup;
+			children = (
+				95B8449022C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift */,
+				95B8449222C9B3CC00D84A65 /* SendPostViewController.swift */,
+				9505FFE322CB437100462721 /* WuYeNotiTableTableViewController.swift */,
+				9505FFE522CB522B00462721 /* MailNotificationTableViewController.swift */,
+			);
+			path = "Items in HomePages";
+			sourceTree = "<group>";
+		};
 		95EB54CA22CC88C000E25003 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				957129E922C9DADF0059DCEE /* LoginViewController.swift */,
-				95D3932C22CC2F68002A3867 /* RegisterViewController.swift */,
-				95EB54C822CC888F00E25003 /* PasswordRecoveryViewController.swift */,
-				95EB54CC22CC963E00E25003 /* NewPasswordViewController.swift */,
-				95EB54CE22CC9DA900E25003 /* MainViewController.swift */,
-				95DD032D22D2D62F0096E89D /* HomeViewController.swift */,
-				95DD032F22D2D62F0096E89D /* CollectionViewCell.swift */,
-				95DD033322D2D62F0096E89D /* ServicesViewController.swift */,
-				95DD033922D2D62F0096E89D /* MeViewController.swift */,
-				95DD033B22D2D62F0096E89D /* TableViewCell.swift */,
+				9505FFDE22CB33D400462721 /* Items in ServicesPages */,
+				95B8448F22C9AF5800D84A65 /* Items in HomePages */,
+				952793B322C99B8500A4C472 /* Login&Register */,
+				952793B422C99B9D00A4C472 /* Main Pages */,
+				952793B522C99BAE00A4C472 /* Helper Class */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -280,16 +338,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				95DD033A22D2D62F0096E89D /* MeViewController.swift in Sources */,
+				9505FFE622CB522B00462721 /* MailNotificationTableViewController.swift in Sources */,
+				9505FFE022CB34F400462721 /* PayViewController.swift in Sources */,
 				95EB54C922CC888F00E25003 /* PasswordRecoveryViewController.swift in Sources */,
+				952793B722C99C1300A4C472 /* CollectionViewCell.swift in Sources */,
+				9505FFE422CB437100462721 /* WuYeNotiTableTableViewController.swift in Sources */,
+				9505FFE222CB371700462721 /* ParkingPaymentViewController.swift in Sources */,
 				95D3932D22CC2F68002A3867 /* RegisterViewController.swift in Sources */,
-				95DD033022D2D62F0096E89D /* CollectionViewCell.swift in Sources */,
 				957129EA22C9DADF0059DCEE /* LoginViewController.swift in Sources */,
 				95EB54CF22CC9DA900E25003 /* MainViewController.swift in Sources */,
 				95DD033C22D2D62F0096E89D /* TableViewCell.swift in Sources */,
 				95EB54CD22CC963E00E25003 /* NewPasswordViewController.swift in Sources */,
 				95DD033422D2D62F0096E89D /* ServicesViewController.swift in Sources */,
 				95DD032E22D2D62F0096E89D /* HomeViewController.swift in Sources */,
+				95B8449322C9B3CC00D84A65 /* SendPostViewController.swift in Sources */,
 				957129E822C9DADF0059DCEE /* AppDelegate.swift in Sources */,
+				95B8449122C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,6 +19,12 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         "换手机号",
         "实名验证"
     ]
+    let ID = [
+        "1",
+        "2",
+        "3",
+        "4"
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +54,14 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         cell.cellLabel.text = configItems[indexPath.row]
+        cell.icon.text = ">"
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        let id = ID[indexPath.row]
+        let viewController = storyboard?.instantiateViewController(withIdentifier: id)
+        navigationController?.pushViewController(viewController!, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 

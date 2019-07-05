@@ -120,7 +120,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="cellLabel" destination="J50-PR-edJ" id="qa6-tz-uyu"/>
-                                            <outlet property="icon" destination="Ebz-ko-IXH" id="so2-Xx-zGc"/>
+                                            <outlet property="icon" destination="Ebz-ko-IXH" id="p1j-YV-qjb"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -171,6 +171,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M17-3U-uSf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="979.71014492753636" y="85.714285714285708"/>
+        </scene>
+        <!--换用户名-->
+        <scene sceneID="Buh-qY-0cf">
+            <objects>
+                <viewController storyboardIdentifier="1" title="换用户名" id="cT8-0O-Jc9" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HDa-ZF-Wox">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="2nP-Fk-cEC"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZHN-nX-gpA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1822" y="86"/>
+        </scene>
+        <!--换手机号码-->
+        <scene sceneID="yCW-IQ-9EF">
+            <objects>
+                <viewController storyboardIdentifier="3" title="换手机号码" id="ZwF-VA-lNR" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="T8f-ft-gfK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="d2t-7o-anN"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xwb-te-PiL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1822" y="755"/>
+        </scene>
+        <!--实名验证-->
+        <scene sceneID="l9v-xy-f7S">
+            <objects>
+                <viewController storyboardIdentifier="4" title="实名验证" id="adJ-lN-dd5" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rZe-XD-4ri">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Y95-Vc-aDU"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zFM-bA-SRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2605" y="760"/>
+        </scene>
+        <!--换密码-->
+        <scene sceneID="ZW6-6i-w3w">
+            <objects>
+                <viewController storyboardIdentifier="2" title="换密码" id="voO-9k-YkS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U4F-v2-n8U">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="cVX-26-0Ds"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rXP-2B-fob" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2578" y="89"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uQS-LH-uZj">

@@ -23,6 +23,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         UIImage(named: "NearMe")!,
         UIImage(named: "Shopping")!
     ]
+    let ID : [String] = [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+    ]
     
     @IBOutlet var EmergencyNews: UIView!
     @IBOutlet var News: UIView!
@@ -63,7 +74,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
+        let id = ID[indexPath.row]
+        let viewController = storyboard?.instantiateViewController(withIdentifier: id)
+        navigationController?.pushViewController(viewController!, animated: true)
     }
 
 }

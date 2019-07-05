@@ -22,7 +22,10 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
         UIImage(named: "Paying")!,
         UIImage(named: "ParkingPayment")!
     ]
-    
+    let ID : [String] = [
+        "1",
+        "2"
+    ]
     override func viewDidLoad() {
         super.viewDidLoad()
         designUI()
@@ -57,7 +60,30 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        switch (indexPath.row){
+            case 0:
+                callNumber(phoneNumber: "123456")
+            case 1:
+                callNumber(phoneNumber: "678910")
+            case 2:
+                callNumber(phoneNumber: "32141234")
+            default:
+                let id = ID[indexPath.row-3]
+                let viewController = storyboard?.instantiateViewController(withIdentifier: id)
+                navigationController?.pushViewController(viewController!, animated: true)
+            
+        }
+    }
+    func callNumber(phoneNumber: String) {
+        if let url = URL(string: "tel://\(phoneNumber)") {
+            if #available(iOS 10, *) {
+                print("calling")
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                print("calling")
+                UIApplication.shared.openURL(url as URL)
+            }
+        }
     }
     
 

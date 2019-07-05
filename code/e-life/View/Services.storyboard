@@ -45,6 +45,9 @@
                                                     <constraint firstAttribute="width" constant="76" id="Gcs-ap-dyr"/>
                                                 </constraints>
                                                 <state key="normal" title="&gt;"/>
+                                                <connections>
+                                                    <segue destination="rW7-HJ-2Ju" kind="show" id="AQ2-wL-E3d"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -96,7 +99,7 @@
                                         </view>
                                         <connections>
                                             <outlet property="icon" destination="hQa-iJ-V10" id="S1Z-JV-fk9"/>
-                                            <outlet property="icon1" destination="hQa-iJ-V10" id="O9c-SY-wki"/>
+                                            <outlet property="icon1" destination="hQa-iJ-V10" id="bHW-dF-AaV"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -122,6 +125,70 @@
             </objects>
             <point key="canvasLocation" x="984.05797101449286" y="75.669642857142847"/>
         </scene>
+        <!--物业管理费-->
+        <scene sceneID="Jtb-Qa-hCV">
+            <objects>
+                <viewController storyboardIdentifier="1" title="物业管理费" id="rW7-HJ-2Ju" customClass="PayViewController" customModule="e_life" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nxl-Uc-uJw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJx-6w-zEG">
+                                <rect key="frame" x="50" y="138" width="314" height="160"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本月应缴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQC-RD-ph6">
+                                        <rect key="frame" x="116" y="15" width="82" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="0.0" green="0.56078431370000004" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ppm-oo-6Cw">
+                                        <rect key="frame" x="144.5" y="79" width="25.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" red="0.0" green="0.56078431370000004" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.30150363869863012" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="3dL-DB-08n"/>
+                                    <constraint firstItem="ppm-oo-6Cw" firstAttribute="centerX" secondItem="vJx-6w-zEG" secondAttribute="centerX" id="7as-hY-h3H"/>
+                                    <constraint firstItem="LQC-RD-ph6" firstAttribute="top" secondItem="vJx-6w-zEG" secondAttribute="top" constant="15" id="Rqr-iK-CLC"/>
+                                    <constraint firstItem="ppm-oo-6Cw" firstAttribute="top" secondItem="LQC-RD-ph6" secondAttribute="bottom" constant="40" id="mfH-Qn-wv8"/>
+                                    <constraint firstItem="LQC-RD-ph6" firstAttribute="centerX" secondItem="vJx-6w-zEG" secondAttribute="centerX" id="rNh-7O-NeI"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNU-Rx-qKm">
+                                <rect key="frame" x="50" y="328" width="314" height="50"/>
+                                <color key="backgroundColor" red="0.76862745099999996" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="xC5-5t-SLN"/>
+                                </constraints>
+                                <state key="normal" title="点击缴费">
+                                    <color key="titleColor" red="0.0" green="0.56078431370000004" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HNU-Rx-qKm" firstAttribute="leading" secondItem="fKA-Jl-9gg" secondAttribute="leading" constant="50" id="5D9-bP-N75"/>
+                            <constraint firstItem="vJx-6w-zEG" firstAttribute="top" secondItem="fKA-Jl-9gg" secondAttribute="top" constant="50" id="Brj-de-aO6"/>
+                            <constraint firstItem="HNU-Rx-qKm" firstAttribute="top" secondItem="vJx-6w-zEG" secondAttribute="bottom" constant="30" id="Fnu-bc-W6O"/>
+                            <constraint firstItem="fKA-Jl-9gg" firstAttribute="trailing" secondItem="vJx-6w-zEG" secondAttribute="trailing" constant="50" id="cKq-1x-OB5"/>
+                            <constraint firstItem="vJx-6w-zEG" firstAttribute="leading" secondItem="fKA-Jl-9gg" secondAttribute="leading" constant="50" id="fl4-7V-YmW"/>
+                            <constraint firstItem="fKA-Jl-9gg" firstAttribute="trailing" secondItem="HNU-Rx-qKm" secondAttribute="trailing" constant="50" id="wVM-hj-9eu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fKA-Jl-9gg"/>
+                    </view>
+                    <connections>
+                        <outlet property="infoView" destination="vJx-6w-zEG" id="bC2-Fe-DXb"/>
+                        <outlet property="payButton" destination="HNU-Rx-qKm" id="PbH-aa-e1M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DJi-Kv-7rI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1700.0000000000002" y="75.669642857142847"/>
+        </scene>
         <!--服务-->
         <scene sceneID="lWw-Fy-oNe">
             <objects>
@@ -143,6 +210,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B3H-xf-JE6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="73.913043478260875" y="75.669642857142847"/>
+        </scene>
+        <!--停车费-->
+        <scene sceneID="x9f-85-hKR">
+            <objects>
+                <viewController storyboardIdentifier="2" title="停车费" id="jaL-yJ-mNl" customClass="ParkingPaymentViewController" customModule="e_life" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pQm-sB-yBk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BYx-fx-oHu">
+                                <rect key="frame" x="50" y="94" width="314" height="160"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本月应缴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycz-yY-wtt">
+                                        <rect key="frame" x="116" y="15" width="82" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="0.0" green="0.56078431370000004" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6A-rJ-QzU">
+                                        <rect key="frame" x="144.5" y="84" width="25.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" red="0.0" green="0.56078431370000004" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.29545697773972601" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ycz-yY-wtt" firstAttribute="centerX" secondItem="BYx-fx-oHu" secondAttribute="centerX" id="Ua0-DA-wFI"/>
+                                    <constraint firstItem="R6A-rJ-QzU" firstAttribute="centerX" secondItem="BYx-fx-oHu" secondAttribute="centerX" id="ZfK-wW-juO"/>
+                                    <constraint firstItem="R6A-rJ-QzU" firstAttribute="top" secondItem="ycz-yY-wtt" secondAttribute="bottom" constant="45" id="aMq-xD-Wxj"/>
+                                    <constraint firstAttribute="height" constant="160" id="ePH-yd-zZw"/>
+                                    <constraint firstItem="ycz-yY-wtt" firstAttribute="top" secondItem="BYx-fx-oHu" secondAttribute="top" constant="15" id="xZv-bd-tc7"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kau-eA-Rzj">
+                                <rect key="frame" x="50" y="284" width="314" height="50"/>
+                                <color key="backgroundColor" red="0.76862745099999996" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9ea-eO-iGf"/>
+                                </constraints>
+                                <state key="normal" title="点击缴费">
+                                    <color key="titleColor" red="0.0" green="0.56078431370000004" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Kau-eA-Rzj" firstAttribute="leading" secondItem="JST-Yd-TkW" secondAttribute="leading" constant="50" id="4Gt-w5-Nuq"/>
+                            <constraint firstItem="BYx-fx-oHu" firstAttribute="top" secondItem="JST-Yd-TkW" secondAttribute="top" constant="50" id="Opz-gL-Zhs"/>
+                            <constraint firstItem="JST-Yd-TkW" firstAttribute="trailing" secondItem="Kau-eA-Rzj" secondAttribute="trailing" constant="50" id="UcZ-7k-d7W"/>
+                            <constraint firstItem="BYx-fx-oHu" firstAttribute="leading" secondItem="JST-Yd-TkW" secondAttribute="leading" constant="50" id="e3z-SB-VMf"/>
+                            <constraint firstItem="JST-Yd-TkW" firstAttribute="trailing" secondItem="BYx-fx-oHu" secondAttribute="trailing" constant="50" id="i4M-OD-HYi"/>
+                            <constraint firstItem="Kau-eA-Rzj" firstAttribute="top" secondItem="BYx-fx-oHu" secondAttribute="bottom" constant="30" id="sIz-WW-45D"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JST-Yd-TkW"/>
+                    </view>
+                    <connections>
+                        <outlet property="infoView" destination="BYx-fx-oHu" id="0IV-0S-MXV"/>
+                        <outlet property="payButton" destination="Kau-eA-Rzj" id="XQm-7u-7hQ"/>
+                        <outlet property="paymentAmount" destination="R6A-rJ-QzU" id="17z-Bt-6dh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jxu-OW-362" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2414" y="76"/>
         </scene>
     </scenes>
     <resources>
