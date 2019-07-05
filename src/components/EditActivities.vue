@@ -13,52 +13,46 @@
     <div style="width:100%;background:#c4c4c4fa;height:1px;margin:0px auto;padding:0px;overflow:hidden;"></div>
   </el-row>
 
-  <el-row style="margin-top:50px;margin-bottom:40px;" type="flex" justify="center">
-    <el-col :span="3">
-       标题
-     </el-col>
-     <el-col :span="17">
-      <el-input
-      type="textarea"
-      :rows="2"
-      placeholder="请输入标题"
-      v-model="title">
-      </el-input>        
-     </el-col>
-  </el-row>
+  <el-row type="flex" justify="center">
+    <el-col :span="18">
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="margin-top:6%">
+    <el-form-item label="标题" prop="title" style="margin-bottom:6%;">
+      <el-input v-model="ruleForm.title" ></el-input>
+    </el-form-item>
+    <el-form-item label="内容" prop="content" style="margin-bottom:6%;">
+      <el-input type="textarea" :autosize="{ minRows: 18, maxRows: 24}" placeholder="请输入内容" v-model="ruleForm.content"></el-input>
+    </el-form-item>
+    <el-form-item label="时间" prop="date" style="margin-bottom:6%;">
+     
+        <el-col :span="6">
+          <el-date-picker
+            v-model="ruleForm.date"
+            type="date"
+            placeholder="选择日期">
+          </el-date-picker>
+        </el-col>
 
-  <el-row style="margin-top:25px;" type="flex" justify="center">
-    <el-col :span="3">
-      正文
-    </el-col>
-    <el-col :span="17">
-      <el-input
-      type="textarea"
-      :rows="16"
-      placeholder="请输入内容"
-      v-model="content">
-      </el-input>
+    </el-form-item >
+    <el-form-item label="预览图" prop="picture">
+    <el-row type="flex" justify="start">
+          <el-upload
+            action="https://jsonplaceholder.typicode.com/posts/"
+            list-type="picture-card"
+            :on-preview="handlePictureCardPreview"
+            :on-remove="handleRemove">
+            <i class="el-icon-plus"></i>
+          </el-upload>
+          <el-dialog :visible.sync="dialogVisible" size="tiny">
+            <img width="100%" :src="dialogImageUrl" alt="">
+          </el-dialog>
+
+    </el-row>
+    </el-form-item>
+  </el-form>
     </el-col>
   </el-row>
   
-  <el-row style="margin:20px;">
-    <el-col>
-      <el-upload
-        class="upload-demo"
-        drag
-        action="https://jsonplaceholder.typicode.com/posts/"
-        multiple>
-        <i class="el-icon-upload"></i>
-        <div class="el-upload__text">将文件拖到此处，或点击上传</div>
-         <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
-      </el-upload>
-    </el-col>
-  </el-row>
-
-
-  <el-row style="height:100px; margin-top:30px;">
-    <el-button type="primary" @click="confirm1">提交活动安排</el-button>
-  </el-row>
+  <el-button type="primary" @click="commit('ruleForm')">提交活动安排</el-button>
 
   </div>
 </template>
@@ -67,23 +61,58 @@
 export default {
   methods:
   {
-    confirm1()
+    commit(formName)
     {
-      this.$confirm('确认内容并提交？',
-                    '提示',
-                    {confirmButtonText:'确定',cancelButtonText:'取消'}
-      ).then(()=>{
+
+        this.$refs[formName].validate((valid)=>{
+          if(valid){
+            this.$confirm('确认内容并提交？',
+                          '提示',
+                          {confirmButtonText:'确定',cancelButtonText:'取消'}
+            ).then(()=>{
+              this.$message({type:'success',message:'提交成功！'});
+              this.$router.push({name:"查看活动安排"});
+            });
+          }else{
+            this.$alert('请填写完整','提示',{
+              confirmButtonText:'确定',
+              callback: action=>{}
+            });
+            return false;
+          }
+        })
+
         
-        this.$message({type:'success',message:'提交成功!'});
-        this.$router.push({name:"查看活动安排"});
-         
-      });
+    },
+    handleRemove(file, fileList) {
+        console.log(file, fileList);
+    },
+    handlePictureCardPreview(file) {
+        this.dialogImageUrl = file.url;
+        this.dialogVisible = true;
     }
   },
   data() {
     return {
-      title:'',
-      content:''
+      dialogImageUrl: '',
+      dialogVisible: false,
+      ruleForm:{
+        title:'',
+        content:'',
+        date:'',
+      },
+      rules:{
+        title:[
+          {required:true, message:'请输入标题', trigger:'blur'}
+        ],
+        content:[
+          {required:true, message:'请输入活动内容',trigger:'blur'}
+        ],
+        date:[
+          {type: 'date',required:true, message:'请选择日期', trigger:'change'}
+
+        ],
+      }
     }
   }
 }

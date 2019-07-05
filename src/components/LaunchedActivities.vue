@@ -87,7 +87,7 @@
                         '提示',
                         {confirmButtonText:'确定',cancelButtonText:'取消'}
           ).then(()=>{
-            this.tableData.splice(index,1);
+            this.searchData.splice(index,1);
             this.$message({type:'success',message:'删除成功!'});
           }
           )

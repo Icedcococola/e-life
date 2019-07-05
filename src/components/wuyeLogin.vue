@@ -48,11 +48,6 @@ export default {
        })
       
     },
-    cancel(){
-      this.$router.push({
-        name:'login'
-      });
-    }
   },
   
   data() {
