@@ -37,6 +37,15 @@
       </el-table-column>
 
       <el-table-column
+        prop="orderid"
+        label="快递单号"
+        align="center">
+        <template slot-scope="scope">
+            <el-input v-model="scope.row.orderid" placeholder="快递单号"></el-input>
+        </template>
+      </el-table-column> 
+      
+      <el-table-column
         prop="company"
         label="快递公司"
         align="center">
@@ -44,7 +53,7 @@
             <el-input v-model="scope.row.company" placeholder="快递公司名"></el-input>
         </template>
       </el-table-column> 
-      
+
       <el-table-column
         prop="phonenum"
         label="手机号"
@@ -53,11 +62,11 @@
             <el-input v-model="scope.row.phonenum" placeholder="手机号"></el-input>
         </template>
       </el-table-column>     
-  
+
       <el-table-column
         prop="op"
         label="操作"
-        width="180"
+        width="130"
         align="center"
         fixed="right">
         <template slot-scope="scope">
@@ -72,16 +81,11 @@
  export default {
       methods:
       {
-        topage(){
-          this.$router.push({
-            name:"活动详情页"
-          });
-
-        },
         addLine(){
           var newValue={
             company:'',
-            phonenum:''
+            phonenum:'',
+            orderid:''
           };
           this.tableData.push(newValue);
         },

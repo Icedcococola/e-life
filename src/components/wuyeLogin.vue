@@ -34,9 +34,29 @@ export default {
     toHome(formName){
        this.$refs[formName].validate((valid)=>{
          if(valid){
-           this.$router.push({
-             name:'已发布的信息'
-           });
+            this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/wuyelogin',
+            {
+              user:this[formName].username,
+              pass:this[formName].password
+            }
+            ).then((response)=>{
+            if(response.status === 200 ){
+                //var aaa = response.data
+                //var bbb = aaa[match]
+                //console.log(bbb)
+                this.$store.commit('SET_TOKEN',1)
+              
+             
+            }
+            })
+            this.$router.push({
+                name:'已发布的信息'
+                });
+
+            
+           //this.$router.push({
+           //  name:'已发布的信息'
+           //});
          }else{
            this.$alert('请完整填写用户名和密码', '提示', {
            confirmButtonText: '确定',

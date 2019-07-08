@@ -17,37 +17,11 @@
   <el-row type="flex" justify="center">
     <el-col :span="18">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="margin-top:6%">
-    <el-form-item label="标题" prop="title" style="margin-bottom:6%;">
+    <el-form-item label="标题" prop="title" style="margin-bottom:5%;">
       <el-input v-model="ruleForm.title" clearable="true"></el-input>
     </el-form-item>
-    <el-form-item label="内容" prop="content" style="margin-bottom:6%;">
+    <el-form-item label="内容" prop="content" style="margin-bottom:5%;">
       <el-input type="textarea" :autosize="{ minRows: 18, maxRows: 24}" placeholder="请输入内容" v-model="ruleForm.content"></el-input>
-    </el-form-item>
-    <el-form-item label="时间" prop="date" style="margin-bottom:6%;">
-     
-        <el-col :span="6">
-          <el-date-picker
-            v-model="ruleForm.date"
-            type="date"
-            placeholder="选择日期">
-          </el-date-picker>
-        </el-col>
-
-    </el-form-item>
-    <el-form-item label="预览图" prop="picture">
-    <el-row type="flex" justify="start">
-          <el-upload
-            action="https://jsonplaceholder.typicode.com/posts/"
-            list-type="picture-card"
-            :on-preview="handlePictureCardPreview"
-            :on-remove="handleRemove">
-            <i class="el-icon-plus"></i>
-          </el-upload>
-          <el-dialog :visible.sync="dialogVisible" size="tiny">
-            <img width="100%" :src="dialogImageUrl" alt="">
-          </el-dialog>
-
-    </el-row>
     </el-form-item>
 
   </el-form>

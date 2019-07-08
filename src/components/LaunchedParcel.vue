@@ -30,7 +30,7 @@
       </el-table-column>
       <el-table-column
         prop="no"
-        label="邮包编号"
+        label="快递单号"
         width="180"
         align="center">
       </el-table-column>

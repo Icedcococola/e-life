@@ -19,10 +19,12 @@ import parcelLogin from "@/components/parcelLogin"
 import parcelHome from "@/components/parcelHome"
 import LaunchedParcel from "@/components/LaunchedParcel"
 import EditParcel from "@/components/EditParcel"
+import store from '@/store/index'
 
 Vue.use(Router)
 
-export default new Router({
+
+const router = new Router({
   routes: [
     {
       path: '/Home',
@@ -34,42 +36,66 @@ export default new Router({
           path:'/LaunchedActivities',
           component:LaunchedActivities,
           name:'查看活动安排',
-          hidden:true
+          hidden:true,
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
         },
         {
           path:'/LaunchedNews',
           component:LaunchedNews,
-          name:'查看最新资讯'
+          name:'查看最新资讯',
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
         },
         {
           path:'/LaunchedNotice',
           component:LaunchedNotice,
-          name:'查看物业通知'
+          name:'查看物业通知',
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
         },
         {
           path:'/LaunchedUrgent',
           component:LaunchedUrgent,
-          name:'查看紧急通知'
+          name:'查看紧急通知',
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
         },
         {
           path:'/messagePageAct',
           component:messagePageAct,
-          name:'活动详情页'
+          name:'活动详情页',
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
         },
         {
           path:'/messagePageUrg',
           component:messagePageUrg,
-          name:'紧急详情页'
+          name:'紧急详情页',
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
         },
         {
           path:'/messagePageNew',
           component:messagePageNew,
-          name:'资讯详情页'
+          name:'资讯详情页',
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
         },
         {
           path:'/messagePageNot',
           component:messagePageNot,
-          name:'物业详情页'
+          name:'物业详情页',
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
         }
       ]
       
@@ -84,22 +110,34 @@ export default new Router({
           path:'/EditActivities',
           component:EditActivities,
           name:'编辑活动安排',
-          hidden:true
+          hidden:true,
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
         },
         { 
           path:'/EditNews',
           component:EditNews,
-          name:'编辑最新资讯'
+          name:'编辑最新资讯',
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
         },
         {
           path:'/EditNotice',
           component:EditNotice,
-          name:'编辑物业通知'
+          name:'编辑物业通知',
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
         },
         {
           path:'/EditUrgent',
           component:EditUrgent,
-          name:'编辑紧急通知'
+          name:'编辑紧急通知',
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
         },
       ]
     },
@@ -127,12 +165,18 @@ export default new Router({
         {
           path:'/LaunchedParcel',
           component:LaunchedParcel,
-          name:'LaunchedParcel'
+          name:'LaunchedParcel',
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
         },
         {
           path:'/EditParcel',
           component:EditParcel,
-          name:'EditParcel'
+          name:'EditParcel',
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
         }
       ]
     }
@@ -140,3 +184,25 @@ export default new Router({
 
   ]
 })
+
+
+
+router.beforeEach((to, from, next) => {
+  const token = store.state.token
+  if (to.meta.requireAuth) { // 判断该路由是否需要登录权限
+    if (token) { // 通过vuex state获取当前的token是否存在
+      next()
+    } else {
+      console.log('该页面需要登陆')
+      next({
+        path: '/wuyeLogin'
+        //query: {redirect: to.fullPath} // 将跳转的路由path作为参数，登录成功后跳转到该路由
+      })
+    }
+  } else {
+    next()
+  }
+})
+
+
+export default router

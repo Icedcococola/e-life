@@ -13,18 +13,19 @@
     <div style="width:100%;background:#c4c4c4fa;height:1px;margin:0px auto;padding:0px;overflow:hidden;"></div>
   </el-row>
 
-  <el-row type="flex" justify="center">
+  <el-row type="flex" justify="center" >
     <el-col :span="18">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="margin-top:6%">
-    <el-form-item label="标题" prop="title" style="margin-bottom:6%;">
-      <el-input v-model="ruleForm.title" ></el-input>
+    <el-form-item label="标题" prop="title" style="margin-bottom:5%;">
+      <el-input v-model="ruleForm.title" placeholder="请输入活动标题"></el-input>
     </el-form-item>
-    <el-form-item label="内容" prop="content" style="margin-bottom:6%;">
-      <el-input type="textarea" :autosize="{ minRows: 18, maxRows: 24}" placeholder="请输入内容" v-model="ruleForm.content"></el-input>
+    <el-form-item label="内容" prop="content" style="margin-bottom:5%;">
+      <el-input type="textarea" :autosize="{ minRows: 12, maxRows: 18}" placeholder="请输入活动内容" v-model="ruleForm.content"></el-input>
     </el-form-item>
-    <el-form-item label="时间" prop="date" style="margin-bottom:6%;">
-     
-        <el-col :span="6">
+    
+    <el-form-item label="时间" prop="date" style="margin-bottom:5%;">
+  
+        <el-col :span="6" style="width:30%">
           <el-date-picker
             v-model="ruleForm.date"
             type="date"
@@ -32,22 +33,29 @@
           </el-date-picker>
         </el-col>
 
-    </el-form-item >
-    <el-form-item label="预览图" prop="picture">
-    <el-row type="flex" justify="start">
-          <el-upload
-            action="https://jsonplaceholder.typicode.com/posts/"
-            list-type="picture-card"
-            :on-preview="handlePictureCardPreview"
-            :on-remove="handleRemove">
-            <i class="el-icon-plus"></i>
-          </el-upload>
-          <el-dialog :visible.sync="dialogVisible" size="tiny">
-            <img width="100%" :src="dialogImageUrl" alt="">
-          </el-dialog>
+        <el-col class="line" :span="2">-</el-col>
 
-    </el-row>
+        <el-col :span="6" style="width:30%">
+          <el-form-item prop="time">
+            <el-time-select
+            v-model="ruleForm.time"
+            :picker-options="{
+            start: '08:00',
+            step: '00:30',
+            end: '20:00'
+            }"
+            placeholder="选择时间">
+          </el-time-select>
+          </el-form-item>
+        </el-col>
+
+    </el-form-item >
+    
+    <el-form-item label="地点" prop="place" style="margin-bottom:5%;">
+      <el-input v-model="ruleForm.place" placeholder="请输入活动地点"></el-input>
     </el-form-item>
+
+
   </el-form>
     </el-col>
   </el-row>
@@ -83,23 +91,17 @@ export default {
         })
 
         
-    },
-    handleRemove(file, fileList) {
-        console.log(file, fileList);
-    },
-    handlePictureCardPreview(file) {
-        this.dialogImageUrl = file.url;
-        this.dialogVisible = true;
     }
   },
   data() {
     return {
-      dialogImageUrl: '',
-      dialogVisible: false,
+      fileList: [],
       ruleForm:{
         title:'',
         content:'',
         date:'',
+        place:'',
+        time:''
       },
       rules:{
         title:[
@@ -109,9 +111,14 @@ export default {
           {required:true, message:'请输入活动内容',trigger:'blur'}
         ],
         date:[
-          {type: 'date',required:true, message:'请选择日期', trigger:'change'}
-
+          {type: 'date', required:true, message:'请选择日期', trigger:'change'}
         ],
+        place:[
+          {required:true, message:'请输入活动地点', trigger:'blur'}
+        ],
+        time:[
+          {required:true, message:'请选择具体时间',trigger:'blur'}
+        ]
       }
     }
   }

@@ -10,7 +10,15 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api':{
+        target:'https://mockapi.eolinker.com/9cjnagBad7d844f3a1423492f19ab6c0511361017bc52ce',
+        changeOrigin:true,
+        pathRewrite:{
+          '^/api':'/api'
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
