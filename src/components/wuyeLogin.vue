@@ -41,12 +41,14 @@ export default {
             }
             ).then((response)=>{
             if(response.status === 200 ){
-                //var aaa = response.data
-                //var bbb = aaa[match]
-                //console.log(bbb)
-                this.$store.commit('SET_TOKEN',1)
-              
-             
+                console.log(response);
+                var a = response.data.match;
+                console.log(a);
+                if(a===0){
+                  this.$store.commit('SET_TOKEN',1)
+                }
+                //easy mock返的数据莫要包在data:{}里。。。你可长点心吧
+
             }
             })
             this.$router.push({
