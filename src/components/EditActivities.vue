@@ -78,8 +78,25 @@ export default {
                           '提示',
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
-              this.$message({type:'success',message:'提交成功！'});
-              this.$router.push({name:"查看活动安排"});
+              this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/commitact',
+              {
+                title:this[formName].title,
+                content:this[formName].content,
+                date:this[formName].date,
+                time:this[formName].time,
+                place:this[formName].place
+              }).then((response)=>{
+                if(response.status === 200){
+                  console.log(response);
+                  console.log(response.data.result);
+                  if(response.data.result === 3){
+                    this.$message({type:'success',message:'提交成功！'});
+                    this.$router.push({name:"查看活动安排"});
+                  }
+                }
+              })
+              //this.$message({type:'success',message:'提交成功！'});
+              //this.$router.push({name:"查看活动安排"});
             });
           }else{
             this.$alert('请填写完整','提示',{

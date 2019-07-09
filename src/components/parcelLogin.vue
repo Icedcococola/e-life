@@ -34,9 +34,31 @@ export default {
     toHome(formName){
        this.$refs[formName].validate((valid)=>{
          if(valid){
-           this.$router.push({
-             name:'parcelHome'
-           });
+            this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/parcellogin',
+            {
+              user:this[formName].username,
+              pass:this[formName].password
+            }
+            ).then((response)=>{
+            if(response.status === 200 ){
+                console.log(response);
+                var a = response.data.match;
+                console.log(a);
+                if(a===1){
+                  this.$store.commit('SET_TOKEN',1)
+                }
+                //easy mock返的数据莫要包在data:{}里。。。你可长点心吧
+
+            }else{
+              this.$confirm('用户名或密码不正确', '提示', {
+                confirmButtonText: '确定',
+                type: 'warning'
+               })
+            }
+            })
+            this.$router.push({
+                name:'parcelHome'
+                });
          }else{
            this.$alert('请完整填写用户名和密码', '提示', {
            confirmButtonText: '确定',

@@ -25,7 +25,7 @@
       <el-table-column
         type="index"
         label="序号"
-        width="180"
+        width="100"
         align="center">
       </el-table-column>
       <el-table-column
@@ -36,7 +36,7 @@
       <el-table-column
         prop="date"
         label="日期"
-        width="210"
+        width="150"
         align="center">
       </el-table-column>     
       <el-table-column
@@ -46,7 +46,7 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
-            <el-button type="primary" @click="topage" round>查看</el-button>
+            <el-button type="primary" @click="topage(scope.row.title)" round>查看</el-button>
             <el-button type="danger" @click="deleteLine(scope.$index)" round >删除</el-button>
           </template>
       </el-table-column>
@@ -56,6 +56,9 @@
 
 <script>
  export default {
+      mounted:function(){
+          this.getNewsData();
+      },
       computed:{
 
         searchData:function(){
@@ -75,10 +78,21 @@
 
       methods:
       {
-        topage(){
-          this.$router.push({
-            name:"资讯详情页"
-          });
+        topage(lhlhlh){
+          this.axios.get('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/launchednew',{
+            params:{
+              title:lhlhlh
+            }
+          }).then((response)=>{
+            
+
+            this.$router.push({
+            name:"资讯详情页",
+            params:{
+              data:response.data
+            }
+            });
+          })
 
         },
         
@@ -92,24 +106,20 @@
           }
           )
         },
+
+        getNewsData(){
+          this.axios.get('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/LaunchedNews')
+          .then((response)=>{
+            var newsDt = response.data;
+            this.tableData = newsDt;
+          })
+        }
       },
       data() {
         return {
           input: '',
           search:'',
-          tableData: [{
-            date: '2019-07-02',
-            title: 'b哈哈哈哈a'
-          }, {
-            date: '2019-07-04',
-            title: 'b嘿嘿嘿嘿la'
-          }, {
-            date: '2019-07-01',
-            title: 'b呵呵呵呵呵b'
-          }, {
-            date: '2019-07-03',
-            title: 'ba吼吼吼吼ba'
-          }]
+          tableData: []
         }
       }
     }

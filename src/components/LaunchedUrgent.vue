@@ -46,7 +46,7 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
-            <el-button type="primary" @click="topage" round>查看</el-button>
+            <el-button type="primary" @click="topage(scope.row.title)" round>查看</el-button>
             <el-button type="danger" @click="deleteLine(scope.$index)"  round >删除</el-button>
           </template>
       </el-table-column>
@@ -56,6 +56,9 @@
 
 <script>
  export default {
+      mounted:function(){
+         this.getUrgent();
+      },
       computed:{
 
         searchData:function(){
@@ -73,11 +76,19 @@
       },
       methods:
       {
-        topage(){
-          this.$router.push({
-            name:"紧急详情页"
-          });
-
+        topage(happy){
+          this.axios.get('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/urgentdetail',{
+            params:{
+              title:happy
+            }
+          }).then((response)=>{
+            this.$router.push({
+              name:"紧急详情页",
+              params:{
+                data:response.data
+              }
+            })
+          })
         },
         
         deleteLine(index){
@@ -90,28 +101,20 @@
           }
           )
         },
+
+        getUrgent(){
+          this.axios.get('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/urgent')
+          .then((response)=>{
+            var urg = response.data;
+            this.tableData=urg;
+          })
+        }
       },
       data() {
         return {
           input: '',
           search:'',
-          tableData: [{
-            date: '2019-07-02',
-            no: '1',
-            title: 'balabala'
-          }, {
-            date: '2019-07-04',
-            no: '3',
-            title: 'balabala'
-          }, {
-            date: '2019-07-01',
-            no: '4',
-            title: 'baalballab'
-          }, {
-            date: '2019-07-03',
-            no: '2',
-            title: 'balbalbalba'
-          }]
+          tableData: []
         }
       }
     }

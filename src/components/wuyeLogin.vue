@@ -36,29 +36,30 @@ export default {
          if(valid){
             this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/wuyelogin',
             {
-              user:this[formName].username,
-              pass:this[formName].password
+              username:this[formName].username,
+              passname:this[formName].password
             }
             ).then((response)=>{
-            if(response.status === 200 ){
+            if(response.status === 200){
                 console.log(response);
                 var a = response.data.match;
                 console.log(a);
                 if(a===0){
                   this.$store.commit('SET_TOKEN',1)
                 }
-                //easy mock返的数据莫要包在data:{}里。。。你可长点心吧
-
-            }
-            })
-            this.$router.push({
+                
+                
+                this.$router.push({
                 name:'已发布的信息'
                 });
+            }else{
+              this.$confirm('用户名或密码不正确', '提示', {
+                confirmButtonText: '确定',
+                type: 'warning'
+                })
+            }
+            })
 
-            
-           //this.$router.push({
-           //  name:'已发布的信息'
-           //});
          }else{
            this.$alert('请完整填写用户名和密码', '提示', {
            confirmButtonText: '确定',

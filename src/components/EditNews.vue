@@ -12,19 +12,16 @@
   <el-row>
     <div style="width:100%;background:#c4c4c4fa;height:1px;margin:0px auto;padding:0px;overflow:hidden;"></div>
   </el-row>
-
-    
-  <el-row type="flex" justify="center">
+  <el-row type="flex" justify="center" >
     <el-col :span="18">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="margin-top:6%">
     <el-form-item label="标题" prop="title" style="margin-bottom:5%;">
-      <el-input v-model="ruleForm.title" clearable="true"></el-input>
+      <el-input v-model="ruleForm.title" placeholder="请输入资讯标题"></el-input>
     </el-form-item>
     <el-form-item label="内容" prop="content" style="margin-bottom:5%;">
-      <el-input type="textarea" :autosize="{ minRows: 18, maxRows: 24}" placeholder="请输入内容" v-model="ruleForm.content"></el-input>
+      <el-input type="textarea" :autosize="{ minRows: 12, maxRows: 18}" placeholder="请输入资讯内容" v-model="ruleForm.content"></el-input>
     </el-form-item>
-
-  </el-form>
+    </el-form>
     </el-col>
   </el-row>
   
@@ -46,8 +43,24 @@ export default {
                           '提示',
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
-              this.$message({type:'success',message:'提交成功！'});
-              this.$router.push({name:"查看最新资讯"});
+              this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/commitactivities',{
+                  title:this[formName].title,
+                  content:this[formName].content
+              }).then((response)=>{
+                if(response.status === 200){
+                  console.log(response);
+                  var a = response.data.result;
+                  console.log(a);
+                  if(a ===0){
+                    this.$message({type:'success',message:'提交成功！'});
+                    this.$router.push({name:"查看最新资讯"});
+                  }
+                }else{
+                  this.$confirm('提交失败，请稍后重试','提示')
+                }
+              })
+              //this.$message({type:'success',message:'提交成功！'});
+              //this.$router.push({name:"查看最新资讯"});
             });
           }else{
             this.$alert('请填写完整','提示',{
@@ -58,13 +71,6 @@ export default {
           }
         })
     },
-    handleRemove(file, fileList) {
-        console.log(file, fileList);
-    },
-    handlePictureCardPreview(file) {
-        this.dialogImageUrl = file.url;
-        this.dialogVisible = true;
-    }
   },
   data() {
     return {
@@ -73,7 +79,6 @@ export default {
       ruleForm:{
         title:'',
         content:'',
-        date:'',
       },
       rules:{
         title:[
@@ -82,9 +87,7 @@ export default {
         content:[
           {required:true, message:'请输入资讯内容',trigger:'blur'}
         ],
-        date:[
-          {type: 'date',required:true,message:'请选择日期',trigger:'change'}
-        ],
+        
       }
     }
   }

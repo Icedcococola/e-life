@@ -14,19 +14,19 @@
   </el-row>
 
   
-  <el-row type="flex" justify="center">
+  <el-row type="flex" justify="center" >
     <el-col :span="18">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="margin-top:6%">
     <el-form-item label="标题" prop="title" style="margin-bottom:5%;">
-      <el-input v-model="ruleForm.title" clearable="true"></el-input>
+      <el-input v-model="ruleForm.title" placeholder="请输入资讯标题"></el-input>
     </el-form-item>
-    <el-form-item label="内容" prop="content">
-      <el-input type="textarea" :autosize="{ minRows: 18, maxRows: 24}" placeholder="请输入内容" v-model="ruleForm.content"></el-input>
+    <el-form-item label="内容" prop="content" style="margin-bottom:5%;">
+      <el-input type="textarea" :autosize="{ minRows: 12, maxRows: 18}" placeholder="请输入资讯内容" v-model="ruleForm.content"></el-input>
     </el-form-item>
-
-  </el-form>
+    </el-form>
     </el-col>
   </el-row>
+
   
   <el-button type="primary" @click="commit('ruleForm')">提交物业通知</el-button>
 
@@ -45,8 +45,22 @@ export default {
                           '提示',
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
-              this.$message({type:'success',message:'提交成功！'});
-              this.$router.push({name:"查看物业通知"});
+              this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/commitnotice',{
+                title:this[formName].title,
+                content:this[formName].content
+              }).then((response)=>{
+                if(response.status ===200){
+                  console.log(response);
+                  var b = response.data.result;
+                  console.log(b);
+                  if(b===1){
+                    this.$message({type:'success',message:'提交成功！'});
+                    this.$router.push({name:"查看物业通知"});
+                  }
+                }
+              })
+              //this.$message({type:'success',message:'提交成功！'});
+              //this.$router.push({name:"查看物业通知"});
             });
           }else{
             this.$alert('请填写完整','提示',{
@@ -72,9 +86,6 @@ export default {
         content:[
           {required:true, message:'请输入通知内容',trigger:'blur'}
         ],
-        date:[
-          {required:true, message:'请选择日期',trigger:'blur'}
-        ]
       }
     }
   }
