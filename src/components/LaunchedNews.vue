@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 <template>
   <div id="l-ac">
     <el-row type="flex" class="row-bg" justify="end">
@@ -40,7 +42,8 @@
         align="center">
       </el-table-column>    
       <el-table-column
-        prop="date"
+        prop="time"
+        
         label="日期"
         width="50"
         align="center">
@@ -53,7 +56,7 @@
         fixed="right">
         <template slot-scope="scope">
             <el-button type="primary" @click="topage(scope.row.latestnewsid)" round>查看</el-button>
-            <el-button type="danger" @click="deleteLine(scope.$index)" round >删除</el-button>
+            <el-button type="danger" @click="deleteLine(scope.row.latestnewsid,scope.$index)" round >删除</el-button>
           </template>
       </el-table-column>
     </el-table>
@@ -91,7 +94,6 @@
             }
           }).then((response)=>{
             
-
             this.$router.push({
             name:"资讯详情页",
             params:{
@@ -102,13 +104,25 @@
 
         },
         
-        deleteLine(index){
+        deleteLine(id,index){
           this.$confirm('确认删除？',
                         '提示',
                         {confirmButtonText:'确定',cancelButtonText:'取消'}
           ).then(()=>{
-            this.searchData.splice(index,1);
-            this.$message({type:'success',message:'删除成功!'});
+            //this.searchData.splice(index,1);
+            this.axios.get('/api/Latestnews/delete',
+            {
+              params:{
+                latestnewsid:id
+              }
+            }).then((response)=>{
+              if(response.status === 200){
+                this.searchData.splice(index,1);
+                this.$message({type:'success',message:'删除成功!'});
+              }
+              
+            })
+            //this.$message({type:'success',message:'删除成功!'});
           }
           )
         },
@@ -119,7 +133,9 @@
             var newsDt = response.data;
             this.tableData = newsDt;
           })
-        }
+        },
+
+
       },
       data() {
         return {

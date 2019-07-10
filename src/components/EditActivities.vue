@@ -63,12 +63,14 @@ export default {
                           '提示',
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
-              this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/commitact',
+              this.axios.get('/api/Activity/add',
               {
-                title:this[formName].title,
-                detail:this[formName].detail,
-                date:this[formName].date,
-                place:this[formName].place
+                params:{
+                  title:this[formName].title,
+                  detail:this[formName].detail,
+                  activitytime:this[formName].date,
+                  place:this[formName].place
+                }
               }).then((response)=>{
                 if(response.status === 200){
                   console.log(response);

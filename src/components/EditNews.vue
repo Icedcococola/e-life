@@ -43,18 +43,20 @@ export default {
                           '提示',
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
-              this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/commitactivities',{
-                  title:this[formName].title,
-                  detail:this[formName].detail
+              this.axios.get('/api/Latestnews/add',{
+                  params:{
+                    title:this[formName].title,
+                    detail:this[formName].detail
+                  }
               }).then((response)=>{
                 if(response.status === 200){
                   console.log(response);
                   var a = response.data.result;
                   console.log(a);
-                  if(a ===null){
+                  //if(a ===null){
                     this.$message({type:'success',message:'提交成功！'});
                     this.$router.push({name:"查看最新资讯"});
-                  }
+                  //}
                 }else{
                   this.$confirm('提交失败，请稍后重试','提示')
                 }
