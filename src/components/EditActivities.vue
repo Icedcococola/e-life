@@ -19,8 +19,8 @@
     <el-form-item label="标题" prop="title" style="margin-bottom:5%;">
       <el-input v-model="ruleForm.title" placeholder="请输入活动标题"></el-input>
     </el-form-item>
-    <el-form-item label="内容" prop="content" style="margin-bottom:5%;">
-      <el-input type="textarea" :autosize="{ minRows: 12, maxRows: 18}" placeholder="请输入活动内容" v-model="ruleForm.content"></el-input>
+    <el-form-item label="内容" prop="detail" style="margin-bottom:5%;">
+      <el-input type="textarea" :autosize="{ minRows: 12, maxRows: 18}" placeholder="请输入活动内容" v-model="ruleForm.detail"></el-input>
     </el-form-item>
     
     <el-form-item label="时间" prop="date" style="margin-bottom:5%;">
@@ -28,25 +28,10 @@
         <el-col :span="6" style="width:30%">
           <el-date-picker
             v-model="ruleForm.date"
-            type="date"
-            placeholder="选择日期">
+            type="datetime"
+            placeholder="选择时间"
+            >
           </el-date-picker>
-        </el-col>
-
-        <el-col class="line" :span="2">-</el-col>
-
-        <el-col :span="6" style="width:30%">
-          <el-form-item prop="time">
-            <el-time-select
-            v-model="ruleForm.time"
-            :picker-options="{
-            start: '08:00',
-            step: '00:30',
-            end: '20:00'
-            }"
-            placeholder="选择时间">
-          </el-time-select>
-          </el-form-item>
         </el-col>
 
     </el-form-item >
@@ -81,18 +66,17 @@ export default {
               this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/commitact',
               {
                 title:this[formName].title,
-                content:this[formName].content,
+                detail:this[formName].detail,
                 date:this[formName].date,
-                time:this[formName].time,
                 place:this[formName].place
               }).then((response)=>{
                 if(response.status === 200){
                   console.log(response);
-                  console.log(response.data.result);
-                  if(response.data.result === 3){
+                  //console.log(response.data.result);
+                  //if(response.data.result === null){
                     this.$message({type:'success',message:'提交成功！'});
                     this.$router.push({name:"查看活动安排"});
-                  }
+                 // }
                 }
               })
               //this.$message({type:'success',message:'提交成功！'});
@@ -115,7 +99,7 @@ export default {
       fileList: [],
       ruleForm:{
         title:'',
-        content:'',
+        detail:'',
         date:'',
         place:'',
         time:''
@@ -124,7 +108,7 @@ export default {
         title:[
           {required:true, message:'请输入标题', trigger:'blur'}
         ],
-        content:[
+        detail:[
           {required:true, message:'请输入活动内容',trigger:'blur'}
         ],
         date:[
@@ -132,9 +116,6 @@ export default {
         ],
         place:[
           {required:true, message:'请输入活动地点', trigger:'blur'}
-        ],
-        time:[
-          {required:true, message:'请选择具体时间',trigger:'blur'}
         ]
       }
     }

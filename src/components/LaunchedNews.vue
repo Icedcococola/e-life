@@ -29,16 +29,22 @@
         align="center">
       </el-table-column>
       <el-table-column
+        prop="latestnewsid"
+        label="资讯编号"
+        width="100"
+        align="center">
+      </el-table-column>  
+      <el-table-column
         prop="title"
         label="标题"
         align="center">
-      </el-table-column>      
+      </el-table-column>    
       <el-table-column
         prop="date"
         label="日期"
-        width="150"
+        width="50"
         align="center">
-      </el-table-column>     
+      </el-table-column>
       <el-table-column
         prop="op"
         label="操作"
@@ -46,7 +52,7 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
-            <el-button type="primary" @click="topage(scope.row.title)" round>查看</el-button>
+            <el-button type="primary" @click="topage(scope.row.latestnewsid)" round>查看</el-button>
             <el-button type="danger" @click="deleteLine(scope.$index)" round >删除</el-button>
           </template>
       </el-table-column>
@@ -79,9 +85,9 @@
       methods:
       {
         topage(lhlhlh){
-          this.axios.get('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/launchednew',{
+          this.axios.get('/api/Latestnews/findbyid',{
             params:{
-              title:lhlhlh
+              latestnewsid:lhlhlh
             }
           }).then((response)=>{
             
@@ -108,7 +114,7 @@
         },
 
         getNewsData(){
-          this.axios.get('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/LaunchedNews')
+          this.axios.get('/api/Latestnews/findAll')
           .then((response)=>{
             var newsDt = response.data;
             this.tableData = newsDt;

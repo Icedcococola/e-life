@@ -13,7 +13,7 @@
     <el-input v-model="ruleForm.username"></el-input>
   </el-form-item>
   <el-form-item label="密码" prop="password">
-    <el-input v-model="ruleForm.password"></el-input>
+    <el-input v-model="ruleForm.password" type="password"></el-input>
   </el-form-item>
 </el-form>
      
@@ -34,12 +34,10 @@ export default {
     toHome(formName){
        this.$refs[formName].validate((valid)=>{
          if(valid){
-            this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/wuyelogin',
-            {
-              username:this[formName].username,
-              passname:this[formName].password
-            }
-            ).then((response)=>{
+            var params = new URLSearchParams();  
+            params.append('adminname',this[formName].username);
+            params.append('passname',this[formName].password);
+            this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/wuyelogin',params).then((response)=>{
             if(response.status === 200){
                 console.log(response);
                 var a = response.data.match;
@@ -85,7 +83,8 @@ export default {
         ],
         password:[
           {required: true, message:'请输入密码', trigger:'blur'}
-        ]
+        ],
+
       }
     }
   }

@@ -32,6 +32,12 @@
         align="center">
       </el-table-column>
       <el-table-column
+        prop="activityid"
+        label="活动编号"
+        width="100"
+        align="center">
+      </el-table-column>
+      <el-table-column
         prop="title"
         label="标题"
         align="center">
@@ -39,7 +45,7 @@
       <el-table-column
         prop="date"
         label="日期"
-        width="120"
+        width="50"
         align="center">
       </el-table-column>  
       <el-table-column
@@ -49,7 +55,7 @@
         align="center">
       </el-table-column>    
       <el-table-column
-        prop="location"
+        prop="place"
         label="地点"
         width="220"
         align="center">
@@ -61,8 +67,8 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
-            <el-button type="primary" @click="topage(scope.row.title)" round>查看</el-button>
-            <el-button type="danger" @click="deleteLine(scope.$index)" round >删除</el-button>
+            <el-button type="primary" @click="topage(scope.row.activityid)" round>查看</el-button>
+            <el-button type="danger" @click="deleteLine(scope.row.activityid,scope.$index)" round >删除</el-button>
           </template>
       </el-table-column>
     </el-table>
@@ -98,31 +104,45 @@
           //  params:{title:lalala}
           //});
           //alert(lalala);
-          this.axios.get('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/detail',{
+          //var params = new URLSearchParams();
+          //params.append('activityid',lalala)
+          this.axios.get('/api/Activity/findbyid',{
             params:{
-              title:lalala
+              activityid:lalala
             }
           }).then((response)=>{
-            this.$confirm(response.data.content,'活动详情')
+            this.$confirm(response.data.detail,'活动详情')
             console.log(response)
           })
           
 
         },
 
-        deleteLine(index){
+        deleteLine(id,index){
           this.$confirm('确认删除？',
                         '提示',
                         {confirmButtonText:'确定',cancelButtonText:'取消'}
           ).then(()=>{
-            this.searchData.splice(index,1);
-            this.$message({type:'success',message:'删除成功!'});
+            //this.searchData.splice(index,1);
+            //var params = new URLSearchParams();
+            this.axios.get('/api/Activity/delete',{
+              params:{
+                activityid:id
+              }
+            }).then((response)=>{
+              if(response.status === 200){
+                this.searchData.splice(index,1);
+                this.$message({type:'success',message:'删除成功!'});
+              }
+            })
+
+            //this.$message({type:'success',message:'删除成功!'});
           }
           )
         },
 
         getTableData(){
-          this.axios.get('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/launchedactivities')
+          this.axios.get('/api/Activity/findAll')
           .then((response)=>{
             var dt = response.data;
             this.tableData = dt;

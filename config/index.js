@@ -12,18 +12,18 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api':{
-        target:'https://mockapi.eolinker.com/9cjnagBad7d844f3a1423492f19ab6c0511361017bc52ce',
-        changeOrigin:true,
+        target:'http://localhost:8080',
+        changeOrigin: true,
         pathRewrite:{
-          '^/api':'/api'
+          '^/api':''
         }
       }
     },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: false,
+    port: 8081, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-

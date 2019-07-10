@@ -25,7 +25,7 @@
       <el-col :span="14">
         <div style="font-size:100%; height:50px; color:#858585fa;text-align:center;">
             <div>
-               {{this.tableData.content}}
+               {{this.tableData.detail}}
             </div>
         </div>
       </el-col>

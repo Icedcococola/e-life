@@ -18,8 +18,8 @@
     <el-form-item label="标题" prop="title" style="margin-bottom:5%;">
       <el-input v-model="ruleForm.title" placeholder="请输入资讯标题"></el-input>
     </el-form-item>
-    <el-form-item label="内容" prop="content" style="margin-bottom:5%;">
-      <el-input type="textarea" :autosize="{ minRows: 12, maxRows: 18}" placeholder="请输入资讯内容" v-model="ruleForm.content"></el-input>
+    <el-form-item label="内容" prop="detail" style="margin-bottom:5%;">
+      <el-input type="textarea" :autosize="{ minRows: 12, maxRows: 18}" placeholder="请输入资讯内容" v-model="ruleForm.detail"></el-input>
     </el-form-item>
     </el-form>
     </el-col>
@@ -45,13 +45,13 @@ export default {
             ).then(()=>{
               this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/commitactivities',{
                   title:this[formName].title,
-                  content:this[formName].content
+                  detail:this[formName].detail
               }).then((response)=>{
                 if(response.status === 200){
                   console.log(response);
                   var a = response.data.result;
                   console.log(a);
-                  if(a ===0){
+                  if(a ===null){
                     this.$message({type:'success',message:'提交成功！'});
                     this.$router.push({name:"查看最新资讯"});
                   }
@@ -78,13 +78,13 @@ export default {
       dialogVisible:false,
       ruleForm:{
         title:'',
-        content:'',
+        detail:'',
       },
       rules:{
         title:[
           {required:true, message:'请输入资讯标题',trigger:'blur'}
         ],
-        content:[
+        detail:[
           {required:true, message:'请输入资讯内容',trigger:'blur'}
         ],
         
