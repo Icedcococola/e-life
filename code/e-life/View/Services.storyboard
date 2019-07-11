@@ -182,6 +182,7 @@
                     </view>
                     <connections>
                         <outlet property="infoView" destination="vJx-6w-zEG" id="bC2-Fe-DXb"/>
+                        <outlet property="payAmount" destination="ppm-oo-6Cw" id="ABI-95-eyO"/>
                         <outlet property="payButton" destination="HNU-Rx-qKm" id="PbH-aa-e1M"/>
                     </connections>
                 </viewController>
@@ -194,7 +195,7 @@
             <objects>
                 <navigationController title="服务" automaticallyAdjustsScrollViewInsets="NO" id="ByC-i3-GOr" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="service" id="P70-3t-23A">
-                        <inset key="imageInsets" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
+                        <inset key="imageInsets" minX="0.0" minY="10" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

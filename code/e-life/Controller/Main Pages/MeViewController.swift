@@ -12,6 +12,7 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     @IBOutlet var tableView: UITableView!
     @IBOutlet var PhoneNum: UIView!
+    @IBOutlet var phoneNumber: UILabel!
     
     let configItems : [String] = [
         "换用户名",
@@ -64,5 +65,7 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         navigationController?.pushViewController(viewController!, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    func setUsernameAndPhoneNum () {
+        // Mark: - Retrieve information from core data and set them correctly
+    }
 }

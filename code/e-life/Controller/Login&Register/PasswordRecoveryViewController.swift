@@ -14,22 +14,15 @@ class PasswordRecoveryViewController: UIViewController {
     @IBOutlet var phonenum: UITextField!
     @IBOutlet var verification: UITextField!
     @IBOutlet var loginButton: UIButton!
+    
+    var verificationNum : String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         uiDesign()
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     func uiDesign(){
         loginButton.layer.cornerRadius = 20
         busAnimation()
@@ -83,7 +76,35 @@ class PasswordRecoveryViewController: UIViewController {
         
         texfield.placeholder = placeHolder
         texfield.textAlignment = .center
-        
     }
 
+    @IBAction func getVerification(_ sender: Any) {
+        if (phonenum.text!.isEmpty){
+            let alert = UIAlertController(title: "请注意⚠️", message: "手机号码不能为空", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+                print("Cancelled")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            //Mark: - Request server to send verification
+        }
+    }
+    
+    @IBAction func confirm(_ sender: Any) {
+        if (verification.text!.isEmpty || verification.text! != verificationNum) {
+            let alert = UIAlertController(title: "请注意⚠️", message: "验证码不正确", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+                print("Cancelled")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        } else if (phonenum.text!.isEmpty) {
+            let alert = UIAlertController(title: "请注意⚠️", message: "手机号码不能为空", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+                print("Cancelled")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            performSegue(withIdentifier: "gotoNewPassword", sender: nil)
+        }
+    }
 }

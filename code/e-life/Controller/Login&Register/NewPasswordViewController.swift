@@ -78,4 +78,17 @@ class NewPasswordViewController: UIViewController {
         
     }
 
+    @IBAction func confirm(_ sender: Any) {
+        if (newPassword.text! != confirmPassword.text! || newPassword.text!.isEmpty) {
+            let alert = UIAlertController(title: "注意⚠️", message: "密码不匹配", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+                print("Cancelled")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            // Mark: - Request server to change password for the user with phonenum
+            print ("Changing Password")
+            performSegue(withIdentifier: "gotoLogIn", sender: nil)
+        }
+    }
 }

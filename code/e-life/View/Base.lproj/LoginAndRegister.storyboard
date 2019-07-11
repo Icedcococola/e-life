@@ -37,7 +37,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bYT-h7-UdN">
                                 <rect key="frame" x="65" y="342" width="284" height="30"/>
@@ -46,7 +46,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnu-G5-Xmt">
                                 <rect key="frame" x="65" y="437" width="284" height="36"/>
@@ -54,7 +54,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="登录"/>
                                 <connections>
-                                    <segue destination="C9P-Oj-f16" kind="show" id="y0N-1z-dJm"/>
+                                    <action selector="logInTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uwT-LF-bQr"/>
+                                    <segue destination="C9P-Oj-f16" kind="show" identifier="gotoMain" id="y0N-1z-dJm"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhU-qr-572">
@@ -181,6 +182,9 @@
                                 <state key="normal" title="获取验证码">
                                     <color key="titleColor" red="0.16862745100000001" green="0.50588235290000005" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="getVerificationNum:" destination="tFk-WY-Ayo" eventType="touchUpInside" id="veu-jU-1es"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLx-Y4-2L6">
                                 <rect key="frame" x="15" y="44" width="43" height="42"/>
@@ -211,6 +215,9 @@
                                 <state key="normal" title="注册">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="register:" destination="tFk-WY-Ayo" eventType="touchUpInside" id="R4v-UM-yLX"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9jq-2K-KZz">
                                 <rect key="frame" x="65" y="278" width="284" height="35"/>
@@ -219,7 +226,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="INF-FI-Y71">
                                 <rect key="frame" x="65" y="352" width="284" height="35"/>
@@ -228,7 +235,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lKo-aO-iwR">
                                 <rect key="frame" x="65" y="426" width="284" height="35"/>
@@ -237,7 +244,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="light" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w9f-Ny-q2x">
                                 <rect key="frame" x="65" y="510" width="284" height="35"/>
@@ -246,7 +253,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="验证码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8r-jg-4pz">
                                 <rect key="frame" x="60" y="481" width="61.666666666666657" height="24"/>
@@ -310,11 +317,12 @@
                         <outlet property="usernameLabel" destination="kGi-u2-jYH" id="eiW-Kk-IeA"/>
                         <outlet property="verification" destination="w9f-Ny-q2x" id="ruw-ex-fjR"/>
                         <outlet property="verificationLabel" destination="H8r-jg-4pz" id="hJE-Tb-8LQ"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="registerSuccessful" id="foQ-pi-kkN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k1s-CC-oy4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="438" y="-834"/>
+            <point key="canvasLocation" x="387" y="-856"/>
         </scene>
         <!--Password View Controller-->
         <scene sceneID="CEb-T3-DCs">
@@ -346,7 +354,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="light" returnKeyType="next"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="验证号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGh-97-5Yv">
                                 <rect key="frame" x="60" y="281" width="62" height="24"/>
@@ -373,7 +381,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="DdI-af-wCs" kind="show" id="p7s-c7-V62"/>
+                                    <action selector="confirm:" destination="86g-se-KNG" eventType="touchUpInside" id="Q0I-Y4-NTE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljb-z8-qBa">
@@ -386,12 +394,22 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="Hhs-y6-UHg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNr-bD-vlV">
+                                <rect key="frame" x="272" y="251" width="77" height="30"/>
+                                <state key="normal" title="获取验证码">
+                                    <color key="titleColor" red="0.0" green="0.56078431370000004" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="getVerification:" destination="86g-se-KNG" eventType="touchUpInside" id="Bk7-17-5fN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5Ha-7j-APO" firstAttribute="top" secondItem="ER0-jN-deo" secondAttribute="top" constant="30" id="0ne-JZ-UaQ"/>
                             <constraint firstItem="cGh-97-5Yv" firstAttribute="top" secondItem="hFS-Cx-yNH" secondAttribute="bottom" constant="35" id="0tE-yp-ZKz"/>
                             <constraint firstItem="Wlb-sx-OM9" firstAttribute="top" secondItem="B2W-5u-MG4" secondAttribute="bottom" constant="60" id="1gb-0u-QfJ"/>
+                            <constraint firstItem="ER0-jN-deo" firstAttribute="trailing" secondItem="hNr-bD-vlV" secondAttribute="trailing" constant="65" id="3F6-RF-Gw9"/>
                             <constraint firstItem="ER0-jN-deo" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LxB-mU-RPS" secondAttribute="trailing" symbolic="YES" id="4Vh-M9-egM"/>
                             <constraint firstItem="5Ha-7j-APO" firstAttribute="centerX" secondItem="oVS-K3-axe" secondAttribute="centerX" id="6Ke-dQ-XEB"/>
                             <constraint firstItem="Wlb-sx-OM9" firstAttribute="trailing" secondItem="B2W-5u-MG4" secondAttribute="trailing" id="AF8-N5-CwE"/>
@@ -408,6 +426,7 @@
                             <constraint firstItem="ljb-z8-qBa" firstAttribute="leading" secondItem="ER0-jN-deo" secondAttribute="leading" constant="20" id="eUY-5X-8p9"/>
                             <constraint firstItem="ER0-jN-deo" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cGh-97-5Yv" secondAttribute="trailing" symbolic="YES" id="r0k-lh-YpL"/>
                             <constraint firstItem="B2W-5u-MG4" firstAttribute="trailing" secondItem="hFS-Cx-yNH" secondAttribute="trailing" id="sJL-aS-cGl"/>
+                            <constraint firstItem="hNr-bD-vlV" firstAttribute="top" secondItem="hFS-Cx-yNH" secondAttribute="bottom" constant="5" id="uM4-bt-TGf"/>
                             <constraint firstItem="5Ha-7j-APO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ljb-z8-qBa" secondAttribute="trailing" constant="8" symbolic="YES" id="upB-0d-MnA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ER0-jN-deo"/>
@@ -416,6 +435,7 @@
                         <outlet property="loginButton" destination="Wlb-sx-OM9" id="dgR-Ma-qR1"/>
                         <outlet property="phonenum" destination="hFS-Cx-yNH" id="ro7-Vs-dn9"/>
                         <outlet property="verification" destination="B2W-5u-MG4" id="Wud-aR-ZN3"/>
+                        <segue destination="DdI-af-wCs" kind="show" identifier="gotoNewPassword" id="qMd-b7-iNT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2VM-LF-TRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -481,7 +501,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="SSD-7k-Mx6"/>
+                                    <action selector="confirm:" destination="DdI-af-wCs" eventType="touchUpInside" id="Pbn-yf-e7g"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -511,6 +531,7 @@
                         <outlet property="confirmButton" destination="mZ3-g5-ZSc" id="f6S-ae-kGe"/>
                         <outlet property="confirmPassword" destination="ydQ-S8-mjg" id="kuL-VZ-zta"/>
                         <outlet property="newPassword" destination="a7Y-XN-k3b" id="Kqw-jT-T86"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="gotoLogIn" id="95p-Qh-xML"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kCb-6L-FHN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -522,6 +543,6 @@
         <image name="LoginBackground" width="288" height="340"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hhs-y6-UHg"/>
+        <segue reference="95p-Qh-xML"/>
     </inferredMetricsTieBreakers>
 </document>

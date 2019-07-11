@@ -23,6 +23,8 @@ class LoginViewController: UIViewController {
     @IBOutlet var loginLabel: NSLayoutConstraint!
     @IBOutlet var logoHeight: NSLayoutConstraint!
     
+    var isLoggedIn : Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -85,6 +87,32 @@ class LoginViewController: UIViewController {
         
         texfield.placeholder = placeHolder
         texfield.textAlignment = .center
+        
+    }
+    
+    
+    @IBAction func logInTapped(_ sender: Any) {
+        loggingIn()
+        if (isLoggedIn){
+            performSegue(withIdentifier: "gotoMain", sender: sender)
+        }
+    }
+    
+    // Mark: - Login user
+    func loggingIn(){
+        let userName : String = username.text!
+        let passWord : String = password.text!
+        if (userName.isEmpty || passWord.isEmpty){
+            let alert = UIAlertController(title: "注意⚠️", message: "用户名或密码不能为空", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+                print("Cancelled")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            // Mark: - Request for user information and store in core data
+            print("loggind iNNNN")
+            isLoggedIn = true
+        }
         
     }
 

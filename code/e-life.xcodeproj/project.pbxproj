@@ -13,14 +13,25 @@
 		9505FFE422CB437100462721 /* WuYeNotiTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9505FFE322CB437100462721 /* WuYeNotiTableTableViewController.swift */; };
 		9505FFE622CB522B00462721 /* MailNotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9505FFE522CB522B00462721 /* MailNotificationTableViewController.swift */; };
 		952793B722C99C1300A4C472 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952793B622C99C1300A4C472 /* CollectionViewCell.swift */; };
+		95376A0E22D5C09C009E556E /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95376A0D22D5C09C009E556E /* NewCommentViewController.swift */; };
+		9545B4F222D5D71A00DBAF76 /* ChangeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9545B4F122D5D71A00DBAF76 /* ChangeNameViewController.swift */; };
 		9559D5AD22CAF52A00916AB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9559D5AC22CAF52A00916AB1 /* Assets.xcassets */; };
 		957129E822C9DADF0059DCEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957129E722C9DADF0059DCEE /* AppDelegate.swift */; };
 		957129EA22C9DADF0059DCEE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957129E922C9DADF0059DCEE /* LoginViewController.swift */; };
 		957129ED22C9DADF0059DCEE /* LoginAndRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957129EB22C9DADF0059DCEE /* LoginAndRegister.storyboard */; };
 		957129F222C9DAE00059DCEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957129F022C9DAE00059DCEE /* LaunchScreen.storyboard */; };
 		957129FA22C9E0930059DCEE /* bus.json in Resources */ = {isa = PBXBuildFile; fileRef = 957129F922C9E0930059DCEE /* bus.json */; };
+		9596F4B822D02780002833D4 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9596F4B722D02780002833D4 /* ActivityViewController.swift */; };
+		9596F4BA22D03B41002833D4 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9596F4B922D03B41002833D4 /* ForumViewController.swift */; };
+		9596F4BC22D04710002833D4 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9596F4BB22D04710002833D4 /* NewPostViewController.swift */; };
+		9596F4C022D04D37002833D4 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9596F4BF22D04D37002833D4 /* CommentViewController.swift */; };
 		95B8449122C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B8449022C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift */; };
 		95B8449322C9B3CC00D84A65 /* SendPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B8449222C9B3CC00D84A65 /* SendPostViewController.swift */; };
+		95BAC2EF22CED88A00639B0D /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAC2EE22CED88A00639B0D /* ChangePasswordViewController.swift */; };
+		95BAC2F122CED89300639B0D /* ChangePhoneNumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAC2F022CED89300639B0D /* ChangePhoneNumViewController.swift */; };
+		95BAC2F322CEDB7B00639B0D /* InfoBindingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAC2F222CEDB7B00639B0D /* InfoBindingViewController.swift */; };
+		95BAC2F522CEE2CA00639B0D /* LatestNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAC2F422CEE2CA00639B0D /* LatestNewsViewController.swift */; };
+		95BAC2F722CEF78600639B0D /* BulkPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAC2F622CEF78600639B0D /* BulkPurchaseViewController.swift */; };
 		95D3932D22CC2F68002A3867 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3932C22CC2F68002A3867 /* RegisterViewController.swift */; };
 		95DD032622D2D54D0096E89D /* MainPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DD032522D2D54D0096E89D /* MainPages.storyboard */; };
 		95DD032822D2D61E0096E89D /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DD032722D2D61E0096E89D /* Home.storyboard */; };
@@ -44,6 +55,9 @@
 		9505FFE322CB437100462721 /* WuYeNotiTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WuYeNotiTableTableViewController.swift; sourceTree = "<group>"; };
 		9505FFE522CB522B00462721 /* MailNotificationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailNotificationTableViewController.swift; sourceTree = "<group>"; };
 		952793B622C99C1300A4C472 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		95376A0D22D5C09C009E556E /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
+		9545B4EE22D5D71A00DBAF76 /* BMKLocationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BMKLocationKit.framework; path = Pods/BMKLocationKit/framework/BMKLocationKit.framework; sourceTree = "<group>"; };
+		9545B4F122D5D71A00DBAF76 /* ChangeNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameViewController.swift; sourceTree = "<group>"; };
 		9559D5AC22CAF52A00916AB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		957129E422C9DADF0059DCEE /* e-life.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "e-life.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		957129E722C9DADF0059DCEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,8 +66,17 @@
 		957129F122C9DAE00059DCEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		957129F322C9DAE00059DCEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		957129F922C9E0930059DCEE /* bus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = bus.json; path = "e-life/Animation/bus.json"; sourceTree = SOURCE_ROOT; };
+		9596F4B722D02780002833D4 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		9596F4B922D03B41002833D4 /* ForumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
+		9596F4BB22D04710002833D4 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		9596F4BF22D04D37002833D4 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		95B8449022C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyNoticeTableViewController.swift; sourceTree = "<group>"; };
 		95B8449222C9B3CC00D84A65 /* SendPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPostViewController.swift; sourceTree = "<group>"; };
+		95BAC2EE22CED88A00639B0D /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		95BAC2F022CED89300639B0D /* ChangePhoneNumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneNumViewController.swift; sourceTree = "<group>"; };
+		95BAC2F222CEDB7B00639B0D /* InfoBindingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBindingViewController.swift; sourceTree = "<group>"; };
+		95BAC2F422CEE2CA00639B0D /* LatestNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestNewsViewController.swift; sourceTree = "<group>"; };
+		95BAC2F622CEF78600639B0D /* BulkPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkPurchaseViewController.swift; sourceTree = "<group>"; };
 		95D3932C22CC2F68002A3867 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		95DD032522D2D54D0096E89D /* MainPages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainPages.storyboard; sourceTree = "<group>"; };
 		95DD032722D2D61E0096E89D /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -92,6 +115,7 @@
 		848AEB3B8499DFBD63571B2A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9545B4EE22D5D71A00DBAF76 /* BMKLocationKit.framework */,
 				7916DD5BCA42922CB2DC81AA /* Pods_e_life.framework */,
 			);
 			name = Frameworks;
@@ -135,6 +159,28 @@
 				952793B622C99C1300A4C472 /* CollectionViewCell.swift */,
 			);
 			path = "Helper Class";
+			sourceTree = "<group>";
+		};
+		95376A0F22D5C9EF009E556E /* Forum */ = {
+			isa = PBXGroup;
+			children = (
+				9596F4B922D03B41002833D4 /* ForumViewController.swift */,
+				9596F4BB22D04710002833D4 /* NewPostViewController.swift */,
+				9596F4BF22D04D37002833D4 /* CommentViewController.swift */,
+				95376A0D22D5C09C009E556E /* NewCommentViewController.swift */,
+			);
+			path = Forum;
+			sourceTree = "<group>";
+		};
+		9545B4F022D5D71A00DBAF76 /* Items in MePage */ = {
+			isa = PBXGroup;
+			children = (
+				9545B4F122D5D71A00DBAF76 /* ChangeNameViewController.swift */,
+				95BAC2EE22CED88A00639B0D /* ChangePasswordViewController.swift */,
+				95BAC2F022CED89300639B0D /* ChangePhoneNumViewController.swift */,
+				95BAC2F222CEDB7B00639B0D /* InfoBindingViewController.swift */,
+			);
+			path = "Items in MePage";
 			sourceTree = "<group>";
 		};
 		957129DB22C9DADF0059DCEE = {
@@ -184,6 +230,10 @@
 				95B8449222C9B3CC00D84A65 /* SendPostViewController.swift */,
 				9505FFE322CB437100462721 /* WuYeNotiTableTableViewController.swift */,
 				9505FFE522CB522B00462721 /* MailNotificationTableViewController.swift */,
+				9596F4B722D02780002833D4 /* ActivityViewController.swift */,
+				95376A0F22D5C9EF009E556E /* Forum */,
+				95BAC2F422CEE2CA00639B0D /* LatestNewsViewController.swift */,
+				95BAC2F622CEF78600639B0D /* BulkPurchaseViewController.swift */,
 			);
 			path = "Items in HomePages";
 			sourceTree = "<group>";
@@ -191,6 +241,7 @@
 		95EB54CA22CC88C000E25003 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9545B4F022D5D71A00DBAF76 /* Items in MePage */,
 				9505FFDE22CB33D400462721 /* Items in ServicesPages */,
 				95B8448F22C9AF5800D84A65 /* Items in HomePages */,
 				952793B322C99B8500A4C472 /* Login&Register */,
@@ -295,12 +346,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-e-life/Pods-e-life-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,17 +392,28 @@
 			files = (
 				95DD033A22D2D62F0096E89D /* MeViewController.swift in Sources */,
 				9505FFE622CB522B00462721 /* MailNotificationTableViewController.swift in Sources */,
+				95BAC2F722CEF78600639B0D /* BulkPurchaseViewController.swift in Sources */,
 				9505FFE022CB34F400462721 /* PayViewController.swift in Sources */,
 				95EB54C922CC888F00E25003 /* PasswordRecoveryViewController.swift in Sources */,
 				952793B722C99C1300A4C472 /* CollectionViewCell.swift in Sources */,
 				9505FFE422CB437100462721 /* WuYeNotiTableTableViewController.swift in Sources */,
 				9505FFE222CB371700462721 /* ParkingPaymentViewController.swift in Sources */,
 				95D3932D22CC2F68002A3867 /* RegisterViewController.swift in Sources */,
+				95BAC2F522CEE2CA00639B0D /* LatestNewsViewController.swift in Sources */,
 				957129EA22C9DADF0059DCEE /* LoginViewController.swift in Sources */,
+				95BAC2EF22CED88A00639B0D /* ChangePasswordViewController.swift in Sources */,
+				95BAC2F322CEDB7B00639B0D /* InfoBindingViewController.swift in Sources */,
+				9596F4BC22D04710002833D4 /* NewPostViewController.swift in Sources */,
 				95EB54CF22CC9DA900E25003 /* MainViewController.swift in Sources */,
+				95BAC2F122CED89300639B0D /* ChangePhoneNumViewController.swift in Sources */,
+				95376A0E22D5C09C009E556E /* NewCommentViewController.swift in Sources */,
 				95DD033C22D2D62F0096E89D /* TableViewCell.swift in Sources */,
 				95EB54CD22CC963E00E25003 /* NewPasswordViewController.swift in Sources */,
+				9596F4BA22D03B41002833D4 /* ForumViewController.swift in Sources */,
+				9596F4C022D04D37002833D4 /* CommentViewController.swift in Sources */,
 				95DD033422D2D62F0096E89D /* ServicesViewController.swift in Sources */,
+				9545B4F222D5D71A00DBAF76 /* ChangeNameViewController.swift in Sources */,
+				9596F4B822D02780002833D4 /* ActivityViewController.swift in Sources */,
 				95DD032E22D2D62F0096E89D /* HomeViewController.swift in Sources */,
 				95B8449322C9B3CC00D84A65 /* SendPostViewController.swift in Sources */,
 				957129E822C9DADF0059DCEE /* AppDelegate.swift in Sources */,
@@ -501,6 +565,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P46WD4BQ65;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/BMKLocationKit/framework",
+				);
 				INFOPLIST_FILE = "e-life/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -520,6 +589,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P46WD4BQ65;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/BMKLocationKit/framework",
+				);
 				INFOPLIST_FILE = "e-life/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (

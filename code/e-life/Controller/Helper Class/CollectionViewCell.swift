@@ -10,6 +10,7 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet var tagName: UILabel!
     @IBOutlet var icon: UIImageView!
     @IBOutlet var icon1: UIImageView!
 }

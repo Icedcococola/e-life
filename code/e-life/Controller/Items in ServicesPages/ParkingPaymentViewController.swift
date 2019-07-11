@@ -25,6 +25,9 @@ class ParkingPaymentViewController: UIViewController {
     }
 
     // MARK: - Fetch pay amount from server and change paymentAmount variable
+    func request() {
+        //paymentAmount.text = //request from server
+    }
     
 
 }

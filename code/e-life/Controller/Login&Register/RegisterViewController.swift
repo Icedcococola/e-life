@@ -25,6 +25,9 @@ class RegisterViewController: UIViewController {
     @IBOutlet var verificationLabel: UILabel!
     @IBOutlet var registerButton: UIButton!
     
+    
+    var verificationNum : String = ""
+    
     //constraint
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     @IBOutlet var logoHeight: NSLayoutConstraint!
@@ -106,5 +109,37 @@ class RegisterViewController: UIViewController {
         texfield.textAlignment = .center
 
     }
-
+    
+    @IBAction func getVerificationNum(_ sender: Any) {
+        if (phonenumber.text!.isEmpty) {
+            let alert = UIAlertController(title: "注意⚠️", message: "手机号码不能为空", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+                print("Cancelled")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            // Mark : - Request server to send verification number
+            print("verify")
+        }
+    }
+    
+    @IBAction func register(_ sender: Any) {
+        if (username.text!.isEmpty || password.text!.isEmpty) {
+            let alert = UIAlertController(title: "注意⚠️", message: "用户名或密码不能为空", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+                print("Cancelled")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        } else if (phonenumber.text!.isEmpty || verification.text!.isEmpty || verification.text! != verificationNum) {
+            let alert = UIAlertController(title: "注意⚠️", message: "手机号码不能为空. 验证码不正确", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+                print("Cancelled")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            // Mark: - Request server to register new user
+            performSegue(withIdentifier: "registerSuccessful", sender: nil)
+        }
+    }
+    
 }
