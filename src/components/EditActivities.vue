@@ -63,13 +63,15 @@ export default {
                           '提示',
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
+              
               this.axios.get('/api/Activity/add',
               {
                 params:{
                   title:this[formName].title,
                   detail:this[formName].detail,
                   activitytime:this[formName].date,
-                  place:this[formName].place
+                  place:this[formName].place,
+                  community:window.sessionStorage.getItem('community')
                 }
               }).then((response)=>{
                 if(response.status === 200){
@@ -78,12 +80,13 @@ export default {
                   //if(response.data.result === null){
                     this.$message({type:'success',message:'提交成功！'});
                     this.$router.push({name:"查看活动安排"});
-                 // }
+                  //}
                 }
               })
-              //this.$message({type:'success',message:'提交成功！'});
-              //this.$router.push({name:"查看活动安排"});
-            });
+              this.$message({type:'success',message:'提交成功！'});
+              this.$router.push({name:"查看活动安排"});
+            }
+            );
           }else{
             this.$alert('请填写完整','提示',{
               confirmButtonText:'确定',
@@ -94,7 +97,18 @@ export default {
         })
 
         
-    }
+    },
+    
+    //timeFormat(date){
+    //  var strDate = new Date(date);
+    //  let Y=strDate.getFullYear()+'-';
+    //  let M=(strDate.getMonth()+1 < 10 ? '0'+(strDate.getMonth()+1) : strDate.getMonth()+1) + '-';
+    //  let D=
+    //}
+
+
+
+
   },
   data() {
     return {

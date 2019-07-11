@@ -46,7 +46,8 @@ export default {
               this.axios.get('/api/Latestnews/add',{
                   params:{
                     title:this[formName].title,
-                    detail:this[formName].detail
+                    detail:this[formName].detail,
+                    community:window.sessionStorage.getItem('community')
                   }
               }).then((response)=>{
                 if(response.status === 200){

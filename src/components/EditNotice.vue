@@ -1,6 +1,6 @@
 <template>
   <div>
-
+  
   <el-row >
       <el-col >
         <div style="font-size:160%; height:50px; color:#858585fa;text-align: right">
@@ -45,18 +45,21 @@ export default {
                           '提示',
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
-              this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/commitnotice',{
-                title:this[formName].title,
-                detail:this[formName].detail
+              this.axios.get('/api/Propertynotice/add',{
+                params:{
+                  title:this[formName].title,
+                  detail:this[formName].detail,
+                  community:window.sessionStorage.getItem('community')
+                }
               }).then((response)=>{
                 if(response.status ===200){
-                  console.log(response);
-                  var b = response.data.result;
-                  console.log(b);
-                  if(b===null){
+                  //console.log(response);
+                  //var b = response.data.result;
+                  //console.log(b);
+                  //if(b===null){
                     this.$message({type:'success',message:'提交成功！'});
                     this.$router.push({name:"查看物业通知"});
-                  }
+                  //}
                 }
               })
               //this.$message({type:'success',message:'提交成功！'});

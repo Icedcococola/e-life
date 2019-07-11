@@ -25,18 +25,25 @@
       <el-table-column
         type="index"
         label="序号"
-        width="180"
-        align="center">
-      </el-table-column>
-      <el-table-column
-        prop="title"
-        label="标题"
+        width="100"
         align="center">
       </el-table-column>      
       <el-table-column
-        prop="date"
+        prop="emergencynoticeid"
+        label="通知编号"
+        width="130"
+        align="center">
+      </el-table-column> 
+      <el-table-column
+        prop="title"
+        label="标题"
+        width="350"
+        align="center">
+      </el-table-column>      
+      <el-table-column
+        prop="time"
         label="日期"
-        width="210"
+        width="160"
         align="center">
       </el-table-column>     
       <el-table-column
@@ -46,8 +53,8 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
-            <el-button type="primary" @click="topage(scope.row.title)" round>查看</el-button>
-            <el-button type="danger" @click="deleteLine(scope.$index)"  round >删除</el-button>
+            <el-button type="primary" @click="topage(scope.row.emergencynoticeid)" round>查看</el-button>
+            <el-button type="danger" @click="deleteLine(scope.row.emergencynoticeid,scope.$index)"  round >删除</el-button>
           </template>
       </el-table-column>
     </el-table>
@@ -77,9 +84,9 @@
       methods:
       {
         topage(happy){
-          this.axios.get('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/urgentdetail',{
+          this.axios.get('/api/Emergencynotic/findbyid',{
             params:{
-              title:happy
+              emergencynoticeid:happy
             }
           }).then((response)=>{
             this.$router.push({
@@ -91,19 +98,33 @@
           })
         },
         
-        deleteLine(index){
+        deleteLine(id,index){
           this.$confirm('确认删除？',
                         '提示',
                         {confirmButtonText:'确定',cancelButtonText:'取消'}
           ).then(()=>{
-            this.searchData.splice(index,1);
-            this.$message({type:'success',message:'删除成功!'});
+            this.axios.get('/api/Emergencynotic/delete',{
+              params:{
+                emergencynoticeid:id
+              }
+            }).then((response)=>{
+              if(response.status === 200){
+                this.searchData.splice(index,1);
+                this.$message({type:'success',message:'删除成功!'});
+              }
+            })
+            //this.searchData.splice(index,1);
+            //this.$message({type:'success',message:'删除成功!'});
           }
           )
         },
 
         getUrgent(){
-          this.axios.get('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/urgent')
+          this.axios.get('/api/Emergencynotic/findAll',{
+            params:{
+              community:window.sessionStorage.getItem('community')
+            }
+          })
           .then((response)=>{
             var urg = response.data;
             this.tableData=urg;

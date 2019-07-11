@@ -29,14 +29,21 @@
         align="center">
       </el-table-column>
       <el-table-column
+        prop="propertynoticeid"
+        label="通知编号"
+        width="150"
+        align="center">
+      </el-table-column>
+      <el-table-column
         prop="title"
         label="标题"
+        width="350"
         align="center">
       </el-table-column>      
       <el-table-column
-        prop="date"
-        label="日期"
-        width="150"
+        prop="time"
+        label="日期时间"
+        width="160"
         align="center">
       </el-table-column>     
       <el-table-column
@@ -46,8 +53,8 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
-            <el-button type="primary" @click="topage(scope.row.title)" round>查看</el-button>
-            <el-button type="danger" @click="deleteLine(scope.$index)" round >删除</el-button>
+            <el-button type="primary" @click="topage(scope.row.propertynoticeid)" round>查看</el-button>
+            <el-button type="danger" @click="deleteLine(scope.row.propertynoticeid,scope.$index)" round >删除</el-button>
           </template>
       </el-table-column>
     </el-table>
@@ -78,9 +85,9 @@
       methods:
       {
         topage(emmmmm){
-          this.axios.get('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/detailnoti',{
+          this.axios.get('/api/Propertynotice/findbyid',{
             params:{
-              title:emmmmm
+              propertynoticeid:emmmmm
             }
           }).then((response)=>{
             this.$router.push({
@@ -93,19 +100,33 @@
         },
 
         
-        deleteLine(index){
+        deleteLine(id,index){
           this.$confirm('确认删除？',
                         '提示',
                         {confirmButtonText:'确定',cancelButtonText:'取消'}
           ).then(()=>{
-            this.searchData.splice(index,1);
-            this.$message({type:'success',message:'删除成功!'});
+            this.axios.get('/api/Propertynotice/delete',{
+              params:{
+                propertynoticeid:id
+              }
+            }).then((response)=>{
+              if(response.status === 200){
+                this.searchData.splice(index,1);
+                this.$message({type:'success',message:'删除成功!'});
+              }
+            })
+            //this.searchData.splice(index,1);
+            //this.$message({type:'success',message:'删除成功!'});
           }
           )
         },
 
         getNewsData(){
-          this.axios.get('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/ln')
+          this.axios.get('/api/Propertynotice/findAll',{
+            params:{
+              community:window.sessionStorage.getItem('community')
+            }
+          })
           .then((response)=>{
             var newsDt = response.data;
             this.tableData = newsDt;

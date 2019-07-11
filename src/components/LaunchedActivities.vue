@@ -40,14 +40,9 @@
       <el-table-column
         prop="title"
         label="标题"
+        width="300"
         align="center">
-      </el-table-column>    
-      <el-table-column
-        prop="date"
-        label="日期"
-        width="50"
-        align="center">
-      </el-table-column>  
+      </el-table-column>
       <el-table-column
         prop="time"
         label="时间"
@@ -142,7 +137,12 @@
         },
 
         getTableData(){
-          this.axios.get('/api/Activity/findAll')
+          this.axios.get('/api/Activity/findAll',
+          {
+            params:{
+              community:window.sessionStorage.getItem('community')
+            }
+          })
           .then((response)=>{
             var dt = response.data;
             this.tableData = dt;

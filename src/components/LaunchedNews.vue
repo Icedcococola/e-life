@@ -33,7 +33,7 @@ import moment from 'moment'
       <el-table-column
         prop="latestnewsid"
         label="资讯编号"
-        width="100"
+        width="150"
         align="center">
       </el-table-column>  
       <el-table-column
@@ -45,7 +45,7 @@ import moment from 'moment'
         prop="time"
         
         label="日期"
-        width="50"
+        width="160"
         align="center">
       </el-table-column>
       <el-table-column
@@ -128,7 +128,12 @@ import moment from 'moment'
         },
 
         getNewsData(){
-          this.axios.get('/api/Latestnews/findAll')
+          this.axios.get('/api/Latestnews/findAll',
+          {
+            params:{
+              community:window.sessionStorage.getItem('community')
+            }
+          })
           .then((response)=>{
             var newsDt = response.data;
             this.tableData = newsDt;

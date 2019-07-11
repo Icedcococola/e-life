@@ -19,7 +19,9 @@
               
               </span>
              <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="c">登出</el-dropdown-item>
+               
+              <el-dropdown-item disabled>{{communityname}}管理员</el-dropdown-item>
+              <el-dropdown-item command="c" divided>登出</el-dropdown-item>
              </el-dropdown-menu>
             </el-dropdown>
            </div>
@@ -77,17 +79,16 @@
   </el-container>
 </template>
 
-
-<style>
-  id{background: #a8a8a8fa;}
-</style>
-
 <script>
 export default {
+  mounted:function(){
+    this.show();
+  },
   methods:
   {
     tologin(command)
     {
+      this.$store.commit('LOGOUT')
       this.$router.push({
          name:"login"
       });
@@ -97,10 +98,16 @@ export default {
       this.$router.push({
         name:"已发布的信息"
       })
+    },
+
+    show(){
+      var a= window.sessionStorage.getItem('community')
+      this.$confirm(a,'提示')
     }
   },
   data() {
     return {
+      communityname:window.sessionStorage.getItem('community')
     }
   }
 }

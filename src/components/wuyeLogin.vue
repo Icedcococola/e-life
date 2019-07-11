@@ -1,5 +1,5 @@
 <template>
-  <div>
+ <div>
     <el-row  type="flex" justify="center" style="margin-top:9%" :gutter="90">
 
     <el-col :span="11">
@@ -30,26 +30,41 @@
 
 <script>
 export default {
+  mounted:function(){
+    this.showtoken();
+  },
   methods:{
     toHome(formName){
        this.$refs[formName].validate((valid)=>{
          if(valid){
-            var params = new URLSearchParams();  
-            params.append('adminname',this[formName].username);
-            params.append('passname',this[formName].password);
-            this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/wuyelogin',params).then((response)=>{
+            this.axios.get('/api/Admin/login',{
+              params:{
+                adminname:this[formName].username,
+                password:this[formName].password,
+                type:"wuye"
+              }
+            }).then((response)=>{
             if(response.status === 200){
                 console.log(response);
-                var a = response.data.match;
+                var a = response.data.num;
                 console.log(a);
                 if(a===0){
+                  this.$confirm('用户名不存在')
+                }else if(a===1){
+                  this.$confirm('密码不正确')
+                }else if(a===2){
                   this.$store.commit('SET_TOKEN',1)
+                  this.$store.commit('SET_COMMUNITY',response.data.community)
+                  this.$router.push({
+                    name:'已发布的信息',
+                    params:{
+                    data:response.data
+                }
+                });
                 }
                 
                 
-                this.$router.push({
-                name:'已发布的信息'
-                });
+                
             }else{
               this.$confirm('用户名或密码不正确', '提示', {
                 confirmButtonText: '确定',
@@ -69,6 +84,11 @@ export default {
        })
       
     },
+
+    showtoken(){
+      var a = window.sessionStorage.getItem('token')
+      this.$confirm(a,'提示')
+    }
   },
   
   data() {
