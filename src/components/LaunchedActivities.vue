@@ -40,30 +40,36 @@
       <el-table-column
         prop="title"
         label="标题"
-        width="300"
+        width="250"
         align="center">
       </el-table-column>
       <el-table-column
         prop="time"
+        label="日期"
+        width="100"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="activitytime"
         label="时间"
         width="100"
         align="center">
-      </el-table-column>    
+      </el-table-column>        
       <el-table-column
         prop="place"
         label="地点"
-        width="220"
+        width="200"
         align="center">
       </el-table-column>   
       <el-table-column
         prop="op"
         label="操作"
-        width="210"
+        width="150"
         align="center"
         fixed="right">
         <template slot-scope="scope">
-            <el-button type="primary" @click="topage(scope.row.activityid)" round>查看</el-button>
-            <el-button type="danger" @click="deleteLine(scope.row.activityid,scope.$index)" round >删除</el-button>
+            <el-button type="primary" @click="topage(scope.row.activityid)" icon="el-icon-search" circle></el-button>
+            <el-button type="danger" @click="deleteLine(scope.row.activityid,scope.$index)" icon="el-icon-delete" circle></el-button>
           </template>
       </el-table-column>
     </el-table>

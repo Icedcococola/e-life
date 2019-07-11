@@ -42,7 +42,7 @@
       </el-table-column>      
       <el-table-column
         prop="time"
-        label="日期"
+        label="时间"
         width="160"
         align="center">
       </el-table-column>     
