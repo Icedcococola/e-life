@@ -12,6 +12,7 @@
 		9505FFE222CB371700462721 /* ParkingPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9505FFE122CB371700462721 /* ParkingPaymentViewController.swift */; };
 		9505FFE422CB437100462721 /* WuYeNotiTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9505FFE322CB437100462721 /* WuYeNotiTableTableViewController.swift */; };
 		9505FFE622CB522B00462721 /* MailNotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9505FFE522CB522B00462721 /* MailNotificationTableViewController.swift */; };
+		950BE8A322D734130058FAE1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 950BE8A122D734130058FAE1 /* Model.xcdatamodeld */; };
 		952793B722C99C1300A4C472 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952793B622C99C1300A4C472 /* CollectionViewCell.swift */; };
 		95376A0E22D5C09C009E556E /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95376A0D22D5C09C009E556E /* NewCommentViewController.swift */; };
 		9545B4F222D5D71A00DBAF76 /* ChangeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9545B4F122D5D71A00DBAF76 /* ChangeNameViewController.swift */; };
@@ -54,6 +55,7 @@
 		9505FFE122CB371700462721 /* ParkingPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingPaymentViewController.swift; sourceTree = "<group>"; };
 		9505FFE322CB437100462721 /* WuYeNotiTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WuYeNotiTableTableViewController.swift; sourceTree = "<group>"; };
 		9505FFE522CB522B00462721 /* MailNotificationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailNotificationTableViewController.swift; sourceTree = "<group>"; };
+		950BE8A222D734130058FAE1 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		952793B622C99C1300A4C472 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		95376A0D22D5C09C009E556E /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
 		9545B4EE22D5D71A00DBAF76 /* BMKLocationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BMKLocationKit.framework; path = Pods/BMKLocationKit/framework/BMKLocationKit.framework; sourceTree = "<group>"; };
@@ -128,6 +130,14 @@
 				9505FFE122CB371700462721 /* ParkingPaymentViewController.swift */,
 			);
 			path = "Items in ServicesPages";
+			sourceTree = "<group>";
+		};
+		950BE8A422D734CE0058FAE1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				950BE8A122D734130058FAE1 /* Model.xcdatamodeld */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		952793B322C99B8500A4C472 /* Login&Register */ = {
@@ -205,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				957129E722C9DADF0059DCEE /* AppDelegate.swift */,
+				950BE8A422D734CE0058FAE1 /* Model */,
 				95EB54CA22CC88C000E25003 /* Controller */,
 				95EB54CB22CC88D800E25003 /* View */,
 				9559D5AC22CAF52A00916AB1 /* Assets.xcassets */,
@@ -418,6 +429,7 @@
 				95B8449322C9B3CC00D84A65 /* SendPostViewController.swift in Sources */,
 				957129E822C9DADF0059DCEE /* AppDelegate.swift in Sources */,
 				95B8449122C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift in Sources */,
+				950BE8A322D734130058FAE1 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,6 +641,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		950BE8A122D734130058FAE1 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				950BE8A222D734130058FAE1 /* Model.xcdatamodel */,
+			);
+			currentVersion = 950BE8A222D734130058FAE1 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 957129DC22C9DADF0059DCEE /* Project object */;
 }

@@ -105,7 +105,7 @@ class LoginViewController: UIViewController {
         if (userName.isEmpty || passWord.isEmpty){
             let alert = UIAlertController(title: "注意⚠️", message: "用户名或密码不能为空", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
-                print("Cancelled")
+
             }))
             self.present(alert, animated: true, completion: nil)
         } else {

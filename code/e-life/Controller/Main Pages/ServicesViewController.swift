@@ -77,10 +77,9 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
     func callNumber(phoneNumber: String) {
         if let url = URL(string: "tel://\(phoneNumber)") {
             if #available(iOS 10, *) {
-                print("calling")
+
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             } else {
-                print("calling")
                 UIApplication.shared.openURL(url as URL)
             }
         }
