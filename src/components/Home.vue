@@ -1,11 +1,11 @@
 <template>
   <el-container >
       
-    <el-header style="background:#ffffff; font-size: 200%; height: 65px;">
-      <el-row style="margin-top:10px;" type="flex" justify="end">
+    <el-header style="background:#ffffff; font-size: 200%; height: 65px;" class="b">
+      <el-row style="margin-top:10px;" type="flex" justify="end" >
 
         <el-col :span="24">
-          <div style="font-size:100%; font-weight:bold;height:50px; color:#2A8FF7;text-align:left;" @click="toHome">
+          <div style="font-size:100%; font-weight:bold;height:50px; color:#2A8FF7;text-align:left;" @click="toHome" class="hd">
               elife后台管理系统
           </div>
         </el-col>

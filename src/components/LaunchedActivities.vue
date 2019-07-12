@@ -3,8 +3,7 @@
 
     <el-row type="flex" class="row-bg" justify="end">
       <el-col :span="14">
-        <div style="font-size:190%; height:50px; color:#858585fa;text-align:left;"><i class="el-icon-document"></i>活动安排
-        </div>
+        <div class="xx" style="font-size:190%; height:50px; color:#858585fa;text-align:left;"><i class="el-icon-document"></i>{{title}}</div>
       </el-col>
       <el-col :span='8'>
           <el-input v-model="search" class="search" icon="search" placeholder="请输入要搜索的标题关键字"></el-input>
@@ -44,14 +43,8 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="time"
-        label="日期"
-        width="100"
-        align="center">
-      </el-table-column>
-      <el-table-column
         prop="activitytime"
-        label="时间"
+        label="活动时间"
         width="100"
         align="center">
       </el-table-column>        
@@ -59,6 +52,12 @@
         prop="place"
         label="地点"
         width="200"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="time"
+        label="发布时间"
+        width="100"
         align="center">
       </el-table-column>   
       <el-table-column
@@ -137,7 +136,7 @@
               }
             })
 
-            //this.$message({type:'success',message:'删除成功!'});
+           
           }
           )
         },
@@ -161,6 +160,7 @@
       },
       data() {
         return {
+          title:'活动安排',
           input: '',
           search: '',
           tableData: []

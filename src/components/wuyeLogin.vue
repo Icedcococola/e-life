@@ -49,9 +49,9 @@ export default {
                 var a = response.data.num;
                 console.log(a);
                 if(a===0){
-                  this.$confirm('用户名不存在')
+                  this.$confirm('用户名不存在','提示')
                 }else if(a===1){
-                  this.$confirm('密码不正确')
+                  this.$confirm('密码不正确','提示')
                 }else if(a===2){
                   this.$store.commit('SET_TOKEN',1)
                   this.$store.commit('SET_COMMUNITY',response.data.community)

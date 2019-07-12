@@ -16,7 +16,7 @@
 
     <el-row type="flex" justify="center">
       <el-col style="font-size:90%;color:#858585fa;text-align:center;margin-bottom:50px;">
-        {{this.tableData.date}}
+        {{this.tableData.time}}
       </el-col>
     </el-row>
 
