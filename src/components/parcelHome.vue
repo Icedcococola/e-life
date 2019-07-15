@@ -73,7 +73,8 @@ export default {
     {
       this.$router.push({
          name:"login"
-      });
+      }),
+      this.$store.commit('LOGOUT')
     },
     toHome()
     {

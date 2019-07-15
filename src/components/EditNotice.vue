@@ -21,7 +21,7 @@
       <el-input v-model="ruleForm.title" placeholder="请输入资讯标题"></el-input>
     </el-form-item>
     <el-form-item label="内容" prop="detail" style="margin-bottom:5%;">
-      <el-input type="textarea" :autosize="{ minRows: 12, maxRows: 18}" placeholder="请输入资讯内容" v-model="ruleForm.detail"></el-input>
+      <el-input type="textarea" :autosize="{ minRows: 12, maxRows: 18}" placeholder="请输入通知内容" v-model="ruleForm.detail"></el-input>
     </el-form-item>
     </el-form>
     </el-col>

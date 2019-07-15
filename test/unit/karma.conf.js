@@ -13,11 +13,11 @@ module.exports = function karmaConfig (config) {
     // 2. add it to the `browsers` array below.
     //browsers: ['PhantomJS'],
     browsers: ['Chrome'],
-    frameworks: ['mocha', 'sinon-chai', 'phantomjs-shim'],
+    frameworks: ['mocha', 'sinon-chai'],
     reporters: ['spec', 'coverage'],
     files: ['./index.js'],
     preprocessors: {
-      './index.js': ['webpack', 'sourcemap']
+      './index.js': ['webpack', 'sourcemap','coverage']
     },
     webpack: webpackConfig,
     webpackMiddleware: {

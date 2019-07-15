@@ -3,7 +3,7 @@
 
     <el-row type="flex" class="row-bg" justify="end">
       <el-col :span="14">
-        <div class="xx" style="font-size:190%; height:50px; color:#858585fa;text-align:left;"><i class="el-icon-document"></i>{{title}}</div>
+        <div class="tit" style="font-size:190%; height:50px; color:#858585fa;text-align:left;"><i class="el-icon-document"></i>{{title}}</div>
       </el-col>
       <el-col :span='8'>
           <el-input v-model="search" class="search" icon="search" placeholder="请输入要搜索的标题关键字"></el-input>
@@ -80,6 +80,7 @@
       mounted:function(){
         this.getTableData();
       },
+      
       computed:{
 
         searchData:function(){
@@ -99,13 +100,6 @@
       methods:
       {
         topage(lalala){
-          //this.$router.push({
-          //  name:"活动详情页",
-          //  params:{title:lalala}
-          //});
-          //alert(lalala);
-          //var params = new URLSearchParams();
-          //params.append('activityid',lalala)
           this.axios.get('/api/Activity/findbyid',{
             params:{
               activityid:lalala
@@ -115,7 +109,6 @@
             console.log(response)
           })
           
-
         },
 
         deleteLine(id,index){
@@ -123,8 +116,6 @@
                         '提示',
                         {confirmButtonText:'确定',cancelButtonText:'取消'}
           ).then(()=>{
-            //this.searchData.splice(index,1);
-            //var params = new URLSearchParams();
             this.axios.get('/api/Activity/delete',{
               params:{
                 activityid:id
@@ -151,8 +142,6 @@
           .then((response)=>{
             var dt = response.data;
             this.tableData = dt;
-           // var lalala = this.tableData;
-           // console.log(lalala[1].content);
           })
         },
 

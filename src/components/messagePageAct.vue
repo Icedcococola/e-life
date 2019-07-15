@@ -58,7 +58,6 @@ export default {
       .then((response)=>{
         if(response.status === 200){
           this.tableData = response.data;
-          //this.$confirm(this.$route.params.title,'提示')
         }
 
       })
@@ -68,10 +67,7 @@ export default {
   data () {
     return {
       tableData: [
-        //{
-        //  title:'elife小区首届广场舞大赛开始报名！',
-        //  detail:'时间：2019年8月2日，\n地点：小区花园，\n报名方式：到楼组长或居委会处填写报名表，\n报名截止日期：2019年8月1日'
-        //}
+        
       ]
     }
   }

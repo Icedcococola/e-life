@@ -5,9 +5,7 @@
       <el-row style="margin-top:10px;" type="flex" justify="end" >
 
         <el-col :span="24">
-          <div style="font-size:100%; font-weight:bold;height:50px; color:#2A8FF7;text-align:left;" @click="toHome" class="hd">
-              elife后台管理系统
-          </div>
+          <div  class="hd" style="font-size:100%; font-weight:bold;height:50px; color:#2A8FF7;text-align:left;" @click="toHome">elife后台管理系统</div>
         </el-col>
 
         <el-col :span="4">
@@ -102,7 +100,7 @@ export default {
 
     show(){
       var a= window.sessionStorage.getItem('community')
-      this.$confirm(a,'提示')
+      this.$confirm('欢迎您，'+a+'管理员！','提示')
     }
   },
   data() {
