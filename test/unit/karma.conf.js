@@ -27,8 +27,23 @@ module.exports = function karmaConfig (config) {
       dir: './coverage',
       reporters: [
         { type: 'lcov', subdir: '.' },
-        { type: 'text-summary' }
+       { type: 'text-summary' }
       ]
     }
+
+    //coverageIstanbulReporter: {
+      // 以什么格式, 这里设置了输出 html文件 ,info文件 ,及控制台
+    //  reports: ['html', 'lcovonly', 'text-summary'],
+      // 将文件输出路径定位
+    //  dir: path.join(__dirname, 'coverage'),
+      // 修正 weback 路径（翻译了是这个意思）
+    //  fixWebpackSourcePaths: true,
+      // 将生成的html放到./coverage/html/下
+    //  'report-config': {
+    //      html: {
+    //          subdir: 'html'
+    //      }
+    //  }
+    //}
   })
 }

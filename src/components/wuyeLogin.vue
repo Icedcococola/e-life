@@ -5,8 +5,7 @@
     <el-col :span="11">
       
      <el-card>
-      <el-row style="height:50px;display:flex;align-items:center;color:#272727c7;font-size:25px;margin-bottom:9%;" type="flex" justify="center">物业管理员登录 
-      </el-row >
+      <el-row class="qwer" style="height:50px;display:flex;align-items:center;color:#272727;font-size:25px;margin-bottom:9%;" type="flex" justify="center">{{title}}</el-row >
       
 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
   <el-form-item label="用户名" prop="username" style="margin-bottom:7%">
@@ -93,6 +92,8 @@ export default {
   
   data() {
     return {
+      title:'物业管理员登录',
+
       ruleForm: {
         username:'',
         password:''

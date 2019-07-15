@@ -3,14 +3,12 @@
 
   <el-row >
       <el-col >
-        <div style="font-size:160%; height:50px; color:#858585fa;text-align: right">
-          <i class="el-icon-edit"></i>编辑活动安排
-        </div>
+        <div class="t" style="font-size:160%; height:50px; color:#858585;text-align: right"><i class="el-icon-edit"></i>{{title}}</div>
       </el-col>
   </el-row>
 
   <el-row>
-    <div style="width:100%;background:#c4c4c4fa;height:1px;margin:0px auto;padding:0px;overflow:hidden;"></div>
+    <div style="width:100%;background:#c4c4c4;height:1px;margin:0px auto;padding:0px;overflow:hidden;"></div>
   </el-row>
 
   <el-row type="flex" justify="center" >
@@ -112,6 +110,8 @@ export default {
   },
   data() {
     return {
+
+      title:'编辑活动安排',
       fileList: [],
       ruleForm:{
         title:'',
