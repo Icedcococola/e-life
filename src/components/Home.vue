@@ -5,14 +5,14 @@
       <el-row style="margin-top:10px;" type="flex" justify="end" >
 
         <el-col :span="24">
-          <div  class="hd" style="font-size:100%; font-weight:bold;height:50px; color:#2A8FF7;text-align:left;" @click="toHome">elife后台管理系统</div>
+          <div style="font-size:100%; font-weight:bold;height:50px; color:#2A8FF7;text-align:left;" @click="toHome">elife后台管理系统</div>
         </el-col>
 
         <el-col :span="4">
            <div style="font-size:50%; height:50px; color:#2A8FF7;display:flex;align-items:center;justify-content:flex-end;">
             <el-dropdown @command="tologin">
               <span class="el-dropdown-link" style="color:#2a8ff7;">
-              <el-button type="text" class="button">物业管理员<i class="el-icon-arrow-down el-icon--right"></i>
+              <el-button type="text" class="button" >物业管理员<i class="el-icon-arrow-down el-icon--right"></i>
               </el-button>
               
               </span>

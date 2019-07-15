@@ -144,8 +144,6 @@
             this.tableData = dt;
           })
         },
-
-
       },
       data() {
         return {
