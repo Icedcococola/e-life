@@ -14,11 +14,39 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var username = ""
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        checkIfLoggedIn()
         // Override point for customization after application launch.
         return true
+    }
+    
+    func checkIfLoggedIn(){
+        retrieveData()
+        if (username != "") {
+            print ("Hello")
+            let mainStoryboard:UIStoryboard = UIStoryboard(name: "MainPages", bundle: nil)
+            let mainPage = mainStoryboard.instantiateViewController(withIdentifier: "mainPage") as! UITabBarController
+            self.window?.rootViewController = mainPage
+        }
+    }
+    
+    func resetAllRecords(in entity : String) // entity = Your_Entity_Name
+    {
+        
+        let context = ( UIApplication.shared.delegate as! AppDelegate ).persistentContainer.viewContext
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        do
+        {
+            try context.execute(deleteRequest)
+            try context.save()
+        }
+        catch
+        {
+            print ("There was an error")
+        }
     }
     
     lazy var persistentContainer: NSPersistentContainer = {
@@ -61,6 +89,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
+        }
+    }
+    
+    func retrieveData() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let context = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<User>(entityName: "User")
+
+            do {
+                let results = try context.fetch(fetchRequest)
+
+                for result in results {
+                    if let username = result.username {
+                        self.username = username
+                    }
+                }
+            } catch {
+                print("Error fetching data")
+            }
+
         }
     }
 }

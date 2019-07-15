@@ -8,15 +8,21 @@
 
 import UIKit
 import Lottie
+import Alamofire
 
 class NewPasswordViewController: UIViewController {
 
     @IBOutlet var newPassword: UITextField!
     @IBOutlet var confirmPassword: UITextField!
     @IBOutlet var confirmButton: UIButton!
+    
+    var phonenum : String = "fa"
+    let URL = "http://elifedemo.free.idcfengye.com/User/modifypassword"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         uiDesign()
+        print(phonenum)
         // Do any additional setup after loading the view.
     }
     
@@ -88,7 +94,16 @@ class NewPasswordViewController: UIViewController {
         } else {
             // Mark: - Request server to change password for the user with phonenum
             print ("Changing Password")
+            AF.request(URL, method: .post, parameters: ["phonenum": phonenum, "password": newPassword.text!])
             performSegue(withIdentifier: "gotoLogIn", sender: nil)
         }
+    }
+    
+    func showAlert (message : String) {
+        let alert = UIAlertController(title: "注意⚠️", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+            print("Cancelled")
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 }

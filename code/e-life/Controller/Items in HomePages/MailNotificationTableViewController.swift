@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import CoreData
 
 class CustomCell2 : UITableViewCell{
     @IBOutlet var titleLabel: UILabel!
@@ -16,21 +19,14 @@ class CustomCell2 : UITableViewCell{
 
 class MailNotificationTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let notiArray : [[String]] = [
-        ["title12", "content21"],
-        ["title2", "content2"],
-        ["title3", "content3"],
-        ["title4", "content4"],
-        ["title5", "content5"],
-        ["title6", "content6"],
-        ["title7", "content7"],
-        ["title8", "content8"],
-    ]
-
+    var notiArray : [JSON] = []
+    
+    let URL = "http://elifedemo.free.idcfengye.com/Activity/findAll"
+    
     @IBOutlet var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        fetchData()
        
     }
 
@@ -43,11 +39,44 @@ class MailNotificationTableViewController: UIViewController, UITableViewDataSour
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell2
         print(indexPath.row)
-        cell.titleLabel.text = notiArray[indexPath.row][0]
-        cell.contentText.text = notiArray[indexPath.row][1]
+        cell.titleLabel.text = notiArray[indexPath.row]["title"].stringValue
+        cell.contentText.text = notiArray[indexPath.row]["detail"].stringValue
         cell.layer.cornerRadius = 15
         return cell
     }
     
     // Mark: - Fetch data from server
+    func fetchData(){
+        let community = retrieveData()
+        AF.request(URL, method: .post, parameters: ["community": community]).responseJSON { (response) in
+            if let json = response.value{
+                let noti = JSON(json).arrayValue
+                self.notiArray = noti
+                self.tableView.reloadData()
+            }
+        }
+    }
+}
+
+extension MailNotificationTableViewController {
+    func retrieveData() -> String {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let context = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<User>(entityName: "User")
+            
+            do {
+                let results = try context.fetch(fetchRequest)
+                
+                for result in results {
+                    if let community = result.community {
+                        return community
+                    }
+                }
+            } catch {
+                print ("Error fetching data")
+                return ""
+            }
+        }
+        return ""
+    }
 }

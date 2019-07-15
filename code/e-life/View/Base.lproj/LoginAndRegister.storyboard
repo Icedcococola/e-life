@@ -55,7 +55,6 @@
                                 <state key="normal" title="登录"/>
                                 <connections>
                                     <action selector="logInTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uwT-LF-bQr"/>
-                                    <segue destination="C9P-Oj-f16" kind="show" identifier="gotoMain" id="y0N-1z-dJm"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhU-qr-572">
@@ -135,6 +134,7 @@
                         <outlet property="logoHeight" destination="TiL-xu-9L5" id="xsb-vb-tHw"/>
                         <outlet property="password" destination="bYT-h7-UdN" id="sux-nn-pa6"/>
                         <outlet property="username" destination="yir-V1-mdx" id="8Pq-i8-Grd"/>
+                        <segue destination="C9P-Oj-f16" kind="show" identifier="gotoMain" id="Xwo-6a-Jz1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -317,6 +317,7 @@
                         <outlet property="usernameLabel" destination="kGi-u2-jYH" id="eiW-Kk-IeA"/>
                         <outlet property="verification" destination="w9f-Ny-q2x" id="ruw-ex-fjR"/>
                         <outlet property="verificationLabel" destination="H8r-jg-4pz" id="hJE-Tb-8LQ"/>
+                        <outlet property="verifyButton" destination="eQX-IT-BKi" id="YPW-yP-l0d"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="registerSuccessful" id="foQ-pi-kkN"/>
                     </connections>
                 </viewController>
@@ -543,6 +544,6 @@
         <image name="LoginBackground" width="288" height="340"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="95p-Qh-xML"/>
+        <segue reference="foQ-pi-kkN"/>
     </inferredMetricsTieBreakers>
 </document>

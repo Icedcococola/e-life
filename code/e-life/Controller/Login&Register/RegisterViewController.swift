@@ -8,6 +8,9 @@
 
 import UIKit
 import Lottie
+import Alamofire
+import SwiftyJSON
+import CoreData
 
 class RegisterViewController: UIViewController {
 
@@ -24,9 +27,12 @@ class RegisterViewController: UIViewController {
     @IBOutlet var verification: UITextField!
     @IBOutlet var verificationLabel: UILabel!
     @IBOutlet var registerButton: UIButton!
+    @IBOutlet var verifyButton: UIButton!
     
     
     var verificationNum : String = ""
+    
+    let URL = "http://elifedemo.free.idcfengye.com/User/register"
     
     //constraint
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
@@ -119,7 +125,22 @@ class RegisterViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         } else {
             // Mark : - Request server to send verification number
-            print("verify")
+            verifyButton.titleLabel?.text = "请稍微等待"
+            AF.request("http://elifedemo.free.idcfengye.com/User/verify", method: .post, parameters: ["phonenum" : phonenumber.text!]).responseJSON { (response) in
+                switch response.response?.statusCode {
+                    case 200:
+                        if let json = response.value {
+                            let data = JSON(json)
+                            print(data["num"])
+                            if (data["num"].stringValue == "2") {
+                                self.showAlert(message: "手机号码已存在")
+                            }
+                            self.verificationNum = data["num"].stringValue
+                        }
+                    default :
+                        self.showAlert(message: "Error! Please try again!")
+                    }
+            }
         }
     }
     
@@ -130,16 +151,94 @@ class RegisterViewController: UIViewController {
                 print("Cancelled")
             }))
             self.present(alert, animated: true, completion: nil)
-        } else if (phonenumber.text!.isEmpty || verification.text!.isEmpty || verification.text! != verificationNum) {
-            let alert = UIAlertController(title: "注意⚠️", message: "手机号码不能为空. 验证码不正确", preferredStyle: .alert)
+        } else if (phonenumber.text!.isEmpty) {
+            let alert = UIAlertController(title: "注意⚠️", message: "手机号码不能为空", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
                 print("Cancelled")
             }))
             self.present(alert, animated: true, completion: nil)
-        } else {
+        } else if (verification.text!.isEmpty || verification.text! != verificationNum) {
+            showAlert(message: "验证码不正确")
+        }
+        
+        else {
             // Mark: - Request server to register new user
-            performSegue(withIdentifier: "registerSuccessful", sender: nil)
+            let parameter: Parameters = [
+                "username": username.text!,
+                "password": password.text!,
+                "phonenum": phonenumber.text!,
+                "community": "SJTU"
+            ]
+            
+            AF.request(URL, method: .post, parameters: parameter, headers: nil, interceptor: nil).responseJSON{
+                (response) in
+                let status : Int = JSON(response.value)["num"].int!
+                if (self.verification.text! != self.verificationNum) {
+                    let alert = UIAlertController(title: "注意⚠️", message: "验证码不正确", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+                        print("Cancelled")
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                } else if (status == 0)  {
+                    self.showAlert(message: "用户已存在")
+                } else if (status == 1) {
+                    self.showAlert(message: "手机已存在")
+                } else {
+                     self.performSegue(withIdentifier: "registerSuccessful", sender: nil)
+                }
+            }
         }
     }
     
+    func showAlert (message : String) {
+        let alert = UIAlertController(title: "注意⚠️", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+            print("Cancelled")
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
+
+extension RegisterViewController {
+    func saveData(username: String, password: String){
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let context = appDelegate.persistentContainer.viewContext
+
+            guard let entityDescription = NSEntityDescription.entity(forEntityName: "User", in: context) else {return}
+
+            let newValue = NSManagedObject(entity: entityDescription, insertInto: context)
+
+            newValue.setValue(username, forKey: "username")
+            newValue.setValue(password, forKey: "password")
+
+            do {
+                try context.save()
+                print("saved data")
+            } catch {
+                print("saving error")
+            }
+        }
+    }
+
+
+//    func retrieveData() {
+//        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+//            let context = appDelegate.persistentContainer.viewContext
+//            let fetchRequest = NSFetchRequest<User>(entityName: "User")
+//
+//            do {
+//                let results = try context.fetch(fetchRequest)
+//
+//                for result in results {
+//                    if let username = result.username {
+//                        print (username)
+//                    }
+//                }
+//            } catch {
+//                print ("Error fetching data")
+//            }
+//
+//        }
+//    }
+}
+

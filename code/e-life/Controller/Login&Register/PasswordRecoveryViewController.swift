@@ -8,6 +8,8 @@
 
 import UIKit
 import Lottie
+import Alamofire
+import SwiftyJSON
 
 class PasswordRecoveryViewController: UIViewController {
 
@@ -16,6 +18,8 @@ class PasswordRecoveryViewController: UIViewController {
     @IBOutlet var loginButton: UIButton!
     
     var verificationNum : String = ""
+    
+    let URL = "http://elifedemo.free.idcfengye.com/User/fetchpassword"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +91,16 @@ class PasswordRecoveryViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         } else {
             //Mark: - Request server to send verification
+            AF.request(URL, method: .post, parameters: ["phonenum" : phonenum.text!]).responseJSON { (response) in
+                if let json = response.value{
+                    let status = JSON(json)["num"].stringValue
+                    if (status == "0") {
+                        self.showAlert(message: "手机不存在")
+                    } else {
+                       self.verificationNum = status
+                    }
+                }
+            }
         }
     }
     
@@ -106,5 +120,21 @@ class PasswordRecoveryViewController: UIViewController {
         } else {
             performSegue(withIdentifier: "gotoNewPassword", sender: nil)
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is NewPasswordViewController {
+            let vc = segue.destination as? NewPasswordViewController
+            vc?.phonenum = self.phonenum.text!
+        }
+    }
+    
+    
+    func showAlert (message : String) {
+        let alert = UIAlertController(title: "注意⚠️", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+            print("Cancelled")
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 }

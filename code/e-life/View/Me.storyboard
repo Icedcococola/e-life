@@ -146,7 +146,7 @@
                                     <color key="titleColor" red="0.0" green="0.56078431370000004" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="UKL-H7-lKd" kind="showDetail" id="vJM-k6-kR0"/>
+                                    <action selector="logOut:" destination="Nk5-vx-Q3O" eventType="touchUpInside" id="UUt-7D-4aN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -170,6 +170,7 @@
                         <outlet property="PhoneNum" destination="LXu-SL-jZI" id="UGs-Xt-XeU"/>
                         <outlet property="phoneNumber" destination="8xU-Yv-8Ai" id="FQ0-68-4yC"/>
                         <outlet property="tableView" destination="CT1-63-p15" id="hDh-bh-sHx"/>
+                        <segue destination="UKL-H7-lKd" kind="showDetail" identifier="gotoLogin" id="1a9-rp-uz2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M17-3U-uSf" userLabel="First Responder" sceneMemberID="firstResponder"/>

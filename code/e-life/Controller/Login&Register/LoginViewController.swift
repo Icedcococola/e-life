@@ -8,6 +8,9 @@
 
 import UIKit
 import Lottie
+import Alamofire
+import SwiftyJSON
+import CoreData
 
 class LoginViewController: UIViewController {
     
@@ -24,6 +27,8 @@ class LoginViewController: UIViewController {
     @IBOutlet var logoHeight: NSLayoutConstraint!
     
     var isLoggedIn : Bool = false
+    
+     let URL = "http://elifedemo.free.idcfengye.com/User/login"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,9 +98,6 @@ class LoginViewController: UIViewController {
     
     @IBAction func logInTapped(_ sender: Any) {
         loggingIn()
-        if (isLoggedIn){
-            performSegue(withIdentifier: "gotoMain", sender: sender)
-        }
     }
     
     // Mark: - Login user
@@ -110,12 +112,77 @@ class LoginViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         } else {
             // Mark: - Request for user information and store in core data
-            print("loggind iNNNN")
-            isLoggedIn = true
+            let parameter = ["username": userName, "password": passWord]
+            AF.request(URL, method: .post, parameters: parameter).responseJSON { (response) in
+                if (response.response?.statusCode != 200) {
+                    self.showAlert(message: "Error! Please try again!")
+                } else {
+                    let status : Int = JSON(response.value)["num"].intValue
+                    print (status)
+                    if (status == 0) {
+                        self.showAlert(message: "用户不存在")
+                    } else if (status == 1) {
+                        self.showAlert(message: "密码错误")
+                    } else {
+                        let community = JSON(response.value)["community"].stringValue
+                        print (community)
+                        self.saveData(username: userName, community: community)
+                        self.performSegue(withIdentifier: "gotoMain", sender: self)
+                    }
+                }
+            }
         }
         
     }
 
-
+    func showAlert (message : String) {
+        let alert = UIAlertController(title: "注意⚠️", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+            print("Cancelled")
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
+extension LoginViewController {
+    func saveData(username: String, community : String){
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let context = appDelegate.persistentContainer.viewContext
+
+            guard let entityDescription = NSEntityDescription.entity(forEntityName: "User", in: context) else {return}
+
+            let newValue = NSManagedObject(entity: entityDescription, insertInto: context)
+
+            newValue.setValue(username, forKey: "username")
+            newValue.setValue(community, forKey: "community")
+            do {
+                try context.save()
+                print("saved data")
+            } catch {
+                print("saving error")
+            }
+        }
+    }
+
+
+    func retrieveData() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let context = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<User>(entityName: "User")
+
+            do {
+                let results = try context.fetch(fetchRequest)
+
+                for result in results {
+                    if let username = result.username {
+                        print (username)
+                    }
+                }
+            } catch {
+                print ("Error fetching data")
+            }
+
+        }
+    }
+
+}

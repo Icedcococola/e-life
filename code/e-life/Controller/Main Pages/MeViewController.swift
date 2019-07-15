@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -67,5 +68,26 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     func setUsernameAndPhoneNum () {
         // Mark: - Retrieve information from core data and set them correctly
+    }
+    @IBAction func logOut(_ sender: Any) {
+        resetAllRecords(in: "User")
+        performSegue(withIdentifier: "gotoLogin", sender: nil)
+    }
+    
+    func resetAllRecords(in entity : String) // entity = Your_Entity_Name
+    {
+        
+        let context = ( UIApplication.shared.delegate as! AppDelegate ).persistentContainer.viewContext
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        do
+        {
+            try context.execute(deleteRequest)
+            try context.save()
+        }
+        catch
+        {
+            print ("There was an error")
+        }
     }
 }

@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import CoreData
+import SwiftyJSON
 
 class CustomCell3 : UITableViewCell {
     
@@ -26,16 +29,13 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet var activityDetail: UILabel!
     @IBOutlet var closeButton: UIButton!
     
-
-    let activitiesArray : [[String]] = [
-        ["name", "venue", "date", "detail"],
-        ["name1", "venue1", "date1", "detail1"],
-        ["name2", "venue2", "date2", "detail2"],
-        ["name3", "venue3", "date3", "detail3"]
-    ]
+    let URL = "http://elifedemo.free.idcfengye.com/Activity/findAll"
+    
+    var activitiesArray : [JSON] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchData()
         popupView.layer.cornerRadius = 15
         closeButton.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
@@ -47,15 +47,15 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let  cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell3
-        cell.activityName.text = activitiesArray[indexPath.row][0]
-        cell.venue.text = activitiesArray[indexPath.row][1]
-        cell.date.text = activitiesArray[indexPath.row][2]
+        cell.activityName.text = activitiesArray[indexPath.row]["title"].stringValue
+        cell.venue.text = activitiesArray[indexPath.row]["place"].stringValue
+        cell.date.text = activitiesArray[indexPath.row]["activitytime"].stringValue
         cell.layer.cornerRadius = 10
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailText = activitiesArray[indexPath.row][3]
+        let detailText = activitiesArray[indexPath.row]["detail"].stringValue
         activityDetail.text = detailText
         tableView.deselectRow(at: indexPath, animated: true)
         popupView.center = view.center
@@ -80,7 +80,39 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     // Mark: - Fetch activity data from server
-    
-    
+    func fetchData(){
+        let community = retrieveData()
+        AF.request(URL, method: .post, parameters: ["community": community]).responseJSON { (response) in
+            if let json = response.value{
+                let activities = JSON(json).arrayValue
+                self.activitiesArray = activities
+                self.tableView.reloadData()
+                //activitiesArray =
+            }
+        }
+    }
+}
 
+
+extension ActivityViewController {
+    func retrieveData() -> String {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let context = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<User>(entityName: "User")
+            
+            do {
+                let results = try context.fetch(fetchRequest)
+                
+                for result in results {
+                    if let community = result.community {
+                        return community
+                    }
+                }
+            } catch {
+                print ("Error fetching data")
+                return ""
+            }
+        }
+        return ""
+    }
 }
