@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import CoreData
 
 class ServicesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -14,6 +17,8 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet var News: UIView!
     @IBOutlet var NewsTextView: UITextView!
     @IBOutlet var collectionView: UICollectionView!
+    
+    let callURL = "http://elifedemo.free.idcfengye.com/Services/find"
     
     let functionItems : [UIImage] = [
         UIImage(named: "MarketDelivery")!,
@@ -60,30 +65,70 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let community = retrieveData()
         switch (indexPath.row){
             case 0:
-                callNumber(phoneNumber: "123456")
+                AF.request(callURL, method: .get, parameters: ["community": community, "type": "0"]).responseJSON { (response) in
+                    if let json = response.value {
+                        let phonenum = JSON(json)["phonenum"].stringValue
+                        print (phonenum)
+                        self.callNumber(phoneNumber: phonenum)
+                    }
+                }
             case 1:
-                callNumber(phoneNumber: "678910")
+                AF.request(callURL, method: .get, parameters: ["community": community, "type": "1"]).responseJSON { (response) in
+                    if let json = response.value {
+                        let phonenum = JSON(json)["phonenum"].stringValue
+                        print (phonenum)
+                        self.callNumber(phoneNumber: phonenum)
+                    }
+            }
             case 2:
-                callNumber(phoneNumber: "32141234")
+                AF.request(callURL, method: .get, parameters: ["community": community, "type": "2"]).responseJSON { (response) in
+                    if let json = response.value {
+                        let phonenum = JSON(json)["phonenum"].stringValue
+                        print (phonenum)
+                        self.callNumber(phoneNumber: phonenum)
+                    }
+            }
             default:
                 let id = ID[indexPath.row-3]
                 let viewController = storyboard?.instantiateViewController(withIdentifier: id)
                 navigationController?.pushViewController(viewController!, animated: true)
-            
         }
     }
     func callNumber(phoneNumber: String) {
         if let url = URL(string: "tel://\(phoneNumber)") {
             if #available(iOS 10, *) {
-
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             } else {
                 UIApplication.shared.openURL(url as URL)
             }
         }
     }
-    
-
 }
+
+extension ServicesViewController {
+    
+    func retrieveData() -> String {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let context = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<User>(entityName: "User")
+            
+            do {
+                let results = try context.fetch(fetchRequest)
+                
+                for result in results {
+                    if let community = result.community {
+                        return community
+                    }
+                }
+            } catch {
+                return ""
+            }
+        }
+        return ""
+    }
+    
+}
+

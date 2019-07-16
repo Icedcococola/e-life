@@ -34,6 +34,7 @@
 		95BAC2F522CEE2CA00639B0D /* LatestNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAC2F422CEE2CA00639B0D /* LatestNewsViewController.swift */; };
 		95BAC2F722CEF78600639B0D /* BulkPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAC2F622CEF78600639B0D /* BulkPurchaseViewController.swift */; };
 		95D3932D22CC2F68002A3867 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3932C22CC2F68002A3867 /* RegisterViewController.swift */; };
+		95D3937722DD58EA00548840 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3937622DD58EA00548840 /* RequestViewController.swift */; };
 		95DD032622D2D54D0096E89D /* MainPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DD032522D2D54D0096E89D /* MainPages.storyboard */; };
 		95DD032822D2D61E0096E89D /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DD032722D2D61E0096E89D /* Home.storyboard */; };
 		95DD032A22D2D6270096E89D /* Services.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DD032922D2D6270096E89D /* Services.storyboard */; };
@@ -42,6 +43,7 @@
 		95DD033422D2D62F0096E89D /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD033322D2D62F0096E89D /* ServicesViewController.swift */; };
 		95DD033A22D2D62F0096E89D /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD033922D2D62F0096E89D /* MeViewController.swift */; };
 		95DD033C22D2D62F0096E89D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD033B22D2D62F0096E89D /* TableViewCell.swift */; };
+		95E5466322DC5F13001DFD49 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E5466222DC5F13001DFD49 /* DetailViewController.swift */; };
 		95EB54C922CC888F00E25003 /* PasswordRecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB54C822CC888F00E25003 /* PasswordRecoveryViewController.swift */; };
 		95EB54CD22CC963E00E25003 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB54CC22CC963E00E25003 /* NewPasswordViewController.swift */; };
 		95EB54CF22CC9DA900E25003 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB54CE22CC9DA900E25003 /* MainViewController.swift */; };
@@ -80,6 +82,7 @@
 		95BAC2F422CEE2CA00639B0D /* LatestNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestNewsViewController.swift; sourceTree = "<group>"; };
 		95BAC2F622CEF78600639B0D /* BulkPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkPurchaseViewController.swift; sourceTree = "<group>"; };
 		95D3932C22CC2F68002A3867 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		95D3937622DD58EA00548840 /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		95DD032522D2D54D0096E89D /* MainPages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainPages.storyboard; sourceTree = "<group>"; };
 		95DD032722D2D61E0096E89D /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		95DD032922D2D6270096E89D /* Services.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Services.storyboard; sourceTree = "<group>"; };
@@ -88,6 +91,7 @@
 		95DD033322D2D62F0096E89D /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		95DD033922D2D62F0096E89D /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		95DD033B22D2D62F0096E89D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		95E5466222DC5F13001DFD49 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		95EB54C822CC888F00E25003 /* PasswordRecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryViewController.swift; sourceTree = "<group>"; };
 		95EB54CC22CC963E00E25003 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		95EB54CE22CC9DA900E25003 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +249,8 @@
 				95376A0F22D5C9EF009E556E /* Forum */,
 				95BAC2F422CEE2CA00639B0D /* LatestNewsViewController.swift */,
 				95BAC2F622CEF78600639B0D /* BulkPurchaseViewController.swift */,
+				95E5466222DC5F13001DFD49 /* DetailViewController.swift */,
+				95D3937622DD58EA00548840 /* RequestViewController.swift */,
 			);
 			path = "Items in HomePages";
 			sourceTree = "<group>";
@@ -408,6 +414,7 @@
 				95BAC2F722CEF78600639B0D /* BulkPurchaseViewController.swift in Sources */,
 				9505FFE022CB34F400462721 /* PayViewController.swift in Sources */,
 				95EB54C922CC888F00E25003 /* PasswordRecoveryViewController.swift in Sources */,
+				95D3937722DD58EA00548840 /* RequestViewController.swift in Sources */,
 				952793B722C99C1300A4C472 /* CollectionViewCell.swift in Sources */,
 				9505FFE422CB437100462721 /* WuYeNotiTableTableViewController.swift in Sources */,
 				9505FFE222CB371700462721 /* ParkingPaymentViewController.swift in Sources */,
@@ -430,6 +437,7 @@
 				95DD032E22D2D62F0096E89D /* HomeViewController.swift in Sources */,
 				95B8449322C9B3CC00D84A65 /* SendPostViewController.swift in Sources */,
 				957129E822C9DADF0059DCEE /* AppDelegate.swift in Sources */,
+				95E5466322DC5F13001DFD49 /* DetailViewController.swift in Sources */,
 				95B8449122C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift in Sources */,
 				950BE8A322D734130058FAE1 /* Model.xcdatamodeld in Sources */,
 			);

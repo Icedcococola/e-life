@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 import CoreData
 
 class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -19,13 +21,15 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         "换用户名",
         "换密码",
         "换手机号",
-        "实名验证"
+        "实名验证",
+        "好友管理"
     ]
     let ID = [
         "1",
         "2",
         "3",
-        "4"
+        "4",
+        "5"
     ]
     
     override func viewDidLoad() {
@@ -50,7 +54,7 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

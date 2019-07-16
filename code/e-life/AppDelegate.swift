@@ -14,7 +14,8 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var username = ""
+    public var username = ""
+    public var community = ""
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         checkIfLoggedIn()
@@ -30,6 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let mainPage = mainStoryboard.instantiateViewController(withIdentifier: "mainPage") as! UITabBarController
             self.window?.rootViewController = mainPage
         }
+    }
+    
+    
+    public func showAlert (viewscontroler : UIViewController, message : String) {
+        let alert = UIAlertController(title: "注意⚠️", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+            print("Cancelled")
+        }))
+        viewscontroler.present(alert, animated: true, completion: nil)
     }
     
     func resetAllRecords(in entity : String) // entity = Your_Entity_Name
@@ -101,8 +111,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let results = try context.fetch(fetchRequest)
 
                 for result in results {
-                    if let username = result.username {
+                    if let username = result.username, let community =  result.community {
                         self.username = username
+                        self.community = community
                     }
                 }
             } catch {
