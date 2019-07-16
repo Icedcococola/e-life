@@ -18,6 +18,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet var username: UITextField!
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var passwordLabel: UILabel!
+    @IBOutlet var loginLabel: UIButton!
+    @IBOutlet var registerLabel: UILabel!
     
     @IBOutlet var password: UITextField!
    
@@ -28,15 +30,27 @@ class RegisterViewController: UIViewController {
     @IBOutlet var verificationLabel: UILabel!
     @IBOutlet var registerButton: UIButton!
     @IBOutlet var verifyButton: UIButton!
+    @IBOutlet var communityLabel: UILabel!
     
+    @IBOutlet var community: UIPickerView!
+    
+    var chosenCommunity = ""
+    let communityArray : [String] = [
+        "SJTU MINHANG",
+        "SJTU XUHUI",
+        "SJTU DONGQU",
+        "SJTU NANQU"
+    ]
     
     var verificationNum : String = ""
     
     let URL = "http://elifedemo.free.idcfengye.com/User/register"
     
     //constraint
-    @IBOutlet var bottomConstraint: NSLayoutConstraint!
-    @IBOutlet var logoHeight: NSLayoutConstraint!
+    @IBOutlet var fromCenter: NSLayoutConstraint!
+    @IBOutlet var registerButtonTop: NSLayoutConstraint!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         uiDesign()
@@ -47,17 +61,20 @@ class RegisterViewController: UIViewController {
     func responsiveDesign(){
         let screenHeight = self.view.frame.height
         if (screenHeight < 569){
-            print("hi")
-            logoHeight.constant -= 20.0
-            bottomConstraint.constant -= 5.0
-            usernameLabel.font = UIFont(name: usernameLabel.font.fontName, size: 15.0)
-             passwordLabel.font = UIFont(name: usernameLabel.font.fontName, size: 15.0)
-             phonenumberLabel.font = UIFont(name: usernameLabel.font.fontName, size: 15.0)
-             verificationLabel.font = UIFont(name: usernameLabel.font.fontName, size: 15.0)
-           
-            
+            fromCenter.constant = -80
+            usernameLabel.font = usernameLabel.font.withSize(15)
+            passwordLabel.font = passwordLabel.font.withSize(15)
+            phonenumberLabel.font = phonenumberLabel.font.withSize(15)
+            verificationLabel.font = verificationLabel.font.withSize(15)
+            communityLabel.font = communityLabel.font.withSize(15)
+            loginLabel.titleLabel!.font = loginLabel.titleLabel!.font.withSize(15)
+            registerLabel.font = registerLabel.font.withSize(20)
+            verifyButton.titleLabel!.font = verifyButton.titleLabel!.font.withSize(15)
+            registerButton.titleLabel!.font = registerButton.titleLabel!.font.withSize(15)
+            registerButtonTop.constant = 15
+            registerButton.layer.cornerRadius = 10
         } else if (screenHeight < 669){
-            logoHeight.constant -= 30.0
+            fromCenter.constant = -100
         } else {
             busAnimation()
         }
@@ -82,7 +99,9 @@ class RegisterViewController: UIViewController {
         animationView.frame = CGRect(x: 0, y: self.view.frame.size.height-250, width: self.view.frame.size.width, height: 250)
         animationView.contentMode = .scaleAspectFill
         self.view.addSubview(animationView)
+        print ("backing")
         self.view.sendSubviewToBack(animationView)
+        print ("backed")
         animationView.loopMode = .loop
         animationView.play()
     }
@@ -167,7 +186,7 @@ class RegisterViewController: UIViewController {
                 "username": username.text!,
                 "password": password.text!,
                 "phonenum": phonenumber.text!,
-                "community": "SJTU"
+                "community": chosenCommunity
             ]
             
             AF.request(URL, method: .post, parameters: parameter, headers: nil, interceptor: nil).responseJSON{
@@ -219,26 +238,24 @@ extension RegisterViewController {
             }
         }
     }
+}
 
-
-//    func retrieveData() {
-//        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-//            let context = appDelegate.persistentContainer.viewContext
-//            let fetchRequest = NSFetchRequest<User>(entityName: "User")
-//
-//            do {
-//                let results = try context.fetch(fetchRequest)
-//
-//                for result in results {
-//                    if let username = result.username {
-//                        print (username)
-//                    }
-//                }
-//            } catch {
-//                print ("Error fetching data")
-//            }
-//
-//        }
-//    }
+extension RegisterViewController : UIPickerViewDelegate, UIPickerViewDataSource {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return communityArray.count
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return communityArray[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print ("Bisto")
+        chosenCommunity = communityArray[row]
+    }
 }
 

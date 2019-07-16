@@ -242,38 +242,242 @@
             </objects>
             <point key="canvasLocation" x="1015" y="515"/>
         </scene>
+        <!--Friend Request-->
+        <scene sceneID="JyH-gs-asq">
+            <objects>
+                <viewController title="Friend Request" id="VNT-Vs-tAE" customClass="FriendRequestViewController" customModule="e_life" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KQp-LA-rZB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IIA-j9-sSm">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="84" id="9Ny-85-Q4i" customClass="CustomCell8" customModule="e_life" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="84"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Ny-85-Q4i" id="6UC-vd-cYw">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="83.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sgn-OT-Q6b">
+                                                    <rect key="frame" x="20" y="28" width="55" height="27.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NvP-yg-MNn">
+                                                    <rect key="frame" x="354" y="11" width="40" height="57"/>
+                                                    <color key="backgroundColor" red="1" green="0.12606038457346169" blue="0.17688826692021731" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="dbA-LD-xsx"/>
+                                                    </constraints>
+                                                    <state key="normal" title="拒绝">
+                                                        <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="reject:" destination="9Ny-85-Q4i" eventType="touchUpInside" id="C5r-8x-nw0"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvL-Oe-D1W">
+                                                    <rect key="frame" x="289" y="11" width="60" height="57"/>
+                                                    <color key="backgroundColor" red="0.76862745099999996" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="wd7-QW-LRk"/>
+                                                    </constraints>
+                                                    <state key="normal" title="接受">
+                                                        <color key="titleColor" red="0.0" green="0.56078431370000004" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="accept:" destination="9Ny-85-Q4i" eventType="touchUpInside" id="RQf-Zk-YBh"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cvL-Oe-D1W" firstAttribute="top" secondItem="6UC-vd-cYw" secondAttribute="topMargin" id="0aD-wf-Rsw"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="NvP-yg-MNn" secondAttribute="bottom" constant="5" id="4np-ao-f9o"/>
+                                                <constraint firstItem="NvP-yg-MNn" firstAttribute="top" secondItem="6UC-vd-cYw" secondAttribute="topMargin" id="Kh3-jg-8j2"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="cvL-Oe-D1W" secondAttribute="bottom" constant="5" id="Q4t-nw-yQn"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="NvP-yg-MNn" secondAttribute="trailing" id="RRh-ZN-3kG"/>
+                                                <constraint firstItem="Sgn-OT-Q6b" firstAttribute="leading" secondItem="6UC-vd-cYw" secondAttribute="leadingMargin" id="WxK-AM-A5U"/>
+                                                <constraint firstItem="Sgn-OT-Q6b" firstAttribute="centerY" secondItem="6UC-vd-cYw" secondAttribute="centerY" id="ezg-Mj-8h9"/>
+                                                <constraint firstItem="NvP-yg-MNn" firstAttribute="leading" secondItem="cvL-Oe-D1W" secondAttribute="trailing" constant="5" id="ot2-zf-mdm"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="username" destination="Sgn-OT-Q6b" id="kdv-J6-N9A"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="VNT-Vs-tAE" id="hTi-ZC-QNx"/>
+                                    <outlet property="delegate" destination="VNT-Vs-tAE" id="tEr-Sc-zXl"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="jk1-sN-gEn"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="IIA-j9-sSm" id="SqX-KW-xDT"/>
+                        <outlet property="username" destination="IIA-j9-sSm" id="q7N-VC-zx8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RXr-6h-hHk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-394.20289855072468" y="882.58928571428567"/>
+        </scene>
+        <!--加好友-->
+        <scene sceneID="TO5-7t-o9z">
+            <objects>
+                <viewController title="加好友" id="nii-0E-qlW" customClass="AddFriendViewController" customModule="e_life" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qst-uz-p16">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cn0-CE-idf">
+                                <rect key="frame" x="20" y="64" width="374" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0P-b5-GjY">
+                                <rect key="frame" x="20" y="114" width="374" height="30"/>
+                                <color key="backgroundColor" red="0.76862745099999996" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="加好友">
+                                    <color key="titleColor" red="0.0" green="0.56078431370000004" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addFriend:" destination="nii-0E-qlW" eventType="touchUpInside" id="7Tx-lf-awa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PPO-yh-rZM" firstAttribute="trailing" secondItem="l0P-b5-GjY" secondAttribute="trailing" constant="20" id="61R-Jg-oRZ"/>
+                            <constraint firstItem="PPO-yh-rZM" firstAttribute="trailing" secondItem="cn0-CE-idf" secondAttribute="trailing" constant="20" id="7Dh-UC-TgS"/>
+                            <constraint firstItem="l0P-b5-GjY" firstAttribute="leading" secondItem="PPO-yh-rZM" secondAttribute="leading" constant="20" id="LfN-VJ-sJo"/>
+                            <constraint firstItem="cn0-CE-idf" firstAttribute="leading" secondItem="PPO-yh-rZM" secondAttribute="leading" constant="20" id="Rg2-8L-Ekv"/>
+                            <constraint firstItem="l0P-b5-GjY" firstAttribute="top" secondItem="cn0-CE-idf" secondAttribute="bottom" constant="20" id="exn-jb-uwg"/>
+                            <constraint firstItem="cn0-CE-idf" firstAttribute="top" secondItem="PPO-yh-rZM" secondAttribute="top" constant="20" id="x5S-bN-123"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PPO-yh-rZM"/>
+                    </view>
+                    <connections>
+                        <outlet property="friendName" destination="cn0-CE-idf" id="Wh3-zt-2IZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I11-GA-Zxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="331.8840579710145" y="882.58928571428567"/>
+        </scene>
         <!--好友管理-->
         <scene sceneID="Yu7-66-YyR">
             <objects>
-                <viewController storyboardIdentifier="5" title="好友管理" id="fgt-AM-Pr2" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="5" title="好友管理" id="fgt-AM-Pr2" customClass="FriendViewController" customModule="e_life" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G8n-K3-vSy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXi-Is-9Mv">
-                                <rect key="frame" x="78" y="188" width="41" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.56078431370000004" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dIK-z9-OuZ">
-                                <rect key="frame" x="152" y="43" width="82" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1xH-dx-2rv">
+                                <rect key="frame" x="0.0" y="124" width="414" height="738"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="91" id="fxu-Cd-uSo" customClass="CustomCell9" customModule="e_life" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="91"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fxu-Cd-uSo" id="g7i-Ed-1iG">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="90.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWn-su-mU5">
+                                                    <rect key="frame" x="20" y="31.5" width="55" height="27.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYd-zE-lmD">
+                                                    <rect key="frame" x="354" y="21" width="40" height="54"/>
+                                                    <color key="backgroundColor" red="0.76862745099999996" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="u1V-Te-DuI"/>
+                                                    </constraints>
+                                                    <state key="normal" title="删除">
+                                                        <color key="titleColor" red="0.0" green="0.56078431370000004" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteFriend:" destination="fxu-Cd-uSo" eventType="touchUpInside" id="Qco-CC-Ctj"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fYd-zE-lmD" firstAttribute="trailing" secondItem="g7i-Ed-1iG" secondAttribute="trailingMargin" id="Kmv-EZ-pcZ"/>
+                                                <constraint firstItem="fYd-zE-lmD" firstAttribute="top" secondItem="g7i-Ed-1iG" secondAttribute="topMargin" constant="10" id="W7e-HO-TZ3"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="fYd-zE-lmD" secondAttribute="bottom" constant="5" id="re4-Gz-vOS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="deleteFriendButton" destination="fYd-zE-lmD" id="NTv-QG-AB0"/>
+                                            <outlet property="username" destination="BWn-su-mU5" id="zOe-pH-iMz"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="fgt-AM-Pr2" id="hrV-kb-fpT"/>
+                                    <outlet property="delegate" destination="fgt-AM-Pr2" id="SkD-XJ-35l"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGX-jT-Msc">
+                                <rect key="frame" x="20" y="54" width="115" height="30"/>
                                 <color key="backgroundColor" red="0.76862745099999996" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="好友申请">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="115" id="gUB-m7-O9q"/>
+                                </constraints>
+                                <state key="normal" title="Friend Request">
                                     <color key="titleColor" red="0.0" green="0.56078431370000004" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="VNT-Vs-tAE" kind="show" id="027-Z4-ihc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pig-4o-juC">
+                                <rect key="frame" x="299" y="54" width="95" height="30"/>
+                                <color key="backgroundColor" red="0.76862745099999996" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="95" id="g8f-ls-Lmw"/>
+                                </constraints>
+                                <state key="normal" title="Add Friend">
+                                    <color key="titleColor" red="0.0" green="0.56078431370000004" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="nii-0E-qlW" kind="show" id="6ph-Kj-9rz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2eF-Gu-n46" firstAttribute="bottom" secondItem="1xH-dx-2rv" secondAttribute="bottom" id="2U4-b2-5Lh"/>
+                            <constraint firstItem="gGX-jT-Msc" firstAttribute="top" secondItem="2eF-Gu-n46" secondAttribute="top" constant="10" id="992-xq-cnf"/>
+                            <constraint firstItem="gGX-jT-Msc" firstAttribute="leading" secondItem="2eF-Gu-n46" secondAttribute="leading" constant="20" id="IyO-tp-XIB"/>
+                            <constraint firstItem="1xH-dx-2rv" firstAttribute="leading" secondItem="2eF-Gu-n46" secondAttribute="leading" id="R1k-QX-1E6"/>
+                            <constraint firstItem="pig-4o-juC" firstAttribute="top" secondItem="2eF-Gu-n46" secondAttribute="top" constant="10" id="Sob-vf-zY4"/>
+                            <constraint firstItem="2eF-Gu-n46" firstAttribute="trailing" secondItem="pig-4o-juC" secondAttribute="trailing" constant="20" id="Ubi-Gh-Kdm"/>
+                            <constraint firstItem="1xH-dx-2rv" firstAttribute="top" secondItem="2eF-Gu-n46" secondAttribute="top" constant="80" id="e6p-hm-1ZY"/>
+                            <constraint firstItem="1xH-dx-2rv" firstAttribute="trailing" secondItem="2eF-Gu-n46" secondAttribute="trailing" id="eju-Qe-My0"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="2eF-Gu-n46"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="1xH-dx-2rv" id="23H-0v-nzX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iQG-3x-ZDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1068" y="883"/>
+            <point key="canvasLocation" x="1066.6666666666667" y="882.58928571428567"/>
         </scene>
         <!--换手机号码-->
         <scene sceneID="yCW-IQ-9EF">

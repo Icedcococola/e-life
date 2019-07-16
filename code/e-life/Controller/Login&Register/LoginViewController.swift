@@ -17,14 +17,18 @@ class LoginViewController: UIViewController {
     //text fields outlets
     @IBOutlet var username: UITextField!
     @IBOutlet var password: UITextField!
-    @IBOutlet var login: UILabel!
     //login button outlet
     @IBOutlet var loginButton: UIButton!
     
     //constraint outlets
-    @IBOutlet var bottomConstraint: NSLayoutConstraint!
-    @IBOutlet var loginLabel: NSLayoutConstraint!
+    
+    @IBOutlet var loginLabel: UILabel!
+    @IBOutlet var usernameLabel: UILabel!
+    @IBOutlet var passwordLabel: UILabel!
+    @IBOutlet var logoWidth: NSLayoutConstraint!
     @IBOutlet var logoHeight: NSLayoutConstraint!
+    @IBOutlet var noAccountLabel: UILabel!
+    @IBOutlet var registerLabel: UIButton!
     
     var isLoggedIn : Bool = false
     
@@ -41,8 +45,15 @@ class LoginViewController: UIViewController {
         let animationView = AnimationView(name: "bus")
         print(self.view.frame.size.height)
         if (self.view.frame.size.height < 600) {
-            animationView.frame = CGRect(x: 0, y: self.view.frame.size.height-150, width: self.view.frame.size.width, height: 150)
-            logoHeight.constant -= 30
+            loginLabel.font = loginLabel.font.withSize(20)
+            usernameLabel.font = usernameLabel.font.withSize(15)
+            passwordLabel.font = passwordLabel.font.withSize(15)
+            noAccountLabel.font = noAccountLabel.font.withSize(15)
+            loginButton.titleLabel!.font = loginButton.titleLabel!.font.withSize(15)
+            registerLabel.titleLabel!.font = registerLabel.titleLabel!.font.withSize(15)
+            logoWidth.constant = 100
+            logoHeight.constant = 70
+            animationView.frame = CGRect(x: 0, y: self.view.frame.size.height-170, width: self.view.frame.size.width, height: 160)
         } else if (self.view.frame.size.height < 668) {
             animationView.frame = CGRect(x: 0, y: self.view.frame.size.height-200, width: self.view.frame.size.width, height: 200)
            
