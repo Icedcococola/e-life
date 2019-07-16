@@ -7,7 +7,8 @@ Vue.use(Vuex)
 const state = {
   username: window.sessionStorage.getItem('username'),
   token: window.sessionStorage.getItem('token'),
-  community: window.sessionStorage.getItem('community')
+  community: window.sessionStorage.getItem('community'),
+  demandId:window.sessionStorage.getItem('demandId')
 }
 const mutations = {
   //将token保存到sessionStorage里，token表示登陆状态
@@ -24,6 +25,11 @@ const mutations = {
   SET_COMMUNITY: (state,data) => {
     state.community = data
     window.sessionStorage.setItem('community',data)
+  },
+
+  SET_DEMANDID: (state,data) => {
+    state.demandId = data
+    window.sessionStorage.setItem('demandId',data)
   },
   //登出
   LOGOUT: (state) => {

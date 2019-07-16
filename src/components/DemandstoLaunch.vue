@@ -3,7 +3,7 @@
 
     <el-row type="flex" class="row-bg" justify="end">
       <el-col :span="14">
-        <div class="tit" style="font-size:190%; height:50px; color:#858585;text-align:left;"><i class="el-icon-document"></i>{{title}}</div>
+        <div class="tit" style="font-size:190%; height:50px; color:#858585;text-align:left;"><i class="el-icon-menu"></i>{{title}}</div>
       </el-col>
       <el-col :span='8'>
           <el-input v-model="search" class="search" icon="search" placeholder="请输入要搜索的标题关键字"></el-input>
@@ -12,7 +12,6 @@
         <el-button icon="el-icon-search" circle></el-button>
       </el-col>
    
-
 
     </el-row>
     <el-row>
@@ -32,14 +31,14 @@
       </el-table-column>
       <el-table-column
         prop="activityid"
-        label="活动编号"
-        width="80"
+        label="需求编号"
+        width="100"
         align="center">
       </el-table-column>
       <el-table-column
         prop="title"
-        label="标题"
-        width="230"
+        label="商品名称"
+        width="250"
         align="center">
       </el-table-column>
       <el-table-column
@@ -47,19 +46,7 @@
         label="活动时间"
         width="100"
         align="center">
-      </el-table-column>        
-      <el-table-column
-        prop="place"
-        label="地点"
-        width="200"
-        align="center">
       </el-table-column>
-      <el-table-column
-        prop="time"
-        label="发布时间"
-        width="100"
-        align="center">
-      </el-table-column>   
       <el-table-column
         prop="op"
         label="操作"
@@ -67,8 +54,7 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
-            <el-button type="primary" @click="topage(scope.row.activityid)" icon="el-icon-search" circle></el-button>
-            <el-button type="danger" @click="deleteLine(scope.row.activityid,scope.$index)" icon="el-icon-delete" circle></el-button>
+            <el-button type="primary" @click="topage(scope.row.activityid)" icon="el-icon-upload" round>发布</el-button>
           </template>
       </el-table-column>
     </el-table>
@@ -100,14 +86,20 @@
       methods:
       {
         topage(lalala){
-          this.axios.get('/api/Activity/findbyid',{
-            params:{
-              activityid:lalala
-            }
-          }).then((response)=>{
-            this.$confirm(response.data.detail,'活动详情')
-            console.log(response)
+          //this.axios.get('/api/Activity/findbyid',{
+          //  params:{
+          //    activityid:lalala
+          //  }
+          //}).then((response)=>{
+          //  this.$confirm(response.data.detail,'活动详情')
+          //  console.log(response)
+          //})
+          this.$store.commit('SET_DEMANDID',lalala)
+          this.$router.push({
+              name:"EditDemands",
+              
           })
+          
           
         },
 
@@ -147,7 +139,7 @@
       },
       data() {
         return {
-          title:'活动安排',
+          title:'商品需求管理',
           input: '',
           search: '',
           tableData: []
@@ -155,3 +147,6 @@
       }
     }
 </script>
+
+
+

@@ -19,6 +19,10 @@ import parcelLogin from "@/components/parcelLogin"
 import parcelHome from "@/components/parcelHome"
 import LaunchedParcel from "@/components/LaunchedParcel"
 import EditParcel from "@/components/EditParcel"
+import DemandstoLaunch from "@/components/DemandstoLaunch"
+import LaunchedDemands from "@/components/LaunchedDemands"
+import EditDemands from "@/components/EditDemands"
+import messagePageDemands from "@/components/messagePageDemands"
 import store from '@/store/index'
 
 Vue.use(Router)
@@ -96,6 +100,30 @@ const router = new Router({
           meta: {
             requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
           }
+        },
+        {
+          path:'/DemandstoLaunch',
+          component:DemandstoLaunch,
+          name:'DemandstoLaunch',
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
+        },
+        {
+          path:'/LaunchedDemands',
+          component:LaunchedDemands,
+          name:'LaunchedDemands',
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
+        },
+        {
+          path:'/messagePageDemands',
+          component:messagePageDemands,
+          name:'messagePageDemands',
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
         }
       ]
       
@@ -139,6 +167,14 @@ const router = new Router({
             requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
           }
         },
+        {
+          path:'/EditDemands',
+          component:EditDemands,
+          name:'EditDemands',
+          meta: {
+            requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
+        }
       ]
     },
     {
@@ -181,7 +217,6 @@ const router = new Router({
       ]
     }
     
-
   ]
 })
 

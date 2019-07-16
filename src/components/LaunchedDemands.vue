@@ -32,7 +32,7 @@
       </el-table-column>
       <el-table-column
         prop="activityid"
-        label="活动编号"
+        label="商品编号"
         width="80"
         align="center">
       </el-table-column>
@@ -100,14 +100,22 @@
       methods:
       {
         topage(lalala){
-          this.axios.get('/api/Activity/findbyid',{
-            params:{
-              activityid:lalala
-            }
-          }).then((response)=>{
-            this.$confirm(response.data.detail,'活动详情')
-            console.log(response)
-          })
+          //this.axios.get('/api/Activity/findbyid',{
+          //  params:{
+          //    activityid:lalala
+          //  }
+          //}).then((response)=>{
+          //  this.$confirm(response.data.detail,'活动详情')
+          //  console.log(response)
+          //})
+          this.$router.push(
+              {
+                  name:'messagePageDemands',
+                  params:{
+                      
+                  }
+              }
+          )
           
         },
 
@@ -147,7 +155,7 @@
       },
       data() {
         return {
-          title:'活动安排',
+          title:'已上架商品',
           input: '',
           search: '',
           tableData: []

@@ -51,6 +51,7 @@
         <el-menu-item index="/LaunchedUrgent" >紧急通知</el-menu-item>
       </el-menu-item-group>
       </el-submenu>
+
       <el-submenu index="2">
         <template slot="title">
           <i class="el-icon-edit"></i>
@@ -64,6 +65,19 @@
         <el-menu-item index="/EditUrgent" >紧急通知</el-menu-item>
       </el-menu-item-group>
       </el-submenu>
+      
+      <el-submenu index="3">
+        <template slot="title">
+          <i class="el-icon-edit-outline"></i>
+          <span>团购需求管理</span>
+        </template>
+      <el-menu-item-group style="background:#ffffff;">
+        <template slot="title"></template>
+        <el-menu-item index="/LaunchedDemands">查看已上架商品</el-menu-item>
+        <el-menu-item index="/DemandstoLaunch" >未发布需求管理</el-menu-item>
+      </el-menu-item-group>
+      </el-submenu>
+      
     </el-menu>
     </el-aside>
     <el-aside style="width:10px;">
