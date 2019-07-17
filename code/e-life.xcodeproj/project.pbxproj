@@ -607,7 +607,7 @@
 					"$(PROJECT_DIR)/Pods/BMKLocationKit/framework",
 				);
 				INFOPLIST_FILE = "e-life/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -631,7 +631,7 @@
 					"$(PROJECT_DIR)/Pods/BMKLocationKit/framework",
 				);
 				INFOPLIST_FILE = "e-life/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -50,6 +50,7 @@ class RegisterViewController: UIViewController {
     //constraint
     @IBOutlet var fromCenter: NSLayoutConstraint!
     @IBOutlet var registerButtonTop: NSLayoutConstraint!
+    @IBOutlet var titleTop: NSLayoutConstraint!
     
     
     override func viewDidLoad() {
@@ -61,7 +62,9 @@ class RegisterViewController: UIViewController {
     
     func responsiveDesign(){
         let screenHeight = self.view.frame.height
-        if (screenHeight < 569){
+        let screenWidth = self.view.frame.width
+        if (screenHeight < 569){ // Iphone SE
+            titleTop.constant = 25
             fromCenter.constant = -80
             usernameLabel.font = usernameLabel.font.withSize(15)
             passwordLabel.font = passwordLabel.font.withSize(15)
@@ -74,15 +77,31 @@ class RegisterViewController: UIViewController {
             registerButton.titleLabel!.font = registerButton.titleLabel!.font.withSize(15)
             registerButtonTop.constant = 15
             registerButton.layer.cornerRadius = 10
-        } else if (screenHeight < 669){
-            fromCenter.constant = -100
-        } else {
+        } else if  (screenHeight < 668) { //Iphone 8, 6, 6plus, 7
+            fromCenter.constant = -110
+            usernameLabel.font = usernameLabel.font.withSize(17)
+            passwordLabel.font = passwordLabel.font.withSize(17)
+            phonenumberLabel.font = phonenumberLabel.font.withSize(17)
+            verificationLabel.font = verificationLabel.font.withSize(17)
+            communityLabel.font = communityLabel.font.withSize(17)
+            loginLabel.titleLabel!.font = loginLabel.titleLabel!.font.withSize(17)
+            registerLabel.font = registerLabel.font.withSize(22)
+            verifyButton.titleLabel!.font = verifyButton.titleLabel!.font.withSize(17)
+            registerButton.titleLabel!.font = registerButton.titleLabel!.font.withSize(17)
+            registerButtonTop.constant = 15
+            registerButton.layer.cornerRadius = 10
+        } else if (screenHeight < 813){ //Iphone X
+            if (screenWidth > 375) { //Iphone 8plus and 7plus
+                fromCenter.constant = -120
+            } else {
+                fromCenter.constant = -100
+            }
+        }
+        else {
             busAnimation()
         }
     }
-    
 
-    
     //
     func uiDesign(){
         registerButton.layer.cornerRadius = 20
@@ -137,15 +156,13 @@ class RegisterViewController: UIViewController {
     @IBAction func getVerificationNum(_ sender: Any) {
         if (phonenumber.text!.isEmpty) {
             let alert = UIAlertController(title: "注意⚠️", message: "手机号码不能为空", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
-                print("Cancelled")
-            }))
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
             // Mark : - Request server to send verification number
             SVProgressHUD.show(withStatus: "正在发送短信")
             verifyButton.titleLabel?.text = "请稍微等待"
-        AF.request("http://elifedemo.free.idcfengye.com/User/verify", method: .post, parameters: ["phonenum" : phonenumber.text!]).responseJSON { (response) in
+        AF.request("http://elifedemo.vipgz1.idcfengye.com/User/verify", method: .post, parameters: ["phonenum" : phonenumber.text!]).responseJSON { (response) in
                 switch response.response?.statusCode {
                     case 200:
                         SVProgressHUD.showSuccess(withStatus: "短信已发送")
@@ -168,9 +185,7 @@ class RegisterViewController: UIViewController {
     @IBAction func register(_ sender: Any) {
         if (username.text!.isEmpty || password.text!.isEmpty) {
             let alert = UIAlertController(title: "注意⚠️", message: "用户名或密码不能为空", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
-                print("Cancelled")
-            }))
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else if (phonenumber.text!.isEmpty) {
             let alert = UIAlertController(title: "注意⚠️", message: "手机号码不能为空", preferredStyle: .alert)
@@ -218,6 +233,13 @@ class RegisterViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        phonenumber.resignFirstResponder()
+        username.resignFirstResponder()
+        verification.resignFirstResponder()
+        password.resignFirstResponder()
     }
     
     func showAlert (message : String) {

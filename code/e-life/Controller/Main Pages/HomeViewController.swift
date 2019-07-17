@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var latestNotice: UITextView!
+    
+    let URL = "http://elifedemo.vipgz1.idcfengye.com/Propertynotice/findNewest"
+    
     let functionalitiesImages : [UIImage] = [
         UIImage(named: "EmergencyNotification")!,
         UIImage(named: "LatestNotification")!,
@@ -42,26 +48,31 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet var NewsTextView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        designUI()
+        responsiveDesign()
+        fetchData()
         // Do any additional setup after loading the view.
         collectionView.delegate = self
         collectionView.dataSource = self
     }
     
+    func responsiveDesign(){
+        let screenHeight = self.view.frame.height
+        if (screenHeight < 569){
+            
+        } else if (screenHeight < 668) {
 
-    // design UI
-    func designUI(){
-        //set rounded corner
-        let path = UIBezierPath(roundedRect: EmergencyNews.bounds, byRoundingCorners:[.bottomRight, .bottomLeft], cornerRadii: CGSize(width: 30, height:  30))
-        
-        let maskLayer = CAShapeLayer()
-        
-        maskLayer.path = path.cgPath
-        EmergencyNews.layer.mask = maskLayer
-        
-        News.layer.cornerRadius = 10
-        NewsTextView.layer.cornerRadius = 10
+        }
     }
+    
+    func fetchData(){
+        AF.request(URL, method: .post, parameters: ["community": appDelegate.community]).responseJSON { (response) in if let json = response.value {
+                let data = JSON(json)
+                print (data)
+                self.latestNotice.text = data["detail"].stringValue
+            }
+        }
+    }
+    
     
     // UICollectionView Delegates
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -71,6 +82,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         cell.icon.image = functionalitiesImages[indexPath.row]
+        
+        cell.contentView.backgroundColor = UIColor.clear
+        
         return cell
     }
     

@@ -19,7 +19,7 @@ class CustomCell6 : UITableViewCell {
 class LatestNewsViewController: UIViewController {
 
     var newsArray : [JSON] = []
-    let URL = "http://elifedemo.vipgz1.idcfengye.com/Activity/findAll"
+    let URL = "http://elifedemo.vipgz1.idcfengye.com/Latestnews/findAll"
 
     @IBOutlet var tableView: UITableView!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -36,9 +36,9 @@ class LatestNewsViewController: UIViewController {
         AF.request(URL, method: .post, parameters: ["community": community]).responseJSON { (response) in
             if let json = response.value{
                 let latestNewsArray = JSON(json).arrayValue
+                print (latestNewsArray)
                 self.newsArray = latestNewsArray
                 self.tableView.reloadData()
-                //activitiesArray =
             }
         }
         

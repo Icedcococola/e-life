@@ -31,6 +31,8 @@ class LoginViewController: UIViewController {
     @IBOutlet var noAccountLabel: UILabel!
     @IBOutlet var registerLabel: UIButton!
     
+    //constraint
+    
     var isLoggedIn : Bool = false
     
     let URL = "http://elifedemo.vipgz1.idcfengye.com/User/login"
@@ -40,6 +42,33 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
         busAnimation()
         uiDesign()
+        responsiveDesign()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        username.resignFirstResponder()
+        password.resignFirstResponder()
+    }
+    
+    func responsiveDesign() {
+        let screenHeight = self.view.frame.height
+        if (screenHeight < 569) {
+            usernameLabel.font = usernameLabel.font.withSize(15)
+            passwordLabel.font = passwordLabel.font.withSize(15)
+            noAccountLabel.font = noAccountLabel.font.withSize(15)
+            loginLabel.font = loginLabel.font.withSize(20)
+            loginButton.titleLabel!.font = loginButton.titleLabel!.font.withSize(15)
+            registerLabel.titleLabel!.font = registerLabel.titleLabel!.font.withSize(15)
+            
+        } else if (screenHeight < 668) {
+            loginLabel.font = loginLabel.font.withSize(22)
+            usernameLabel.font = usernameLabel.font.withSize(17)
+            passwordLabel.font = passwordLabel.font.withSize(17)
+            noAccountLabel.font = noAccountLabel.font.withSize(17)
+            loginButton.titleLabel!.font = loginButton.titleLabel!.font.withSize(17)
+            registerLabel.titleLabel!.font = registerLabel.titleLabel!.font.withSize(17)
+        }
+    
     }
     
     func busAnimation(){

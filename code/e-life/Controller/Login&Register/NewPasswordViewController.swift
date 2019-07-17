@@ -16,6 +16,11 @@ class NewPasswordViewController: UIViewController {
     @IBOutlet var newPassword: UITextField!
     @IBOutlet var confirmPassword: UITextField!
     @IBOutlet var confirmButton: UIButton!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var newPasswordLabel: UILabel!
+    @IBOutlet var confirmPasswordLabel: UILabel!
+    @IBOutlet var titleTop: NSLayoutConstraint!
+    @IBOutlet var titleBottom: NSLayoutConstraint!
     
     var phonenum : String = ""
     let URL = "http://elifedemo.vipgz1.idcfengye.com/User/modifypassword"
@@ -23,8 +28,30 @@ class NewPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         uiDesign()
-        print(phonenum)
+        responsiveDesign()
         // Do any additional setup after loading the view.
+    }
+    
+    func responsiveDesign () {
+        let screenHeight = self.view.frame.height
+        if (screenHeight < 569) {
+            titleTop.constant = 60
+            titleBottom.constant = 40
+            titleLabel.font = titleLabel.font.withSize(20)
+            newPasswordLabel.font = newPasswordLabel.font.withSize(15)
+            confirmPasswordLabel.font = confirmPasswordLabel.font.withSize(15)
+            confirmButton.titleLabel!.font = confirmButton.titleLabel!.font.withSize(15)
+        } else if (screenHeight < 668) {
+            titleLabel.font = titleLabel.font.withSize(22)
+            newPasswordLabel.font = newPasswordLabel.font.withSize(17)
+            confirmPasswordLabel.font = confirmPasswordLabel.font.withSize(17)
+            confirmButton.titleLabel!.font = confirmButton.titleLabel!.font.withSize(17)
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        newPassword.resignFirstResponder()
+        confirmPassword.resignFirstResponder()
     }
     
     

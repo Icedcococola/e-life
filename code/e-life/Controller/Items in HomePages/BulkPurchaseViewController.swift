@@ -46,17 +46,15 @@ class BulkPurchaseViewController: UIViewController, tablViewCellDelegate {
     var customProductArray : [JSON] = []
     var supplierProductArray : [JSON] = []
     var haveNewProduct : Bool = false
-    var username = ""
-    var community = ""
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        username = appDelegate.username
-        community = appDelegate.community
-        fetchData()
         checkForNewProduct()
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        fetchData()
     }
     
     func checkForNewProduct () {
@@ -66,9 +64,9 @@ class BulkPurchaseViewController: UIViewController, tablViewCellDelegate {
     }
     
     func didTapSupport(id : String) {
-        AF.request(URL2, method: .post, parameters: ["username": self.username, "desiredid": id]).responseJSON { (response) in
+        AF.request(URL2, method: .post, parameters: ["username": self.appDelegate.username, "desiredid": id]).responseJSON { (response) in
             if response.response?.statusCode == 200 {
-                AF.request(self.URL, method: .post, parameters: ["username": self.username, "community": self.community]).responseJSON { (response) in if let json = response.value{
+                AF.request(self.URL, method: .post, parameters: ["username": self.appDelegate.username, "community": self.appDelegate.community]).responseJSON { (response) in if let json = response.value{
                     let desiredArray = JSON(json).arrayValue
                     self.customProductArray = desiredArray
                     self.tableView1.reloadData()
@@ -80,8 +78,9 @@ class BulkPurchaseViewController: UIViewController, tablViewCellDelegate {
     
     func fetchData(){
         SVProgressHUD.show(withStatus: "加载中")
-        AF.request(URL, method: .post, parameters: ["username": self.username, "community": self.community]).responseJSON { (response) in
+        AF.request(URL, method: .post, parameters: ["username": self.appDelegate.username, "community": self.appDelegate.community]).responseJSON { (response) in
             if (response.response?.statusCode != 200) {
+                SVProgressHUD.dismiss()
                 self.appDelegate.showAlert(viewscontroler: self, message: "加载失败！请注意您的网络")
             } else {
                 if let json = response.value{
@@ -93,14 +92,17 @@ class BulkPurchaseViewController: UIViewController, tablViewCellDelegate {
             }
         }
         
-        AF.request(URL1, method: .post, parameters: ["community": self.community]).responseJSON { (response) in
+        AF.request(URL1, method: .post, parameters: ["community": self.appDelegate.community]).responseJSON { (response) in
+            print (self.appDelegate.community)
             if (response.response?.statusCode != 200) {
+                SVProgressHUD.dismiss()
                 self.appDelegate.showAlert(viewscontroler: self, message: "加载失败！请注意您的网络")
             } else {
                 if let json = response.value {
                     SVProgressHUD.dismiss()
                     let productArray = JSON(json).arrayValue
                     self.supplierProductArray = productArray
+                    print (productArray)
                     self.tableView2.reloadData()
                 }
             }
@@ -132,6 +134,10 @@ extension BulkPurchaseViewController : UITableViewDataSource, UITableViewDelegat
             cell.productName.text = customProductArray[indexPath.row]["goods"].stringValue
             cell.hotness.text = customProductArray[indexPath.row]["heat"].stringValue
             if (customProductArray[indexPath.row]["ishelped"].stringValue == "1") {
+                cell.support.isEnabled = false
+                cell.support.backgroundColor = .lightGray
+                cell.support.titleLabel!.text = "Supported"
+            } else if (customProductArray[indexPath.row]["publisher"].stringValue == self.appDelegate.username){
                 cell.support.isEnabled = false
                 cell.support.backgroundColor = .lightGray
                 cell.support.titleLabel!.text = "Supported"

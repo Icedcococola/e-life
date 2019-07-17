@@ -26,6 +26,10 @@ class RequestViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        requestProduct.resignFirstResponder()
+    }
+    
     
     @IBAction func sendRequest(_ sender: Any) {
         if (requestProduct.text!.isEmpty) {
@@ -47,9 +51,9 @@ class RequestViewController: UIViewController {
         let productName = requestProduct.text!
         let deadline = date.date
         print (deadline)
-        AF.request(URL, method: .post, parameters: ["publisher": self.appDelegate.username, "community": self.appDelegate.username, "goods": productName, "deadline": deadline]).responseJSON { (response) in
+        AF.request(URL, method: .post, parameters: ["publisher": self.appDelegate.username, "community": self.appDelegate.community, "goods": productName, "deadline": deadline]).responseJSON { (response) in
             if (response.response?.statusCode == 200) {
-                self.performSegue(withIdentifier: "gotoProductList", sender: true)
+                self.navigationController?.popViewController(animated: true)
             } else {
                 self.appDelegate.showAlert(viewscontroler: self, message: "网络不。Please try again!")
             }

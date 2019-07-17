@@ -47,8 +47,7 @@ class FriendRequestViewController: UIViewController, friendTableDelegate{
         super.viewDidLoad()
         fetchData()
         // Do any additional setup after loading the view.
-    }
-    
+    }    
     func fetchData(){
         AF.request(URL, method: .post, parameters: ["applied": self.appDelegate.username]).responseJSON { (response) in
             if (response.response?.statusCode != 200) {

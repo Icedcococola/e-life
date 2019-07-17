@@ -17,6 +17,11 @@ class PasswordRecoveryViewController: UIViewController {
     @IBOutlet var phonenum: UITextField!
     @IBOutlet var verification: UITextField!
     @IBOutlet var loginButton: UIButton!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var phoneNumLabel: UILabel!
+    @IBOutlet var veriLabel: UILabel!
+    @IBOutlet var titleTop: NSLayoutConstraint!
+    @IBOutlet var titleBottom: NSLayoutConstraint!
     
     var verificationNum : String = ""
     
@@ -25,7 +30,30 @@ class PasswordRecoveryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         uiDesign()
+        responsiveDesign()
         // Do any additional setup after loading the view.
+    }
+    
+    func responsiveDesign(){
+        let screenHeight = self.view.frame.height
+        if (screenHeight < 569) {
+            titleTop.constant = 60
+            titleBottom.constant = 40
+            titleLabel.font = titleLabel.font.withSize(20)
+            phoneNumLabel.font = phoneNumLabel.font.withSize(15)
+            veriLabel.font = veriLabel.font.withSize(15)
+            loginButton.titleLabel!.font = loginButton.titleLabel!.font.withSize(15)
+        } else if (screenHeight < 668) {
+            titleLabel.font = titleLabel.font.withSize(22)
+            phoneNumLabel.font = phoneNumLabel.font.withSize(17)
+            veriLabel.font = veriLabel.font.withSize(17)
+            loginButton.titleLabel!.font = loginButton.titleLabel!.font.withSize(17)
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        phonenum.resignFirstResponder()
+        verification.resignFirstResponder()
     }
     
     func uiDesign(){

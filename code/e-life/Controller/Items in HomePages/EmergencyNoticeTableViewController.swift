@@ -22,7 +22,11 @@ class EmergencyNoticeTableViewController: UIViewController, UITableViewDataSourc
 
     @IBOutlet var tableView: UITableView!
     
-    var notiArray : [JSON] = []
+    var notiArray : [JSON] = [
+        ["title": "I am the title", "detail": "I am the detail"],
+        ["title": "I am the title", "detail": "I am the detail"],
+        ["title": "I am the title", "detail": "I am the detail"]
+    ]
     let URL = "http://elifedemo.vipgz1.idcfengye.com/Emergencynotice/findAll"
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -38,9 +42,24 @@ class EmergencyNoticeTableViewController: UIViewController, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
+        cell.selectionStyle = .none
         cell.titleLabel.text = notiArray[indexPath.row]["title"].stringValue
         cell.contentText.text = notiArray[indexPath.row]["detail"].stringValue
-        cell.layer.cornerRadius = 15
+        
+        cell.contentView.backgroundColor = UIColor.clear
+        
+        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 120))
+        
+        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.5, 0.5, 0.5, 0.9])
+        whiteRoundedView.layer.masksToBounds = false
+        whiteRoundedView.layer.cornerRadius = 2.0
+        whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        whiteRoundedView.layer.shadowOpacity = 0.2
+        
+        cell.contentView.addSubview(whiteRoundedView)
+        cell.contentView.sendSubviewToBack(whiteRoundedView)
+
+        
         return cell
     }
  
@@ -50,9 +69,12 @@ class EmergencyNoticeTableViewController: UIViewController, UITableViewDataSourc
             if let json = response.value{
                 let notifications = JSON(json).arrayValue
                 self.notiArray = notifications
-                print (self.notiArray)
                 self.tableView.reloadData()
             }
         }
     }
+}
+
+extension EmergencyNoticeTableViewController {
+    
 }
