@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     public var username = ""
     public var community = ""
+    public let URL = "http://elifedemo.vipgz1.idcfengye.com/"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         checkIfLoggedIn()

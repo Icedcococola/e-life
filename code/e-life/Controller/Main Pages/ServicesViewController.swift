@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import CoreData
 
 class ServicesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -18,7 +17,8 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet var NewsTextView: UITextView!
     @IBOutlet var collectionView: UICollectionView!
     
-    let callURL = "http://elifedemo.free.idcfengye.com/Services/find"
+    let callURL = "http://elifedemo.vipgz1.idcfengye.com/Services/find"
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     let functionItems : [UIImage] = [
         UIImage(named: "MarketDelivery")!,
@@ -65,10 +65,9 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let community = retrieveData()
         switch (indexPath.row){
             case 0:
-                AF.request(callURL, method: .get, parameters: ["community": community, "type": "0"]).responseJSON { (response) in
+                AF.request(callURL, method: .get, parameters: ["community": self.appDelegate.community, "type": "0"]).responseJSON { (response) in
                     if let json = response.value {
                         let phonenum = JSON(json)["phonenum"].stringValue
                         print (phonenum)
@@ -76,7 +75,7 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
                     }
                 }
             case 1:
-                AF.request(callURL, method: .get, parameters: ["community": community, "type": "1"]).responseJSON { (response) in
+                AF.request(callURL, method: .get, parameters: ["community": self.appDelegate.community, "type": "1"]).responseJSON { (response) in
                     if let json = response.value {
                         let phonenum = JSON(json)["phonenum"].stringValue
                         print (phonenum)
@@ -84,7 +83,7 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
                     }
             }
             case 2:
-                AF.request(callURL, method: .get, parameters: ["community": community, "type": "2"]).responseJSON { (response) in
+                AF.request(callURL, method: .get, parameters: ["community": self.appDelegate.community, "type": "2"]).responseJSON { (response) in
                     if let json = response.value {
                         let phonenum = JSON(json)["phonenum"].stringValue
                         print (phonenum)
@@ -106,29 +105,5 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
             }
         }
     }
-}
-
-extension ServicesViewController {
-    
-    func retrieveData() -> String {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let context = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<User>(entityName: "User")
-            
-            do {
-                let results = try context.fetch(fetchRequest)
-                
-                for result in results {
-                    if let community = result.community {
-                        return community
-                    }
-                }
-            } catch {
-                return ""
-            }
-        }
-        return ""
-    }
-    
 }
 

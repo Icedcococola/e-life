@@ -10,6 +10,7 @@ import UIKit
 import Lottie
 import Alamofire
 import SwiftyJSON
+import SVProgressHUD
 
 class PasswordRecoveryViewController: UIViewController {
 
@@ -19,7 +20,7 @@ class PasswordRecoveryViewController: UIViewController {
     
     var verificationNum : String = ""
     
-    let URL = "http://elifedemo.free.idcfengye.com/User/fetchpassword"
+    let URL = "http://elifedemo.vipgz1.idcfengye.com/User/fetchpassword"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,15 +91,24 @@ class PasswordRecoveryViewController: UIViewController {
             }))
             self.present(alert, animated: true, completion: nil)
         } else {
+            SVProgressHUD.show(withStatus: "正在发送短信")
             //Mark: - Request server to send verification
             AF.request(URL, method: .post, parameters: ["phonenum" : phonenum.text!]).responseJSON { (response) in
-                if let json = response.value{
-                    let status = JSON(json)["num"].stringValue
-                    if (status == "0") {
-                        self.showAlert(message: "手机不存在")
-                    } else {
-                       self.verificationNum = status
+                if (response.response?.statusCode == 200){
+                    if let json = response.value{
+                        let status = JSON(json)["num"].stringValue
+                        if (status == "0") {
+                            SVProgressHUD.dismiss()
+                            self.showAlert(message: "手机不存在")
+                        } else {
+                            SVProgressHUD.showSuccess(withStatus: "短信已发送")
+                            self.verificationNum = status
+                        }
                     }
+                } else {
+                    //SVProgressHUD.setDefaultStyle(.custom)
+                    SVProgressHUD.setDefaultMaskType(.black)
+                    SVProgressHUD.showError(withStatus: "网络出了问题。Please Try Again!")
                 }
             }
         }

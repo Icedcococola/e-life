@@ -9,6 +9,7 @@
 import UIKit
 import Lottie
 import Alamofire
+import SVProgressHUD
 
 class NewPasswordViewController: UIViewController {
 
@@ -16,8 +17,8 @@ class NewPasswordViewController: UIViewController {
     @IBOutlet var confirmPassword: UITextField!
     @IBOutlet var confirmButton: UIButton!
     
-    var phonenum : String = "fa"
-    let URL = "http://elifedemo.free.idcfengye.com/User/modifypassword"
+    var phonenum : String = ""
+    let URL = "http://elifedemo.vipgz1.idcfengye.com/User/modifypassword"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,8 +95,18 @@ class NewPasswordViewController: UIViewController {
         } else {
             // Mark: - Request server to change password for the user with phonenum
             print ("Changing Password")
-            AF.request(URL, method: .post, parameters: ["phonenum": phonenum, "password": newPassword.text!])
-            performSegue(withIdentifier: "gotoLogIn", sender: nil)
+            SVProgressHUD.setDefaultMaskType(.black)
+            SVProgressHUD.show(withStatus: "正在修改密码")
+            AF.request(URL, method: .post, parameters: ["phonenum": phonenum, "password": newPassword.text!]).responseJSON { (response) in
+                if (response.response?.statusCode != 200) {
+                    SVProgressHUD.dismiss()
+                    SVProgressHUD.setDefaultMaskType(.black)
+                    SVProgressHUD.showError(withStatus: "修改失败. Please Try Again!")
+                } else {
+                    SVProgressHUD.dismiss()
+                    self.performSegue(withIdentifier: "gotoLogIn", sender: nil)
+                }
+            }
         }
     }
     

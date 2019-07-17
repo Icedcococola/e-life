@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import CoreData
 import SwiftyJSON
 
 class CustomCell3 : UITableViewCell {
@@ -29,9 +28,11 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet var activityDetail: UILabel!
     @IBOutlet var closeButton: UIButton!
     
-    let URL = "http://elifedemo.free.idcfengye.com/Activity/findAll"
+    let URL = "http://elifedemo.vipgz1.idcfengye.com/Activity/findAll"
     
     var activitiesArray : [JSON] = []
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,38 +82,12 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     
     // Mark: - Fetch activity data from server
     func fetchData(){
-        let community = retrieveData()
-        AF.request(URL, method: .post, parameters: ["community": community]).responseJSON { (response) in
+        AF.request(URL, method: .post, parameters: ["community": self.appDelegate.community]).responseJSON { (response) in
             if let json = response.value{
                 let activities = JSON(json).arrayValue
                 self.activitiesArray = activities
                 self.tableView.reloadData()
-                //activitiesArray =
             }
         }
-    }
-}
-
-
-extension ActivityViewController {
-    func retrieveData() -> String {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let context = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<User>(entityName: "User")
-            
-            do {
-                let results = try context.fetch(fetchRequest)
-                
-                for result in results {
-                    if let community = result.community {
-                        return community
-                    }
-                }
-            } catch {
-                print ("Error fetching data")
-                return ""
-            }
-        }
-        return ""
     }
 }

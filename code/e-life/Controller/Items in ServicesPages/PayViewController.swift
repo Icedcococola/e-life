@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import CoreData
+import SVProgressHUD
 
 class PayViewController: UIViewController {
 
@@ -17,8 +17,9 @@ class PayViewController: UIViewController {
     @IBOutlet var infoView: UIView!
     @IBOutlet var payAmount: UILabel!
     
-    let URL = "http://elifedemo.free.idcfengye.com/Paid/getprice"
-    let payURL = "http://elifedemo.free.idcfengye.com/Paid/havepaid"
+    let URL = "http://elifedemo.vipgz1.idcfengye.com/Paid/getprice"
+    let payURL = "http://elifedemo.vipgz1.idcfengye.com/Paid/havepaid"
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,59 +34,33 @@ class PayViewController: UIViewController {
     }
     
     // Mark: - Fetch payment bill from server
-    func request() -> String {
-        //payAmount.text = //request from server
-        return payAmount.text!
-    }
-    
     func fetchData() {
-        let username = retrieveData()
-        AF.request(URL, method: .post, parameters: ["username": username, "type": "wuye"]).responseJSON { (response) in
-            if let json = response.value {
-                let price = JSON(json)["num"].stringValue
-                print (price)
-                self.payAmount.text = price + "元"
+        SVProgressHUD.show(withStatus: "加载中")
+        AF.request(URL, method: .post, parameters: ["username": self.appDelegate.username, "type": "wuye"]).responseJSON { (response) in
+            if (response.response?.statusCode != 200) {
+                SVProgressHUD.showError(withStatus: "Error")
+            } else {
+                if let json = response.value {
+                    SVProgressHUD.dismiss()
+                    let price = JSON(json)["num"].stringValue
+                    self.payAmount.text = price + "元"
+                }
             }
         }
     }
     
     
     @IBAction func pay(_ sender: Any) {
-        let username = retrieveData()
-        AF.request(payURL, method: .post, parameters: ["username": username, "type": "wuye"]).responseJSON { (response) in
+        SVProgressHUD.show(withStatus: "缴费中")
+        AF.request(payURL, method: .post, parameters: ["username": self.appDelegate.username, "type": "wuye"]).responseJSON { (response) in
             if (response.response?.statusCode == 200) {
+                SVProgressHUD.dismiss()
+                SVProgressHUD.showSuccess(withStatus: "缴费成功")
                 self.payAmount.text =  "0"
+            } else {
+                SVProgressHUD.showError(withStatus: "缴费失败！Please Try Again")
             }
         }
     }
-    
-    func loadData(){
-        self.payAmount.text =  "0"
-    }
-    
-}
-
-extension PayViewController {
-    
-    func retrieveData() -> String {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let context = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<User>(entityName: "User")
-            
-            do {
-                let results = try context.fetch(fetchRequest)
-                
-                for result in results {
-                    if let username = result.username {
-                        return username
-                    }
-                }
-            } catch {
-                return ""
-            }
-        }
-        return ""
-    }
-    
 }
 

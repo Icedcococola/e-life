@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import CoreData
+
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-
     @IBOutlet var collectionView: UICollectionView!
     let functionalitiesImages : [UIImage] = [
         UIImage(named: "EmergencyNotification")!,
@@ -36,6 +35,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         "9"
     ]
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     @IBOutlet var EmergencyNews: UIView!
     @IBOutlet var News: UIView!
     @IBOutlet var NewsTextView: UITextView!
@@ -45,7 +46,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // Do any additional setup after loading the view.
         collectionView.delegate = self
         collectionView.dataSource = self
-        retrieveData()
     }
     
 
@@ -80,48 +80,4 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         navigationController?.pushViewController(viewController!, animated: true)
     }
 
-}
-
-extension HomeViewController {
-    func saveData(value: String){
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let context = appDelegate.persistentContainer.viewContext
-
-            guard let entityDescription = NSEntityDescription.entity(forEntityName: "User", in: context) else {return}
-
-            let newValue = NSManagedObject(entity: entityDescription, insertInto: context)
-
-            newValue.setValue(value, forKey: "username")
-
-            do {
-                try context.save()
-                print("saved data")
-            } catch {
-                print("saving error")
-            }
-        }
-    }
-
-
-    func retrieveData() {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let context = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<User>(entityName: "User")
-
-            do {
-                let results = try context.fetch(fetchRequest)
-
-                for result in results {
-                    if let username = result.username {
-                        print (username)
-                    }
-                }
-            } catch {
-                print ("Error fetching data")
-            }
-
-        }
-
-
-    }
 }

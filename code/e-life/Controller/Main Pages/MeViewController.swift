@@ -14,9 +14,9 @@ import CoreData
 class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var PhoneNum: UIView!
-    @IBOutlet var phoneNumber: UILabel!
-    
+    @IBOutlet var username: UILabel!
+    @IBOutlet var community: UILabel!
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let configItems : [String] = [
         "换用户名",
         "换密码",
@@ -34,23 +34,11 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        designUI()
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    func designUI(){
-        PhoneNum.layer.cornerRadius = 10
+    override func viewWillAppear(_ animated: Bool) {
+        setUsernameAndCommunity()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,8 +58,10 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         navigationController?.pushViewController(viewController!, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    func setUsernameAndPhoneNum () {
+    func setUsernameAndCommunity () {
         // Mark: - Retrieve information from core data and set them correctly
+        username.text = appDelegate.username
+        community.text = appDelegate.community
     }
     @IBAction func logOut(_ sender: Any) {
         resetAllRecords(in: "User")

@@ -9,7 +9,6 @@
 import UIKit
 import SwiftyJSON
 import Alamofire
-import CoreData
 
 class CustomCell10 : UITableViewCell {
 
@@ -23,13 +22,18 @@ class ForumViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet var addPostButton: UIButton!
     var postArray : [JSON] = []
-    let URL = "http://elifedemo.free.idcfengye.com/Post/findall"
+    let URL = "http://elifedemo.vipgz1.idcfengye.com/Post/findall"
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var community = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData()
         addPostButton.layer.cornerRadius = 25
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        community = appDelegate.community
+        fetchData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,8 +61,7 @@ class ForumViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func fetchData(){
-        let community = retrieveData()
-        AF.request(URL, method: .post, parameters: ["community": community]).responseJSON { (response) in
+        AF.request(URL, method: .post, parameters: ["community": self.community]).responseJSON { (response) in
             if let json = response.value{
                 let posts = JSON(json).arrayValue
                 self.postArray = posts
@@ -67,28 +70,4 @@ class ForumViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
     
-}
-
-
-extension ForumViewController {
-    func retrieveData() -> String {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let context = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<User>(entityName: "User")
-            
-            do {
-                let results = try context.fetch(fetchRequest)
-                
-                for result in results {
-                    if let community = result.community {
-                        return community
-                    }
-                }
-            } catch {
-                print ("Error fetching data")
-                return ""
-            }
-        }
-        return ""
-    }
 }

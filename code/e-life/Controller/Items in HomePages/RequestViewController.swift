@@ -16,17 +16,13 @@ class RequestViewController: UIViewController {
     @IBOutlet var postButton: UIButton!
     @IBOutlet var date: UIDatePicker!
     
-    let URL = "http://elifedemo.free.idcfengye.com/Desired/add"
+    let URL = "http://elifedemo.vipgz1.idcfengye.com/Desired/add"
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var community = ""
-    var username = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         requestProduct.layer.cornerRadius = 10
         postButton.layer.cornerRadius = 10
-        username = appDelegate.username
-        community = appDelegate.community
         // Do any additional setup after loading the view.
     }
     
@@ -51,7 +47,7 @@ class RequestViewController: UIViewController {
         let productName = requestProduct.text!
         let deadline = date.date
         print (deadline)
-        AF.request(URL, method: .post, parameters: ["publisher": username, "community": community, "goods": productName, "deadline": deadline]).responseJSON { (response) in
+        AF.request(URL, method: .post, parameters: ["publisher": self.appDelegate.username, "community": self.appDelegate.username, "goods": productName, "deadline": deadline]).responseJSON { (response) in
             if (response.response?.statusCode == 200) {
                 self.performSegue(withIdentifier: "gotoProductList", sender: true)
             } else {

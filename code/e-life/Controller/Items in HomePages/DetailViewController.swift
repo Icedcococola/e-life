@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import CoreData
+import SVProgressHUD
 
 class DetailViewController: UIViewController {
     
@@ -24,25 +24,27 @@ class DetailViewController: UIViewController {
     @IBOutlet var add: UIButton!
     @IBOutlet var buyAmount: UITextField!
     
-    let URL = "http://elifedemo.free.idcfengye.com/Goods/finddetail"
-    let addURL = "http://elifedemo.free.idcfengye.com/Goodsuser/add"
+    let URL = "http://elifedemo.vipgz1.idcfengye.com/Goods/finddetail"
+    let addURL = "http://elifedemo.vipgz1.idcfengye.com/Goodsuser/add"
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var username = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //fetchData()
         add.layer.cornerRadius = 10
         print (id)
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        username = appDelegate.username
         fetchData()
     }
     
     // Make request for data
     func fetchData(){
-        let username = retrieveUsername()
-        AF.request(URL, method: .post, parameters: ["username": username, "goodsid": id]).responseJSON { (response) in
+        AF.request(URL, method: .post, parameters: ["username": self.username, "goodsid": id]).responseJSON { (response) in
             if let json = response.value {
                 let data = JSON(json)
                 let num = data["num"].stringValue
@@ -58,10 +60,12 @@ class DetailViewController: UIViewController {
         }
     }
     @IBAction func join(_ sender: Any) {
-        let username = retrieveUsername()
-        AF.request(addURL, method: .post, parameters: ["num": buyAmount.text!, "goodsid" : id, "username": username]).responseJSON { (response) in
+        AF.request(addURL, method: .post, parameters: ["num": buyAmount.text!, "goodsid" : id, "username": self.username]).responseJSON { (response) in
             if response.response?.statusCode == 200 {
+                SVProgressHUD.showSuccess(withStatus: "加入成功")
                 self.fetchData()
+            } else {
+                SVProgressHUD.showError(withStatus: "加入失败")
             }
         }
     }
@@ -73,27 +77,6 @@ class DetailViewController: UIViewController {
         add.setTitle("已加入", for: .disabled)
         //add.titleLabel?.text = "已加入"
         add.isEnabled = false
-    }
-    
-    func retrieveUsername() -> String {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let context = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<User>(entityName: "User")
-            
-            do {
-                let results = try context.fetch(fetchRequest)
-                
-                for result in results {
-                    if let username = result.username {
-                        return username
-                    }
-                }
-            } catch {
-                print ("Error fetching data")
-                return ""
-            }
-        }
-        return ""
     }
     
 }

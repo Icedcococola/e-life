@@ -9,7 +9,6 @@
 import UIKit
 import SwiftyJSON
 import Alamofire
-import CoreData
 
 
 class CustomCell5 : UITableViewCell
@@ -24,17 +23,20 @@ class CommentViewController: UIViewController, UITableViewDataSource {
     
     var postDeatil : [JSON] = []
     var commentArray : [JSON] = []
-    let commentURL = "http://elifedemo.free.idcfengye.com/Comments/findbyid"
-    let postURL = "http://elifedemo.free.idcfengye.com/Post/findbyid"
+    let commentURL = "http://elifedemo.vipgz1.idcfengye.com/Comments/findbyid"
+    let postURL = "http://elifedemo.vipgz1.idcfengye.com/Post/findbyid"
     var id : String?
     
     @IBOutlet var detailView: UIView!
     @IBOutlet var addCommentButton: UIButton!
     @IBOutlet var postArticle: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.sendSubviewToBack(detailView)
         addCommentButton.layer.cornerRadius = 25
+    }
+    override func viewWillAppear(_ animated: Bool) {
         fetchData()
     }
     

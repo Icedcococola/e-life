@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import CoreData
 import SwiftyJSON
 
 class CustomCell1 : UITableViewCell {
@@ -22,7 +21,9 @@ class WuYeNotiTableTableViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet var tableView: UITableView!
     var notiArray : [JSON] = []
     
-    let URL = "http://elifedemo.free.idcfengye.com/Propertynotice/findAll"
+    let URL = "http://elifedemo.vipgz1.idcfengye.com/Propertynotice/findAll"
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,38 +49,13 @@ class WuYeNotiTableTableViewController: UIViewController, UITableViewDelegate, U
     
     // Mark: - Fetch data from server
     func fetchData(){
-        let community = retrieveData()
-        AF.request(URL, method: .post, parameters: ["community": community]).responseJSON { (response) in
+        AF.request(URL, method: .post, parameters: ["community": self.appDelegate.community]).responseJSON { (response) in
             if let json = response.value{
                 let wuyeNoti = JSON(json).arrayValue
                 self.notiArray = wuyeNoti
                 self.tableView.reloadData()
-                //activitiesArray =
             }
         }
     }
     
-}
-
-extension WuYeNotiTableTableViewController {
-    func retrieveData() -> String {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let context = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<User>(entityName: "User")
-            
-            do {
-                let results = try context.fetch(fetchRequest)
-                
-                for result in results {
-                    if let community = result.community {
-                        return community
-                    }
-                }
-            } catch {
-                print ("Error fetching data")
-                return ""
-            }
-        }
-        return ""
-    }
 }

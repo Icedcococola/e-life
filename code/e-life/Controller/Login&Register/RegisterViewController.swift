@@ -11,6 +11,7 @@ import Lottie
 import Alamofire
 import SwiftyJSON
 import CoreData
+import SVProgressHUD
 
 class RegisterViewController: UIViewController {
 
@@ -44,7 +45,7 @@ class RegisterViewController: UIViewController {
     
     var verificationNum : String = ""
     
-    let URL = "http://elifedemo.free.idcfengye.com/User/register"
+    let URL = "http://elifedemo.vipgz1.idcfengye.com/User/register"
     
     //constraint
     @IBOutlet var fromCenter: NSLayoutConstraint!
@@ -99,9 +100,7 @@ class RegisterViewController: UIViewController {
         animationView.frame = CGRect(x: 0, y: self.view.frame.size.height-250, width: self.view.frame.size.width, height: 250)
         animationView.contentMode = .scaleAspectFill
         self.view.addSubview(animationView)
-        print ("backing")
         self.view.sendSubviewToBack(animationView)
-        print ("backed")
         animationView.loopMode = .loop
         animationView.play()
     }
@@ -144,10 +143,12 @@ class RegisterViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         } else {
             // Mark : - Request server to send verification number
+            SVProgressHUD.show(withStatus: "正在发送短信")
             verifyButton.titleLabel?.text = "请稍微等待"
-            AF.request("http://elifedemo.free.idcfengye.com/User/verify", method: .post, parameters: ["phonenum" : phonenumber.text!]).responseJSON { (response) in
+        AF.request("http://elifedemo.free.idcfengye.com/User/verify", method: .post, parameters: ["phonenum" : phonenumber.text!]).responseJSON { (response) in
                 switch response.response?.statusCode {
                     case 200:
+                        SVProgressHUD.showSuccess(withStatus: "短信已发送")
                         if let json = response.value {
                             let data = JSON(json)
                             print(data["num"])
@@ -157,6 +158,7 @@ class RegisterViewController: UIViewController {
                             self.verificationNum = data["num"].stringValue
                         }
                     default :
+                        SVProgressHUD.dismiss()
                         self.showAlert(message: "Error! Please try again!")
                     }
             }
@@ -181,6 +183,7 @@ class RegisterViewController: UIViewController {
         }
         
         else {
+            SVProgressHUD.show(withStatus: "正在注册！请稍微等待")
             // Mark: - Request server to register new user
             let parameter: Parameters = [
                 "username": username.text!,
@@ -191,19 +194,27 @@ class RegisterViewController: UIViewController {
             
             AF.request(URL, method: .post, parameters: parameter, headers: nil, interceptor: nil).responseJSON{
                 (response) in
-                let status : Int = JSON(response.value)["num"].int!
-                if (self.verification.text! != self.verificationNum) {
-                    let alert = UIAlertController(title: "注意⚠️", message: "验证码不正确", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
-                        print("Cancelled")
-                    }))
-                    self.present(alert, animated: true, completion: nil)
-                } else if (status == 0)  {
-                    self.showAlert(message: "用户已存在")
-                } else if (status == 1) {
-                    self.showAlert(message: "手机已存在")
+                if (response.response?.statusCode != 200) {
+                    SVProgressHUD.dismiss()
+                    SVProgressHUD.setMaximumDismissTimeInterval(2)
+                    SVProgressHUD.showError(withStatus: "无法注册")
                 } else {
-                     self.performSegue(withIdentifier: "registerSuccessful", sender: nil)
+                    let status : Int = JSON(response.value!)["num"].intValue
+                    if (self.verification.text! != self.verificationNum) {
+                        let alert = UIAlertController(title: "注意⚠️", message: "验证码不正确", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
+                            print("Cancelled")
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    } else if (status == 0)  {
+                        self.showAlert(message: "用户已存在")
+                    } else if (status == 1) {
+                        self.showAlert(message: "手机已存在")
+                    } else {
+                        SVProgressHUD.dismiss()
+                        SVProgressHUD.showSuccess(withStatus: "注册成功")
+                        self.performSegue(withIdentifier: "registerSuccessful", sender: nil)
+                    }
                 }
             }
         }
@@ -254,7 +265,6 @@ extension RegisterViewController : UIPickerViewDelegate, UIPickerViewDataSource 
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print ("Bisto")
         chosenCommunity = communityArray[row]
     }
 }

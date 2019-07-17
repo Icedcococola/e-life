@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import CoreData
+import SVProgressHUD
 
 protocol tablViewCellDelegate {
     func didTapSupport(id: String)
@@ -19,7 +19,6 @@ class tableViewCell : UITableViewCell {
     
     var delegate: tablViewCellDelegate?
     var id = ""
-    @IBOutlet var avatar: UIImageView!
     @IBOutlet var username: UILabel!
     @IBOutlet var productName: UILabel!
     @IBOutlet var hotness: UILabel!
@@ -41,15 +40,20 @@ class tableViewCell2 : UITableViewCell {
 class BulkPurchaseViewController: UIViewController, tablViewCellDelegate {
     @IBOutlet var tableView1: UITableView!
     @IBOutlet var tableView2: UITableView!
-    let URL = "http://elifedemo.free.idcfengye.com/Desired/findAll"
-    let URL1 = "http://elifedemo.free.idcfengye.com/Goods/findAll"
-    let URL2 = "http://elifedemo.free.idcfengye.com/Desireduser/help"
+    let URL = "http://elifedemo.vipgz1.idcfengye.com/Desired/findAll"
+    let URL1 = "http://elifedemo.vipgz1.idcfengye.com/Goods/findAll"
+    let URL2 = "http://elifedemo.vipgz1.idcfengye.com/Desireduser/help"
     var customProductArray : [JSON] = []
     var supplierProductArray : [JSON] = []
     var haveNewProduct : Bool = false
+    var username = ""
+    var community = ""
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        username = appDelegate.username
+        community = appDelegate.community
         fetchData()
         checkForNewProduct()
         // Do any additional setup after loading the view.
@@ -62,12 +66,9 @@ class BulkPurchaseViewController: UIViewController, tablViewCellDelegate {
     }
     
     func didTapSupport(id : String) {
-        print (id)
-        AF.request(URL2, method: .post, parameters: ["username": retrieveUsername(), "desiredid": id]).responseJSON { (response) in
+        AF.request(URL2, method: .post, parameters: ["username": self.username, "desiredid": id]).responseJSON { (response) in
             if response.response?.statusCode == 200 {
-                let username = self.retrieveUsername()
-                let community = self.retrieveCommunity()
-                AF.request(self.URL, method: .post, parameters: ["username": username, "community": community]).responseJSON { (response) in if let json = response.value{
+                AF.request(self.URL, method: .post, parameters: ["username": self.username, "community": self.community]).responseJSON { (response) in if let json = response.value{
                     let desiredArray = JSON(json).arrayValue
                     self.customProductArray = desiredArray
                     self.tableView1.reloadData()
@@ -78,23 +79,32 @@ class BulkPurchaseViewController: UIViewController, tablViewCellDelegate {
     }
     
     func fetchData(){
-        let username = retrieveUsername()
-        let community = retrieveCommunity()
-        AF.request(URL, method: .post, parameters: ["username": username, "community": community]).responseJSON { (response) in if let json = response.value{
-            let desiredArray = JSON(json).arrayValue
-            self.customProductArray = desiredArray
-            self.tableView1.reloadData()
+        SVProgressHUD.show(withStatus: "加载中")
+        AF.request(URL, method: .post, parameters: ["username": self.username, "community": self.community]).responseJSON { (response) in
+            if (response.response?.statusCode != 200) {
+                self.appDelegate.showAlert(viewscontroler: self, message: "加载失败！请注意您的网络")
+            } else {
+                if let json = response.value{
+                    SVProgressHUD.dismiss()
+                    let desiredArray = JSON(json).arrayValue
+                    self.customProductArray = desiredArray
+                    self.tableView1.reloadData()
+                }
             }
         }
         
-        AF.request(URL1, method: .post, parameters: ["community": community]).responseJSON { (response) in
-            if let json = response.value {
-                let productArray = JSON(json).arrayValue
-                self.supplierProductArray = productArray
-                self.tableView2.reloadData()
+        AF.request(URL1, method: .post, parameters: ["community": self.community]).responseJSON { (response) in
+            if (response.response?.statusCode != 200) {
+                self.appDelegate.showAlert(viewscontroler: self, message: "加载失败！请注意您的网络")
+            } else {
+                if let json = response.value {
+                    SVProgressHUD.dismiss()
+                    let productArray = JSON(json).arrayValue
+                    self.supplierProductArray = productArray
+                    self.tableView2.reloadData()
+                }
             }
         }
-        
     }
     
 }
@@ -161,59 +171,3 @@ extension BulkPurchaseViewController : UITableViewDataSource, UITableViewDelegat
         }
     }
 }
-
-extension BulkPurchaseViewController {
-    func retrieveCommunity() -> String {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let context = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<User>(entityName: "User")
-            
-            do {
-                let results = try context.fetch(fetchRequest)
-                
-                for result in results {
-                    if let community = result.community {
-                        return community
-                    }
-                }
-            } catch {
-                print ("Error fetching data")
-                return ""
-            }
-        }
-        return ""
-    }
-    
-    func retrieveUsername() -> String {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let context = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<User>(entityName: "User")
-            
-            do {
-                let results = try context.fetch(fetchRequest)
-                
-                for result in results {
-                    if let username = result.username {
-                        return username
-                    }
-                }
-            } catch {
-                print ("Error fetching data")
-                return ""
-            }
-        }
-        return ""
-    }
-
-}
-
-
-
-
-//Supplier-posted products
-//supplier
-//countdown
-//leftAmount
-//price
-//detail
-

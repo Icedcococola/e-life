@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import CoreData
 
 class CustomCell2 : UITableViewCell{
     @IBOutlet var titleLabel: UILabel!
@@ -21,11 +20,14 @@ class MailNotificationTableViewController: UIViewController, UITableViewDataSour
     
     var notiArray : [JSON] = []
     
-    let URL = "http://elifedemo.free.idcfengye.com/Activity/findAll"
-    
+    let URL = "http://elifedemo.vipgz1.idcfengye.com/Activity/findAll"
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var community = ""
     @IBOutlet var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        community = appDelegate.community
         fetchData()
        
     }
@@ -47,8 +49,7 @@ class MailNotificationTableViewController: UIViewController, UITableViewDataSour
     
     // Mark: - Fetch data from server
     func fetchData(){
-        let community = retrieveData()
-        AF.request(URL, method: .post, parameters: ["community": community]).responseJSON { (response) in
+        AF.request(URL, method: .post, parameters: ["community": self.community]).responseJSON { (response) in
             if let json = response.value{
                 let noti = JSON(json).arrayValue
                 self.notiArray = noti
@@ -58,25 +59,3 @@ class MailNotificationTableViewController: UIViewController, UITableViewDataSour
     }
 }
 
-extension MailNotificationTableViewController {
-    func retrieveData() -> String {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let context = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<User>(entityName: "User")
-            
-            do {
-                let results = try context.fetch(fetchRequest)
-                
-                for result in results {
-                    if let community = result.community {
-                        return community
-                    }
-                }
-            } catch {
-                print ("Error fetching data")
-                return ""
-            }
-        }
-        return ""
-    }
-}

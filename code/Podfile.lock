@@ -1,24 +1,28 @@
 PODS:
   - Alamofire (5.0.0-beta.6)
   - lottie-ios (3.1.0)
+  - SVProgressHUD (2.2.5)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-beta.5)
   - lottie-ios
+  - SVProgressHUD (~> 2.2)
   - SwiftyJSON (~> 5.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - lottie-ios
+    - SVProgressHUD
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: cd08a4402bd12cacd0c66f23fb12fec8d6b965e4
   lottie-ios: 9467723922dfff46f6d4e3019c32594a62440b7c
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 7b719f29246a1df31a336757223236ebc9f1f719
+PODFILE CHECKSUM: edd34645c1eddde2b8f0b8b67ea43e27735471b9
 
 COCOAPODS: 1.6.1

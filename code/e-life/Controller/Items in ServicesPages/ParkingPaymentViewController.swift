@@ -8,8 +8,8 @@
 
 import UIKit
 import Alamofire
-import CoreData
 import SwiftyJSON
+import SVProgressHUD
 
 class ParkingPaymentViewController: UIViewController {
 
@@ -17,9 +17,10 @@ class ParkingPaymentViewController: UIViewController {
     @IBOutlet var paymentAmount: UILabel!
     @IBOutlet var payButton: UIButton!
     
-    let URL = "http://elifedemo.free.idcfengye.com/Paid/getprice"
-    let payURL = "http://elifedemo.free.idcfengye.com/Paid/havepaid"
-    
+    let URL = "http://elifedemo.vipgz1.idcfengye.com/Paid/getprice"
+    let payURL = "http://elifedemo.vipgz1.idcfengye.com/Paid/havepaid"
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
     override func viewDidLoad() {
         super.viewDidLoad()
         designUI()
@@ -33,46 +34,25 @@ class ParkingPaymentViewController: UIViewController {
     }
 
     func fetchData() {
-        let username = retrieveData()
-        AF.request(URL, method: .post, parameters: ["username": username, "type": "tingche"]).responseJSON { (response) in
-            if let json = response.value {
-                let price = JSON(json)["num"].stringValue
-                print (price)
-                self.paymentAmount.text = price + "元"
+        SVProgressHUD.show(withStatus: "加载中")
+        AF.request(URL, method: .post, parameters: ["username": self.appDelegate.username, "type": "tingche"]).responseJSON { (response) in
+            if (response.response?.statusCode != 200) {
+                SVProgressHUD.showError(withStatus: "Error")
+            } else {
+                if let json = response.value {
+                    SVProgressHUD.dismiss()
+                    let price = JSON(json)["num"].stringValue
+                    print (price)
+                    self.paymentAmount.text = price + "元"
+                }
             }
         }
     }
     @IBAction func pay(_ sender: Any) {
-        let username = retrieveData()
-        AF.request(payURL, method: .post, parameters: ["username": username, "type": "tingche"]).responseJSON { (response) in
+        AF.request(payURL, method: .post, parameters: ["username": self.appDelegate.username, "type": "tingche"]).responseJSON { (response) in
             if (response.response?.statusCode == 200) {
                 self.paymentAmount.text =  "0"
             }
         }
     }
-}
-
-
-extension ParkingPaymentViewController {
-    
-    func retrieveData() -> String {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let context = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<User>(entityName: "User")
-            
-            do {
-                let results = try context.fetch(fetchRequest)
-                
-                for result in results {
-                    if let username = result.username {
-                        return username
-                    }
-                }
-            } catch {
-                return ""
-            }
-        }
-        return ""
-    }
-    
 }

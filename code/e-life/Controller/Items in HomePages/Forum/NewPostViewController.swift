@@ -9,7 +9,6 @@
 import UIKit
 import SwiftyJSON
 import Alamofire
-import CoreData
 
 class NewPostViewController: UIViewController, UITextViewDelegate {
 
@@ -17,10 +16,15 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     @IBOutlet var postText: UITextView!
     @IBOutlet var titleTextBox: UITextView!
 
-    let URL = "http://elifedemo.free.idcfengye.com/Post/addpost"
+    let URL = "http://elifedemo.vipgz1.idcfengye.com/Post/addpost"
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var username = ""
+    var community = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        username = appDelegate.username
+        community = appDelegate.community
         postButton.layer.cornerRadius = 15
         postText.delegate = self
         postText.text = "写写你想说的话吧！"
@@ -46,59 +50,16 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     
     // Mark: - Send post request to server
     @IBAction func post(_ sender: Any) {
-        print(postText.text!)
         post()
     }
-    
-    
+
     func post() {
-        let community = retrieveCommunity()
-        let username = retrieveUsername()
-        AF.request(URL, method: .post, parameters: ["article": postText.text!, "title": titleTextBox.text!, "poster": username, "community": community])
-    }
-}
-
-
-extension NewPostViewController {
-    func retrieveCommunity() -> String {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let context = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<User>(entityName: "User")
-            
-            do {
-                let results = try context.fetch(fetchRequest)
-                
-                for result in results {
-                    if let community = result.community {
-                        return community
-                    }
-                }
-            } catch {
-                print ("Error fetching data")
-                return ""
+        AF.request(URL, method: .post, parameters: ["article": postText.text!, "title": titleTextBox.text!, "poster": self.username, "community": self.community]).responseJSON { (response) in
+            if (response.response?.statusCode != 200) {
+                self.appDelegate.showAlert(viewscontroler: self, message: "发布失败！Please Try Again!")
+            } else {
+                self.navigationController?.popViewController(animated: true)
             }
         }
-        return ""
-    }
-    
-    func retrieveUsername() -> String {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let context = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<User>(entityName: "User")
-            
-            do {
-                let results = try context.fetch(fetchRequest)
-                
-                for result in results {
-                    if let username = result.username {
-                        return username
-                    }
-                }
-            } catch {
-                print ("Error fetching data")
-                return ""
-            }
-        }
-        return ""
     }
 }
