@@ -100,11 +100,13 @@
       methods:
       {
         topage(lalala){
-          this.axios.get('/api/Activity/findbyid',{
-            params:{
-              activityid:lalala
-            }
-          }).then((response)=>{
+          var fd  = new FormData()
+          fd.append("activityid",lalala)
+          this.axios.post('/api/Activity/findbyid',fd,{
+            headers:{
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }}
+          ).then((response)=>{
             this.$confirm(response.data.detail,'活动详情')
             console.log(response)
           })
@@ -116,11 +118,14 @@
                         '提示',
                         {confirmButtonText:'确定',cancelButtonText:'取消'}
           ).then(()=>{
-            this.axios.get('/api/Activity/delete',{
-              params:{
-                activityid:id
+            var fd = new FormData()
+            fd.append("activityid",id)
+            this.axios.post('/api/Activity/delete',fd,{
+              headers:{
+                  'Content-Type': 'application/x-www-form-urlencoded'
               }
-            }).then((response)=>{
+            }
+            ).then((response)=>{
               if(response.status === 200){
                 this.searchData.splice(index,1);
                 this.$message({type:'success',message:'删除成功!'});
@@ -133,12 +138,13 @@
         },
 
         getTableData(){
-          this.axios.get('/api/Activity/findAll',
-          {
-            params:{
-              community:window.sessionStorage.getItem('community')
-            }
-          })
+          var fd = new FormData()
+          fd.append("community",window.sessionStorage.getItem('community'))
+          this.axios.post('/api/Activity/findAll',fd,{
+           headers:{
+          'Content-Type': 'application/x-www-form-urlencoded'
+           }}
+           )
           .then((response)=>{
             var dt = response.data;
             this.tableData = dt;

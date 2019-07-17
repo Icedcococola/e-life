@@ -42,7 +42,7 @@ export default {
                           '提示',
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
-              this.axios.get('/api/Emergencynotic/add',{
+              this.axios.get('/api/Emergencynotice/add',{
                 params:{
                   title:this[formName].title,
                   detail:this[formName].detail,

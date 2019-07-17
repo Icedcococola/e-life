@@ -87,11 +87,14 @@ import moment from 'moment'
       methods:
       {
         topage(lhlhlh){
-          this.axios.get('/api/Latestnews/findbyid',{
-            params:{
-              latestnewsid:lhlhlh
+          var fd  = new FormData()
+          fd.append("latestnewsid",lhlhlh)
+          this.axios.post('/api/Latestnews/findbyid',fd,{
+            headers:{
+              'Content-Type': 'application/x-www-form-urlencoded'
             }
-          }).then((response)=>{
+          }
+          ).then((response)=>{
             
             this.$router.push({
             name:"资讯详情页",
@@ -109,10 +112,12 @@ import moment from 'moment'
                         {confirmButtonText:'确定',cancelButtonText:'取消'}
           ).then(()=>{
             //this.searchData.splice(index,1);
-            this.axios.get('/api/Latestnews/delete',
+            var fd  = new FormData()
+            fd.append("latestnewsid",id)
+            this.axios.post('/api/Latestnews/delete',fd,
             {
-              params:{
-                latestnewsid:id
+              headers:{
+                'Content-Type': 'application/x-www-form-urlencoded'
               }
             }).then((response)=>{
               if(response.status === 200){
@@ -127,12 +132,14 @@ import moment from 'moment'
         },
 
         getNewsData(){
-          this.axios.get('/api/Latestnews/findAll',
-          {
-            params:{
-              community:window.sessionStorage.getItem('community')
+          var fd  = new FormData()
+          fd.append("community",window.sessionStorage.getItem('community'))
+          this.axios.post('/api/Latestnews/findAll',fd,{
+            headers:{
+              'Content-Type': 'application/x-www-form-urlencoded'
             }
-          })
+          }
+          )
           .then((response)=>{
             var newsDt = response.data;
             this.tableData = newsDt;

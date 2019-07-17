@@ -20,7 +20,7 @@
         <div style="font-size:100%; height:50px; color:#858585fa;text-align:center;">
             <el-row type="flex" justify="center" :gutter="20">
                <el-col :span="6">
-                 时间：
+                 æ—¶é—´ï¼š
                </el-col>
                <el-col :span="6">
                  {{this.tableData.date}}

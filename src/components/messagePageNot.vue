@@ -37,7 +37,7 @@
 <script>
 export default {
   mounted:function(){
-    this.show(this.$route.params.data)
+    //this.show(this.$route.params.data)
     this.tableData = this.$route.params.data
   },
   methods:{

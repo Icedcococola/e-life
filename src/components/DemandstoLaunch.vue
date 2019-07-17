@@ -30,19 +30,37 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="activityid"
-        label="需求编号"
+        prop="community"
+        label="社区"
         width="100"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="title"
-        label="商品名称"
-        width="250"
+        prop="desiredid"
+        label="商品id"
+        width="100"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="activitytime"
+        prop="goods"
+        label="商品名"
+        width="180"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="heat"
+        label="热度"
+        width="100"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="publisher"
+        label="publisher"
+        width="100"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="deadline"
         label="活动时间"
         width="100"
         align="center">
@@ -54,7 +72,7 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
-            <el-button type="primary" @click="topage(scope.row.activityid)" icon="el-icon-upload" round>发布</el-button>
+            <el-button type="primary" @click="topage(scope.row.desiredid)" icon="el-icon-upload" round>发布</el-button>
           </template>
       </el-table-column>
     </el-table>
@@ -94,7 +112,7 @@
           //  this.$confirm(response.data.detail,'活动详情')
           //  console.log(response)
           //})
-          this.$store.commit('SET_DEMANDID',lalala)
+          this.$store.commit('SET_DESIREDID',lalala)
           this.$router.push({
               name:"EditDemands",
               
@@ -125,13 +143,10 @@
         },
 
         getTableData(){
-          this.axios.get('/api/Activity/findAll',
-          {
-            params:{
-              community:window.sessionStorage.getItem('community')
-            }
-          })
+          
+          this.axios.get('/api/Desired/find')
           .then((response)=>{
+            console.log(response.data)
             var dt = response.data;
             this.tableData = dt;
           })

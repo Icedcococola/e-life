@@ -84,11 +84,19 @@
       methods:
       {
         topage(emmmmm){
-          this.axios.get('/api/Propertynotice/findbyid',{
-            params:{
-              propertynoticeid:emmmmm
+         // this.axios.get('/api/Propertynotice/findbyid',{
+         //   params:{
+          //    propertynoticeid:emmmmm
+          //  }
+          var fd  = new FormData()
+          fd.append("propertynoticeid",emmmmm)
+          this.axios.post('/api/Propertynotice/findbyid',fd,
+          {
+            headers:{
+              'Content-Type': 'application/x-www-form-urlencoded'
             }
-          }).then((response)=>{
+          }
+          ).then((response)=>{
             this.$router.push({
               name:"物业详情页",
               params:{
@@ -104,11 +112,21 @@
                         '提示',
                         {confirmButtonText:'确定',cancelButtonText:'取消'}
           ).then(()=>{
-            this.axios.get('/api/Propertynotice/delete',{
-              params:{
-                propertynoticeid:id
-              }
-            }).then((response)=>{
+           // this.axios.get('/api/Propertynotice/delete',{
+           //   params:{
+           //     propertynoticeid:id
+           //   }
+           // }
+
+          var fd  = new FormData()
+          fd.append("propertynoticeid",id)
+          this.axios.post('/api/Propertynotice/delete',fd,
+          {
+            headers:{
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          }
+            ).then((response)=>{
               if(response.status === 200){
                 this.searchData.splice(index,1);
                 this.$message({type:'success',message:'删除成功!'});
@@ -121,9 +139,12 @@
         },
 
         getNewsData(){
-          this.axios.get('/api/Propertynotice/findAll',{
-            params:{
-              community:window.sessionStorage.getItem('community')
+           var fd  = new FormData()
+           fd.append("community",window.sessionStorage.getItem('community'))
+          this.axios.post('/api/Propertynotice/findAll',fd,
+          {
+            headers:{
+              'Content-Type': 'application/x-www-form-urlencoded'
             }
           })
           .then((response)=>{

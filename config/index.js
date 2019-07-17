@@ -12,10 +12,18 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api':{
-        target:'http://localhost:8080',
+        target:'http://elifedemo.vipgz1.idcfengye.com',
         changeOrigin: true,
         pathRewrite:{
           '^/api':''
+        }
+      },
+      '/img': {//代理请求图片的接口
+        changeOrigin: true,
+        secure: false, //https请求需设置此项
+        target: 'https://sm.ms/api/upload',
+        pathRewrite: {
+          '^/img': ''
         }
       }
     },

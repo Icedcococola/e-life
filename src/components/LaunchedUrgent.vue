@@ -83,11 +83,20 @@
       methods:
       {
         topage(happy){
-          this.axios.get('/api/Emergencynotic/findbyid',{
-            params:{
-              emergencynoticeid:happy
+          //this.axios.get('/api/Emergencynotic/findbyid',{
+          //  params:{
+          //    emergencynoticeid:happy
+          //  }
+          //}
+          var fd  = new FormData()
+          fd.append("emergencynoticeid",happy)
+          this.axios.post('/api/Emergencynotice/findbyid',fd,
+          {
+            headers:{
+              'Content-Type': 'application/x-www-form-urlencoded'
             }
-          }).then((response)=>{
+          }
+          ).then((response)=>{
             this.$router.push({
               name:"紧急详情页",
               params:{
@@ -102,11 +111,20 @@
                         '提示',
                         {confirmButtonText:'确定',cancelButtonText:'取消'}
           ).then(()=>{
-            this.axios.get('/api/Emergencynotic/delete',{
-              params:{
-                emergencynoticeid:id
-              }
-            }).then((response)=>{
+            //this.axios.get('/api/Emergencynotice/delete',{
+            //  params:{
+            //    emergencynoticeid:id
+            //  }
+            //}
+          var fd  = new FormData()
+          fd.append("emergencynoticeid",id)
+          this.axios.post('/api/Emergencynotice/delete',fd,
+          {
+            headers:{
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          }
+            ).then((response)=>{
               if(response.status === 200){
                 this.searchData.splice(index,1);
                 this.$message({type:'success',message:'删除成功!'});
@@ -119,12 +137,21 @@
         },
 
         getUrgent(){
-          this.axios.get('/api/Emergencynotic/findAll',{
-            params:{
-              community:window.sessionStorage.getItem('community')
+          //this.axios.get('/api/Emergencynotic/findAll',{
+          //  params:{
+          //   community:window.sessionStorage.getItem('community')
+          //  }
+          //}
+
+          var fd  = new FormData()
+          fd.append("community",window.sessionStorage.getItem('community'))
+          this.axios.post('/api/Emergencynotice/findAll',fd,
+          {
+            headers:{
+              'Content-Type': 'application/x-www-form-urlencoded'
             }
-          })
-          .then((response)=>{
+          }
+          ).then((response)=>{
             var urg = response.data;
             this.tableData=urg;
           })

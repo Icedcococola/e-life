@@ -32,7 +32,7 @@
       <el-form-item label="数量" prop="num" style="margin-bottom:4%">
         <el-col style="width:35%">
             <el-row type="flex" justify="start">
-            <el-input-number v-model="num1" :min="1" :max="10000" label="请选择数量"></el-input-number>
+            <el-input-number v-model="ruleForm.num" :min="1" :max="10000" label="请选择数量"></el-input-number>
             </el-row>
         </el-col>
       </el-form-item>
@@ -61,15 +61,17 @@
     <el-form-item label="商品图片" prop="picture">
        <el-upload
        class="avatar-uploader"
-       action="https://jsonplaceholder.typicode.com/posts/"
+        action="/img"
+        :on-preview="handlePreview"
+        :on-remove="handleRemove"
+        :before-remove="beforeRemove"
         multiple
-       :limit="1"
-       :on-exceed="handleExceed"
-       :show-file-list="true"
-       :on-remove="handleRemove"
-       :before-remove="beforeRemove"
-       :on-success="handleAvatarSuccess"
-       :before-upload="beforeAvatarUpload">
+        :limit="1"
+        :show-file-list="true"
+        :on-exceed="handleExceed"
+        :on-success="handleAvatarSuccess"
+        :before-upload="beforeAvatarUpload"
+        :file-list="fileList">
        <img v-if="imageUrl" :src="imageUrl" class="avatar">
        <i v-else class="el-icon-picture avatar-uploader-icon"></i>
        </el-upload>
@@ -87,7 +89,7 @@
 <script>
 export default {
     mounted:function(){
-       this.showDemandId();
+       //this.showDemandId();
        
     },
 
@@ -104,18 +106,20 @@ export default {
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
               
-              this.axios.get('/api/Activity/add',
+              this.axios.get('/api/Goods/up',
               {
                 params:{
-                  title:this[formName].title,
+                  desiredid:this.emm,
                   detail:this[formName].detail,
-                  activitytime:this[formName].date,
-                  place:this[formName].place,
-                  community:window.sessionStorage.getItem('community'),
-                  picture:this.imageUrl,
-                  id:this.emm
+                  deadline:this[formName].date,
+                 // community:window.sessionStorage.getItem('community'),
+                  img:this.imageUrl,
+                  price:this[formName].price,
+                  store:this[formName].title,
+                  totalnum:this[formName].num
                 }
-              }).then((response)=>{
+              }
+              ).then((response)=>{
                 if(response.status === 200){
                   console.log(response);
                   //console.log(response.data.result);
@@ -123,18 +127,10 @@ export default {
                     //this.$message({type:'success',message:'提交成功！'});
                     //this.$router.push({name:"查看活动安排"});
                   //}
-
-                  this.axios.get('/api/Activity/delete',{
-                      params:{
-                          activityid:this.emm
-                      }
-                  }).then((response)=>{
-                      if(response.status === 200){
-                          this.$message({type:'success',message:'提交成功！'});4
-                          this.$router.push({name:"LaunchedDemands"});
-                      }
-
-                  })
+                  this.$message({type:'success',message:'提交成功！'});
+                  this.$router.push({name:"LaunchedDemands"});
+                      
+                  
                 }
               })
               //this.$message({type:'success',message:'提交成功！'});
@@ -154,27 +150,34 @@ export default {
     },
 
     handleAvatarSuccess(res, file) {
-        this.imageUrl = URL.createObjectURL(file.raw);
+       // this.imageUrl = URL.createObjectURL(file.raw);
     },
     beforeAvatarUpload(file) {
-        const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 1024 / 1024 < 2;
-
-        if (!isJPG) {
-          this.$message.error('上传头像图片只能是 JPG 格式!');
-        }
-        if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!');
-        }
-        return isJPG && isLt2M;
+        console.log(file)
+        let fd = new FormData()
+        fd.append('smfile',file)
+        this.axios.post('/img',fd)
+        .then((response)=>{
+          if(response.status === 200){
+            console.log(response.data.code)
+            if(response.data.code === "success"){
+              
+              console.log(response.data.data.url)
+              this.imageUrl = response.data.data.url
+            }
+          }
+        })
     },
 
     showDemandId(){
        //var id = this.DemandId;
-       var deid = window.sessionStorage.getItem('demandId')
+       var deid = window.sessionStorage.getItem('desiredid')
        this.$confirm(deid,'提示')
     },
 
+    handlePreview(file) {
+        console.log(file);
+    },
     handleExceed(files, fileList) {
         this.$message.warning(`最多选择 1 张图片`);
     },
@@ -184,26 +187,34 @@ export default {
     },
     beforeRemove(file, fileList) {
         return this.$confirm(`确定移除 ${ file.name }?`);
-    }
+    },
+    tobase64(file,fileList){
+      let reader = new FileReader()
+      reader.onload = () => {
+        let _base64 = reader.result
+        let BASE64 = _base64.split(",")
+        this.imageUrl = BASE64[1]
+        console.log(this.imageUrl)
+      }
+      reader.readAsDataURL(file.raw)
+
+    },
 
   },
 
   data() {
     return {
-      emm:window.sessionStorage.getItem('demandId'),
+      emm:window.sessionStorage.getItem('desiredid'),
       num1:'1',
       imageUrl: '',
       title:'编辑待发布需求',
       fileList: [],
       ruleForm:{
-        title:'',
         detail:'',
         date:'',
-        place:'',
-        time:'',
         picture:'',
         price:'',
-        num:''
+        num:'',
         
       },
       rules:{

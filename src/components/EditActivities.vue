@@ -81,8 +81,8 @@ export default {
                   //}
                 }
               })
-              this.$message({type:'success',message:'提交成功！'});
-              this.$router.push({name:"查看活动安排"});
+             //this.$message({type:'success',message:'提交成功！'});
+             // this.$router.push({name:"查看活动安排"});
             }
             );
           }else{
