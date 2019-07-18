@@ -21,7 +21,7 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     
 
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var dimView: UIView!
+    //@IBOutlet var dimView: UIView!
     
     //Mark: - popupView
     @IBOutlet var popupView: UIView!
@@ -41,6 +41,8 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
         closeButton.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return activitiesArray.count
@@ -51,7 +53,19 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.activityName.text = activitiesArray[indexPath.row]["title"].stringValue
         cell.venue.text = activitiesArray[indexPath.row]["place"].stringValue
         cell.date.text = activitiesArray[indexPath.row]["activitytime"].stringValue
-        cell.layer.cornerRadius = 10
+        
+        cell.contentView.backgroundColor = UIColor.clear
+        
+        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 3000))
+        
+    whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
+        whiteRoundedView.layer.masksToBounds = false
+        whiteRoundedView.layer.cornerRadius = 2.0
+        
+        cell.contentView.addSubview(whiteRoundedView)
+        cell.contentView.sendSubviewToBack(whiteRoundedView)
+        
+        
         return cell
     }
     
@@ -65,7 +79,7 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
         view.addSubview(popupView)
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
-            self.dimView.alpha = 0.7
+            //self.dimView.alpha = 0.7
             self.popupView.transform = .identity
         })
         
@@ -73,7 +87,7 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBAction func closePopup(_ sender: Any) {
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: ({
-            self.dimView.alpha = 0
+            //self.dimView.alpha = 0
             self.popupView.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
             }), completion: {(success) in
             self.popupView.removeFromSuperview()

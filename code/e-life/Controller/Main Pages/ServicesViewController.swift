@@ -43,6 +43,8 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         cell.icon1.image = functionItems[indexPath.row]
+        cell.icon1.sizeToFit()
+        print ("a")
         return cell
     }
     
@@ -88,4 +90,18 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
 }
+
+extension ServicesViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let screenHeight = self.view.frame.height
+        if (screenHeight < 569) {
+            return CGSize(width: 48, height: 70)
+        } else if (screenHeight < 668) {
+            return CGSize(width: 65, height: 76)
+        } else {
+            return CGSize(width: 68, height: 86)
+        }
+    }
+}
+
 

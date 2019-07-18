@@ -42,7 +42,26 @@ class WuYeNotiTableTableViewController: UIViewController, UITableViewDelegate, U
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell1
         cell.titleLabel.text = notiArray[indexPath.row]["title"].stringValue
         cell.contentText.text = notiArray[indexPath.row]["detail"].stringValue
-        cell.layer.cornerRadius = 15
+        
+        cell.contentView.backgroundColor = UIColor.clear
+        
+        let screenHeight = self.view.frame.height
+        if (screenHeight < 569) {
+            cell.titleLabel.font = cell.titleLabel.font.withSize(15)
+            cell.contentText.font = cell.contentText.font.withSize(14)
+        } else if (screenHeight < 668) {
+            cell.titleLabel.font = cell.titleLabel.font.withSize(17)
+            cell.contentText.font = cell.contentText.font.withSize(15)
+        }
+        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 300000))
+        
+        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
+        whiteRoundedView.layer.masksToBounds = false
+        whiteRoundedView.layer.cornerRadius = 2.0
+    cell.contentView.addSubview(whiteRoundedView)
+        cell.contentView.sendSubviewToBack(whiteRoundedView)
+
+        
         return cell
 
     }

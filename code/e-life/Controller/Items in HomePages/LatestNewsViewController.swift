@@ -56,6 +56,27 @@ extension LatestNewsViewController : UITableViewDelegate, UITableViewDataSource 
         
         cell.title.text = newsArray[indexPath.row]["title"].stringValue
         cell.newsText.text = newsArray[indexPath.row]["detail"].stringValue
+        
+        cell.contentView.backgroundColor = UIColor.clear
+        
+        let screenHeight = self.view.frame.height
+        if (screenHeight < 569) {
+            cell.title.font = cell.title.font.withSize(15)
+            cell.newsText.font = cell.newsText.font.withSize(14)
+        } else if (screenHeight < 668) {
+            cell.title.font = cell.title.font.withSize(17)
+            cell.newsText.font = cell.newsText.font.withSize(15)
+        }
+        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 3, width: self.view.frame.size.width - 20, height: 300000))
+        
+        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
+        whiteRoundedView.layer.masksToBounds = false
+        whiteRoundedView.layer.cornerRadius = 2.0
+        
+        cell.contentView.addSubview(whiteRoundedView)
+        cell.contentView.sendSubviewToBack(whiteRoundedView)
+
+        
         return cell
     }
 }

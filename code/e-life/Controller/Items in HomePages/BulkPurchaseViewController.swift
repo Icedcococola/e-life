@@ -40,6 +40,7 @@ class tableViewCell2 : UITableViewCell {
 class BulkPurchaseViewController: UIViewController, tablViewCellDelegate {
     @IBOutlet var tableView1: UITableView!
     @IBOutlet var tableView2: UITableView!
+    @IBOutlet var titleLabel: UILabel!
     let URL = "http://elifedemo.vipgz1.idcfengye.com/Desired/findAll"
     let URL1 = "http://elifedemo.vipgz1.idcfengye.com/Goods/findAll"
     let URL2 = "http://elifedemo.vipgz1.idcfengye.com/Desireduser/help"
@@ -50,11 +51,21 @@ class BulkPurchaseViewController: UIViewController, tablViewCellDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        responsiveDesign()
         checkForNewProduct()
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         fetchData()
+    }
+    
+    func responsiveDesign() {
+        let screenHeight = self.view.frame.height
+        if (screenHeight < 569) {
+            titleLabel.font = titleLabel.font.withSize(15)
+        } else if (screenHeight < 669) {
+            titleLabel.font = titleLabel.font.withSize(17)
+        }
     }
     
     func checkForNewProduct () {

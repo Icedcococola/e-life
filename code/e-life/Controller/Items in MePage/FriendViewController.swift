@@ -78,8 +78,14 @@ extension FriendViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let screenHeight = self.view.frame.height
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell9
         cell.username.text = friendList[indexPath.row]["user2"].stringValue
+        if (screenHeight < 569) {
+            cell.username.font = cell.username.font.withSize(15)
+        } else if (screenHeight < 669) {
+            cell.username.font = cell.username.font.withSize(17)
+        }
         cell.id = String(indexPath.row)
         cell.delegate = self
         cell.selectionStyle = .none

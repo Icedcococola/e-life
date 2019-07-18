@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 import CoreData
 
 
@@ -21,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         checkIfLoggedIn()
         // Override point for customization after application launch.
+        SVProgressHUD.setMinimumDismissTimeInterval(3)
         return true
     }
     

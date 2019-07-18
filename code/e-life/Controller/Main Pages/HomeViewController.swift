@@ -14,7 +14,9 @@ import SwiftyJSON
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var latestNotice: UITextView!
+    
+    @IBOutlet var latestNotice: UILabel!
+    @IBOutlet var titleLabel: UILabel!
     
     let URL = "http://elifedemo.vipgz1.idcfengye.com/Propertynotice/findNewest"
     
@@ -58,9 +60,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func responsiveDesign(){
         let screenHeight = self.view.frame.height
         if (screenHeight < 569){
-            
+             titleLabel.font = titleLabel.font.withSize(15)
         } else if (screenHeight < 668) {
-
+            titleLabel.font = titleLabel.font.withSize(17)
         }
     }
     
@@ -82,7 +84,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         cell.icon.image = functionalitiesImages[indexPath.row]
-        
+        cell.icon.sizeToFit()
         cell.contentView.backgroundColor = UIColor.clear
         
         return cell
@@ -93,5 +95,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let viewController = storyboard?.instantiateViewController(withIdentifier: id)
         navigationController?.pushViewController(viewController!, animated: true)
     }
+}
 
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let screenHeight = self.view.frame.height
+        if (screenHeight < 569) {
+            return CGSize(width: 48, height: 70)
+        } else if (screenHeight < 668) {
+            return CGSize(width: 58, height: 80)
+        } else {
+            return CGSize(width: 68, height: 86)
+        }
+    }
 }

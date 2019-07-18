@@ -46,6 +46,7 @@ class FriendRequestViewController: UIViewController, friendTableDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
+        SVProgressHUD.setMinimumDismissTimeInterval(3)
         // Do any additional setup after loading the view.
     }    
     func fetchData(){
@@ -103,11 +104,17 @@ extension FriendRequestViewController : UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let screenHeight = self.view.frame.height
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell8
         cell.id = String(indexPath.row)
         cell.delegate = self
         cell.selectionStyle = .none
         cell.username.text = friendRequestArray[indexPath.row]["applyfor"].stringValue
+        if (screenHeight < 569) {
+            cell.username.font = cell.username.font.withSize(15)
+        } else if (screenHeight < 669) {
+            cell.username.font = cell.username.font.withSize(17)
+        }
         return cell
     }
     
