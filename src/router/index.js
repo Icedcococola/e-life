@@ -23,6 +23,7 @@ import DemandstoLaunch from "@/components/DemandstoLaunch"
 import LaunchedDemands from "@/components/LaunchedDemands"
 import EditDemands from "@/components/EditDemands"
 import messagePageDemands from "@/components/messagePageDemands"
+import UnlaunchedParcel from "@/components/UnlaunchedParcel"
 import store from '@/store/index'
 
 Vue.use(Router)
@@ -212,6 +213,14 @@ const router = new Router({
           name:'EditParcel',
           meta: {
             requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+          }
+        },
+        {
+          path:'/UnlaunchedParcel',
+          component:UnlaunchedParcel,
+          name:'UnlaunchedParcel',
+          meta:{
+            requireAuth:true
           }
         }
       ]

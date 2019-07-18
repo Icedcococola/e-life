@@ -157,7 +157,16 @@
           title:'商品需求管理',
           input: '',
           search: '',
-          tableData: []
+          tableData: [{
+            community:'lalala',
+            desiredid:123,
+            goods:'hhhhh',
+            heat:5,
+            publisher:'1234567',
+            deadline:'2019-07-04',
+            
+
+          }]
         }
       }
     }

@@ -21,7 +21,6 @@
       <div class="y" style="padding: 14px;">
         <span>我是邮包管理员</span>
         <div class="bottom clearfix">
-
         </div>
       </div>
      </el-card>

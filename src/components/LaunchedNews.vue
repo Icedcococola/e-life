@@ -95,7 +95,7 @@ import moment from 'moment'
             }
           }
           ).then((response)=>{
-            
+            console.log(response.data)
             this.$router.push({
             name:"资讯详情页",
             params:{

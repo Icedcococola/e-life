@@ -13,36 +13,30 @@
 
   <el-row type="flex" justify="center" >
     <el-col :span="18">
-        
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="margin-top:5%">
-       <el-form-item label="商家名称" prop="title" style="margin-bottom:4%;">
+
+    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="margin-top:4%">
+      <el-form-item label="商家名称" prop="title" style="margin-bottom:4%;">
         <el-col style="width:50%">
            <el-input v-model="ruleForm.title" placeholder="请输入商家名称" ></el-input>
         </el-col>
        </el-form-item>
-      </el-form>
-    
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="margin-top:4%">
+
       <el-form-item label="价格" prop="price" style="margin-bottom:4%">
-        <el-col style="width:35%">
-            <el-input v-model="ruleForm.price" placeholder="请输入单价" ></el-input>
+        <el-col style="width:28%">
+            <el-input type="price" v-model.number="ruleForm.price" placeholder="请输入单价"></el-input>
         </el-col>
       </el-form-item>
 
-      <el-form-item label="数量" prop="num" style="margin-bottom:4%">
+     <el-form-item label="数量" prop="num" style="margin-bottom:4%">
         <el-col style="width:35%">
             <el-row type="flex" justify="start">
-            <el-input-number v-model="ruleForm.num" :min="1" :max="10000" label="请选择数量"></el-input-number>
+            <el-input-number type="num" v-model="ruleForm.num" :min="1" :max="10000" label="请选择数量" ></el-input-number>
             </el-row>
         </el-col>
       </el-form-item>
 
-    </el-form>
-
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="margin-top:4%">
-
     <el-form-item label="商品详情" prop="detail" style="margin-bottom:4%;">
-      <el-input type="textarea" :autosize="{ minRows: 12, maxRows: 18}" placeholder="请输入活动内容" v-model="ruleForm.detail" ></el-input>
+      <el-input type="textarea" :autosize="{ minRows: 12, maxRows: 18}" placeholder="请输入商品详情" v-model="ruleForm.detail" ></el-input>
     </el-form-item>
     
     <el-form-item label="截止时间" prop="date" style="margin-bottom:4%;">
@@ -98,14 +92,12 @@ export default {
     commit(formName)
     {
         
-
         this.$refs[formName].validate((valid)=>{
           if(valid){
             this.$confirm('确认内容并提交？',
                           '提示',
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
-              
               this.axios.get('/api/Goods/up',
               {
                 params:{
@@ -138,7 +130,7 @@ export default {
             }
             );
           }else{
-            this.$alert('请填写完整','提示',{
+            this.$alert('请正确填写并填写完整','提示',{
               confirmButtonText:'确定',
               callback: action=>{}
             });
@@ -188,7 +180,7 @@ export default {
     beforeRemove(file, fileList) {
         return this.$confirm(`确定移除 ${ file.name }?`);
     },
-    tobase64(file,fileList){
+   /* tobase64(file,fileList){
       let reader = new FileReader()
       reader.onload = () => {
         let _base64 = reader.result
@@ -199,10 +191,37 @@ export default {
       reader.readAsDataURL(file.raw)
 
     },
-
+*/  
+    
   },
 
   data() {
+    var checkInt = (rule,value,callback) => {
+        if (!value) {
+            return callback(new Error('价格不能为空'));
+        }
+        var emmm = /^\d+$/;
+        if (!emmm.test(value)) {
+            callback(new Error('请输入整数值'));
+          }else{
+            callback()
+          }
+    };
+
+    var checkAge = (rule, value, callback) => {
+          if (!value) {
+            return callback(new Error('价格不能为空'));
+          }
+          var re = /^\d+(?=\.{0,2}\d+$|$)/ ;
+          if (!re.test(value)) {
+            callback(new Error('请输入数字值'));
+          }else{
+            value=(value*10/10).toFixed(2)
+            this.ruleForm.price=value
+            callback()
+          }
+          
+        };
     return {
       emm:window.sessionStorage.getItem('desiredid'),
       num1:'1',
@@ -210,28 +229,33 @@ export default {
       title:'编辑待发布需求',
       fileList: [],
       ruleForm:{
-        detail:'',
-        date:'',
-        picture:'',
         price:'',
         num:'',
+        detail:'',
+        date:'',
+        picture:''
         
       },
+      
       rules:{
         title:[
-          {required:true, message:'请输入商家名称', trigger:'blur'}
+          {required:true, message:'商家名称不可为空', trigger:'blur'}
         ],
         detail:[
-          {required:true, message:'请输入商品详情',trigger:'blur'}
+          {required:true, message:'商品详情不可为空',trigger:'blur'}
         ],
         date:[
-          {type: 'date', required:true, message:'请选择截止时间', trigger:'change'}
+          {type: 'date', required:true, message:'截止时间不可为空', trigger:'change'}
         ],
         price:[
-          {required:true,message:'请输入单价',trigger:'blur'}
+          {required:true,message:'单价不可为空',trigger:'change'},
+          //{validator: checkAge, trigger: 'blur'}
+          {type:'number',message:'请填写正整数',trigger:'blur'}
         ],
         num:[
-          {required:true,message:'请输入数量',trigger:'blur'}
+          {required:true,message:'数量不可为空',trigger:'blur'},
+          {validator: checkInt, trigger: 'blur'}
+          //{type:'number',message:'请填写正整数',trigger:'blur'}
         ]
       }
     }

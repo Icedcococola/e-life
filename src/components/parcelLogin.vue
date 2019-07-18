@@ -47,7 +47,7 @@ export default {
                 if(a===1){
                   this.$store.commit('SET_TOKEN',1)
                 }
-                //easy mock返的数据莫要包在data:{}里。。。你可长点心吧
+                
 
             }else{
               this.$confirm('用户名或密码不正确', '提示', {

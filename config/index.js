@@ -11,14 +11,14 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api':{
+      '/api':{//服务器接口
         target:'http://elifedemo.vipgz1.idcfengye.com',
         changeOrigin: true,
         pathRewrite:{
           '^/api':''
         }
       },
-      '/img': {//代理请求图片的接口
+      '/img': {//上传图片转url接口
         changeOrigin: true,
         secure: false, //https请求需设置此项
         target: 'https://sm.ms/api/upload',

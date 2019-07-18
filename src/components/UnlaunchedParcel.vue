@@ -11,7 +11,22 @@
       <el-col :span="2">
         <el-button icon="el-icon-search" circle></el-button>
       </el-col>
-  
+  <el-form :model="numberValidateForm" ref="numberValidateForm" label-width="100px" class="demo-ruleForm">
+  <el-form-item
+    label="年龄"
+    prop="age"
+    :rules="[
+      { required: true, message: '年龄不能为空'},
+      { type: 'number', message: '年龄必须为数字值'}
+    ]"
+  >
+    <el-input type="age" v-model.number="numberValidateForm.age" auto-complete="off"></el-input>
+  </el-form-item>
+  <el-form-item>
+    <el-button type="primary" @click="submitForm('numberValidateForm')">提交</el-button>
+    <el-button @click="resetForm('numberValidateForm')">重置</el-button>
+  </el-form-item>
+</el-form>
     </el-row>
     <el-row>
     <div style="width:100%;background:#c4c4c4fa;height:1px;margin-top:10px;margin-bottom:30px;padding:0px;overflow:hidden;"></div>
@@ -63,9 +78,25 @@
  export default {
       methods:
       {
+         submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            alert('submit!');
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
+      }
       },
       data() {
         return {
+           numberValidateForm: {
+          age: ''
+        },
           input: '',
           tableData: [{
             date: '2019-07-02',
