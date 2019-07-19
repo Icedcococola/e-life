@@ -26,7 +26,7 @@
       <el-table-column
         type="index"
         label="序号"
-        width="100"
+        width="80"
         align="center">
       </el-table-column>
       <el-table-column
@@ -115,6 +115,7 @@
       computed:{
 
         searchData:function(){
+          this.currentPage = 1
           var search = this.search;
           if(search)   {
             return this.tableData.filter(function(dt){
@@ -123,7 +124,8 @@
               })
             })
           }  
-          return this.tableData                 
+          return this.tableData 
+                   
         }
 
       },
@@ -148,8 +150,8 @@
               {
                   name:'messagePageDemands',
                   params:{
-                      detail:this.tableData[ind].deatil,
-                      goodsname:this.tableData[ind].goodsname
+                      detail:this.searchData[ind].deatil,
+                      goodsname:this.searchData[ind].goodsname
                   }
               }
           )
