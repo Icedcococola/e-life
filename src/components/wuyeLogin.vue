@@ -36,7 +36,7 @@ export default {
     toHome(formName){
        this.$refs[formName].validate((valid)=>{
          if(valid){
-            this.axios.get('/api/Admin/login',{
+           this.axios.get('/api/Admin/login',{
               params:{
                 adminname:this[formName].username,
                 password:this[formName].password,
@@ -60,7 +60,7 @@ export default {
                     data:response.data
                 }
                 });
-                }
+               }
                 
                 
                 

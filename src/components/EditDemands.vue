@@ -69,6 +69,7 @@
        <img v-if="imageUrl" :src="imageUrl" class="avatar">
        <i v-else class="el-icon-picture avatar-uploader-icon"></i>
        </el-upload>
+       <div style="font-size:10px;color:#909092">上传图片格式：jpg/jpeg、png且大小不超过2M</div>
     </el-form-item>
     </el-row>
     </el-form>
@@ -146,19 +147,51 @@ export default {
     },
     beforeAvatarUpload(file) {
         console.log(file)
-        let fd = new FormData()
-        fd.append('smfile',file)
-        this.axios.post('/img',fd)
-        .then((response)=>{
+        const isJPG = file.type === 'image/jpeg';
+        const isPNG = file.type === 'image/png';
+        const isLt2M = file.size / 1024 / 1024 <2;
+
+        if(!isJPG && !isPNG){
+         this.$message.error('上传图片只能是jpg/jpeg或png格式！')
+         this.imageUrl = 'https://i.loli.net/2019/07/19/5d312e20c0c6d52233.jpg'
+         //handleRemove(file,fileList)
+        }
+        if(!isLt2M){
+         this.$message.error('上传图片大小不能超过2M！')
+         this.imageUrl = 'https://i.loli.net/2019/07/19/5d312e20c0c6d52233.jpg'
+         //handleRemove(file,fileList)
+        }
+        if((isJPG || isPNG) && isLt2M){
+         let fd = new FormData()
+         fd.append('smfile',file)
+         this.axios.post('/img',fd)
+         .then((response)=>{
           if(response.status === 200){
             console.log(response.data.code)
             if(response.data.code === "success"){
-              
               console.log(response.data.data.url)
               this.imageUrl = response.data.data.url
             }
           }
-        })
+        }) 
+        }else{
+          /*
+          let fd = new FormData()
+          fd.append('smfile',file)
+          this.axios.post('/img',fd)
+          .then((response)=>{
+          if(response.status === 200){
+            console.log(response.data.code)
+            if(response.data.code === "success"){
+              console.log(response.data.data.url)
+              this.imageUrl = response.data.data.url
+            }
+          }
+        }) */
+
+        //this.imageUrl = 'https://i.loli.net/2019/07/19/5d3129a0dbc7876672.jpg'
+        }
+        
     },
 
     showDemandId(){
@@ -166,6 +199,21 @@ export default {
        var deid = window.sessionStorage.getItem('desiredid')
        this.$confirm(deid,'提示')
     },
+
+    checkValidUpload(file){
+       const isJPG = file.type === 'image/jpeg';
+       const isPNG = file.type === 'image/png';
+       const isLt2M = file.size / 1024 / 1024 <2;
+       
+       if(!isJPG && !isPNG){
+         this.$message.error('上传图片只能是jpg/jpeg或png格式！')
+       }
+       if(!isLt2M){
+         this.$message.error('上传图片大小不能超过2M！')
+       }
+       return (isJPG || isPNG) && isLt2M
+    },
+
 
     handlePreview(file) {
         console.log(file);
@@ -175,23 +223,11 @@ export default {
     },
     handleRemove(file, fileList) {
         console.log(file, fileList);
-        this.imageUrl = ''
+        this.imageUrl = 'https://i.loli.net/2019/07/19/5d312e20c0c6d52233.jpg'
     },
     beforeRemove(file, fileList) {
         return this.$confirm(`确定移除 ${ file.name }?`);
     },
-   /* tobase64(file,fileList){
-      let reader = new FileReader()
-      reader.onload = () => {
-        let _base64 = reader.result
-        let BASE64 = _base64.split(",")
-        this.imageUrl = BASE64[1]
-        console.log(this.imageUrl)
-      }
-      reader.readAsDataURL(file.raw)
-
-    },
-*/  
     
   },
 
@@ -225,7 +261,7 @@ export default {
     return {
       emm:window.sessionStorage.getItem('desiredid'),
       num1:'1',
-      imageUrl: '',
+      imageUrl: 'https://i.loli.net/2019/07/19/5d312e20c0c6d52233.jpg',
       title:'编辑待发布需求',
       fileList: [],
       ruleForm:{
@@ -272,7 +308,7 @@ export default {
     overflow: hidden;
   }
   .avatar-uploader .el-upload:hover {
-    border-color: #409EFF;
+    border-color: #909092;
   }
   .avatar-uploader-icon {
     font-size: 28px;

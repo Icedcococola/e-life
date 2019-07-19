@@ -56,7 +56,7 @@
       <el-table-column
         prop="publisher"
         label="publisher"
-        width="100"
+        width="120"
         align="center">
       </el-table-column>
       <el-table-column
@@ -68,7 +68,7 @@
       <el-table-column
         prop="op"
         label="操作"
-        width="150"
+        width="170"
         align="center"
         fixed="right">
         <template slot-scope="scope">
@@ -157,16 +157,7 @@
           title:'商品需求管理',
           input: '',
           search: '',
-          tableData: [{
-            community:'lalala',
-            desiredid:123,
-            goods:'hhhhh',
-            heat:5,
-            publisher:'1234567',
-            deadline:'2019-07-04',
-            
-
-          }]
+          tableData: []
         }
       }
     }

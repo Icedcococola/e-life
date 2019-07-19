@@ -19,27 +19,14 @@
     </el-row>
     
     <el-table
-      :data="searchData"
+      :data="searchData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
+      stripe
       style="width: 200%,"
-      row-style="height:80px"
-      :default-sort="{prop:'no',order:'ascending'}">
-      
+      :default-sort="{prop:'goodsid',order:'ascending'}">
       <el-table-column
         type="index"
         label="序号"
         width="100"
-        align="center">
-      </el-table-column>
-      <el-table-column
-        prop="community"
-        label="社区"
-        width="80"
-        align="center">
-      </el-table-column>
-      <el-table-column
-        prop="deatil"
-        label="详情"
-        width="80"
         align="center">
       </el-table-column>
       <el-table-column
@@ -51,7 +38,7 @@
       <el-table-column
         prop="goodsname"
         label="商品名称"
-        width="80"
+        width="120"
         align="center">
       </el-table-column>
       <el-table-column
@@ -70,12 +57,6 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="price"
-        label="价格"
-        width="80"
-        align="center">
-      </el-table-column>
-      <el-table-column
         prop="remainingnum"
         label="剩余数量"
         width="100"
@@ -84,23 +65,45 @@
       <el-table-column
         prop="store"
         label="店名"
-        width="100"
+        width="120"
         align="center">
       </el-table-column>
       <el-table-column
         prop="totalnum"
         label="总数"
-        width="100"
+        width="50"
         align="center">
       </el-table-column>
       <el-table-column
         prop="deadline"
-        label="活动时间"
+        label="截止时间"
         width="100"
         align="center">
       </el-table-column>  
+      <el-table-column
+        prop="op"
+        label="操作"
+        width="120"
+        align="center"
+        fixed="right">
+        <template slot-scope="scope">
+            <el-button type="primary" @click="topage(scope.$index,scope.row.goodsname)" icon="el-icon-search" circle></el-button>
+          </template>
+      </el-table-column>
     </el-table>
+
+    <div class="block">
+    
+    <el-pagination
+      layout="prev, pager, next, total"
+      :page-size="pagesize"
+      @current-change="current_change"
+      :total=this.searchData.length>
+    </el-pagination>
+    </div>
+
   </div>
+
 </template>
 
 <script>
@@ -127,7 +130,8 @@
 
       methods:
       {
-        topage(lalala){
+        
+        topage(index,goodsname){
           //this.axios.get('/api/Activity/findbyid',{
           //  params:{
           //    activityid:lalala
@@ -136,15 +140,24 @@
           //  this.$confirm(response.data.detail,'活动详情')
           //  console.log(response)
           //})
+          //this.$confirm(this.searchData[index].deatil)
+          var ind = index + (this.currentPage-1)*5
+          console.log(ind)
+          console.log(index)
           this.$router.push(
               {
                   name:'messagePageDemands',
                   params:{
-                      
+                      detail:this.tableData[ind].deatil,
+                      goodsname:this.tableData[ind].goodsname
                   }
               }
           )
           
+        },
+
+        current_change:function(currentPage){
+           this.currentPage = currentPage;
         },
 
         deleteLine(id,index){
@@ -185,6 +198,8 @@
           )
           .then((response)=>{
             console.log(response.data)
+            this.tableDatalength = response.data.length
+            console.log(this.tableDatalength)
             var dt = response.data;
             this.tableData = dt;
           })
@@ -192,6 +207,9 @@
       },
       data() {
         return {
+          pagesize:5,
+          currentPage:1,
+          tableDatalength:'',
           title:'已上架商品',
           input: '',
           search: '',
