@@ -280,11 +280,11 @@
 		95EB54CB22CC88D800E25003 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				957129EB22C9DADF0059DCEE /* LoginAndRegister.storyboard */,
 				95DD032522D2D54D0096E89D /* MainPages.storyboard */,
 				95DD032722D2D61E0096E89D /* Home.storyboard */,
 				95DD032922D2D6270096E89D /* Services.storyboard */,
 				95DD032B22D2D62F0096E89D /* Me.storyboard */,
+				957129EB22C9DADF0059DCEE /* LoginAndRegister.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -374,6 +374,8 @@
 				"${PODS_ROOT}/Target Support Files/Pods-e-life/Pods-e-life-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
@@ -383,6 +385,8 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);

@@ -27,13 +27,12 @@ class CommentViewController: UIViewController, UITableViewDataSource {
     let postURL = "http://elifedemo.vipgz1.idcfengye.com/Post/findbyid"
     var id : String?
     
-    @IBOutlet var detailView: UIView!
     @IBOutlet var addCommentButton: UIButton!
-    @IBOutlet var postArticle: UILabel!
-
+    @IBOutlet var postArticle: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.sendSubviewToBack(detailView)
+        //view.sendSubviewToBack(detailView)
         addCommentButton.layer.cornerRadius = 25
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +47,17 @@ class CommentViewController: UIViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell5
         cell.username.text = commentArray[indexPath.row]["username"].stringValue
         cell.comment.text = commentArray[indexPath.row]["message"].stringValue
+        let screenHeight = self.view.frame.height
+        if (screenHeight < 569) {
+            cell.username.font = cell.username.font.withSize(14)
+            cell.comment.font = cell.comment.font.withSize(13)
+        } else if (screenHeight < 669) {
+            cell.username.font = cell.username.font.withSize(15)
+            cell.comment.font = cell.comment.font.withSize(13)
+        } else {
+            cell.username.font = cell.username.font.withSize(15)
+            cell.comment.font = cell.comment.font.withSize(13)
+        }
         cell.layer.cornerRadius = 15
         cell.selectionStyle = .none
         return cell

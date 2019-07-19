@@ -97,6 +97,7 @@ class BulkPurchaseViewController: UIViewController, tablViewCellDelegate {
                 if let json = response.value{
                     SVProgressHUD.dismiss()
                     let desiredArray = JSON(json).arrayValue
+                    print (desiredArray)
                     self.customProductArray = desiredArray
                     self.tableView1.reloadData()
                 }
@@ -113,7 +114,6 @@ class BulkPurchaseViewController: UIViewController, tablViewCellDelegate {
                     SVProgressHUD.dismiss()
                     let productArray = JSON(json).arrayValue
                     self.supplierProductArray = productArray
-                    print (productArray)
                     self.tableView2.reloadData()
                 }
             }
@@ -147,15 +147,18 @@ extension BulkPurchaseViewController : UITableViewDataSource, UITableViewDelegat
             if (customProductArray[indexPath.row]["ishelped"].stringValue == "1") {
                 cell.support.isEnabled = false
                 cell.support.backgroundColor = .lightGray
-                cell.support.titleLabel!.text = "Supported"
+                cell.support.setTitle("Supported", for: .disabled)
+                cell.support.layer.cornerRadius = 5
             } else if (customProductArray[indexPath.row]["publisher"].stringValue == self.appDelegate.username){
                 cell.support.isEnabled = false
                 cell.support.backgroundColor = .lightGray
-                cell.support.titleLabel!.text = "Supported"
+                cell.support.setTitle("Supported", for: .disabled)
+                cell.support.layer.cornerRadius = 5
             } else {
                 cell.support.isEnabled = true
                 cell.support.backgroundColor = UIColor(red: 196/255, green: 240/255, blue: 255/255, alpha: 1)
-                cell.support.titleLabel!.text = "Support"
+                cell.support.layer.cornerRadius = 5
+                cell.support.setTitle("Support", for: .normal)
                 cell.support.titleLabel?.textColor = UIColor(red: 0/255, green: 143/255, blue: 191/255, alpha: 1)
             }
             cell.selectionStyle = .none

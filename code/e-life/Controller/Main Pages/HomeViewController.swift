@@ -48,6 +48,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet var EmergencyNews: UIView!
     @IBOutlet var News: UIView!
     @IBOutlet var NewsTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         responsiveDesign()
@@ -55,6 +56,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // Do any additional setup after loading the view.
         collectionView.delegate = self
         collectionView.dataSource = self
+        
     }
     
     func responsiveDesign(){

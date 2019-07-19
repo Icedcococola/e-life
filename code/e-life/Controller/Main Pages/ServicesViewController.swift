@@ -33,8 +33,8 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
         // Do any additional setup after loading the view.
         collectionView.delegate = self
         collectionView.dataSource = self
+        
     }
-    
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return functionItems.count
@@ -94,10 +94,15 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
 extension ServicesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenHeight = self.view.frame.height
+        let screenWidth = self.view.frame.width
+        print (screenWidth)
+        print (screenHeight)
         if (screenHeight < 569) {
             return CGSize(width: 48, height: 70)
-        } else if (screenHeight < 668) {
-            return CGSize(width: 65, height: 76)
+        } else if (screenHeight < 669) {
+            return CGSize(width: 67, height: 76)
+        } else if (screenHeight < 717) {
+            return CGSize(width: 72, height: 76)
         } else {
             return CGSize(width: 68, height: 86)
         }

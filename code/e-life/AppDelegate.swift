@@ -9,27 +9,145 @@
 import UIKit
 import SVProgressHUD
 import CoreData
+import UserNotifications
+import SocketIO
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     public var username = ""
     public var community = ""
-    public let URL = "http://elifedemo.vipgz1.idcfengye.com/"
+    
+    let manager = SocketManager(socketURL: URL(string: "http://cd228d4d.ngrok.io")!, config: [.log(false), .compress])
+    public var socket:SocketIOClient!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            print ("granted \(granted)")
+        }
+        
+        UNUserNotificationCenter.current().delegate = self
+        
+        socket = manager.defaultSocket
+        addSocketListener()
+        socket.connect()
+        
         checkIfLoggedIn()
         // Override point for customization after application launch.
         SVProgressHUD.setMinimumDismissTimeInterval(3)
         return true
     }
     
+    
+    func addSocketListener () {
+        socket.on("recieve friend request") { (data, _) in
+            let message = data[0] as! [String: String]
+            print (message["name"]!)
+            if (message["name"]! == self.username) {
+                
+                let content = UNMutableNotificationContent()
+                content.title = message["username"]! + "向您发送好友请求"
+                content.body = "周杰伦向您发送好友请求周杰伦向您发送好友请求周杰伦向您发送好友请求"
+                content.sound = UNNotificationSound.default
+                
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                let request = UNNotificationRequest(identifier: "recieve", content: content, trigger: trigger)
+                
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            }
+        }
+        
+        socket.on("accept friend request") { (data, _) in
+            let message = data[0] as! [String: String]
+            print(message)
+            if (message["name"]! == self.username) {
+                
+                let content = UNMutableNotificationContent()
+                content.title = message["username"]! + "已接受您的好友请求 🎉🎉🎉"
+                content.body = "fasfasdfadsfadfadsfadsf"
+                content.sound = UNNotificationSound.default
+                
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                let request = UNNotificationRequest(identifier: "accept", content: content, trigger: trigger)
+                
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            }
+        }
+        
+        socket.on("reject friend request") { (data, _) in
+            let message = data[0] as! [String: String]
+            print (message["name"]!)
+            print (message["username"]!)
+            if (message["name"]! == self.username) {
+                
+                let content = UNMutableNotificationContent()
+                content.title = message["username"]! + "拒绝了您的好友请求 😢😢😢"
+                content.body = "周杰伦向您发送"
+                content.sound = UNNotificationSound.default
+                
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                let request = UNNotificationRequest(identifier: "reject", content: content, trigger: trigger)
+                
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            }
+        }
+    }
+    
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print ("Noti")
+        if (response.notification.request.identifier == "recieve") {
+            retrieveData()
+            if (username != "") {
+                let rootViewController = self.window!.rootViewController as! UITabBarController
+                let mePage = rootViewController.viewControllers![2] as! UINavigationController
+                
+                let friendRequestPage = UIStoryboard(name: "Me", bundle: nil).instantiateViewController(withIdentifier: "friendRequestPage")
+                let friendViewPage = UIStoryboard(name: "Me", bundle: nil).instantiateViewController(withIdentifier: "5")
+                
+                mePage.pushViewController(friendViewPage, animated: true)
+                mePage.pushViewController(friendRequestPage, animated: true)
+                
+                rootViewController.selectedViewController = mePage
+                
+            } else {
+                print ("Please Login First")
+            }
+        } else if (response.notification.request.identifier == "accept") {
+            print ("Accept Noti")
+            retrieveData()
+            if (username != "") {
+                let rootViewController = self.window!.rootViewController as! UITabBarController
+                let mePage = rootViewController.viewControllers![2] as! UINavigationController
+                
+                //let friendRequestPage = UIStoryboard(name: "Me", bundle: nil).instantiateViewController(withIdentifier: "friendRequestPage")
+                let friendViewPage = UIStoryboard(name: "Me", bundle: nil).instantiateViewController(withIdentifier: "5")
+                
+                mePage.pushViewController(friendViewPage, animated: true)
+                //mePage.pushViewController(friendRequestPage, animated: true)
+                
+                rootViewController.selectedViewController = mePage
+                
+            } else {
+                print ("Please Login First")
+            }
+        } else if (response.notification.request.identifier == "reject") {
+            print ("reject")
+        }
+        completionHandler()
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+    }
+    
+    
     func checkIfLoggedIn(){
         retrieveData()
         if (username != "") {
-            print ("Hello")
             let mainStoryboard:UIStoryboard = UIStoryboard(name: "MainPages", bundle: nil)
             let mainPage = mainStoryboard.instantiateViewController(withIdentifier: "mainPage") as! UITabBarController
             self.window?.rootViewController = mainPage

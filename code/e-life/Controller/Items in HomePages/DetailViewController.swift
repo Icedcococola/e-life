@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UITextFieldDelegate {
     
     var id : String = ""
     var imageUrl = ""
@@ -30,15 +30,65 @@ class DetailViewController: UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var username = ""
     
+    //
+    @IBOutlet var supplierLabel: UILabel!
+    @IBOutlet var priceLabel: UILabel!
+    @IBOutlet var remainingLabel: UILabel!
+    @IBOutlet var countdownLabel: UILabel!
+    @IBOutlet var detailLabel: UILabel!
+    @IBOutlet var insertAmountLabel: UILabel!
+    @IBOutlet var supplierDataLabel: UILabel!
+    @IBOutlet var priceDataLabel: UILabel!
+    @IBOutlet var remainingDataLabel: UILabel!
+    @IBOutlet var countdownDataLabel: UILabel!
+    @IBOutlet var detailDataText: UITextView!
+    
+    //constaint
+    @IBOutlet var imageHeight: NSLayoutConstraint!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         add.layer.cornerRadius = 10
-        print (id)
+        responsiveDesign()
         // Do any additional setup after loading the view.
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         buyAmount.resignFirstResponder()
+    }
+    
+    func responsiveDesign() {
+        let screenHeight = self.view.frame.height
+        if (screenHeight < 569) {
+            
+        } else if (screenHeight < 669) {
+            supplierLabel.font = supplierLabel.font.withSize(17)
+            priceLabel.font = supplier.font.withSize(17)
+            remainingLabel.font = supplier.font.withSize(17)
+            countdownLabel.font = supplier.font.withSize(17)
+            detailLabel.font = supplier.font.withSize(17)
+            insertAmountLabel.font = supplier.font.withSize(17)
+            remainingDataLabel.font = supplier.font.withSize(17)
+            supplierDataLabel.font = supplier.font.withSize(17)
+            priceDataLabel.font = supplier.font.withSize(17)
+            countdownDataLabel.font = supplier.font.withSize(17)
+            detailDataText.font = supplier.font.withSize(17)
+            
+        } else if (screenHeight < 717) {
+            supplierLabel.font = supplier.font.withSize(20)
+            supplierDataLabel.font = supplierDataLabel.font.withSize(20)
+            priceLabel.font = supplier.font.withSize(20)
+            remainingLabel.font = supplier.font.withSize(20)
+            countdownLabel.font = supplier.font.withSize(20)
+            detailLabel.font = supplier.font.withSize(20)
+            insertAmountLabel.font = supplier.font.withSize(20)
+            remainingDataLabel.font = supplier.font.withSize(20)
+            supplierDataLabel.font = supplier.font.withSize(20)
+            priceDataLabel.font = supplier.font.withSize(20)
+            countdownDataLabel.font = supplier.font.withSize(20)
+            detailDataText.font = supplier.font.withSize(20)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +106,7 @@ class DetailViewController: UIViewController {
                 self.price.text = data["price"].stringValue
                 self.leftAmount.text = data["remainingnum"].stringValue
                 self.timer.text = data["deadline"].stringValue
-                self.detail.text = data["detail"].stringValue
+                self.detailDataText.text = data["detail"].stringValue
                 self.imageUrl = data["img"].stringValue
                 self.image.downloaded(from: self.imageUrl)
                 if (num != "0"){

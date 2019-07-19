@@ -12,7 +12,7 @@
         <!--我的-->
         <scene sceneID="4RV-fa-ktU">
             <objects>
-                <viewController id="Nk5-vx-Q3O" customClass="MeViewController" customModule="e_life" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mePage" id="Nk5-vx-Q3O" customClass="MeViewController" customModule="e_life" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NAo-cn-VvW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -99,7 +99,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebz-ko-IXH">
-                                                    <rect key="frame" x="381.5" y="7" width="12.5" height="29.5"/>
+                                                    <rect key="frame" x="342.5" y="7" width="12.5" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.56078431370000004" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -243,7 +243,7 @@
         <!--Friend Request-->
         <scene sceneID="JyH-gs-asq">
             <objects>
-                <viewController title="Friend Request" id="VNT-Vs-tAE" customClass="FriendRequestViewController" customModule="e_life" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="friendRequestPage" title="Friend Request" id="VNT-Vs-tAE" customClass="FriendRequestViewController" customModule="e_life" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KQp-LA-rZB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -269,7 +269,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NvP-yg-MNn">
-                                                    <rect key="frame" x="359" y="11" width="40" height="57"/>
+                                                    <rect key="frame" x="320" y="11" width="40" height="57"/>
                                                     <color key="backgroundColor" red="1" green="0.12606038457346169" blue="0.17688826692021731" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="dbA-LD-xsx"/>
@@ -282,7 +282,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvL-Oe-D1W">
-                                                    <rect key="frame" x="294" y="11" width="60" height="57"/>
+                                                    <rect key="frame" x="255" y="11" width="60" height="57"/>
                                                     <color key="backgroundColor" red="0.76862745099999996" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="wd7-QW-LRk"/>
@@ -408,7 +408,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYd-zE-lmD">
-                                                    <rect key="frame" x="359" y="21" width="40" height="54"/>
+                                                    <rect key="frame" x="320" y="21" width="40" height="54"/>
                                                     <color key="backgroundColor" red="0.76862745099999996" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="u1V-Te-DuI"/>
@@ -701,7 +701,7 @@
         <!--Navigation Controller-->
         <scene sceneID="uQS-LH-uZj">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hUo-eB-ThE" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MeLandingPage" automaticallyAdjustsScrollViewInsets="NO" id="hUo-eB-ThE" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="me_icon" id="wSY-JO-Hw9">
                         <inset key="imageInsets" minX="0.0" minY="4" maxX="0.0" maxY="-4"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="4"/>

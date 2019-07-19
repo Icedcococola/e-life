@@ -45,6 +45,29 @@ class ForumViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.title.text = postArray[indexPath.row]["title"].stringValue
         cell.author.text = postArray[indexPath.row]["poster"].stringValue
         cell.selectionStyle = .none
+        cell.backgroundColor = .clear
+        cell.contentView.backgroundColor = UIColor.clear
+        let screenHeight = self.view.frame.height
+        if (screenHeight < 569) {
+            cell.title.font = cell.title.font.withSize(14)
+            cell.author.font = cell.author.font.withSize(10)
+        } else if (screenHeight < 669) {
+            cell.title.font = cell.title.font.withSize(16)
+            cell.author.font = cell.author.font.withSize(12)
+        } else {
+            cell.title.font = cell.title.font.withSize(17)
+            cell.author.font = cell.author.font.withSize(13)
+        }
+        
+        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 3, width: self.view.frame.size.width - 20, height: 3000))
+        
+        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
+        whiteRoundedView.layer.masksToBounds = false
+        whiteRoundedView.layer.cornerRadius = 5.0
+        
+        cell.contentView.addSubview(whiteRoundedView)
+        cell.contentView.sendSubviewToBack(whiteRoundedView)
+        print ("hEllo")
         return cell
     }
     

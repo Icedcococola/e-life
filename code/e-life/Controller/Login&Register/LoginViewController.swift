@@ -12,6 +12,7 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 import CoreData
+import UserNotifications
 
 class LoginViewController: UIViewController {
     

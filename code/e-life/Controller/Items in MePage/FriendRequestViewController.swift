@@ -61,7 +61,7 @@ class FriendRequestViewController: UIViewController, friendTableDelegate{
                 }
             }
         }
-    }
+    }    
     
     func didTappedAccept(id : String) {
         print ("Accpet" + id)
@@ -70,6 +70,7 @@ class FriendRequestViewController: UIViewController, friendTableDelegate{
         AF.request(acceptURL, method: .post, parameters: ["applied": self.appDelegate.username, "applyfor": applyfor]).responseJSON { (response) in if (response.response?.statusCode != 200) {
             SVProgressHUD.showError(withStatus: "Error")
         } else {
+            self.appDelegate.socket.emit("accept", ["username": self.appDelegate.username, "name": applyfor])
             SVProgressHUD.showSuccess(withStatus: "好友申请已接受")
             //self.friendRequestArray.remove(at: intId!)
             //self.tableView.reloadData()
@@ -85,6 +86,7 @@ class FriendRequestViewController: UIViewController, friendTableDelegate{
         AF.request(rejectURL, method: .post, parameters: ["applied": self.appDelegate.username, "applyfor": applyfor]).responseJSON { (response) in if (response.response?.statusCode != 200) {
             SVProgressHUD.showError(withStatus: "Error")
         } else {
+            self.appDelegate.socket.emit("reject", ["username": self.appDelegate.username, "name": applyfor])
             SVProgressHUD.showSuccess(withStatus: "好友申请已拒绝")
             //self.friendRequestArray.remove(at: intId!)
             //self.tableView.reloadData()

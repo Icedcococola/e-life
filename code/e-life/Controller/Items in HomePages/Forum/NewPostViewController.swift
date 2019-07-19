@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 
-class NewPostViewController: UIViewController, UITextViewDelegate {
+class NewPostViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 
     @IBOutlet var postButton: UIButton!
     @IBOutlet var postText: UITextView!
@@ -47,6 +47,13 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             textView.textColor = UIColor.lightGray
         }
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        titleTextBox.resignFirstResponder()
+        postText.resignFirstResponder()
+        return true
+    }
+    
     
     // Mark: - Send post request to server
     @IBAction func post(_ sender: Any) {
