@@ -11,6 +11,7 @@ import router from './router/index'
 import store from './store/index'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import 'babel-polyfill'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);

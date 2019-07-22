@@ -59,6 +59,18 @@ export default {
                   //}
                 }
               })
+              .catch(error => {
+                console.log(error.response.status)
+                if(error.response.status === 404){
+                  this.$router.push({
+                    name:'fof'
+                  })
+                }else if(error.response.status === 500){
+                  this.$router.push({
+                    name:'fot'
+                  })
+                }
+              })
               //this.$message({type:'success',message:'提交成功！'});
               //this.$router.push({name:"查看紧急通知"});
             });

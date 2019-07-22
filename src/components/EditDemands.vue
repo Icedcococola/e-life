@@ -36,7 +36,7 @@
       </el-form-item>
 
     <el-form-item label="商品详情" prop="detail" style="margin-bottom:4%;">
-      <el-input type="textarea" :autosize="{ minRows: 12, maxRows: 18}" placeholder="请输入商品详情" v-model="ruleForm.detail" ></el-input>
+      <el-input type="textarea" :autosize="{ minRows: 12, maxRows: 18}" placeholder="请输入商品详情,不超过100个字" v-model="ruleForm.detail" ></el-input>
     </el-form-item>
     
     <el-form-item label="截止时间" prop="date" style="margin-bottom:4%;">
@@ -84,10 +84,8 @@
 <script>
 export default {
     mounted:function(){
-       //this.showDemandId();
-       
+       //this.showDemandId(); 
     },
-
   methods:
   {
     commit(formName)
@@ -126,12 +124,25 @@ export default {
                   
                 }
               })
+              .catch(error => {
+                console.log(error.response.status)
+                if(error.response.status === 404){
+                  this.$router.push({
+                    name:'fof'
+                  })
+                }
+                else if(error.response.status === 500){
+                  this.$router.push({
+                    name:'fot'
+                  })
+                }
+              })
               //this.$message({type:'success',message:'提交成功！'});
               //this.$router.push({name:"查看活动安排"});
             }
             );
           }else{
-            this.$alert('请正确填写并填写完整','提示',{
+            this.$alert('请正确填写','提示',{
               confirmButtonText:'确定',
               callback: action=>{}
             });
@@ -149,12 +160,13 @@ export default {
         console.log(file)
         const isJPG = file.type === 'image/jpeg';
         const isPNG = file.type === 'image/png';
-        const isLt2M = file.size / 1024 / 1024 <2;
+        const isLt2M = file.size / 1024 / 1024 < 2;
 
         if(!isJPG && !isPNG){
          this.$message.error('上传图片只能是jpg/jpeg或png格式！')
          this.imageUrl = 'https://i.loli.net/2019/07/19/5d312e20c0c6d52233.jpg'
-         //handleRemove(file,fileList)
+         this.fileList =[]
+         //handleRemove(file,fileList) 
         }
         if(!isLt2M){
          this.$message.error('上传图片大小不能超过2M！')
@@ -260,6 +272,7 @@ export default {
         };
     return {
       emm:window.sessionStorage.getItem('desiredid'),
+      detailmaxlength:10,
       num1:'1',
       imageUrl: 'https://i.loli.net/2019/07/19/5d312e20c0c6d52233.jpg',
       title:'编辑待发布需求',
@@ -278,7 +291,8 @@ export default {
           {required:true, message:'商家名称不可为空', trigger:'blur'}
         ],
         detail:[
-          {required:true, message:'商品详情不可为空',trigger:'blur'}
+          {required:true, message:'商品详情不可为空',trigger:'blur'},
+          { min: 1, max: 100, message: '长度不超过100个字', trigger: 'blur' }
         ],
         date:[
           {type: 'date', required:true, message:'截止时间不可为空', trigger:'change'}

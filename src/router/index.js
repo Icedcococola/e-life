@@ -24,6 +24,9 @@ import LaunchedDemands from "@/components/LaunchedDemands"
 import EditDemands from "@/components/EditDemands"
 import messagePageDemands from "@/components/messagePageDemands"
 import UnlaunchedParcel from "@/components/UnlaunchedParcel"
+import fof from "@/components/fof"
+import fot from "@/components/fot"
+
 import store from '@/store/index'
 
 Vue.use(Router)
@@ -188,11 +191,22 @@ const router = new Router({
       path:'/wuyeLogin',
       component:wuyeLogin,
       name:'wuyeLogin'
+      
     },
     {
       path:'/parcelLogin',
       component:parcelLogin,
       name:'parcelLogin'
+    },
+    {
+      path:'/fof',
+      component:fof,
+      name:'fof'
+    },
+    {
+      path:'/fot',
+      component:fot,
+      name:'fot'
     },
     {
       path:'/parcelHome',

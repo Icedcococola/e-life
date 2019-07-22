@@ -20,7 +20,7 @@
     </el-row>
     
     <el-table
-      :data="searchData"
+      :data="searchData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
       style="width: 100%"
       :default-sort="{prop:'no',order:'ascending'}">
       
@@ -72,6 +72,17 @@
           </template>
       </el-table-column>
     </el-table>
+
+    <div class="block">
+    
+    <el-pagination
+      layout="prev, pager, next, total"
+      :page-size="pagesize"
+      @current-change="current_change"
+      :total=this.searchData.length>
+    </el-pagination>
+    </div>
+
   </div>
 </template>
 
@@ -112,7 +123,9 @@
           })
           
         },
-
+        current_change:function(currentPage){
+           this.currentPage = currentPage;
+        },
         deleteLine(id,index){
           this.$confirm('确认删除？',
                         '提示',
@@ -153,6 +166,8 @@
       },
       data() {
         return {
+          pagesize:5,
+          currentPage:1,
           title:'活动安排',
           input: '',
           search: '',

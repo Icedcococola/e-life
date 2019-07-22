@@ -34,7 +34,7 @@ export default {
     toHome(formName){
        this.$refs[formName].validate((valid)=>{
          if(valid){
-            this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/parcellogin',
+           /* this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/parcellogin',
             {
               user:this[formName].username,
               pass:this[formName].password
@@ -44,9 +44,9 @@ export default {
                 console.log(response);
                 var a = response.data.match;
                 console.log(a);
-                if(a===1){
+                if(a===1){*/
                   this.$store.commit('SET_TOKEN',1)
-                }
+               /* }
                 
 
             }else{
@@ -55,7 +55,7 @@ export default {
                 type: 'warning'
                })
             }
-            })
+            })*/
             this.$router.push({
                 name:'parcelHome'
                 });

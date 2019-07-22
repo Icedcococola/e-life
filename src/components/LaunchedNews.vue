@@ -19,7 +19,7 @@ import moment from 'moment'
     </el-row>
     
     <el-table
-      :data="searchData"
+      :data="searchData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
       style="width: 100%"
       :default-sort="{prop:'no',order:'ascending'}">
       
@@ -59,6 +59,16 @@ import moment from 'moment'
           </template>
       </el-table-column>
     </el-table>
+    
+    <div class="block">
+    
+    <el-pagination
+      layout="prev, pager, next, total"
+      :page-size="pagesize"
+      @current-change="current_change"
+      :total=this.searchData.length>
+    </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -106,6 +116,9 @@ import moment from 'moment'
 
         },
         
+        current_change:function(currentPage){
+           this.currentPage = currentPage;
+        },
         deleteLine(id,index){
           this.$confirm('确认删除？',
                         '提示',
@@ -150,6 +163,8 @@ import moment from 'moment'
       },
       data() {
         return {
+          pagesize:5,
+          currentPage:1,
           title:'最新资讯',
           input: '',
           search:'',

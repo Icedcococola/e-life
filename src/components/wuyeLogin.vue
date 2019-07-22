@@ -9,10 +9,10 @@
       
 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
   <el-form-item label="用户名" prop="username" style="margin-bottom:7%">
-    <el-input v-model="ruleForm.username"></el-input>
+    <el-input v-model="ruleForm.username" @keyup.enter.native="toHome('ruleForm')"></el-input>
   </el-form-item>
   <el-form-item label="密码" prop="password">
-    <el-input v-model="ruleForm.password" type="password"></el-input>
+    <el-input v-model="ruleForm.password" type="password" @keyup.enter.native="toHome('ruleForm')"></el-input>
   </el-form-item>
 </el-form>
      
@@ -31,6 +31,7 @@
 export default {
   mounted:function(){
     this.showtoken();
+    
   },
   methods:{
     toHome(formName){
@@ -43,6 +44,7 @@ export default {
                 type:"wuye"
               }
             }).then((response)=>{
+              
             if(response.status === 200){
                 console.log(response);
                 var a = response.data.num;
@@ -62,15 +64,24 @@ export default {
                 });
                }
                 
-                
-                
-            }else{
-              this.$confirm('用户名或密码不正确', '提示', {
-                confirmButtonText: '确定',
-                type: 'warning'
-                })
             }
+            
+
             })
+            .catch(error => {
+              console.log(error.response.status)
+              if(error.response.status === 404){
+                this.$router.push({
+                  name:'fof'
+              })
+              }else if(error.response.status === 500){
+                this.$router.push({
+                  name:'fot'
+                })
+              }
+              
+            })
+            
 
          }else{
            this.$alert('请完整填写用户名和密码', '提示', {

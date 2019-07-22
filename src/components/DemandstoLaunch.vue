@@ -19,7 +19,7 @@
     </el-row>
     
     <el-table
-      :data="searchData"
+      :data="searchData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
       style="width: 100%"
       :default-sort="{prop:'no',order:'ascending'}">
       
@@ -76,6 +76,16 @@
           </template>
       </el-table-column>
     </el-table>
+    
+    <div class="block">
+    
+    <el-pagination
+      layout="prev, pager, next, total"
+      :page-size="pagesize"
+      @current-change="current_change"
+      :total=this.searchData.length>
+    </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -121,6 +131,9 @@
           
         },
 
+        current_change:function(currentPage){
+           this.currentPage = currentPage;
+        },
         deleteLine(id,index){
           this.$confirm('确认删除？',
                         '提示',
@@ -154,6 +167,8 @@
       },
       data() {
         return {
+          currentPage:1,
+          pagesize:5,
           title:'商品需求管理',
           input: '',
           search: '',
