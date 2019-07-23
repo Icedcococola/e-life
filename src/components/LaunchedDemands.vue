@@ -59,7 +59,7 @@
       <el-table-column
         prop="remainingnum"
         label="剩余数量"
-        width="100"
+        width="80"
         align="center">
       </el-table-column>
       <el-table-column

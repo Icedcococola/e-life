@@ -11,13 +11,16 @@ import router from './router/index'
 import store from './store/index'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import AMap from 'vue-amap'
 import 'babel-polyfill'
 import 'lib-flexible'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 Vue.use(VueAxios,axios)
+Vue.use(AMap)
 Vue.component(CollapseTransition.name, CollapseTransition)
+
 
 /* eslint-disable no-new */
 new Vue({
@@ -27,5 +30,13 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+
+AMap.initAMapApiLoader({
+  // 高德的key
+  key: '7b30a3e68d7d4f8445748a7f78e89eb6',
+  // 插件集合 （插件按需引入）
+  plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
+});
 
 

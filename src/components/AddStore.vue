@@ -21,38 +21,30 @@
         </el-col>
        </el-form-item>
 
-      <el-form-item label="价格" prop="price" style="margin-bottom:4%">
-        <el-col style="width:28%">
-            <el-input type="price" v-model.number="ruleForm.price" placeholder="请输入单价"></el-input>
-        </el-col>
+      <el-form-item label="商户类型" prop="price" style="margin-bottom:4%">
+        <el-row type="flex" justify="start">
+        <el-select v-model="ruleForm.region" placeholder="请选择商户类型">
+        <el-option label="周边餐饮" value="shanghai"></el-option>
+        <el-option label="超市购物" value="beijing"></el-option>
+        <el-option label="休闲娱乐" value="beijing"></el-option>
+        <el-option label="生活服务" value="beijing"></el-option>
+        </el-select>
+        </el-row>
       </el-form-item>
 
-     <el-form-item label="数量" prop="num" style="margin-bottom:4%">
-        <el-col style="width:35%">
-            <el-row type="flex" justify="start">
-            <el-input-number type="num" v-model="ruleForm.num" :min="1" :max="10000" label="请选择数量" ></el-input-number>
-            </el-row>
-        </el-col>
+     <el-form-item label="商户位置" prop="location" style="margin-bottom:4%">
+         <el-col :span="12">
+        <el-input readonly placeholder="点击右侧图标选择商户地图位置"></el-input>
+         </el-col>
       </el-form-item>
 
-    <el-form-item label="商品详情" prop="detail" style="margin-bottom:4%;">
-      <el-input type="textarea" :autosize="{ minRows: 12, maxRows: 18}" placeholder="请输入商品详情,不超过100个字" v-model="ruleForm.detail" ></el-input>
+    <el-form-item label="详细地址" prop="detail" style="margin-bottom:4%;">
+      <el-input v-model="ruleForm.detail"></el-input>
     </el-form-item>
     
-    <el-form-item label="截止时间" prop="date" style="margin-bottom:4%;">
-  
-        <el-col :span="6" style="width:30%">
-          <el-date-picker
-            v-model="ruleForm.date"
-            type="datetime"
-            placeholder="选择时间">
-          </el-date-picker>
-        </el-col>
-
-    </el-form-item >
     
     <el-row type="flex" style="start">
-    <el-form-item label="商品图片" prop="picture">
+    <el-form-item label="商户图片" prop="picture">
        <el-upload
        class="avatar-uploader"
         action="/img"
@@ -283,14 +275,17 @@ export default {
       detailmaxlength:10,
       num1:'1',
       imageUrl: 'https://i.loli.net/2019/07/19/5d312e20c0c6d52233.jpg',
-      title:'编辑待发布需求',
+      title:'添加新商户',
       fileList: [],
       ruleForm:{
         price:'',
-        num:'',
+        location:'',
+        region:'',
         detail:'',
         date:'',
-        picture:''
+        picture:'',
+        longitude:'',
+        latitude:''
         
       },
       
@@ -299,22 +294,13 @@ export default {
           {required:true, message:'商家名称不可为空', trigger:'blur'}
         ],
         detail:[
-          {required:true, message:'商品详情不可为空',trigger:'blur'},
-          { min: 1, max: 100, message: '长度不超过100个字', trigger: 'blur' }
+          {required:true, message:'商户地址不可为空',trigger:'blur'}
+          
         ],
-        date:[
-          {type: 'date', required:true, message:'截止时间不可为空', trigger:'change'}
-        ],
+        
         price:[
-          {required:true,message:'单价不可为空',trigger:'change'},
-          {validator: checkAge, trigger: 'blur'},
-          {type:'number',message:'请填写正整数',trigger:'blur'}
+          {required:true,message:'商户类型不可为空',trigger:'change'}
         ],
-        num:[
-          {required:true,message:'数量不可为空',trigger:'blur'},
-          {validator: checkInt, trigger: 'blur'}
-          //{type:'number',message:'请填写正整数',trigger:'blur'}
-        ]
       }
     }
   }

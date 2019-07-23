@@ -32,7 +32,7 @@
 
     <el-container>
 
-    <el-aside style="width:25%">
+    <el-aside style="width:20%">
         <el-menu
       default-active="1"
       class="el-menu-vertical-demo"
@@ -78,6 +78,18 @@
       </el-menu-item-group>
       </el-submenu>
       
+      <el-submenu index="4">
+        <template slot="title">
+          <i class="el-icon-edit-outline"></i>
+          <span>商户管理</span>
+        </template>
+      <el-menu-item-group style="background:#ffffff;">
+        <template slot="title"></template>
+        <el-menu-item index="/StoreList">查看商户列表</el-menu-item>
+        <el-menu-item index="/AddStore" >添加新商户</el-menu-item>
+      </el-menu-item-group>
+      </el-submenu>
+
     </el-menu>
     </el-aside>
     <el-aside style="width:10px;">
