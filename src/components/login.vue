@@ -6,8 +6,8 @@
       
      <el-card :body-style="{ padding: '0px' }" >
       <img src="@/assets/wy.jpg" class="image" @click="wuye">
-      <div class="x" style="padding: 14px;">
-        <span>我是物业管理员</span>
+      <div class="x" style="padding: 25px;font-size:120%">
+        我是物业管理员
         <div class="bottom clearfix">
         </div>
       </div>
@@ -18,8 +18,8 @@
     <el-col :span="6">
      <el-card :body-style="{ padding: '0px' }" >
       <img src="@/assets/yb.jpg" class="image" @click="parcel">
-      <div class="y" style="padding: 14px;">
-        <span>我是邮包管理员</span>
+      <div class="y" style="padding: 25px;font-size:18px">
+        我是邮包管理员
         <div class="bottom clearfix">
         </div>
       </div>

@@ -4,7 +4,7 @@ import moment from 'moment'
   <div id="l-ac">
     <el-row type="flex" class="row-bg" justify="end">
       <el-col :span="14">
-        <div class="new" style="font-size:190%; height:50px; color:#858585;text-align:left;"><i class="el-icon-document"></i>{{title}}</div>
+        <div class="new" style="font-size:250%; height:50px; color:#858585;text-align:left;"><i class="el-icon-document"></i>{{title}}</div>
       </el-col>
       <el-col :span='8'>
         <el-input v-model="search" class="search" icon="search" placeholder="请输入搜索内容"></el-input>

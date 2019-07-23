@@ -3,7 +3,7 @@
 
     <el-row type="flex" class="row-bg" justify="end">
       <el-col :span="14">
-        <div class="tit" style="font-size:190%; height:50px; color:#858585;text-align:left;"><i class="el-icon-document"></i>{{title}}</div>
+        <div class="tit" style="font-size:250%; height:50px; color:#858585;text-align:left;"><i class="el-icon-document"></i>{{title}}</div>
       </el-col>
       <el-col :span='8'>
           <el-input v-model="search" class="search" icon="search" placeholder="请输入要搜索的标题关键字"></el-input>
@@ -33,7 +33,7 @@
       <el-table-column
         prop="activityid"
         label="活动编号"
-        width="80"
+        width="90"
         align="center">
       </el-table-column>
       <el-table-column
@@ -68,7 +68,7 @@
         fixed="right">
         <template slot-scope="scope">
             <el-button type="primary" @click="topage(scope.row.activityid)" icon="el-icon-search" circle></el-button>
-            <el-button type="danger" @click="deleteLine(scope.row.activityid,scope.$index)" icon="el-icon-delete" circle></el-button>
+            <el-button type="danger" @click="deleteLine(scope.row.activityid,scope.$index)" icon="el-icon-delete" circle :loading="clicked"></el-button>
           </template>
       </el-table-column>
     </el-table>
@@ -82,7 +82,6 @@
       :total=this.searchData.length>
     </el-pagination>
     </div>
-
   </div>
 </template>
 
@@ -96,7 +95,7 @@
 
         searchData:function(){
           var search = this.search;
-          if(search)   {
+          if(search){
             return this.tableData.filter(function(dt){
               return Object.keys(dt).some(function(key){
                 return String(dt[key]).toLowerCase().indexOf(search) > -1
@@ -123,6 +122,8 @@
           })
           
         },
+
+        
         current_change:function(currentPage){
            this.currentPage = currentPage;
         },
@@ -131,6 +132,7 @@
                         '提示',
                         {confirmButtonText:'确定',cancelButtonText:'取消'}
           ).then(()=>{
+            this.clicked = true
             var fd = new FormData()
             fd.append("activityid",id)
             this.axios.post('/api/Activity/delete',fd,{
@@ -142,6 +144,21 @@
               if(response.status === 200){
                 this.searchData.splice(index,1);
                 this.$message({type:'success',message:'删除成功!'});
+                this.clicked = false 
+              }
+            })
+            .catch(error => {
+              this.clicked = false
+              console.log(error.response.status)
+              if(error.response.status === 404){
+                this.$router.push({
+                  name:'fof'
+                })
+              }
+              if(error.response.status === 500){
+                this.$router.push({
+                  name:'fot'
+                })
               }
             })
 
@@ -166,6 +183,7 @@
       },
       data() {
         return {
+          clicked:false,
           pagesize:5,
           currentPage:1,
           title:'活动安排',

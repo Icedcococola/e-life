@@ -3,7 +3,7 @@
 
   <el-row >
       <el-col >
-        <div class="t" style="font-size:160%; height:50px; color:#858585;text-align: right"><i class="el-icon-edit"></i>{{title}}</div>
+        <div class="t" style="font-size:230%; height:50px; color:#858585;text-align: right"><i class="el-icon-edit"></i>{{title}}</div>
       </el-col>
   </el-row>
 
@@ -23,7 +23,7 @@
     </el-col>
   </el-row>
   
-  <el-button type="primary" @click="commit('ruleForm')">提交活动安排</el-button>
+  <el-button type="primary" @click="commit('ruleForm')" :loading="clicked">提交最新资讯</el-button>
 
 
   </div>
@@ -41,7 +41,8 @@ export default {
                           '提示',
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
-              this.axios.get('/api/Latestnews/add',{
+              this.clicked=true
+              this.axios.get('/api/Latestnews/ad',{
                   params:{
                     title:this[formName].title,
                     detail:this[formName].detail,
@@ -50,8 +51,8 @@ export default {
               }).then((response)=>{
                 if(response.status === 200){
                   console.log(response);
-                  var a = response.data.result;
-                  console.log(a);
+                  //var a = response.data.result;
+                  //console.log(a);
                   //if(a ===null){
                     this.$message({type:'success',message:'提交成功！'});
                     this.$router.push({name:"查看最新资讯"});
@@ -61,6 +62,7 @@ export default {
                 }
               })
               .catch(error => {
+                this.clicked = false
                 console.log(error.response.status)
                 if(error.response.status === 404){
                   this.$router.push({
@@ -88,7 +90,7 @@ export default {
   },
   data() {
     return {
-
+      clicked:false,
       title:'编辑最新资讯',
       dialogImageUrl:'',
       dialogVisible:false,

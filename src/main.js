@@ -12,6 +12,7 @@ import store from './store/index'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import 'babel-polyfill'
+import 'lib-flexible'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);

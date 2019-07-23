@@ -32,12 +32,12 @@
 
     <el-container>
 
-    <el-aside>
+    <el-aside style="width:25%">
         <el-menu
       default-active="1"
       class="el-menu-vertical-demo"
       router
-      style="background:#ffffff;">
+      style="background:#ffffff;width:99%">
       <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-news"></i>

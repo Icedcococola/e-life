@@ -3,7 +3,7 @@
 
   <el-row >
       <el-col >
-        <div class="t" style="font-size:160%; height:50px; color:#858585;text-align: right"><i class="el-icon-edit"></i>{{title}}</div>
+        <div class="t" style="font-size:230%; height:50px; color:#858585;text-align: right"><i class="el-icon-edit"></i>{{title}}</div>
       </el-col>
   </el-row>
 
@@ -23,14 +23,14 @@
     
     <el-form-item label="时间" prop="date" style="margin-bottom:5%;">
   
-        <el-col :span="6" style="width:30%">
+        <el-row type="flex" justify="start">
           <el-date-picker
             v-model="ruleForm.date"
             type="datetime"
             placeholder="选择时间"
             >
           </el-date-picker>
-        </el-col>
+        </el-row>
 
     </el-form-item >
     
@@ -43,7 +43,7 @@
     </el-col>
   </el-row>
   
-  <el-button type="primary" @click="commit('ruleForm')">提交活动安排</el-button>
+  <el-button type="primary" @click="commit('ruleForm')" :loading="clicked">提交活动安排</el-button>
 
   </div>
 </template>
@@ -61,7 +61,7 @@ export default {
                           '提示',
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
-              
+              this.clicked= true
               this.axios.get('/api/Activity/add',
               {
                 params:{
@@ -82,6 +82,7 @@ export default {
                 }
               })
               .catch(error => {
+                this.clicked=false
                 console.log(error.response.status)
                 if(error.response.status === 404){
                   this.$router.push({
@@ -122,7 +123,7 @@ export default {
   },
   data() {
     return {
-
+      clicked:false,
       title:'编辑活动安排',
       fileList: [],
       ruleForm:{

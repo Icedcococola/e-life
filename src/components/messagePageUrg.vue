@@ -15,7 +15,7 @@
     </el-row>
 
     <el-row type="flex" justify="center">
-      <el-col style="font-size:90%;color:#858585fa;text-align:center;margin-bottom:50px;">
+      <el-col style="font-size:90%;color:#858585fa;text-align:center;margin-bottom:10px;">
         {{this.tableData.time}}
       </el-col>
     </el-row>
@@ -23,8 +23,8 @@
     <el-row type="flex" justify="center">
 
       <el-col :span="14">
-        <div style="font-size:100%; height:50px; color:#858585fa;text-align:center;">
-            <div>
+        <div style="font-size:100%; height:50px; color:#858585fa;text-align:left;">
+            <div class="text-wrapper">
                {{this.tableData.detail}}
             </div>
         </div>
@@ -52,3 +52,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  .text-wrapper{
+    white-space: pre-line;
+  }
+</style>

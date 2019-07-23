@@ -3,7 +3,7 @@
   
   <el-row >
       <el-col >
-        <div class="t" style="font-size:160%; height:50px; color:#858585;text-align: right"><i class="el-icon-edit"></i>{{title}}</div>
+        <div class="t" style="font-size:230%; height:50px; color:#858585;text-align: right"><i class="el-icon-edit"></i>{{title}}</div>
       </el-col>
   </el-row>
 
@@ -26,7 +26,7 @@
   </el-row>
 
   
-  <el-button type="primary" @click="commit('ruleForm')">提交物业通知</el-button>
+  <el-button type="primary" @click="commit('ruleForm')" :loading="clicked">提交物业通知</el-button>
 
   </div>
 </template>
@@ -43,6 +43,7 @@ export default {
                           '提示',
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
+              this.clicked = true
               this.axios.get('/api/Propertynotice/add',{
                 params:{
                   title:this[formName].title,
@@ -87,7 +88,7 @@ export default {
   },
   data() {
     return {
-
+      clicked:false,
       title:'编辑物业通知',
       ruleForm:{
         title:'',

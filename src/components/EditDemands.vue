@@ -3,7 +3,7 @@
 
   <el-row >
       <el-col >
-        <div class="t" style="font-size:160%; height:50px; color:#858585;text-align: right"><i class="el-icon-edit"></i>{{title}}</div>
+        <div class="t" style="font-size:230%; height:50px; color:#858585;text-align: right"><i class="el-icon-edit"></i>{{title}}</div>
       </el-col>
   </el-row>
 
@@ -76,7 +76,7 @@
     </el-col>
   </el-row>
   
-  <el-button type="primary" @click="commit('ruleForm')">发布商品</el-button>
+  <el-button type="primary" @click="commit('ruleForm')" :loading="clicked">发布商品</el-button>
 
   </div>
 </template>
@@ -97,6 +97,7 @@ export default {
                           '提示',
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
+              this.clicked=true
               this.axios.get('/api/Goods/up',
               {
                 params:{
@@ -125,6 +126,7 @@ export default {
                 }
               })
               .catch(error => {
+                this.clicked = false
                 console.log(error.response.status)
                 if(error.response.status === 404){
                   this.$router.push({
@@ -271,6 +273,7 @@ export default {
           
         };
     return {
+      clicked:false,
       emm:window.sessionStorage.getItem('desiredid'),
       detailmaxlength:10,
       num1:'1',
