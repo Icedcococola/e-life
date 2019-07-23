@@ -48,7 +48,6 @@ class FriendViewController: UIViewController, tablViewDelegate {
     func didTapDelete(id: String) {
         let intID = Int(id)
         let user2 = friendList[intID!]["user2"].stringValue
-        print ("fadsfasfds")
         AF.request(deleteURL, method: .post, parameters: ["user1": self.appDelegate.username, "user2": user2]).responseJSON { (response) in
             if (response.response?.statusCode != 200) {
                 SVProgressHUD.showError(withStatus: "删除失败")
@@ -73,7 +72,6 @@ class FriendViewController: UIViewController, tablViewDelegate {
 
 extension FriendViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print (friendList.count)
         return friendList.count
     }
     

@@ -89,8 +89,17 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         community.text = appDelegate.community
     }
     @IBAction func logOut(_ sender: Any) {
-        resetAllRecords(in: "User")
-        performSegue(withIdentifier: "gotoLogin", sender: nil)
+        let alert = UIAlertController(title: "确定登出?", message: nil, preferredStyle: .actionSheet)
+        let action = UIAlertAction(title: "登出", style: .destructive) { (action) in
+            self.resetAllRecords(in: "User")
+            self.appDelegate.socket.disconnect()
+            self.performSegue(withIdentifier: "gotoLogin", sender: nil)
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        
+        alert.addAction(action)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func resetAllRecords(in entity : String) // entity = Your_Entity_Name

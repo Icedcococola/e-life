@@ -22,6 +22,7 @@ class EmergencyNoticeTableViewController: UIViewController, UITableViewDataSourc
 
     @IBOutlet var tableView: UITableView!
     
+    
     var notiArray : [JSON] = [
         ["title": "I am the title", "detail": "I am the detail"],
         ["title": "I am the title", "detail": "I am the detail"],
@@ -31,8 +32,25 @@ class EmergencyNoticeTableViewController: UIViewController, UITableViewDataSourc
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    private let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        // Configure Refresh Control
+        refreshControl.addTarget(self, action: #selector(refreshWeatherData(_:)), for: .valueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Emergency News ...", attributes: nil)
+        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        
+        fetchData()
+    }
+    
+    @objc private func refreshWeatherData(_ sender: Any) {
+        // Fetch Weather Data
         fetchData()
     }
     
@@ -79,11 +97,8 @@ class EmergencyNoticeTableViewController: UIViewController, UITableViewDataSourc
                 let notifications = JSON(json).arrayValue
                 self.notiArray = notifications
                 self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
             }
         }
     }
-}
-
-extension EmergencyNoticeTableViewController {
-    
 }

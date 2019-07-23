@@ -34,15 +34,30 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    private let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
         popupView.layer.cornerRadius = 15
         closeButton.layer.cornerRadius = 10
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        // Configure Refresh Control
+        refreshControl.addTarget(self, action: #selector(refreshWeatherData(_:)), for: .valueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching 活动安排 ...", attributes: nil)
+        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         // Do any additional setup after loading the view.
     }
-    override func viewWillAppear(_ animated: Bool) {
+    
+    @objc private func refreshWeatherData(_ sender: Any) {
+        // Fetch Weather Data
+        fetchData()
     }
+ 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return activitiesArray.count
@@ -101,6 +116,7 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
                 let activities = JSON(json).arrayValue
                 self.activitiesArray = activities
                 self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
             }
         }
     }

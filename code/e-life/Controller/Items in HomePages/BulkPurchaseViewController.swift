@@ -46,17 +46,38 @@ class BulkPurchaseViewController: UIViewController, tablViewCellDelegate {
     let URL2 = "http://elifedemo.vipgz1.idcfengye.com/Desireduser/help"
     var customProductArray : [JSON] = []
     var supplierProductArray : [JSON] = []
-    var haveNewProduct : Bool = false
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    private let refreshControl1 = UIRefreshControl()
+    private let refreshControl2 = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         responsiveDesign()
-        checkForNewProduct()
         // Do any additional setup after loading the view.
+        
+        if #available(iOS 10.0, *) {
+            tableView1.refreshControl = refreshControl1
+            tableView2.refreshControl = refreshControl2
+        } else {
+            tableView1.addSubview(refreshControl1)
+            tableView2.addSubview(refreshControl2)
+        }
+        // Configure Refresh Control
+        refreshControl1.addTarget(self, action: #selector(refreshWeatherData1(_:)), for: .valueChanged)
+        refreshControl1.attributedTitle = NSAttributedString(string: "Fetching 需求帖子 ...", attributes: nil)
+        refreshControl1.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        refreshControl2.addTarget(self, action: #selector(refreshWeatherData2(_:)), for: .valueChanged)
+        refreshControl2.attributedTitle = NSAttributedString(string: "Fetching 优惠商品 ...", attributes: nil)
+        refreshControl2.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
     }
-    override func viewWillAppear(_ animated: Bool) {
-        fetchData()
+    @objc private func refreshWeatherData1(_ sender: Any) {
+        // Fetch Weather Data
+        fetchData1()
+    }
+    @objc private func refreshWeatherData2(_ sender: Any) {
+        // Fetch Weather Data
+        fetchData2()
     }
     
     func responsiveDesign() {
@@ -65,12 +86,6 @@ class BulkPurchaseViewController: UIViewController, tablViewCellDelegate {
             titleLabel.font = titleLabel.font.withSize(15)
         } else if (screenHeight < 669) {
             titleLabel.font = titleLabel.font.withSize(17)
-        }
-    }
-    
-    func checkForNewProduct () {
-        if (haveNewProduct) {
-            print ("New Product Comming")
         }
     }
     
@@ -89,32 +104,40 @@ class BulkPurchaseViewController: UIViewController, tablViewCellDelegate {
     
     func fetchData(){
         SVProgressHUD.show(withStatus: "加载中")
+        fetchData1()
+        fetchData2()
+    }
+    
+    func fetchData1(){
         AF.request(URL, method: .post, parameters: ["username": self.appDelegate.username, "community": self.appDelegate.community]).responseJSON { (response) in
             if (response.response?.statusCode != 200) {
                 SVProgressHUD.dismiss()
-                self.appDelegate.showAlert(viewscontroler: self, message: "加载失败！请注意您的网络")
+                self.appDelegate.showAlert(viewcontroller: self, message: "加载失败！请注意您的网络")
             } else {
                 if let json = response.value{
                     SVProgressHUD.dismiss()
                     let desiredArray = JSON(json).arrayValue
-                    print (desiredArray)
                     self.customProductArray = desiredArray
                     self.tableView1.reloadData()
+                    self.refreshControl1.endRefreshing()
                 }
             }
         }
-        
+    }
+    
+    func fetchData2(){
         AF.request(URL1, method: .post, parameters: ["community": self.appDelegate.community]).responseJSON { (response) in
             print (self.appDelegate.community)
             if (response.response?.statusCode != 200) {
                 SVProgressHUD.dismiss()
-                self.appDelegate.showAlert(viewscontroler: self, message: "加载失败！请注意您的网络")
+                self.appDelegate.showAlert(viewcontroller: self, message: "加载失败！请注意您的网络")
             } else {
                 if let json = response.value {
                     SVProgressHUD.dismiss()
                     let productArray = JSON(json).arrayValue
                     self.supplierProductArray = productArray
                     self.tableView2.reloadData()
+                    self.refreshControl2.endRefreshing()
                 }
             }
         }

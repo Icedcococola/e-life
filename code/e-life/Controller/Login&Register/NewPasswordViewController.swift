@@ -24,6 +24,7 @@ class NewPasswordViewController: UIViewController {
     
     var phonenum : String = ""
     let URL = "http://elifedemo.vipgz1.idcfengye.com/User/modifypassword"
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +66,6 @@ class NewPasswordViewController: UIViewController {
     // bus animation
     func busAnimation(){
         let animationView = AnimationView(name: "bus")
-        print(self.view.frame.size.height)
         if (self.view.frame.size.height < 600) {
             animationView.frame = CGRect(x: 0, y: self.view.frame.size.height-150, width: self.view.frame.size.width, height: 150)
         } else if (self.view.frame.size.height < 668) {
@@ -114,14 +114,9 @@ class NewPasswordViewController: UIViewController {
 
     @IBAction func confirm(_ sender: Any) {
         if (newPassword.text! != confirmPassword.text! || newPassword.text!.isEmpty) {
-            let alert = UIAlertController(title: "注意⚠️", message: "密码不匹配", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
-                print("Cancelled")
-            }))
-            self.present(alert, animated: true, completion: nil)
+            appDelegate.showAlert(viewcontroller: self, message: "密码不匹配")
         } else {
             // Mark: - Request server to change password for the user with phonenum
-            print ("Changing Password")
             SVProgressHUD.setDefaultMaskType(.black)
             SVProgressHUD.show(withStatus: "正在修改密码")
             AF.request(URL, method: .post, parameters: ["phonenum": phonenum, "password": newPassword.text!]).responseJSON { (response) in
@@ -135,13 +130,5 @@ class NewPasswordViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    func showAlert (message : String) {
-        let alert = UIAlertController(title: "注意⚠️", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
-            print("Cancelled")
-        }))
-        self.present(alert, animated: true, completion: nil)
     }
 }

@@ -147,11 +147,7 @@ class LoginViewController: UIViewController {
         let userName : String = username.text!
         let passWord : String = password.text!
         if (userName.isEmpty || passWord.isEmpty){
-            let alert = UIAlertController(title: "注意⚠️", message: "用户名或密码不能为空", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
-
-            }))
-            self.present(alert, animated: true, completion: nil)
+            appDelegate.showAlert(viewcontroller: self, message: "用户名或密码不能为空")
         } else {
             // Mark: - Request for user information and store in core data
             SVProgressHUD.show(withStatus: "正在登录中")
@@ -159,20 +155,22 @@ class LoginViewController: UIViewController {
             AF.request(URL, method: .post, parameters: parameter).responseJSON { (response) in
                 if (response.response?.statusCode != 200) {
                     SVProgressHUD.dismiss()
-                    self.appDelegate.showAlert(viewscontroler: self, message: "Error! Please try again!")
+                    self.appDelegate.showAlert(viewcontroller: self, message: "Error! Please try again!")
                 } else {
                     SVProgressHUD.dismiss()
                     let status : Int = JSON(response.value!)["num"].intValue
-                    print (status)
                     if (status == 0) {
-                        self.appDelegate.showAlert(viewscontroler: self, message: "用户不存在")
+                        self.appDelegate.showAlert(viewcontroller: self, message: "用户不存在")
                     } else if (status == 1) {
-                        self.appDelegate.showAlert(viewscontroler: self, message: "密码错误")
+                        self.appDelegate.showAlert(viewcontroller: self, message: "密码错误")
                     } else {
                         let community = JSON(response.value!)["community"].stringValue
                         self.saveData(username: userName, community: community)
                         self.appDelegate.username = userName
                         self.appDelegate.community = community
+                        let mainStoryboard:UIStoryboard = UIStoryboard(name: "MainPages", bundle: nil)
+                        let mainPage = mainStoryboard.instantiateViewController(withIdentifier: "mainPage") as! UITabBarController
+                        self.appDelegate.window?.rootViewController = mainPage
                         self.performSegue(withIdentifier: "gotoMain", sender: self)
                     }
                 }

@@ -12,22 +12,20 @@ import CoreData
 import UserNotifications
 import SocketIO
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     public var username = ""
     public var community = ""
+    public var friendRequestNum = 0
     
-    let manager = SocketManager(socketURL: URL(string: "http://cd228d4d.ngrok.io")!, config: [.log(false), .compress])
+    let manager = SocketManager(socketURL: URL(string: "http://elife.free.idcfengye.com/")!, config: [.log(false), .compress])
     public var socket:SocketIOClient!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
-            print ("granted \(granted)")
-        }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {_,_ in})
         
         UNUserNotificationCenter.current().delegate = self
         
@@ -41,11 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
-    
     func addSocketListener () {
         socket.on("recieve friend request") { (data, _) in
             let message = data[0] as! [String: String]
-            print (message["name"]!)
             if (message["name"]! == self.username) {
                 
                 let content = UNMutableNotificationContent()
@@ -57,12 +53,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 let request = UNNotificationRequest(identifier: "recieve", content: content, trigger: trigger)
                 
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                
+                self.friendRequestNum += 1
+                
+                if let rootViewController = self.window?.rootViewController as! UITabBarController?{
+                    if let tabItems = rootViewController.tabBar.items {
+                        let tabItem = tabItems[2]
+                        tabItem.badgeValue = String(self.friendRequestNum)
+                    }
+                }
+                
             }
         }
         
         socket.on("accept friend request") { (data, _) in
             let message = data[0] as! [String: String]
-            print(message)
             if (message["name"]! == self.username) {
                 
                 let content = UNMutableNotificationContent()
@@ -79,8 +84,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         socket.on("reject friend request") { (data, _) in
             let message = data[0] as! [String: String]
-            print (message["name"]!)
-            print (message["username"]!)
             if (message["name"]! == self.username) {
                 
                 let content = UNMutableNotificationContent()
@@ -98,7 +101,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print ("Noti")
         if (response.notification.request.identifier == "recieve") {
             retrieveData()
             if (username != "") {
@@ -113,30 +115,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 rootViewController.selectedViewController = mePage
                 
-            } else {
-                print ("Please Login First")
+                self.friendRequestNum = 0
+                
+                if let rootViewController = self.window?.rootViewController as! UITabBarController?{
+                    if let tabItems = rootViewController.tabBar.items {
+                        let tabItem = tabItems[2]
+                        tabItem.badgeValue = String(self.friendRequestNum)
+                    }
+                }
+                    
             }
         } else if (response.notification.request.identifier == "accept") {
-            print ("Accept Noti")
             retrieveData()
             if (username != "") {
                 let rootViewController = self.window!.rootViewController as! UITabBarController
                 let mePage = rootViewController.viewControllers![2] as! UINavigationController
                 
-                //let friendRequestPage = UIStoryboard(name: "Me", bundle: nil).instantiateViewController(withIdentifier: "friendRequestPage")
                 let friendViewPage = UIStoryboard(name: "Me", bundle: nil).instantiateViewController(withIdentifier: "5")
                 
                 mePage.pushViewController(friendViewPage, animated: true)
-                //mePage.pushViewController(friendRequestPage, animated: true)
                 
                 rootViewController.selectedViewController = mePage
                 
-            } else {
-                print ("Please Login First")
             }
-        } else if (response.notification.request.identifier == "reject") {
-            print ("reject")
-        }
+        } 
         completionHandler()
     }
     
@@ -155,17 +157,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     
-    public func showAlert (viewscontroler : UIViewController, message : String) {
+    public func showAlert (viewcontroller : UIViewController, message : String) {
         let alert = UIAlertController(title: "注意⚠️", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
-            print("Cancelled")
-        }))
-        viewscontroler.present(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+        viewcontroller.present(alert, animated: true, completion: nil)
     }
     
     func resetAllRecords(in entity : String) // entity = Your_Entity_Name
     {
-        
         let context = ( UIApplication.shared.delegate as! AppDelegate ).persistentContainer.viewContext
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
@@ -181,26 +180,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-         */
+    
         let container = NSPersistentContainer(name: "Model")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
@@ -215,8 +198,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             do {
                 try context.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }

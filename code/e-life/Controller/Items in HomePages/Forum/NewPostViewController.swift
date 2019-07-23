@@ -63,7 +63,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UITextFieldDe
     func post() {
         AF.request(URL, method: .post, parameters: ["article": postText.text!, "title": titleTextBox.text!, "poster": self.username, "community": self.community]).responseJSON { (response) in
             if (response.response?.statusCode != 200) {
-                self.appDelegate.showAlert(viewscontroler: self, message: "发布失败！Please Try Again!")
+                self.appDelegate.showAlert(viewcontroller: self, message: "发布失败！Please Try Again!")
             } else {
                 self.navigationController?.popViewController(animated: true)
             }

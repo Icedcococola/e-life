@@ -44,7 +44,6 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         cell.icon1.image = functionItems[indexPath.row]
         cell.icon1.sizeToFit()
-        print ("a")
         return cell
     }
     
@@ -54,7 +53,6 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
                 AF.request(callURL, method: .get, parameters: ["community": self.appDelegate.community, "type": "0"]).responseJSON { (response) in
                     if let json = response.value {
                         let phonenum = JSON(json)["phonenum"].stringValue
-                        print (phonenum)
                         self.callNumber(phoneNumber: phonenum)
                     }
                 }
@@ -62,7 +60,6 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
                 AF.request(callURL, method: .get, parameters: ["community": self.appDelegate.community, "type": "1"]).responseJSON { (response) in
                     if let json = response.value {
                         let phonenum = JSON(json)["phonenum"].stringValue
-                        print (phonenum)
                         self.callNumber(phoneNumber: phonenum)
                     }
             }
@@ -70,7 +67,6 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
                 AF.request(callURL, method: .get, parameters: ["community": self.appDelegate.community, "type": "2"]).responseJSON { (response) in
                     if let json = response.value {
                         let phonenum = JSON(json)["phonenum"].stringValue
-                        print (phonenum)
                         self.callNumber(phoneNumber: phonenum)
                     }
             }
@@ -94,9 +90,6 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
 extension ServicesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenHeight = self.view.frame.height
-        let screenWidth = self.view.frame.width
-        print (screenWidth)
-        print (screenHeight)
         if (screenHeight < 569) {
             return CGSize(width: 48, height: 70)
         } else if (screenHeight < 669) {

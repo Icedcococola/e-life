@@ -18,7 +18,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet var latestNotice: UILabel!
     @IBOutlet var titleLabel: UILabel!
     
-    let URL = "http://elifedemo.vipgz1.idcfengye.com/Propertynotice/findNewest"
+    let dataURL = "http://elifedemo.vipgz1.idcfengye.com/Propertynotice/findNewest"
     
     let functionalitiesImages : [UIImage] = [
         UIImage(named: "EmergencyNotification")!,
@@ -69,9 +69,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func fetchData(){
-        AF.request(URL, method: .post, parameters: ["community": appDelegate.community]).responseJSON { (response) in if let json = response.value {
+        AF.request(dataURL, method: .post, parameters: ["community": appDelegate.community]).responseJSON { (response) in if let json = response.value {
                 let data = JSON(json)
-                print (data)
                 self.latestNotice.text = data["detail"].stringValue
             }
         }

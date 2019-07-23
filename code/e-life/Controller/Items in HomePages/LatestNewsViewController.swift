@@ -23,22 +23,38 @@ class LatestNewsViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    private let refreshControl = UIRefreshControl()
     var community = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         community = appDelegate.community
         fetchData()
         // Do any additional setup after loading the view.
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        // Configure Refresh Control
+        refreshControl.addTarget(self, action: #selector(refreshWeatherData(_:)), for: .valueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching 最新资讯 ...", attributes: nil)
+        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
     }
+    
+    @objc private func refreshWeatherData(_ sender: Any) {
+        // Fetch Weather Data
+        fetchData()
+    }
+    
     
     // Mark: - Fetch data from server
     func fetchData() {
         AF.request(URL, method: .post, parameters: ["community": community]).responseJSON { (response) in
             if let json = response.value{
                 let latestNewsArray = JSON(json).arrayValue
-                print (latestNewsArray)
                 self.newsArray = latestNewsArray
                 self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
             }
         }
         

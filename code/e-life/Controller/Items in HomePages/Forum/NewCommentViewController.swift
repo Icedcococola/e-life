@@ -51,7 +51,7 @@ class NewCommentViewController: UIViewController, UITextViewDelegate {
     @IBAction func comment(_ sender: Any) {
        
         if (commentText.text!.isEmpty) {
-            appDelegate.showAlert(viewscontroler: self, message: "评论不能为空")
+            appDelegate.showAlert(viewcontroller: self, message: "评论不能为空")
         } else {
             let text : String = commentText.text!
             AF.request(URL, method: .post, parameters: ["message": text, "postid": id!, "username": self.username]).responseJSON { (response) in

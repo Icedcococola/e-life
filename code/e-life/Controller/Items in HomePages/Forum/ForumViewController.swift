@@ -67,7 +67,6 @@ class ForumViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubviewToBack(whiteRoundedView)
-        print ("hEllo")
         return cell
     }
     

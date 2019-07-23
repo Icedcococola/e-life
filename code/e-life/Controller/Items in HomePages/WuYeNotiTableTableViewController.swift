@@ -24,13 +24,30 @@ class WuYeNotiTableTableViewController: UIViewController, UITableViewDelegate, U
     let URL = "http://elifedemo.vipgz1.idcfengye.com/Propertynotice/findAll"
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        // Configure Refresh Control
+        refreshControl.addTarget(self, action: #selector(refreshWeatherData(_:)), for: .valueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching 物业通知 ...", attributes: nil)
+        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         fetchData()
     }
+    
+    @objc private func refreshWeatherData(_ sender: Any) {
+        // Fetch Weather Data
+        fetchData()
+    }
+    
 
     // MARK: - Table view data source
 
@@ -58,12 +75,10 @@ class WuYeNotiTableTableViewController: UIViewController, UITableViewDelegate, U
         whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
         whiteRoundedView.layer.masksToBounds = false
         whiteRoundedView.layer.cornerRadius = 2.0
-    cell.contentView.addSubview(whiteRoundedView)
+        cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubviewToBack(whiteRoundedView)
-
         
         return cell
-
     }
     
     // Mark: - Fetch data from server
@@ -73,6 +88,7 @@ class WuYeNotiTableTableViewController: UIViewController, UITableViewDelegate, U
                 let wuyeNoti = JSON(json).arrayValue
                 self.notiArray = wuyeNoti
                 self.tableView.reloadData()
+                 self.refreshControl.endRefreshing()
             }
         }
     }

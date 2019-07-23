@@ -33,16 +33,9 @@ class RequestViewController: UIViewController {
     
     @IBAction func sendRequest(_ sender: Any) {
         if (requestProduct.text!.isEmpty) {
-            appDelegate.showAlert(viewscontroler: self, message: "商品名不能为空")
+            appDelegate.showAlert(viewcontroller: self, message: "商品名不能为空")
         } else {
             sendData()
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "gotoProductList") {
-            let destVC = segue.destination as! BulkPurchaseViewController
-            destVC.haveNewProduct = sender! as! Bool
         }
     }
     
@@ -50,12 +43,11 @@ class RequestViewController: UIViewController {
     func sendData(){
         let productName = requestProduct.text!
         let deadline = date.date
-        print (deadline)
         AF.request(URL, method: .post, parameters: ["publisher": self.appDelegate.username, "community": self.appDelegate.community, "goods": productName, "deadline": deadline]).responseJSON { (response) in
             if (response.response?.statusCode == 200) {
                 self.navigationController?.popViewController(animated: true)
             } else {
-                self.appDelegate.showAlert(viewscontroler: self, message: "网络不。Please try again!")
+                self.appDelegate.showAlert(viewcontroller: self, message: "网络不。Please try again!")
             }
         }
     }

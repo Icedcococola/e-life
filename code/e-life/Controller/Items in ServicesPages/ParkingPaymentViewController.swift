@@ -42,7 +42,6 @@ class ParkingPaymentViewController: UIViewController {
                 if let json = response.value {
                     SVProgressHUD.dismiss()
                     let price = JSON(json)["num"].stringValue
-                    print (price)
                     self.paymentAmount.text = price + "元"
                 }
             }

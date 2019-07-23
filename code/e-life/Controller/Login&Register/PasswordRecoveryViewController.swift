@@ -26,6 +26,7 @@ class PasswordRecoveryViewController: UIViewController {
     var verificationNum : String = ""
     
     let URL = "http://elifedemo.vipgz1.idcfengye.com/User/fetchpassword"
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +67,6 @@ class PasswordRecoveryViewController: UIViewController {
     
     func busAnimation(){
         let animationView = AnimationView(name: "bus")
-        print(self.view.frame.size.height)
         if (self.view.frame.size.height < 600) {
             animationView.frame = CGRect(x: 0, y: self.view.frame.size.height-150, width: self.view.frame.size.width, height: 150)
         } else if (self.view.frame.size.height < 668) {
@@ -113,11 +113,7 @@ class PasswordRecoveryViewController: UIViewController {
 
     @IBAction func getVerification(_ sender: Any) {
         if (phonenum.text!.isEmpty){
-            let alert = UIAlertController(title: "请注意⚠️", message: "手机号码不能为空", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
-                print("Cancelled")
-            }))
-            self.present(alert, animated: true, completion: nil)
+            appDelegate.showAlert(viewcontroller: self, message: "手机号码不能为空")
         } else {
             SVProgressHUD.show(withStatus: "正在发送短信")
             //Mark: - Request server to send verification
@@ -127,7 +123,7 @@ class PasswordRecoveryViewController: UIViewController {
                         let status = JSON(json)["num"].stringValue
                         if (status == "0") {
                             SVProgressHUD.dismiss()
-                            self.showAlert(message: "手机不存在")
+                            self.appDelegate.showAlert(viewcontroller: self, message: "手机不存在")
                         } else {
                             SVProgressHUD.showSuccess(withStatus: "短信已发送")
                             self.verificationNum = status
@@ -144,17 +140,9 @@ class PasswordRecoveryViewController: UIViewController {
     
     @IBAction func confirm(_ sender: Any) {
         if (verification.text!.isEmpty || verification.text! != verificationNum) {
-            let alert = UIAlertController(title: "请注意⚠️", message: "验证码不正确", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
-                print("Cancelled")
-            }))
-            self.present(alert, animated: true, completion: nil)
+            appDelegate.showAlert(viewcontroller: self, message: "验证码不正确")
         } else if (phonenum.text!.isEmpty) {
-            let alert = UIAlertController(title: "请注意⚠️", message: "手机号码不能为空", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
-                print("Cancelled")
-            }))
-            self.present(alert, animated: true, completion: nil)
+            appDelegate.showAlert(viewcontroller: self, message: "手机号码不能为空")
         } else {
             performSegue(withIdentifier: "gotoNewPassword", sender: nil)
         }
@@ -165,14 +153,5 @@ class PasswordRecoveryViewController: UIViewController {
             let vc = segue.destination as? NewPasswordViewController
             vc?.phonenum = self.phonenum.text!
         }
-    }
-    
-    
-    func showAlert (message : String) {
-        let alert = UIAlertController(title: "注意⚠️", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
-            print("Cancelled")
-        }))
-        self.present(alert, animated: true, completion: nil)
     }
 }

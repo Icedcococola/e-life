@@ -64,7 +64,6 @@ class FriendRequestViewController: UIViewController, friendTableDelegate{
     }    
     
     func didTappedAccept(id : String) {
-        print ("Accpet" + id)
         let intId = Int(id)
         let applyfor = friendRequestArray[intId!]["applyfor"].stringValue
         AF.request(acceptURL, method: .post, parameters: ["applied": self.appDelegate.username, "applyfor": applyfor]).responseJSON { (response) in if (response.response?.statusCode != 200) {
@@ -80,7 +79,6 @@ class FriendRequestViewController: UIViewController, friendTableDelegate{
     }
     
     func didTappedReject(id : String) {
-        print ("Reject" + id)
         let intId = Int(id)
         let applyfor = friendRequestArray[intId!]["applyfor"].stringValue
         AF.request(rejectURL, method: .post, parameters: ["applied": self.appDelegate.username, "applyfor": applyfor]).responseJSON { (response) in if (response.response?.statusCode != 200) {

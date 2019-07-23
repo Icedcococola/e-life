@@ -32,7 +32,11 @@ class AddFriendViewController: UIViewController {
     @IBAction func addFriend(_ sender: Any) {
         let name = friendName.text!
         if (name.isEmpty) {
-            appDelegate.showAlert(viewscontroler: self, message: "好友名不能为空")
+            appDelegate.showAlert(viewcontroller: self, message: "好友名不能为空")
+        } else if (name == self.appDelegate.username) {
+            SVProgressHUD.setMinimumDismissTimeInterval(2)
+            SVProgressHUD.setMaximumDismissTimeInterval(2)
+            SVProgressHUD.showError(withStatus: "不能添加自己")
         } else {
             SVProgressHUD.show(withStatus: "正在找好友")
             AF.request(addURL, method: .post, parameters: ["applied": name, "applyfor": self.appDelegate.username]).responseJSON { (response) in if (response.response?.statusCode != 200) {
@@ -41,14 +45,13 @@ class AddFriendViewController: UIViewController {
                     if let json = response.value {
                         SVProgressHUD.dismiss()
                         let data = JSON(json)
-                        print (data)
                         if (data["num"].stringValue == "0") {
-                            self.appDelegate.showAlert(viewscontroler: self, message: "已是好友")
+                            self.appDelegate.showAlert(viewcontroller: self, message: "已是好友")
                         } else if (data["num"].stringValue == "1") {
-                            self.appDelegate.showAlert(viewscontroler: self, message: "该用户名不存在")
+                            self.appDelegate.showAlert(viewcontroller: self, message: "该用户名不存在")
                         } else {
                             self.appDelegate.socket.emit("add friend", ["username": self.appDelegate.username, "name": name])
-                            self.appDelegate.showAlert(viewscontroler: self, message: "好友申请已发送")
+                            self.appDelegate.showAlert(viewcontroller: self, message: "好友申请已发送")
                         }
                     }
                 }

@@ -52,6 +52,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet var registerButtonTop: NSLayoutConstraint!
     @IBOutlet var titleTop: NSLayoutConstraint!
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +116,6 @@ class RegisterViewController: UIViewController {
     //bus animation
     func busAnimation(){
         let animationView = AnimationView(name: "bus")
-        print(self.view.frame.size.height)
         animationView.frame = CGRect(x: 0, y: self.view.frame.size.height-250, width: self.view.frame.size.width, height: 250)
         animationView.contentMode = .scaleAspectFill
         self.view.addSubview(animationView)
@@ -155,9 +155,7 @@ class RegisterViewController: UIViewController {
     
     @IBAction func getVerificationNum(_ sender: Any) {
         if (phonenumber.text!.isEmpty) {
-            let alert = UIAlertController(title: "注意⚠️", message: "手机号码不能为空", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            appDelegate.showAlert(viewcontroller: self, message: "手机号码不能为空")
         } else {
             // Mark : - Request server to send verification number
             SVProgressHUD.show(withStatus: "正在发送短信")
@@ -170,13 +168,13 @@ class RegisterViewController: UIViewController {
                             let data = JSON(json)
                             print(data["num"])
                             if (data["num"].stringValue == "2") {
-                                self.showAlert(message: "手机号码已存在")
+                                self.appDelegate.showAlert(viewcontroller: self, message: "手机号码已存在")
                             }
                             self.verificationNum = data["num"].stringValue
                         }
                     default :
                         SVProgressHUD.dismiss()
-                        self.showAlert(message: "Error! Please try again!")
+                        self.appDelegate.showAlert(viewcontroller: self, message: "Error! Please try again!")
                     }
             }
         }
@@ -184,17 +182,15 @@ class RegisterViewController: UIViewController {
     
     @IBAction func register(_ sender: Any) {
         if (username.text!.isEmpty || password.text!.isEmpty) {
-            let alert = UIAlertController(title: "注意⚠️", message: "用户名或密码不能为空", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            appDelegate.showAlert(viewcontroller: self, message: "用户名或密码不能为空")
+        } else if (username.text!.count < 3) {
+            appDelegate.showAlert(viewcontroller: self, message: "用户名或密码不能少于 3")
+        } else if (password.text!.count < 6) {
+            appDelegate.showAlert(viewcontroller: self, message: "用户名或密码不能少于 6")
         } else if (phonenumber.text!.isEmpty) {
-            let alert = UIAlertController(title: "注意⚠️", message: "手机号码不能为空", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
-                print("Cancelled")
-            }))
-            self.present(alert, animated: true, completion: nil)
+            appDelegate.showAlert(viewcontroller: self, message: "手机号码不能为空")
         } else if (verification.text!.isEmpty || verification.text! != verificationNum) {
-            showAlert(message: "验证码不正确")
+            appDelegate.showAlert(viewcontroller: self, message: "验证码不正确")
         }
         
         else {
@@ -216,15 +212,11 @@ class RegisterViewController: UIViewController {
                 } else {
                     let status : Int = JSON(response.value!)["num"].intValue
                     if (self.verification.text! != self.verificationNum) {
-                        let alert = UIAlertController(title: "注意⚠️", message: "验证码不正确", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
-                            print("Cancelled")
-                        }))
-                        self.present(alert, animated: true, completion: nil)
+                        self.appDelegate.showAlert(viewcontroller: self, message: "验证码不正确")
                     } else if (status == 0)  {
-                        self.showAlert(message: "用户已存在")
+                        self.appDelegate.showAlert(viewcontroller: self, message: "用户已存在")
                     } else if (status == 1) {
-                        self.showAlert(message: "手机已存在")
+                        self.appDelegate.showAlert(viewcontroller: self, message: "手机已存在")
                     } else {
                         SVProgressHUD.dismiss()
                         SVProgressHUD.showSuccess(withStatus: "注册成功")
@@ -240,14 +232,6 @@ class RegisterViewController: UIViewController {
         username.resignFirstResponder()
         verification.resignFirstResponder()
         password.resignFirstResponder()
-    }
-    
-    func showAlert (message : String) {
-        let alert = UIAlertController(title: "注意⚠️", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: { (action) in
-            print("Cancelled")
-        }))
-        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -282,8 +266,16 @@ extension RegisterViewController : UIPickerViewDelegate, UIPickerViewDataSource 
         return 1
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return communityArray[row]
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var pickerLabel: UILabel? = (view as? UILabel)
+        if pickerLabel == nil {
+            pickerLabel = UILabel()
+            pickerLabel?.font = UIFont(name: "System", size: 20)
+            pickerLabel?.textAlignment = .center
+        }
+        pickerLabel?.text = communityArray[row]
+        
+        return pickerLabel!
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

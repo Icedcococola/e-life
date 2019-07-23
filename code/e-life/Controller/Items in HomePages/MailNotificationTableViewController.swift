@@ -20,16 +20,41 @@ class MailNotificationTableViewController: UIViewController, UITableViewDataSour
     
     var notiArray : [JSON] = []
     
+    let companyArray : [String] = ["中通快递", "申通快递", "顺丰快递"]
+    
     let URL = "http://elifedemo.vipgz1.idcfengye.com/Activity/findAll"
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var community = ""
+    var chosenCompany = ""
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var kuaidiNumLabel: UILabel!
+    @IBOutlet var kuadiCompanyLabel: UILabel!
+    @IBOutlet var kuadiNumInput: UITextField!
+    @IBOutlet var submit: UIButton!
+    @IBOutlet var kuadiCompanyPicker: UIPickerView!
+    @IBOutlet var submitButton: UIButton!
+    
+    //constraint
+    @IBOutlet var gap: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         community = appDelegate.community
-        fetchData()
-       
+        responsiveDesign()
+        designUI()
+    }
+    
+    func designUI(){
+        submitButton.layer.cornerRadius = 10
+    }
+    
+    func responsiveDesign() {
+        let screenHeight = self.view.frame.height
+        if (screenHeight < 669) {
+            kuadiCompanyLabel.font = kuadiCompanyLabel.font.withSize(15)
+            kuaidiNumLabel.font = kuaidiNumLabel.font.withSize(15)
+            gap.constant = 20
+        }
     }
 
     // MARK: - Table view data source
@@ -40,7 +65,6 @@ class MailNotificationTableViewController: UIViewController, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell2
-        print(indexPath.row)
         cell.titleLabel.text = notiArray[indexPath.row]["title"].stringValue
         cell.contentText.text = notiArray[indexPath.row]["detail"].stringValue
         cell.contentView.backgroundColor = UIColor.clear
@@ -76,5 +100,38 @@ class MailNotificationTableViewController: UIViewController, UITableViewDataSour
             }
         }
     }
+    
+    
+    @IBAction func findInfo(_ sender: Any) {
+        fetchData()
+    }
+    
+    
+}
+
+extension MailNotificationTableViewController : UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return companyArray.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        chosenCompany = companyArray[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var pickerLabel: UILabel? = (view as? UILabel)
+        if pickerLabel == nil {
+            pickerLabel = UILabel()
+            pickerLabel?.font = UIFont(name: "System", size: 20)
+            pickerLabel?.textAlignment = .center
+        }
+        pickerLabel?.text = companyArray[row]
+        
+        return pickerLabel!
+    }
+    
 }
 

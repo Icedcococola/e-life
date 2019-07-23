@@ -38,6 +38,8 @@
 		95D3937722DD58EA00548840 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3937622DD58EA00548840 /* RequestViewController.swift */; };
 		95D3937922DD713000548840 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3937822DD713000548840 /* FriendViewController.swift */; };
 		95D3937B22DD762E00548840 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3937A22DD762E00548840 /* AddFriendViewController.swift */; };
+		95DB367322E69C2E00315E86 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB367222E69C2E00315E86 /* MapViewController.swift */; };
+		95DB367522E6B4FF00315E86 /* MapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB367422E6B4FF00315E86 /* MapDetailViewController.swift */; };
 		95DD032622D2D54D0096E89D /* MainPages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DD032522D2D54D0096E89D /* MainPages.storyboard */; };
 		95DD032822D2D61E0096E89D /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DD032722D2D61E0096E89D /* Home.storyboard */; };
 		95DD032A22D2D6270096E89D /* Services.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95DD032922D2D6270096E89D /* Services.storyboard */; };
@@ -63,7 +65,6 @@
 		950BE8A222D734130058FAE1 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		952793B622C99C1300A4C472 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		95376A0D22D5C09C009E556E /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
-		9545B4EE22D5D71A00DBAF76 /* BMKLocationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BMKLocationKit.framework; path = Pods/BMKLocationKit/framework/BMKLocationKit.framework; sourceTree = "<group>"; };
 		9545B4F122D5D71A00DBAF76 /* ChangeNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameViewController.swift; sourceTree = "<group>"; };
 		9559D5AC22CAF52A00916AB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		957129E422C9DADF0059DCEE /* e-life.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "e-life.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +90,8 @@
 		95D3937622DD58EA00548840 /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		95D3937822DD713000548840 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
 		95D3937A22DD762E00548840 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
+		95DB367222E69C2E00315E86 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		95DB367422E6B4FF00315E86 /* MapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailViewController.swift; sourceTree = "<group>"; };
 		95DD032522D2D54D0096E89D /* MainPages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainPages.storyboard; sourceTree = "<group>"; };
 		95DD032722D2D61E0096E89D /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		95DD032922D2D6270096E89D /* Services.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Services.storyboard; sourceTree = "<group>"; };
@@ -127,7 +130,6 @@
 		848AEB3B8499DFBD63571B2A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9545B4EE22D5D71A00DBAF76 /* BMKLocationKit.framework */,
 				7916DD5BCA42922CB2DC81AA /* Pods_e_life.framework */,
 			);
 			name = Frameworks;
@@ -250,6 +252,7 @@
 		95B8448F22C9AF5800D84A65 /* Items in HomePages */ = {
 			isa = PBXGroup;
 			children = (
+				95DB366122E6964E00315E86 /* Map */,
 				95B8449022C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift */,
 				95B8449222C9B3CC00D84A65 /* SendPostViewController.swift */,
 				9505FFE322CB437100462721 /* WuYeNotiTableTableViewController.swift */,
@@ -262,6 +265,15 @@
 				95D3937622DD58EA00548840 /* RequestViewController.swift */,
 			);
 			path = "Items in HomePages";
+			sourceTree = "<group>";
+		};
+		95DB366122E6964E00315E86 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				95DB367222E69C2E00315E86 /* MapViewController.swift */,
+				95DB367422E6B4FF00315E86 /* MapDetailViewController.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		95EB54CA22CC88C000E25003 /* Controller */ = {
@@ -437,6 +449,7 @@
 				95BAC2F522CEE2CA00639B0D /* LatestNewsViewController.swift in Sources */,
 				957129EA22C9DADF0059DCEE /* LoginViewController.swift in Sources */,
 				95CA951E22DDA319007E5D66 /* FriendRequestViewController.swift in Sources */,
+				95DB367322E69C2E00315E86 /* MapViewController.swift in Sources */,
 				95D3937922DD713000548840 /* FriendViewController.swift in Sources */,
 				95BAC2EF22CED88A00639B0D /* ChangePasswordViewController.swift in Sources */,
 				95BAC2F322CEDB7B00639B0D /* InfoBindingViewController.swift in Sources */,
@@ -455,6 +468,7 @@
 				95B8449322C9B3CC00D84A65 /* SendPostViewController.swift in Sources */,
 				957129E822C9DADF0059DCEE /* AppDelegate.swift in Sources */,
 				95E5466322DC5F13001DFD49 /* DetailViewController.swift in Sources */,
+				95DB367522E6B4FF00315E86 /* MapDetailViewController.swift in Sources */,
 				95D3937B22DD762E00548840 /* AddFriendViewController.swift in Sources */,
 				95B8449122C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift in Sources */,
 				950BE8A322D734130058FAE1 /* Model.xcdatamodeld in Sources */,
