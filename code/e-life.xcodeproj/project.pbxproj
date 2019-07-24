@@ -48,6 +48,7 @@
 		95DD033422D2D62F0096E89D /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD033322D2D62F0096E89D /* ServicesViewController.swift */; };
 		95DD033A22D2D62F0096E89D /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD033922D2D62F0096E89D /* MeViewController.swift */; };
 		95DD033C22D2D62F0096E89D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DD033B22D2D62F0096E89D /* TableViewCell.swift */; };
+		95DF180C22E854F700BDC74C /* KuaidiNotiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DF180B22E854F700BDC74C /* KuaidiNotiViewController.swift */; };
 		95E5466322DC5F13001DFD49 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E5466222DC5F13001DFD49 /* DetailViewController.swift */; };
 		95EB54C922CC888F00E25003 /* PasswordRecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB54C822CC888F00E25003 /* PasswordRecoveryViewController.swift */; };
 		95EB54CD22CC963E00E25003 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB54CC22CC963E00E25003 /* NewPasswordViewController.swift */; };
@@ -100,6 +101,7 @@
 		95DD033322D2D62F0096E89D /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		95DD033922D2D62F0096E89D /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		95DD033B22D2D62F0096E89D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		95DF180B22E854F700BDC74C /* KuaidiNotiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuaidiNotiViewController.swift; sourceTree = "<group>"; };
 		95E5466222DC5F13001DFD49 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		95EB54C822CC888F00E25003 /* PasswordRecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryViewController.swift; sourceTree = "<group>"; };
 		95EB54CC22CC963E00E25003 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				95BAC2F622CEF78600639B0D /* BulkPurchaseViewController.swift */,
 				95E5466222DC5F13001DFD49 /* DetailViewController.swift */,
 				95D3937622DD58EA00548840 /* RequestViewController.swift */,
+				95DF180B22E854F700BDC74C /* KuaidiNotiViewController.swift */,
 			);
 			path = "Items in HomePages";
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				95BAC2F722CEF78600639B0D /* BulkPurchaseViewController.swift in Sources */,
 				9505FFE022CB34F400462721 /* PayViewController.swift in Sources */,
 				95EB54C922CC888F00E25003 /* PasswordRecoveryViewController.swift in Sources */,
+				95DF180C22E854F700BDC74C /* KuaidiNotiViewController.swift in Sources */,
 				95D3937722DD58EA00548840 /* RequestViewController.swift in Sources */,
 				952793B722C99C1300A4C472 /* CollectionViewCell.swift in Sources */,
 				9505FFE422CB437100462721 /* WuYeNotiTableTableViewController.swift in Sources */,

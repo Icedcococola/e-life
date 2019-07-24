@@ -29,7 +29,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         UIImage(named: "SendPost")!,
         UIImage(named: "Forum")!,
         UIImage(named: "NearMe")!,
-        UIImage(named: "Shopping")!
+        UIImage(named: "Shopping")!,
+        UIImage(named: "PostNotification")!
     ]
     let ID : [String] = [
         "1",
@@ -40,7 +41,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         "6",
         "7",
         "8",
-        "9"
+        "9",
+        "10"
     ]
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
