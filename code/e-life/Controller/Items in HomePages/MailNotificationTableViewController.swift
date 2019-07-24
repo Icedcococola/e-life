@@ -20,9 +20,9 @@ class MailNotificationTableViewController: UIViewController, UITableViewDataSour
     
     var notiArray : [JSON] = []
     
-    let companyArray : [String] = ["中通快递", "申通快递", "顺丰快递"]
+    let companyArray : [String] = ["中通快递", "申通快递", "顺丰快递", "圆通快递", "韵达速递", "百世快递", "EMS"]
     
-    let URL = "http://elifedemo.vipgz1.idcfengye.com/Activity/findAll"
+    let URL = "http://elifedemo.vipgz1.idcfengye.com/Express/chaxun"
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var community = ""
     var chosenCompany = ""
@@ -65,8 +65,8 @@ class MailNotificationTableViewController: UIViewController, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell2
-        cell.titleLabel.text = notiArray[indexPath.row]["title"].stringValue
-        cell.contentText.text = notiArray[indexPath.row]["detail"].stringValue
+        cell.titleLabel.text = notiArray[indexPath.row]["AcceptStation"].stringValue
+        cell.contentText.text = notiArray[indexPath.row]["AcceptTime"].stringValue
         cell.contentView.backgroundColor = UIColor.clear
         
         let screenHeight = self.view.frame.height
@@ -74,7 +74,7 @@ class MailNotificationTableViewController: UIViewController, UITableViewDataSour
             cell.titleLabel.font = cell.titleLabel.font.withSize(15)
             cell.contentText.font = cell.contentText.font.withSize(14)
         } else if (screenHeight < 668) {
-            cell.titleLabel.font = cell.titleLabel.font.withSize(17)
+            cell.titleLabel.font = cell.titleLabel.font.withSize(16)
             cell.contentText.font = cell.contentText.font.withSize(15)
         }
         
@@ -92,21 +92,29 @@ class MailNotificationTableViewController: UIViewController, UITableViewDataSour
     
     // Mark: - Fetch data from server
     func fetchData(){
-        AF.request(URL, method: .post, parameters: ["community": self.community]).responseJSON { (response) in
-            if let json = response.value{
-                let noti = JSON(json).arrayValue
-                self.notiArray = noti
-                self.tableView.reloadData()
+        print (chosenCompany)
+        AF.request(URL, method: .get, parameters: ["expNo": kuadiNumInput.text!, "expCode": chosenCompany]).responseJSON { (response) in
+            print (response)
+            if response.response?.statusCode == 200 {
+                if let json = response.value{
+                    let noti = JSON(json)
+                    self.notiArray = noti["Traces"].arrayValue.reversed()
+                    self.tableView.reloadData()
+                }
+            } else {
+                self.appDelegate.showAlert(viewcontroller: self, message: "找不到该快递订单！\n请注意快递单号和快递公司")
             }
         }
     }
     
     
     @IBAction func findInfo(_ sender: Any) {
-        fetchData()
+        if (kuadiNumInput.text!.isEmpty) {
+            appDelegate.showAlert(viewcontroller: self, message: "快递号不能为空")
+        } else {
+            fetchData()
+        }
     }
-    
-    
 }
 
 extension MailNotificationTableViewController : UIPickerViewDelegate, UIPickerViewDataSource {
@@ -119,7 +127,24 @@ extension MailNotificationTableViewController : UIPickerViewDelegate, UIPickerVi
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        chosenCompany = companyArray[row]
+        switch companyArray[row] {
+            case "中通快递":
+                chosenCompany = "ZTO"
+            case "申通快递":
+                chosenCompany = "STO"
+            case "圆通快递":
+                chosenCompany = "YTO"
+            case "顺丰快递":
+                chosenCompany = "SF"
+            case "韵达快递":
+                chosenCompany = "YD"
+            case "EMS":
+                chosenCompany = "EMS"
+            case "百世快递":
+                chosenCompany = "HTKY"
+            default:
+                print ("Error")
+        }
     }
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var pickerLabel: UILabel? = (view as? UILabel)
