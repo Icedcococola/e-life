@@ -14,37 +14,55 @@
   <el-row type="flex" justify="center" >
     <el-col :span="18">
 
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="margin-top:4%">
-      <el-form-item label="商家名称" prop="title" style="margin-bottom:4%;">
-        <el-col style="width:50%">
-           <el-input v-model="ruleForm.title" placeholder="请输入商家名称" ></el-input>
-        </el-col>
-       </el-form-item>
 
-      <el-form-item label="商户类型" prop="price" style="margin-bottom:4%">
+    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="margin-top:4%">
+      <el-form-item label="商户位置" prop="location" style="margin-bottom:4%">
+       <el-row>
+         <el-col :span="11">
+        <el-input readonly v-model="location" id="lnglat">
+          <el-button slot="append" icon="el-icon-location-outline" @click="tomap"></el-button>
+        </el-input>
+         </el-col>
+       </el-row>
+      </el-form-item>
+
+      <el-form-item label="详细地址" prop="address" style="margin-bottom:4%;">
+      <el-col :span="24">
+
+      <el-input readonly v-model="address" id="lnglat">
+          <el-button :rows="2" slot="append" icon="el-icon-location-outline" @click="tomap" type="textarea" ></el-button>
+        </el-input>
+      </el-col>
+    </el-form-item>
+
+      <el-form-item label="商家名称" prop="storename" style="margin-bottom:4%;">
         <el-row type="flex" justify="start">
-        <el-select v-model="ruleForm.region" placeholder="请选择商户类型">
-        <el-option label="周边餐饮" value="shanghai"></el-option>
-        <el-option label="超市购物" value="beijing"></el-option>
-        <el-option label="休闲娱乐" value="beijing"></el-option>
-        <el-option label="生活服务" value="beijing"></el-option>
-        </el-select>
+        <el-col :span="11">
+           <el-input v-model="ruleForm.storename" placeholder="请输入商家名称"></el-input>
+        </el-col>
         </el-row>
       </el-form-item>
 
-     <el-form-item label="商户位置" prop="location" style="margin-bottom:4%">
-         <el-col :span="12">
-        <el-input readonly placeholder="点击右侧图标选择商户地图位置"></el-input>
-         </el-col>
+      <el-form-item label="商户类型" prop="type" style="margin-bottom:4%">
+        
+            <el-row type="flex" justify="start">
+              <el-col :span="6">
+        <el-select v-model="ruleForm.type" placeholder="请选择商户类型">
+        <el-option label="周边餐饮" value="Restaurant"></el-option>
+        <el-option label="超市购物" value="Shopping"></el-option>
+        <el-option label="休闲娱乐" value="Entertainment"></el-option>
+        <el-option label="生活服务" value="Service"></el-option>
+        </el-select>
+              </el-col>
+            </el-row>
+        
       </el-form-item>
+    
 
-    <el-form-item label="详细地址" prop="detail" style="margin-bottom:4%;">
-      <el-input v-model="ruleForm.detail"></el-input>
-    </el-form-item>
     
-    
-    <el-row type="flex" style="start">
     <el-form-item label="商户图片" prop="picture">
+       <el-row type="flex" style="start">
+      
        <el-upload
        class="avatar-uploader"
         action="/img"
@@ -61,9 +79,13 @@
        <img v-if="imageUrl" :src="imageUrl" class="avatar">
        <i v-else class="el-icon-picture avatar-uploader-icon"></i>
        </el-upload>
-       <div style="font-size:10px;color:#909092">上传图片格式：jpg/jpeg、png且大小不超过2M</div>
-    </el-form-item>
+       
     </el-row>
+    <el-row type="flex" justify="start">
+       <div style="font-size:10px;color:#909092">上传图片格式：jpg/jpeg、png且大小不超过2M</div>
+    </el-row>
+    </el-form-item>
+      
     </el-form>
     </el-col>
   </el-row>
@@ -76,13 +98,36 @@
 <script>
 export default {
     mounted:function(){
-       //this.showDemandId(); 
+       //this.showDemandId(ruleForm); 
+       this.setlnglat()
+
     },
   methods:
   {
+    setlnglat(){
+       this.longitude = this.$route.params.longitude
+       this.latitude = this.$route.params.latitude
+       this.address = this.$route.params.address
+      
+       if(this.longitude === undefined){
+         var string1 = '点击右侧按钮选择位置'
+         var string2 = '点击右侧按钮选择地址'
+         this.location = string1
+         this.address = string2
+       }else{
+         this.location = this.longitude+','+this.latitude
+       }
+       this.$confirm(this.location+','+this.address)
+    },
     commit(formName)
     {
-        
+      if(this.longitude === undefined || this.longitude === 0){
+        this.$confirm('请选择商家位置')
+      }
+      
+      else if(this.imageUrl === 'https://i.loli.net/2019/07/19/5d312e20c0c6d52233.jpg'){
+         this.$confirm('请选择一张图片')
+      }else{
         this.$refs[formName].validate((valid)=>{
           if(valid){
             this.$confirm('确认内容并提交？',
@@ -90,31 +135,24 @@ export default {
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
               this.clicked=true
-              this.axios.get('/api/Goods/up',
+              this.axios.get('/api/Gs/up',
               {
                 params:{
-                  desiredid:this.emm,
-                  detail:this[formName].detail,
-                  deadline:this[formName].date,
+                  storename:this[formName].storename,
+                  address:this.address,
+                  type:this[formName].type,
                  // community:window.sessionStorage.getItem('community'),
                   img:this.imageUrl,
-                  price:this[formName].price,
-                  store:this[formName].title,
-                  totalnum:this[formName].num
+                  longitude:this.longitude,
+                  latitude:this.latitude
                 }
               }
               ).then((response)=>{
                 if(response.status === 200){
                   console.log(response);
-                  //console.log(response.data.result);
-                  //if(response.data.result === null){
-                    //this.$message({type:'success',message:'提交成功！'});
-                    //this.$router.push({name:"查看活动安排"});
-                  //}
                   this.$message({type:'success',message:'提交成功！'});
-                  this.$router.push({name:"LaunchedDemands"});
+                  this.$router.push({name:"StoreList"});
                       
-                  
                 }
               })
               .catch(error => {
@@ -131,12 +169,10 @@ export default {
                   })
                 }
               })
-              //this.$message({type:'success',message:'提交成功！'});
-              //this.$router.push({name:"查看活动安排"});
             }
             );
           }else{
-            this.$alert('请正确填写','提示',{
+            this.$alert('请填写完整','提示',{
               confirmButtonText:'确定',
               callback: action=>{}
             });
@@ -144,9 +180,14 @@ export default {
           }
         })
 
-        
+        }
     },
-
+ 
+    tomap(){
+       this.$router.push({
+         name:'map'
+       })
+    },
     handleAvatarSuccess(res, file) {
        // this.imageUrl = URL.createObjectURL(file.raw);
     },
@@ -200,10 +241,16 @@ export default {
         
     },
 
-    showDemandId(){
-       //var id = this.DemandId;
-       var deid = window.sessionStorage.getItem('desiredid')
-       this.$confirm(deid,'提示')
+    showDemandId(formName){
+       this.longitude = this.$route.params.longitude
+       this.latitude = this.$route.params.latitude
+       if((this.longitude === undefined)&&(this.latitude === undefined)){
+         this.longitude = ''
+         this.latitude = ''
+       }
+         this[formName].location = this.longitude+','+this.latitude
+         this.$confirm(this[formName].location)
+       
     },
 
     checkValidUpload(file){
@@ -238,68 +285,27 @@ export default {
   },
 
   data() {
-    var checkInt = (rule,value,callback) => {
-        if (!value) {
-            return callback(new Error('价格不能为空'));
-        }
-        var emmm = /^\d+$/;
-        if (!emmm.test(value)) {
-            callback(new Error('请输入整数值'));
-          }else if(value < 1){
-             callback(new Error("请输入正整数"))
-          }else{
-            callback()
-          }
-    };
-
-    var checkAge = (rule, value, callback) => {
-          if (!value) {
-            return callback(new Error('价格不能为空'));
-          }
-          var re = /^\d+(?=\.{0,2}\d+$|$)/ ;
-          if (!re.test(value)) {
-            callback(new Error('请输入数字值'));
-          }else if(value < 1){
-            callback(new Error('请输入正整数'))
-          }
-            else{
-            value=(value*10/10).toFixed(2)
-            this.ruleForm.price=value
-            callback()
-          }
-          
-        };
     return {
-      clicked:false,
-      emm:window.sessionStorage.getItem('desiredid'),
-      detailmaxlength:10,
-      num1:'1',
       imageUrl: 'https://i.loli.net/2019/07/19/5d312e20c0c6d52233.jpg',
       title:'添加新商户',
       fileList: [],
       ruleForm:{
-        price:'',
-        location:'',
-        region:'',
-        detail:'',
-        date:'',
+        storename:'',
+        type:'',
         picture:'',
-        longitude:'',
-        latitude:''
         
       },
+      address:'',
+      location:'',
+      longitude:'',
+      latitude:'',
       
       rules:{
-        title:[
+        storename:[
           {required:true, message:'商家名称不可为空', trigger:'blur'}
         ],
-        detail:[
-          {required:true, message:'商户地址不可为空',trigger:'blur'}
-          
-        ],
-        
-        price:[
-          {required:true,message:'商户类型不可为空',trigger:'change'}
+        type:[
+          {required:true,message:'请选择商户类型',trigger:'blur'}
         ],
       }
     }

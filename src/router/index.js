@@ -29,6 +29,7 @@ import AddStore from "@/components/AddStore"
 import fof from "@/components/fof"
 import fot from "@/components/fot"
 import map from "@/components/map"
+import testmap from "@/components/testmap"
 
 import store from '@/store/index'
 
@@ -136,19 +137,15 @@ const router = new Router({
           path:'/StoreList',
           component:StoreList,
           name:'StoreList',
-          meta:{
+          /*meta:{
             requireAuth: true
-          }
+          }*/
 
         }
       ]
       
     },
-    {
-      path:'/map',
-      component:map,
-      name:'map'
-    },
+    
     {
       path:'/Home',
       name:'编辑新发布的信息',
@@ -200,9 +197,19 @@ const router = new Router({
           path:'/AddStore',
           component:AddStore,
           name:'AddStore',
-          meta:{
+         /* meta:{
             requireAuth: true
-          }
+          }*/
+        },
+        {
+          path:'/map',
+          component:map,
+          name:'map'
+        },
+        {
+          path:'/testmap',
+          component:testmap,
+          name:'testmap'
         }
       ]
     },
