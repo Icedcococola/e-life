@@ -30,7 +30,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         UIImage(named: "Forum")!,
         UIImage(named: "NearMe")!,
         UIImage(named: "Shopping")!,
-        UIImage(named: "PostNotification")!
+        UIImage(named: "FindKuaidi")!
     ]
     let ID : [String] = [
         "1",

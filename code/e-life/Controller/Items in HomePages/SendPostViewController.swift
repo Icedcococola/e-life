@@ -79,47 +79,48 @@ class SendPostViewController: UIViewController, UITextViewDelegate, UITextFieldD
     
     
     @IBAction func submit(_ sender: Any) {
-        metaInfoCheck()
-        senderInfoCheck()
-        recieverInfoCheck()
-        
-        let parameter =
-            [   "OrderCode": String(orderNumber),
-                "PayType": String(payment),
-                "ExpType": String(expType),
-                "ShipperCode": chosenCompany,
-                "Receiver_Name": name,
-                "Receiver_Phone": phoneNum,
-                "Receiver_ProvinceName": provinceName,
-                "Receiver_CityName": cityName,
-                "Receiver_Address": address,
-                "Sender_name": senderName,
-                "Sender_phone": senderPhoneNum,
-                "Sender_ProvinceName": senderProvinceName,
-                "Sender_CityName": senderCityName,
-                "Sender_Address": senderAddress,
-                "Commodity_GoodsName": goodName,
-            ] as [String : Any]
-        
-        AF.request(URL, method: .get, parameters: parameter).responseJSON { (response) in
+        if metaInfoCheck() && senderInfoCheck() && recieverInfoCheck() {
+            let parameter =
+                [   "OrderCode": String(orderNumber),
+                    "PayType": String(payment),
+                    "ExpType": String(expType),
+                    "ShipperCode": chosenCompany,
+                    "Receiver_Name": name,
+                    "Receiver_Phone": phoneNum,
+                    "Receiver_ProvinceName": provinceName,
+                    "Receiver_CityName": cityName,
+                    "Receiver_Address": address,
+                    "Sender_name": senderName,
+                    "Sender_phone": senderPhoneNum,
+                    "Sender_ProvinceName": senderProvinceName,
+                    "Sender_CityName": senderCityName,
+                    "Sender_Address": senderAddress,
+                    "Commodity_GoodsName": goodName,
+                    ] as [String : Any]
+            
+            AF.request(URL, method: .get, parameters: parameter).responseJSON { (response) in
                 if response.response?.statusCode == 200 {
                     print (response.value as! String)
                 } else {
                     self.appDelegate.showAlert(viewcontroller: self, message: "寄件失败！ Please try again!")
                 }
+            }
+        } else {
+            appDelegate.showAlert(viewcontroller: self, message: "Error!")
         }
-        
     }
     
-    func metaInfoCheck() {
+    func metaInfoCheck() -> Bool {
         if (goodNameInput.text!.isEmpty) {
             appDelegate.showAlert(viewcontroller: self, message: "商品名称不能为空")
+            return false
         } else {
             goodName = goodNameInput.text!
+            return true
         }
     }
     
-    func senderInfoCheck(){
+    func senderInfoCheck() -> Bool{
         senderName = senderNameInput.text!
         senderPhoneNum = senderPhoneNumInput.text!
         senderProvinceName = senderProvinceInput.text!
@@ -127,12 +128,16 @@ class SendPostViewController: UIViewController, UITextViewDelegate, UITextFieldD
         senderAddress = senderAddressInput.text!
         if senderName.isEmpty, senderPhoneNum.isEmpty {
             appDelegate.showAlert(viewcontroller: self, message: "姓名或手机号码不能为空")
+            return false
         } else if senderCityName.isEmpty && senderProvinceName.isEmpty {
             appDelegate.showAlert(viewcontroller: self, message: "省和市不能同时为空")
+            return false
+        } else {
+            return true
         }
     }
     
-    func recieverInfoCheck() {
+    func recieverInfoCheck() -> Bool {
         name = nameInput.text!
         phoneNum = phoneNumInput.text!
         provinceName = provinceInput.text!
@@ -140,8 +145,12 @@ class SendPostViewController: UIViewController, UITextViewDelegate, UITextFieldD
         address = addressInput.text!
         if name.isEmpty, phoneNum.isEmpty {
             appDelegate.showAlert(viewcontroller: self, message: "姓名或手机号码不能为空")
+            return false
         } else if cityName.isEmpty && provinceName.isEmpty {
             appDelegate.showAlert(viewcontroller: self, message: "省和市不能同时为空")
+            return false
+        } else {
+            return true
         }
     }
     
