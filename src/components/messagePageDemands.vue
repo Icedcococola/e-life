@@ -2,7 +2,7 @@
   <div id="l-ac">
     <el-row type="flex" class="row-bg" justify="center">
       <el-col>
-        <div style="font-size:190%; height:50px; color:#858585fa;text-align:center;">
+        <div style="font-size:250%; height:50px; color:#858585fa;text-align:center;">
             <div>
                {{this.goodsname}}
             </div>
@@ -18,7 +18,7 @@
     <el-row type="flex" justify="center">
 
       <el-col :span="14">
-        <div style="font-size:100%; height:50px; color:#858585ff;text-align:left;">
+        <div style="font-size:150%; height:50px; color:#858585ff;text-align:left;">
             <div class="text-wrapper">
                {{this.detail}}
             </div>

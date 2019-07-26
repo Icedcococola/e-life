@@ -52,7 +52,7 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
-            <el-button type="primary" @click="topage(scope.row.propertynoticeid)" round>查看</el-button>
+            <el-button type="primary" @click="topage(scope.row.propertynoticeid,scope.$index)" round>查看</el-button>
             <el-button type="danger" @click="deleteLine(scope.row.propertynoticeid,scope.$index)" round >删除</el-button>
           </template>
       </el-table-column>
@@ -93,11 +93,12 @@
       },
       methods:
       {
-        topage(emmmmm){
+        topage(emmmmm,index){
          // this.axios.get('/api/Propertynotice/findbyid',{
          //   params:{
           //    propertynoticeid:emmmmm
           //  }
+          /*
           var fd  = new FormData()
           fd.append("propertynoticeid",emmmmm)
           this.axios.post('/api/Propertynotice/findbyid',fd,
@@ -113,6 +114,21 @@
                 data:response.data
               }
             })
+          })*/
+
+          var ind = index + (this.currentPage-1)*5
+          var tit = this.searchData[ind].title
+          var tim = this.searchData[ind].time
+          var det = this.searchData[ind].detail
+
+          this.$router.push({
+            name:'物业详情页',
+            params:{
+              title: tit,
+              time:tim,
+              detail:det
+            }
+
           })
         },
 

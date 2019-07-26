@@ -54,7 +54,7 @@ import moment from 'moment'
         align="center"
         fixed="right">
         <template slot-scope="scope">
-            <el-button type="primary" @click="topage(scope.row.latestnewsid)" round>查看</el-button>
+            <el-button type="primary" @click="topage(scope.row.latestnewsid,scope.$index)" round>查看</el-button>
             <el-button type="danger" @click="deleteLine(scope.row.latestnewsid,scope.$index)" round >删除</el-button>
           </template>
       </el-table-column>
@@ -96,8 +96,8 @@ import moment from 'moment'
 
       methods:
       {
-        topage(lhlhlh){
-          var fd  = new FormData()
+        topage(lhlhlh,index){
+          /*var fd  = new FormData()
           fd.append("latestnewsid",lhlhlh)
           this.axios.post('/api/Latestnews/findbyid',fd,{
             headers:{
@@ -113,8 +113,21 @@ import moment from 'moment'
             }
             });
           })
-
-        },
+*/ 
+          var ind = index + 5*(this.currentPage-1)
+          var tit = this.searchData[ind].title
+          var tim = this.searchData[ind].time
+          var det = this.searchData[ind].detail
+          this.$router.push({
+            name:'资讯详情页',
+            params:{
+              title:tit,
+              time:tim,
+              detail:det
+            }
+          })
+          
+        }, 
         
         current_change:function(currentPage){
            this.currentPage = currentPage;

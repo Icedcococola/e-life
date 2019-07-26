@@ -4,7 +4,7 @@
       <el-col :span="14">
         <div style="font-size:190%; height:50px; color:#858585fa;text-align:center;">
             <div>
-               {{this.tableData.title}}
+               {{title}}
             </div>
         </div>
       </el-col>
@@ -16,7 +16,7 @@
 
     <el-row type="flex" justify="center">
       <el-col style="font-size:90%;color:#858585fa;text-align:center;margin-bottom:10px;">
-        {{this.tableData.time}}
+        {{time}}
       </el-col>
     </el-row>
 
@@ -25,7 +25,7 @@
       <el-col :span="14">
         <div style="font-size:100%; height:50px; color:#858585fa;text-align:left;">
             <div class="text-wrapper">
-               {{this.tableData.detail}}
+               {{detail}}
             </div>
         </div>
       </el-col>
@@ -37,16 +37,22 @@
 <script>
 export default {
   mounted:function(){
-    //this.show(this.$route.params.data)
-    this.tableData = this.$route.params.data
+    this.show(this.$route.params.data)
+    //this.tableData = this.$route.params.data
   },
   methods:{
-    show(a){
-      this.$confirm(a,'提示')
+    show(){
+      this.$confirm(this.$route.params.title+','+this.$route.params.time+','+this.$route.params.detail)
+      this.title = this.$route.params.title
+      this.time = this.$route.params.time
+      this.detail = this.$route.params.detail
     }
   },
   data () {
     return {
+      title:'',
+      time:'',
+      detail:'',
       tableData: []
     }
   }

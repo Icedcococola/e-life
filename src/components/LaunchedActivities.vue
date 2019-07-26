@@ -74,12 +74,11 @@
               placement="right"
               title="活动详情"
               width="200"
-              trigger="click"
-              >
+              trigger="click">
               <div>
                 {{detail}}
              </div>
-                <el-button slot="reference" type="primary" icon="el-icon-search" circle @click="topage(scope.row.activityid)"></el-button>
+                <el-button slot="reference" type="primary" icon="el-icon-search" circle @click="topage(scope.row.activityid,scope.$index)"></el-button>
             </el-popover>
             <el-button type="danger" @click="deleteLine(scope.row.activityid,scope.$index)" icon="el-icon-delete" circle :loading="clicked"></el-button>
           </template>
@@ -122,7 +121,8 @@
 
       methods:
       {
-        topage(lalala){
+        topage(lalala,index){
+          /*以下为调用findbyid接口获取详情
           var fd  = new FormData()
           fd.append("activityid",lalala)
           this.axios.post('/api/Activity/findbyid',fd,{
@@ -134,7 +134,12 @@
             this.detail  = response.data.detail
             console.log(response)
           })
-          
+          */
+         //以下为直接操作第一次返回的list中的数据（响应速度更快没有延迟）
+         var ind  = index + 5*(this.currentPage-1)
+         this.detail = this.searchData[ind].detail
+         console.log(this.detail)
+        
         },
 
         

@@ -52,7 +52,7 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
-            <el-button type="primary" @click="topage(scope.row.emergencynoticeid)" round>查看</el-button>
+            <el-button type="primary" @click="topage(scope.row.emergencynoticeid,scope.$index)" round>查看</el-button>
             <el-button type="danger" @click="deleteLine(scope.row.emergencynoticeid,scope.$index)"  round >删除</el-button>
           </template>
       </el-table-column>
@@ -92,13 +92,13 @@
       },
       methods:
       {
-        topage(happy){
+        topage(happy,index){
           //this.axios.get('/api/Emergencynotic/findbyid',{
           //  params:{
           //    emergencynoticeid:happy
           //  }
           //}
-          var fd  = new FormData()
+          /*var fd  = new FormData()
           fd.append("emergencynoticeid",happy)
           this.axios.post('/api/Emergencynotice/findbyid',fd,
           {
@@ -113,7 +113,20 @@
                 data:response.data
               }
             })
+          })*/
+          var ind = index + 5*(this.currentPage-1)
+          var tit = this.searchData[ind].title
+          var tim = this.searchData[ind].time
+          var det = this.searchData[ind].detail
+          this.$router.push({
+            name:'紧急详情页',
+            params:{
+              title:tit,
+              time:tim,
+              detail:det
+            }
           })
+
         },
         
         deleteLine(id,index){
