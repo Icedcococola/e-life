@@ -8,7 +8,9 @@ const state = {
   username: window.sessionStorage.getItem('username'),
   token: window.sessionStorage.getItem('token'),
   community: window.sessionStorage.getItem('community'),
-  desiredid:window.sessionStorage.getItem('desiredid')
+  desiredid:window.sessionStorage.getItem('desiredid'),
+  storeid:window.sessionStorage.getItem('storeid'),
+  discountid:window.sessionStorage.getItem('discountid')
 }
 const mutations = {
   //将token保存到sessionStorage里，token表示登陆状态
@@ -30,6 +32,16 @@ const mutations = {
   SET_DESIREDID: (state,data) => {
     state.desiredid = data
     window.sessionStorage.setItem('desiredid',data)
+  },
+
+  SET_STOREID: (state,data) => {
+    state.storeid = data
+    window.sessionStorage.setItem('storeid',data)
+  },
+
+  SET_DISCOUNTID:(state,data) => {
+    state.discountid = data
+    window.sessionStorage.setItem('discountid',data)
   },
   //登出
   LOGOUT: (state) => {

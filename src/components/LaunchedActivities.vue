@@ -67,7 +67,20 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
+          <!--
             <el-button type="primary" @click="topage(scope.row.activityid)" icon="el-icon-search" circle></el-button>
+            -->
+            <el-popover
+              placement="right"
+              title="活动详情"
+              width="200"
+              trigger="click"
+              >
+              <div>
+                {{detail}}
+             </div>
+                <el-button slot="reference" type="primary" icon="el-icon-search" circle @click="topage(scope.row.activityid)"></el-button>
+            </el-popover>
             <el-button type="danger" @click="deleteLine(scope.row.activityid,scope.$index)" icon="el-icon-delete" circle :loading="clicked"></el-button>
           </template>
       </el-table-column>
@@ -117,7 +130,8 @@
               'Content-Type': 'application/x-www-form-urlencoded'
             }}
           ).then((response)=>{
-            this.$confirm(response.data.detail,'活动详情')
+            //this.$confirm(response.data.detail,'活动详情')
+            this.detail  = response.data.detail
             console.log(response)
           })
           
@@ -189,6 +203,7 @@
           title:'活动安排',
           input: '',
           search: '',
+          detail:'',
           tableData: []
         }
       }

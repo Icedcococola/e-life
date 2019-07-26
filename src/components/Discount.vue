@@ -2,7 +2,7 @@
   <div id="l-ac">
 
     <el-row type="flex" class="row-bg" justify="end">
-      <el-col :span="14">
+      <el-col :span="12">
         <div class="tit" style="font-size:250%; height:50px; color:#858585;text-align:left;"><i class="el-icon-document"></i>{{title}}</div>
       </el-col>
       <el-col :span='8'>
@@ -11,7 +11,9 @@
       <el-col :span="2">
         <el-button icon="el-icon-search" circle></el-button>
       </el-col>
-   
+       <el-col :span="2">
+        <el-button icon="el-icon-plus" circle type="success" @click="adddiscount"></el-button>
+      </el-col>
     </el-row>
     <el-row>
     <div style="width:100%;background:#c4c4c4;height:1px;margin-top:10px;margin-bottom:30px;padding:0px;overflow:hidden;"></div>
@@ -29,31 +31,33 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="storeid"
-        label="商户编号"
+        prop="discountid"
+        label="优惠编号"
         width="90"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="storename"
-        label="商户名称"
+        prop="discountname"
+        label="优惠名称"
         width="230"
         align="center">
       </el-table-column>       
       <el-table-column
-        prop="place"
-        label="商户地址"
+        prop="detail"
+        label="优惠详情"
         width="370"
         align="center">
       </el-table-column>  
       <el-table-column
         prop="op"
-        label="查看商家优惠"
+        label="操作"
         width="150"
         align="center"
         fixed="right">
         <template slot-scope="scope">
-            <el-button type="primary" @click="topage(scope.row.storeid)" icon="el-icon-search" circle></el-button>
+            <el-button type="primary" icon="el-icon-edit" circle @click="topage(scope.row.discountid,scope.row.discountname,scope.row.detail)"></el-button>
+            <el-button type="danger" icon="el-icon-delete" circle @click="deleteLine(scope.$index,scope.row.storeid)"></el-button>
+
           </template>
       </el-table-column>
     </el-table>
@@ -73,7 +77,7 @@
 <script>
  export default {
       mounted:function(){
-        //this.getTableData();
+       this.show()
       },
       
       computed:{
@@ -94,10 +98,28 @@
 
       methods:
       {
-        topage(storeid){
-          this.$store.commit('SET_STOREID',storeid)
-           var fd  = new FormData()
-           fd.append("latestnewsid",storeid)
+          show(){
+              this.$confirm(window.sessionStorage.getItem('storeid'))
+          },
+          adddiscount(){
+            this.$router.push({
+                name:'AddDiscount',
+                params:{
+                    storeid:this.storeid
+                }
+            })
+          },
+          addLine(){
+          var newValue={
+            company:'',
+            phonenum:'',
+            orderid:''
+          };
+          this.tableData.push(newValue);
+        },
+          topage(discountid,discountname,detail){
+          /* var fd  = new FormData()
+           fd.append("storeid",lhlhlh)
            this.axios.post('/api/Latestnews/findbyid',fd,{
             headers:{
               'Content-Type': 'application/x-www-form-urlencoded'
@@ -108,12 +130,19 @@
             this.$router.push({
             name:"Discount",
             params:{
-              data:response.data,
-              
+              data:response.data
             }
             });
           })
-
+*/         this.$store.commit('SET_DISCOUNTID',discountid)
+           this.$router.push({
+               name:"modifyDiscount",
+               params:{
+                   
+                   discountname:discountname,
+                   detail:detail
+               }
+           })
           },/*
         topage(lalala){
           var fd  = new FormData()
@@ -133,7 +162,7 @@
         current_change:function(currentPage){
            this.currentPage = currentPage;
         },
-        /*
+        
         deleteLine(id,index){
           this.$confirm('确认删除？',
                         '提示',
@@ -141,8 +170,8 @@
           ).then(()=>{
             this.clicked = true
             var fd = new FormData()
-            fd.append("activityid",id)
-            this.axios.post('/api/Activity/delete',fd,{
+            fd.append("discountid",id)
+            this.axios.post('/api/Latestnews/delete',fd,{
               headers:{
                   'Content-Type': 'application/x-www-form-urlencoded'
               }
@@ -173,7 +202,7 @@
           }
           )
         },
-*/
+
 
 /*
         getTableData(){
@@ -192,47 +221,58 @@
       },
       data() {
         return {
-          
+          storeid:'',
           pagesize:5,
           currentPage:1,
-          title:'商户列表',
+          title:'商户优惠列表',
           input: '',
           search: '',
           tableData: [{
-             storeid:12,
-             storename:'王胖子石锅鱼',
-             place:'上海市闵行区江川路街道东川路887北欧丽景'
+             discountid:100,
+             discountname:'满100-5',
+             detail:'在商家消费每满100元可优惠5元，上不封顶'
           },
           {
-            storeid:13,
-            storename:'吴老幺火锅',
-            place:'上海市闵行区江川路街道永平南路142号好第坊'
+            discountid:101,
+            discountname:'部分商品8折',
+            detail:'店内部分商品8折优惠，具体优惠商品请进店咨询'
           },
           {
-            storeid:14,
-            storename:'吉祥馄饨',
-            place:'上海市闵行区江川路街道东川路867号好第坊'
+             discountid:102,
+             discountname:'满100-5',
+             detail:'在商家消费每满100元可优惠5元，上不封顶'
           },
           {
-            storeid:15,
-            storename:'东北饺子王',
-            place:'上海市闵行区江川路街道东川路889-23号北欧丽景'
+            discountid:103,
+            discountname:'部分商品8折',
+            detail:'店内部分商品8折优惠，具体优惠商品请进店咨询'
           },
           {
-            storeid:16,
-            storename:'四季生鲜超市',
-            place:'上海市闵行区江川路街道永平南路13-14号金榜5期'
+             discountid:104,
+             discountname:'满100-5',
+             detail:'在商家消费每满100元可优惠5元，上不封顶'
           },
           {
-            storeid:17,
-            storename:'晨光文具',
-            place:'上海市闵行区江川路街道沧源路699号京浦花园'
+            discountid:105,
+            discountname:'部分商品8折',
+            detail:'店内部分商品8折优惠，具体优惠商品请进店咨询'
           },
           {
-             storeid:18,
-             storename:'雷允上颛盛大药房',
-             place:'上海市闵行区江川路街道永平南路154号好第坊'
-          }]
+             discountid:106,
+             discountname:'满100-5',
+             detail:'在商家消费每满100元可优惠5元，上不封顶'
+          },
+          {
+            discountid:107,
+            discountname:'部分商品8折',
+            detail:'店内部分商品8折优惠，具体优惠商品请进店咨询'
+          },
+          {
+            discountid:108,
+            discountname:'部分商品8折',
+            detail:'店内部分商品8折优惠，具体优惠商品请进店咨询'
+          }
+          ]
         }
       }
     }

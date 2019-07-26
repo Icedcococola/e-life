@@ -25,15 +25,23 @@
 
   <style>
     .amap-page-container{
-      height:480px;
+      height:490px;
       width:920px
     }
+   /* .amap-demo{
+      height:450px;
+      width:920px
+    }*/
   </style>
 
   <script>
   
     export default {
+      mounted:function(){
+         
+      },
       methods:{
+       
          commit(){
            this.$confirm(this.lng+','+this.lat+','+this.address)
            .then(() => {
@@ -42,15 +50,18 @@
                params:{
                   longitude:this.lng,
                   latitude:this.lat,
-                  address:this.address
+                  address:this.address,
                   }
              })
            })
+         },
+
+         setcenter(){
+
          }
       },
       data: function() {
         let self = this;
-        
         return {
           zoom: 12,
           center: [121.59996, 31.197646],
@@ -61,8 +72,6 @@
               let { lng, lat } = e.lnglat;
               self.lng = lng;
               self.lat = lat;
-
-
               // 这里通过高德 SDK 完成。
               var geocoder = new AMap.Geocoder({
                 radius: 1000,
@@ -72,23 +81,9 @@
                 if (status === 'complete' && result.info === 'OK') {
                   if (result && result.regeocode) {
                     self.address = result.regeocode.formattedAddress;
-                    //self.$nextTick();
                   }
                 }
               });  
-              /*
-              self.$confirm(self.lng+','+self.lat+','+self.address)
-              .then(()=>{
-                self.$router.push({
-                  name:'AddStore',
-                  params:{
-                    longitude:self.lng,
-                    latitude:self.lat,
-                    address:self.address
-                  }
-                })
-              })
-              */
             }
           },
           lng: 0,

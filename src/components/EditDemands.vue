@@ -90,6 +90,19 @@ export default {
   {
     commit(formName)
     {
+      if(this[formName].title.split(" ").join("").length === 0 ){
+          this.$confirm('商家名不可为空')
+      }
+      else if(this[formName].detail.split(" ").join("").length === 0){
+        this.$confirm('商品详情不可为空')
+
+      }
+      else if(this.imageUrl === 'https://i.loli.net/2019/07/19/5d312e20c0c6d52233.jpg'){
+        this.$message({
+          message:'请选择一张图片',
+          type:'warning'
+        })
+      }else{
         
         this.$refs[formName].validate((valid)=>{
           if(valid){
@@ -98,7 +111,7 @@ export default {
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
               this.clicked=true
-              this.axios.get('/api/Goods/up',
+              this.axios.get('/api/Goos/up',
               {
                 params:{
                   desiredid:this.emm,
@@ -152,7 +165,7 @@ export default {
           }
         })
 
-        
+      }
     },
 
     handleAvatarSuccess(res, file) {
@@ -246,6 +259,12 @@ export default {
   },
 
   data() {
+    var checkBlank = (rule, value, callback) => {
+        //var string = value.split(" ").join("")
+        if(value.split(" ").join("") === 0){
+          return callback(new Error('输入不可全为空格'))
+        }
+    };
     var checkInt = (rule,value,callback) => {
         if (!value) {
             return callback(new Error('价格不能为空'));
@@ -296,7 +315,8 @@ export default {
       
       rules:{
         title:[
-          {required:true, message:'商家名称不可为空', trigger:'blur'}
+          {required:true, message:'商家名称不可为空', trigger:'blur'},
+          
         ],
         detail:[
           {required:true, message:'商品详情不可为空',trigger:'blur'},
@@ -307,7 +327,6 @@ export default {
         ],
         price:[
           {required:true,message:'单价不可为空',trigger:'change'},
-          {validator: checkAge, trigger: 'blur'},
           {type:'number',message:'请填写正整数',trigger:'blur'}
         ],
         num:[

@@ -151,7 +151,7 @@
                   name:'messagePageDemands',
                   params:{
                       detail:this.searchData[ind].deatil,
-                      goodsname:this.searchData[ind].goodsname
+                      goodsname:goodsname
                   }
               }
           )

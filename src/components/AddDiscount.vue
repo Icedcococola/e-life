@@ -13,44 +13,48 @@
 
 
   <el-row type="flex" justify="center" >
-    <el-col :span="18">
+    <el-col :span="16">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="margin-top:6%">
-    <el-form-item label="标题" prop="title" style="margin-bottom:5%;">
-      <el-input v-model="ruleForm.title" placeholder="请输入资讯标题"></el-input>
+        
+    <el-form-item label="优惠名称" prop="discountname" style="margin-bottom:5%;">
+      <el-input v-model="ruleForm.discountname" placeholder="请输入优惠名称"></el-input>
     </el-form-item>
-    <el-form-item label="内容" prop="detail" style="margin-bottom:5%;">
-      <el-input type="textarea" :autosize="{ minRows: 12, maxRows: 18}" placeholder="请输入通知内容" v-model="ruleForm.detail"></el-input>
+    <el-form-item label="优惠详情" prop="detail" style="margin-bottom:5%;">
+      <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 5}" placeholder="请输入优惠详情" v-model="ruleForm.detail"></el-input>
     </el-form-item>
     </el-form>
     </el-col>
   </el-row>
-  <el-button type="primary" @click="commit('ruleForm')" :loading="clicked">提交紧急通知</el-button>
+  <el-button type="primary" @click="commit('ruleForm')" :loading="clicked">提交更改</el-button>
   </div>
 </template>
 
 <script>
 export default {
+    mounted:function(){
+       this.show()
+    },
   methods:
   {
+      show(){
+           
+           this.$confirm(window.sessionStorage.getItem('storeid'))
+      },
     commit(formName)
     {
-      if(this[formName].title.split(" ").join("").length === 0){
-         this.$confirm('标题不可为空')
-      }else if(this[formName].detail.split(" ").join("").length === 0){
-         this.$confirm('内容不可为空')
-      }else{
-          this.$refs[formName].validate((valid)=>{
-          if(valid){
-            this.$confirm('确认内容并提交？',
+        this.$refs[formName].validate((valid) =>{
+            if(valid){
+                this.$confirm('确认内容并提交更改？',
                           '提示',
-                          {confirmButtonText:'确定',cancelButtonText:'取消'}
+                          {confirmButtonText:'确定更改',cancelButtonText:'取消'}
             ).then(()=>{
               this.clicked = true
-              this.axios.get('/api/Emergencynotice/add',{
+              
+              this.axios.get('/api/Emerge/add',{              //接口在这里接口在这里接口在这里接口在这里！！！！！！！！！！
                 params:{
-                  title:this[formName].title,
+                  discountname:this[formName].discountname,
                   detail:this[formName].detail,
-                  community:window.sessionStorage.getItem('community')
+                  storeid:window.sessionStorage.getItem('storeid')
                 }
                 
               }).then((response)=>{
@@ -79,33 +83,37 @@ export default {
               //this.$message({type:'success',message:'提交成功！'});
               //this.$router.push({name:"查看紧急通知"});
             });
-          }else{
-            this.$alert('请填写完整','提示',{
-              confirmButtonText:'确定',
-              callback: action=>{}
-            });
-            return false;
-          }
+          
+        
+            }else{
+                this.$alert('请填写完整','提示',{
+                confirmButtonText:'确定',
+                callback: action=>{}
+                });
+               return false;
+            }
         })
-      }
     }
   },
   data() {
     return {
       clicked:false,
-      title:'编辑紧急通知',
+      title:'增加新优惠',
+      storeid:'',
       ruleForm:{
-        title:'',
-        detail:'',
+          discountname:'',
+          detail:'',
       },
       rules:{
-        title:[
-          {required:true, message:'请输入通知标题',trigger:'blur'}
-        ],
-        detail:[
-          {required:true, message:'请输入通知内容',trigger:'blur'}
-        ]
+          discountname:[
+              {required:true, message:'请输入优惠名称',trigger:'blur'}
+          ],
+          detail:[
+              {required:true, message:'请输入优惠详情',trigger:'blur'}
+          ]
       }
+      
+      
     }
   }
 }

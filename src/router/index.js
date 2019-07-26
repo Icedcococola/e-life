@@ -30,6 +30,9 @@ import fof from "@/components/fof"
 import fot from "@/components/fot"
 import map from "@/components/map"
 import testmap from "@/components/testmap"
+import Discount from "@/components/Discount"
+import modifyDiscount from "@/components/modifyDiscount"
+import AddDiscount from "@/components/AddDiscount"
 
 import store from '@/store/index'
 
@@ -137,9 +140,9 @@ const router = new Router({
           path:'/StoreList',
           component:StoreList,
           name:'StoreList',
-          /*meta:{
+          meta:{
             requireAuth: true
-          }*/
+          }
 
         }
       ]
@@ -197,9 +200,9 @@ const router = new Router({
           path:'/AddStore',
           component:AddStore,
           name:'AddStore',
-         /* meta:{
+          meta:{
             requireAuth: true
-          }*/
+          }
         },
         {
           path:'/map',
@@ -210,7 +213,23 @@ const router = new Router({
           path:'/testmap',
           component:testmap,
           name:'testmap'
+        },
+        {
+          path:'/Discount',
+          component:Discount,
+          name:'Discount'
+        },
+        {
+          path:'/modifyDiscount',
+          component:modifyDiscount,
+          name:'modifyDiscount'
+        },
+        {
+          path:'/AddDiscount',
+          component:AddDiscount,
+          name:'AddDiscount'
         }
+        
       ]
     },
     {
@@ -225,11 +244,13 @@ const router = new Router({
       name:'wuyeLogin'
       
     },
+    
     {
       path:'/parcelLogin',
       component:parcelLogin,
       name:'parcelLogin'
     },
+    
     {
       path:'/fof',
       component:fof,

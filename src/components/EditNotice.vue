@@ -37,6 +37,11 @@ export default {
   {
     commit(formName)
     {
+      if(this[formName].title.split(" ").join("").length === 0){
+         this.$confirm('标题不可为空')
+      }else if(this[formName].detail.split(" ").join("").length === 0){
+          this.$confirm('内容不可为空')
+      }else{
           this.$refs[formName].validate((valid)=>{
           if(valid){
             this.$confirm('确认内容并提交？',
@@ -84,6 +89,7 @@ export default {
             return false;
           }
         })
+      }
     }
   },
   data() {
