@@ -10,8 +10,9 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 
-class SendPostViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
+class SendPostViewController: UIViewController{
 
+    @IBOutlet var scrollView: UIScrollView!
     let companies : [String] = ["中通快递", "申通快递", "顺丰快递", "圆通快递", "韵达速递", "百世快递", "EMS"]
     
     let payments : [String] = ["现付", "到付", "月结", "第三方支付"]
@@ -62,23 +63,35 @@ class SendPostViewController: UIViewController, UITextViewDelegate, UITextFieldD
     override func viewDidLoad() {
         super.viewDidLoad()
         genOrderNum()
+        
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        nameInput.resignFirstResponder()
-//        phoneNumInput.resignFirstResponder()
-//        remarkInput.resignFirstResponder()
-//        senderNameInput.resignFirstResponder()
-//        senderPhoneNumInput.resignFirstResponder()
-//        senderRemarkInput.resignFirstResponder()
-//    }
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print ("HI")
+        nameInput.endEditing(true)
+        nameInput.resignFirstResponder()
+        phoneNumInput.resignFirstResponder()
+        provinceInput.resignFirstResponder()
+        cityInput.resignFirstResponder()
+        addressInput.resignFirstResponder()
+
+        senderNameInput.resignFirstResponder()
+        senderPhoneNumInput.resignFirstResponder()
+        senderProvinceInput.resignFirstResponder()
+        senderCityInput.resignFirstResponder()
+        senderAddressInput.resignFirstResponder()
+
+        goodNameInput.resignFirstResponder()
+        remark.resignFirstResponder()
+    }
+//
     func genOrderNum(){
         orderNumber = Double.random(in: 0..<1000)
     }
     
     
     @IBAction func submit(_ sender: Any) {
+        print ("Submit")
         if metaInfoCheck() && senderInfoCheck() && recieverInfoCheck() {
             let parameter =
                 [   "OrderCode": String(orderNumber),
@@ -153,7 +166,6 @@ class SendPostViewController: UIViewController, UITextViewDelegate, UITextFieldD
             return true
         }
     }
-    
 }
 
 
@@ -221,6 +233,38 @@ extension SendPostViewController : UIPickerViewDelegate, UIPickerViewDataSource{
                     print ("Error")
             }
         }
+    }
+    
+}
+
+extension SendPostViewController : UIScrollViewDelegate {
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        print ("touch begin")
+//    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        print ("scrolling")
+        resign()
+    }
+    
+    func resign() {
+        print ("HI")
+        nameInput.endEditing(true)
+        nameInput.resignFirstResponder()
+        phoneNumInput.resignFirstResponder()
+        provinceInput.resignFirstResponder()
+        cityInput.resignFirstResponder()
+        addressInput.resignFirstResponder()
+        
+        senderNameInput.resignFirstResponder()
+        senderPhoneNumInput.resignFirstResponder()
+        senderProvinceInput.resignFirstResponder()
+        senderCityInput.resignFirstResponder()
+        senderAddressInput.resignFirstResponder()
+        
+        goodNameInput.resignFirstResponder()
+        remark.resignFirstResponder()
+
     }
     
 }

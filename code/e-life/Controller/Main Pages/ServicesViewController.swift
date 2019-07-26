@@ -34,6 +34,27 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(leftSwipeAction(swipe:)))
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(rightSwipeAction(swipe:)))
+        leftSwipe.direction = .left
+        rightSwipe.direction = .right
+        self.view.addGestureRecognizer(leftSwipe)
+        self.view.addGestureRecognizer(rightSwipe)
+    }
+    
+    @objc func leftSwipeAction(swipe:UISwipeGestureRecognizer) {
+        if (swipe.direction == .left) {
+            let mainPage = self.parent?.parent as! UITabBarController
+            mainPage.selectedViewController = mainPage.viewControllers![2]
+            print ("going to the left")
+        }
+    }
+    @objc func rightSwipeAction(swipe:UISwipeGestureRecognizer) {
+        if (swipe.direction == .right) {
+            let mainPage = self.parent?.parent as! UITabBarController
+            mainPage.selectedViewController = mainPage.viewControllers![0]
+            print ("going to the left")
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -42,7 +42,20 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         resposiveDesign()
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
+        leftSwipe.direction = .right
+        self.view.addGestureRecognizer(leftSwipe)
     }
+    
+    @objc func swipeAction(swipe:UISwipeGestureRecognizer) {
+        if (swipe.direction == .right) {
+            //performSegue(withIdentifier: "goToRight", sender: self)
+            let mainPage = self.parent?.parent as! UITabBarController
+            mainPage.selectedViewController = mainPage.viewControllers![1]
+            print ("going to the left")
+        }
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         setUsernameAndCommunity()

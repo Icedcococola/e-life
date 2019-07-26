@@ -38,10 +38,10 @@
             </objects>
             <point key="canvasLocation" x="-121" y="-494"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main View Controller-->
         <scene sceneID="YGE-X0-Lmp">
             <objects>
-                <tabBarController storyboardIdentifier="mainPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cc7-qo-ybB" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cc7-qo-ybB" customClass="MainViewController" customModule="e_life" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="Vm5-gK-cWp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -49,7 +49,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet var EmergencyNews: UIView!
     @IBOutlet var News: UIView!
-    @IBOutlet var NewsTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +57,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // Do any additional setup after loading the view.
         collectionView.delegate = self
         collectionView.dataSource = self
-        
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
+        leftSwipe.direction = .left
+        self.view.addGestureRecognizer(leftSwipe)
+    }
+    
+    @objc func swipeAction(swipe:UISwipeGestureRecognizer) {
+        if (swipe.direction == .left) {
+            //performSegue(withIdentifier: "goToRight", sender: self)
+            let mainPage = self.parent?.parent as! UITabBarController
+            mainPage.selectedViewController = mainPage.viewControllers![1]
+            print ("going to the left")
+        }
     }
     
     func responsiveDesign(){

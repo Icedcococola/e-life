@@ -969,14 +969,14 @@
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qF0-1e-DPv">
                                                 <rect key="frame" x="105" y="353.5" width="289" height="30"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oV9-qC-ipP">
                                                 <rect key="frame" x="105" y="398.5" width="289" height="90"/>
@@ -1029,14 +1029,14 @@
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2UX-qn-SSz">
                                                 <rect key="frame" x="105" y="684.5" width="289" height="30"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4OD-TU-QbB">
                                                 <rect key="frame" x="105" y="729.5" width="289" height="90"/>
@@ -1104,11 +1104,11 @@
                                                     <color key="titleColor" red="0.0" green="0.56078431370000004" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="submit:" destination="s0q-Sl-KZj" eventType="touchUpInside" id="o2l-0H-tVB"/>
+                                                    <action selector="submit:" destination="s0q-Sl-KZj" eventType="touchUpInside" id="Pj2-Xy-ajt"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="4OD-TU-QbB" firstAttribute="leading" secondItem="J0K-9Y-WiR" secondAttribute="trailing" constant="15" id="2OK-zS-AR7"/>
                                             <constraint firstItem="1cr-Bt-WJc" firstAttribute="top" secondItem="hAU-79-cGj" secondAttribute="bottom" constant="20" id="2gc-vh-SSX"/>
@@ -1216,6 +1216,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="IeY-ZR-pDC" firstAttribute="leading" secondItem="T8c-hm-LXj" secondAttribute="leading" id="CpB-Xa-ahg"/>
                                     <constraint firstAttribute="bottom" secondItem="IeY-ZR-pDC" secondAttribute="bottom" id="LaG-yc-r4g"/>
@@ -1223,6 +1224,9 @@
                                     <constraint firstItem="IeY-ZR-pDC" firstAttribute="top" secondItem="T8c-hm-LXj" secondAttribute="top" id="fua-8b-sA8"/>
                                     <constraint firstAttribute="trailing" secondItem="IeY-ZR-pDC" secondAttribute="trailing" id="smv-xz-1NG"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="s0q-Sl-KZj" id="iO6-N4-sWS"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1245,6 +1249,7 @@
                         <outlet property="phoneNumInput" destination="nnM-pZ-Cjk" id="QMx-Az-kSA"/>
                         <outlet property="provinceInput" destination="ARL-j7-WpL" id="zlG-fk-eGw"/>
                         <outlet property="remark" destination="E0P-07-J7O" id="VXg-tU-QS5"/>
+                        <outlet property="scrollView" destination="T8c-hm-LXj" id="7t1-QV-mGh"/>
                         <outlet property="senderAddressInput" destination="4OD-TU-QbB" id="J6I-oO-z6M"/>
                         <outlet property="senderCityInput" destination="2UX-qn-SSz" id="Gcn-p8-X6R"/>
                         <outlet property="senderNameInput" destination="qUR-Wi-foJ" id="0zt-5s-iU0"/>
@@ -1254,7 +1259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E2u-8b-zhb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2037.68115942029" y="802.90178571428567"/>
+            <point key="canvasLocation" x="2035" y="803"/>
         </scene>
         <!--邮件通知-->
         <scene sceneID="ZZr-cd-wHa">

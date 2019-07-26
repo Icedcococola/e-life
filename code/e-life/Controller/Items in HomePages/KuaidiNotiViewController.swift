@@ -36,7 +36,6 @@ class KuaidiNotiViewController: UIViewController {
             if (response.response?.statusCode == 200) {
                 if let json = response.value {
                     let data = JSON(json).arrayValue
-                    print (data)
                     self.notiArray = data
                     self.tableView.reloadData()
                 }

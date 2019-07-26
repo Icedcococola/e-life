@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {_,_ in})
         
         UNUserNotificationCenter.current().delegate = self
-        
+            
         socket = manager.defaultSocket
         addSocketListener()
         socket.connect()
