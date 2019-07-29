@@ -11,7 +11,7 @@
       <el-col :span="2">
         <el-button icon="el-icon-search" circle></el-button>
       </el-col>
-       <el-col :span="2">
+      <el-col :span="2">
         <el-button icon="el-icon-plus" circle type="success" @click="adddiscount"></el-button>
       </el-col>
     </el-row>
@@ -31,19 +31,19 @@
         align="center">
       </el-table-column>
       <el-table-column
-        prop="discountid"
-        label="优惠编号"
+        prop="storeid"
+        label="商户id"
         width="90"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="discountname"
-        label="优惠名称"
+        prop="storecomid"
+        label="优惠id"
         width="230"
         align="center">
       </el-table-column>       
       <el-table-column
-        prop="detail"
+        prop="discount"
         label="优惠详情"
         width="370"
         align="center">
@@ -55,8 +55,8 @@
         align="center"
         fixed="right">
         <template slot-scope="scope">
-            <el-button type="primary" icon="el-icon-edit" circle @click="topage(scope.row.discountid,scope.row.discountname,scope.row.detail)"></el-button>
-            <el-button type="danger" icon="el-icon-delete" circle @click="deleteLine(scope.$index,scope.row.storeid)"></el-button>
+            <el-button type="primary" icon="el-icon-edit" circle @click="topage(scope.row.storecomid,scope.row.discount)"></el-button>
+            <el-button type="danger" icon="el-icon-delete" circle @click="deleteLine(scope.$index,scope.row.storecomid)"></el-button>
 
           </template>
       </el-table-column>
@@ -77,11 +77,11 @@
 <script>
  export default {
       mounted:function(){
-       this.show()
+       //this.show()
+       this.getTableData();
       },
       
       computed:{
-
         searchData:function(){
           var search = this.search;
           if(search){
@@ -93,7 +93,6 @@
           }  
           return this.tableData                 
         }
-
       },
 
       methods:
@@ -102,12 +101,17 @@
               this.$confirm(window.sessionStorage.getItem('storeid'))
           },
           adddiscount(){
-            this.$router.push({
-                name:'AddDiscount',
-                params:{
-                    storeid:this.storeid
-                }
-            })
+           /* this.$router.push({
+                name:'AddDiscount'
+            })*/
+            if(this.tableData.length === 1)
+            {
+              this.$confirm('不可添加')
+            }else{
+              this.$router.push({
+                name:'AddDiscount'
+              })
+            }
           },
           addLine(){
           var newValue={
@@ -117,7 +121,7 @@
           };
           this.tableData.push(newValue);
         },
-          topage(discountid,discountname,detail){
+          topage(discountid,discount){
           /* var fd  = new FormData()
            fd.append("storeid",lhlhlh)
            this.axios.post('/api/Latestnews/findbyid',fd,{
@@ -139,8 +143,8 @@
                name:"modifyDiscount",
                params:{
                    
-                   discountname:discountname,
-                   detail:detail
+                   discount:discount,
+                   
                }
            })
           },/*
@@ -163,17 +167,17 @@
            this.currentPage = currentPage;
         },
         
-        deleteLine(id,index){
+        deleteLine(index,id){
           this.$confirm('确认删除？',
                         '提示',
                         {confirmButtonText:'确定',cancelButtonText:'取消'}
           ).then(()=>{
             this.clicked = true
-            var fd = new FormData()
-            fd.append("discountid",id)
-            this.axios.post('/api/Latestnews/delete',fd,{
-              headers:{
-                  'Content-Type': 'application/x-www-form-urlencoded'
+            //var fd = new FormData()
+            //fd.append("discountid",id)
+            this.axios.get('/api/Store/deletediscount',{
+              params:{
+                  storecomid : id
               }
             }
             ).then((response)=>{
@@ -204,20 +208,23 @@
         },
 
 
-/*
+
         getTableData(){
-          var fd = new FormData()
-          fd.append("community",window.sessionStorage.getItem('community'))
-          this.axios.post('/api/Activity/findAll',fd,{
-           headers:{
-          'Content-Type': 'application/x-www-form-urlencoded'
+          
+          //var fd = new FormData()
+          //fd.append("community",window.sessionStorage.getItem('community'))
+          this.axios.get('/api/Store/getdiscount',{
+           params:{
+             storeid:window.sessionStorage.getItem('storeid')
            }}
            )
           .then((response)=>{
             var dt = response.data;
             this.tableData = dt;
           })
-        },*/
+          //var dt = this.$route.params.data;
+          //this.tableData = dt;
+        },
       },
       data() {
         return {
@@ -227,52 +234,7 @@
           title:'商户优惠列表',
           input: '',
           search: '',
-          tableData: [{
-             discountid:100,
-             discountname:'满100-5',
-             detail:'在商家消费每满100元可优惠5元，上不封顶'
-          },
-          {
-            discountid:101,
-            discountname:'部分商品8折',
-            detail:'店内部分商品8折优惠，具体优惠商品请进店咨询'
-          },
-          {
-             discountid:102,
-             discountname:'满100-5',
-             detail:'在商家消费每满100元可优惠5元，上不封顶'
-          },
-          {
-            discountid:103,
-            discountname:'部分商品8折',
-            detail:'店内部分商品8折优惠，具体优惠商品请进店咨询'
-          },
-          {
-             discountid:104,
-             discountname:'满100-5',
-             detail:'在商家消费每满100元可优惠5元，上不封顶'
-          },
-          {
-            discountid:105,
-            discountname:'部分商品8折',
-            detail:'店内部分商品8折优惠，具体优惠商品请进店咨询'
-          },
-          {
-             discountid:106,
-             discountname:'满100-5',
-             detail:'在商家消费每满100元可优惠5元，上不封顶'
-          },
-          {
-            discountid:107,
-            discountname:'部分商品8折',
-            detail:'店内部分商品8折优惠，具体优惠商品请进店咨询'
-          },
-          {
-            discountid:108,
-            discountname:'部分商品8折',
-            detail:'店内部分商品8折优惠，具体优惠商品请进店咨询'
-          }
-          ]
+          tableData: []
         }
       }
     }

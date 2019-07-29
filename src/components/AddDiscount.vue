@@ -16,16 +16,14 @@
     <el-col :span="16">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="margin-top:6%">
         
-    <el-form-item label="优惠名称" prop="discountname" style="margin-bottom:5%;">
-      <el-input v-model="ruleForm.discountname" placeholder="请输入优惠名称"></el-input>
-    </el-form-item>
-    <el-form-item label="优惠详情" prop="detail" style="margin-bottom:5%;">
-      <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 5}" placeholder="请输入优惠详情" v-model="ruleForm.detail"></el-input>
+    
+    <el-form-item label="优惠详情" prop="discount" style="margin-bottom:5%;">
+      <el-input placeholder="请输入优惠详情" v-model="ruleForm.discount"></el-input>
     </el-form-item>
     </el-form>
     </el-col>
   </el-row>
-  <el-button type="primary" @click="commit('ruleForm')" :loading="clicked">提交更改</el-button>
+  <el-button type="primary" @click="commit('ruleForm')" :loading="clicked">提交新优惠</el-button>
   </div>
 </template>
 
@@ -50,11 +48,11 @@ export default {
             ).then(()=>{
               this.clicked = true
               
-              this.axios.get('/api/Emerge/add',{              //接口在这里接口在这里接口在这里接口在这里！！！！！！！！！！
+              this.axios.get('/api/Store/adddiscount',{              //接口在这里接口在这里接口在这里接口在这里！！！！！！！！！！
                 params:{
-                  discountname:this[formName].discountname,
-                  detail:this[formName].detail,
-                  storeid:window.sessionStorage.getItem('storeid')
+                  discount:this[formName].discount,
+                  storeid:window.sessionStorage.getItem('storeid'),
+                  community:window.sessionStorage.getItem('community')
                 }
                 
               }).then((response)=>{
@@ -63,7 +61,10 @@ export default {
                   //console.log(response.data.result);
                  // if(response.data.result === null){
                     this.$message({type:'success',message:'提交成功！'});
-                    this.$router.push({name:"查看紧急通知"});
+                    this.$router.push({
+                      name:"Discount",
+                      
+                    });
                   //}
                 }
               })
@@ -101,16 +102,12 @@ export default {
       title:'增加新优惠',
       storeid:'',
       ruleForm:{
-          discountname:'',
-          detail:'',
+          discount:'',
       },
       rules:{
-          discountname:[
-              {required:true, message:'请输入优惠名称',trigger:'blur'}
+          discount:[
+              {required:true, message:'请输入优惠',trigger:'blur'}
           ],
-          detail:[
-              {required:true, message:'请输入优惠详情',trigger:'blur'}
-          ]
       }
       
       

@@ -163,7 +163,7 @@ export default {
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
               this.isclicked=true
-              this.axios.get('/api/Gs/up',
+              this.axios.get('/api/Store/add',
               {
                 params:{
                   storename:this[formName].storename,

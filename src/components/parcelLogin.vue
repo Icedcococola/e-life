@@ -13,7 +13,7 @@
     <el-input v-model="ruleForm.username"></el-input>
   </el-form-item>
   <el-form-item label="密码" prop="password">
-    <el-input v-model="ruleForm.password"></el-input>
+    <el-input type="password" v-model="ruleForm.password"></el-input>
   </el-form-item>
 </el-form>
      
@@ -34,31 +34,39 @@ export default {
     toHome(formName){
        this.$refs[formName].validate((valid)=>{
          if(valid){
-           /* this.axios.post('https://www.easy-mock.com/mock/5d22ed7d1994010b14459e3b/example/api/parcellogin',
-            {
-              user:this[formName].username,
-              pass:this[formName].password
-            }
+            this.axios.get('/api/Admin/login',{
+            params:{
+              adminname:this[formName].username,
+              password:this[formName].password,
+              type:'youjian'
+            }}
             ).then((response)=>{
-            if(response.status === 200 ){
+            if(response.status === 200){
                 console.log(response);
-                var a = response.data.match;
+                var a = response.data.num;
                 console.log(a);
-                if(a===1){*/
+                if(a===0){
+                  this.$confirm('用户名不存在','提示')
+                }else if(a===1){
+                  this.$confirm('密码不正确','提示')
+                }else if(a===2){
                   this.$store.commit('SET_TOKEN',1)
-               /* }
-                
-
+                  this.$store.commit('SET_COMMUNITY',response.data.community)
+                  this.$router.push({
+                    name:'parcelHome',
+                    params:{
+                    data:response.data
+                }
+                  }
+                )
+                }
             }else{
               this.$confirm('用户名或密码不正确', '提示', {
                 confirmButtonText: '确定',
                 type: 'warning'
                })
             }
-            })*/
-            this.$router.push({
-                name:'parcelHome'
-                });
+            })
          }else{
            this.$alert('请完整填写用户名和密码', '提示', {
            confirmButtonText: '确定',

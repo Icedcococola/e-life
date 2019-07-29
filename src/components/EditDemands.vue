@@ -111,7 +111,7 @@ export default {
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
               this.clicked=true
-              this.axios.get('/api/Goos/up',
+              this.axios.get('/api/Goods/up',
               {
                 params:{
                   desiredid:this.emm,

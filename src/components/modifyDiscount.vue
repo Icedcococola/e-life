@@ -38,9 +38,7 @@
     <el-form-item label="优惠名称" prop="discountname" style="margin-bottom:5%;">
       <el-input v-model="modifiedname" placeholder="请输入优惠名称"></el-input>
     </el-form-item>
-    <el-form-item label="优惠详情" prop="detail" style="margin-bottom:5%;">
-      <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 5}" placeholder="请输入优惠详情" v-model="modifieddetail"></el-input>
-    </el-form-item>
+   
     </el-form>
     </el-col>
   </el-row>
@@ -56,16 +54,17 @@ export default {
   methods:
   {
       show(){
-        var b = this.$route.params.discountname
-        var c = this.$route.params.detail
+        var b = this.$route.params.discount
         
-        this.$confirm(window.sessionStorage.getItem('discountid')+','+window.sessionStorage.getItem('storeid')+','+b+','+c+',')
+        this.$confirm(window.sessionStorage.getItem('discountid')+','+window.sessionStorage.getItem('storeid')+','+b)
         this.storeid = window.sessionStorage.getItem('storeid')
         this.discountid = window.sessionStorage.getItem('discountid')
         this.discountname = b
+        this.modifiedname = b
+      /*  this.discountname = b
         this.detail = c
         this.modifiedname = b
-        this.modifieddetail = c
+        this.modifieddetail = c*/
       },
     commit(formName)
     {
@@ -80,17 +79,12 @@ export default {
               }else{
                 this.resultname = this.modifiedname
               }
-              if(this.modifieddetail.split(" ").join("").length === 0){
-                this.resultdetail = this.detail
-              }else{
-                this.resultdetail = this.modifieddetail
-              }
-              this.axios.get('/api/Emerge/add',{              //接口在这里接口在这里接口在这里接口在这里！！！！！！！！！！
+              
+              this.axios.get('/api/Store/modifydiscount',{              //接口在这里接口在这里接口在这里接口在这里！！！！！！！！！！
                 params:{
-                  discountname:this.resultname,
-                  detail:this.resultdetail,
-                  discountid:this.discountid,
-                  storeid:window.sessionStorage.getItem('storeid')
+                  discount:this.resultname,
+                  storecomid:this.discountid,
+
                 }
                 
               }).then((response)=>{
@@ -99,7 +93,7 @@ export default {
                   //console.log(response.data.result);
                  // if(response.data.result === null){
                     this.$message({type:'success',message:'提交成功！'});
-                    this.$router.push({name:"查看紧急通知"});
+                    this.$router.push({name:"Discount"});
                   //}
                 }
               })

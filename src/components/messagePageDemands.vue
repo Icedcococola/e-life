@@ -24,21 +24,21 @@
             </div>
         </div>
       </el-col>
-    </el-row>    
-
+    </el-row>
   </div>
 </template>
 
 <script>
 export default {
   mounted:function(){
-     this.show(this.$route.params.detail,this.$route.params.goodsname)
+     this.show()
    },
   methods:{
     show(a,b){
       // this.$confirm(a+' '+b,'提示')
-       this.detail = a
-       this.goodsname = b
+      
+       this.detail = this.$route.params.detail
+       this.goodsname = this.$route.params.goodsname
     }
   },
   data () {

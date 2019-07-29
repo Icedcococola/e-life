@@ -41,7 +41,7 @@
         align="center">
       </el-table-column>       
       <el-table-column
-        prop="place"
+        prop="address"
         label="商户地址"
         width="370"
         align="center">
@@ -73,7 +73,7 @@
 <script>
  export default {
       mounted:function(){
-        //this.getTableData();
+        this.getTableData();
       },
       
       computed:{
@@ -96,11 +96,11 @@
       {
         topage(storeid){
           this.$store.commit('SET_STOREID',storeid)
-           var fd  = new FormData()
-           fd.append("latestnewsid",storeid)
-           this.axios.post('/api/Latestnews/findbyid',fd,{
-            headers:{
-              'Content-Type': 'application/x-www-form-urlencoded'
+           //var fd  = new FormData()
+           //fd.append("latestnewsid",storeid)
+           this.axios.get('/api/Store/getdiscount',{
+            params:{
+              storeid:storeid
             }
           }
           ).then((response)=>{
@@ -175,20 +175,20 @@
         },
 */
 
-/*
+
         getTableData(){
-          var fd = new FormData()
-          fd.append("community",window.sessionStorage.getItem('community'))
-          this.axios.post('/api/Activity/findAll',fd,{
-           headers:{
-          'Content-Type': 'application/x-www-form-urlencoded'
-           }}
-           )
+          //var fd = new FormData()
+          //fd.append("community",window.sessionStorage.getItem('community'))
+          this.axios.get('/api/Store/findstore',{
+          params:{
+            community:window.sessionStorage.getItem('community')
+          }
+          })
           .then((response)=>{
             var dt = response.data;
             this.tableData = dt;
           })
-        },*/
+        },
       },
       data() {
         return {
@@ -198,41 +198,7 @@
           title:'商户列表',
           input: '',
           search: '',
-          tableData: [{
-             storeid:12,
-             storename:'王胖子石锅鱼',
-             place:'上海市闵行区江川路街道东川路887北欧丽景'
-          },
-          {
-            storeid:13,
-            storename:'吴老幺火锅',
-            place:'上海市闵行区江川路街道永平南路142号好第坊'
-          },
-          {
-            storeid:14,
-            storename:'吉祥馄饨',
-            place:'上海市闵行区江川路街道东川路867号好第坊'
-          },
-          {
-            storeid:15,
-            storename:'东北饺子王',
-            place:'上海市闵行区江川路街道东川路889-23号北欧丽景'
-          },
-          {
-            storeid:16,
-            storename:'四季生鲜超市',
-            place:'上海市闵行区江川路街道永平南路13-14号金榜5期'
-          },
-          {
-            storeid:17,
-            storename:'晨光文具',
-            place:'上海市闵行区江川路街道沧源路699号京浦花园'
-          },
-          {
-             storeid:18,
-             storename:'雷允上颛盛大药房',
-             place:'上海市闵行区江川路街道永平南路154号好第坊'
-          }]
+          tableData: []
         }
       }
     }

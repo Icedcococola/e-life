@@ -42,7 +42,7 @@ export default {
   },
   methods:{
     show(){
-      this.$confirm(this.$route.params.title+','+this.$route.params.time+','+this.$route.params.detail)
+     // this.$confirm(this.$route.params.title+','+this.$route.params.time+','+this.$route.params.detail)
       this.title = this.$route.params.title
       this.time = this.$route.params.time
       this.detail = this.$route.params.detail

@@ -47,7 +47,7 @@ export default {
                           {confirmButtonText:'确定',cancelButtonText:'取消'}
             ).then(()=>{
               this.clicked=true
-              this.axios.get('/api/Latestnews/ad',{
+              this.axios.get('/api/Latestnews/add',{
                   params:{
                     title:this[formName].title,
                     detail:this[formName].detail,

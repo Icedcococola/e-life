@@ -30,7 +30,7 @@
 <script>
 export default {
   mounted:function(){
-    this.showtoken();
+   // this.showtoken();
     
   },
   methods:{

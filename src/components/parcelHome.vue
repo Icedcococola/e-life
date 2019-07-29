@@ -38,10 +38,12 @@
       class="el-menu-vertical-demo"
       router
       style="background:#ffffff;">
+      <!--
       <el-menu-item index="/LaunchedParcel">
         <i class="el-icon-menu"></i>
         <span slot="title">查看已通知的邮包</span>
       </el-menu-item> 
+-->
       <el-menu-item index="/EditParcel">
         <i class="el-icon-edit"></i>
         <span slot="title">编辑新的邮包通知</span>
@@ -67,8 +69,17 @@
 
 <script>
 export default {
+  mounted:function(){
+      this.display()
+  },
   methods:
   {
+    display(){
+       this.$confirm('欢迎您，'+window.sessionStorage.getItem('community')+'管理员');
+       this.$router.push({
+         name:'EditParcel'
+       })
+    },
     tologin(command)
     {
       this.$router.push({
