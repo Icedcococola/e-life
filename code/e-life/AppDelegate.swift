@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 let content = UNMutableNotificationContent()
                 content.title = message["username"]! + "向您发送好友请求"
-                content.body = "周杰伦向您发送好友请求周杰伦向您发送好友请求周杰伦向您发送好友请求"
+                //content.body = ""
                 content.sound = UNNotificationSound.default
                 
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
@@ -62,7 +62,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         tabItem.badgeValue = String(self.friendRequestNum)
                     }
                 }
-                
             }
         }
         
@@ -72,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 let content = UNMutableNotificationContent()
                 content.title = message["username"]! + "已接受您的好友请求 🎉🎉🎉"
-                content.body = "fasfasdfadsfadfadsfadsf"
+                //content.body = ""
                 content.sound = UNNotificationSound.default
                 
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
@@ -88,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 let content = UNMutableNotificationContent()
                 content.title = message["username"]! + "拒绝了您的好友请求 😢😢😢"
-                content.body = "周杰伦向您发送"
+                //content.body = "周杰伦向您发送"
                 content.sound = UNNotificationSound.default
                 
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
@@ -108,7 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 let mePage = rootViewController.viewControllers![2] as! UINavigationController
                 
                 let friendRequestPage = UIStoryboard(name: "Me", bundle: nil).instantiateViewController(withIdentifier: "friendRequestPage")
-                let friendViewPage = UIStoryboard(name: "Me", bundle: nil).instantiateViewController(withIdentifier: "5")
+                let friendViewPage = UIStoryboard(name: "Me", bundle: nil).instantiateViewController(withIdentifier: "2")
                 
                 mePage.pushViewController(friendViewPage, animated: true)
                 mePage.pushViewController(friendRequestPage, animated: true)
@@ -131,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 let rootViewController = self.window!.rootViewController as! UITabBarController
                 let mePage = rootViewController.viewControllers![2] as! UINavigationController
                 
-                let friendViewPage = UIStoryboard(name: "Me", bundle: nil).instantiateViewController(withIdentifier: "5")
+                let friendViewPage = UIStoryboard(name: "Me", bundle: nil).instantiateViewController(withIdentifier: "2")
                 
                 mePage.pushViewController(friendViewPage, animated: true)
                 

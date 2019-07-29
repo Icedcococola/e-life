@@ -24,18 +24,12 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let configItems : [String] = [
-        "换用户名",
-        "换密码",
-        "换手机号",
         "实名验证",
         "好友管理"
     ]
     let ID = [
         "1",
-        "2",
-        "3",
-        "4",
-        "5"
+        "2"
     ]
     
     override func viewDidLoad() {
@@ -74,7 +68,7 @@ class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return configItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

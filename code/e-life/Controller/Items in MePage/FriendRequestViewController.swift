@@ -47,6 +47,12 @@ class FriendRequestViewController: UIViewController, friendTableDelegate{
         super.viewDidLoad()
         fetchData()
         SVProgressHUD.setMinimumDismissTimeInterval(3)
+        if let rootViewController = appDelegate.window?.rootViewController as! UITabBarController?{
+            if let tabItems = rootViewController.tabBar.items {
+                let tabItem = tabItems[2]
+                tabItem.badgeValue = .none
+            }
+        }
         // Do any additional setup after loading the view.
     }    
     func fetchData(){

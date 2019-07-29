@@ -113,7 +113,7 @@ class SendPostViewController: UIViewController{
             
             AF.request(URL, method: .get, parameters: parameter).responseJSON { (response) in
                 if response.response?.statusCode == 200 {
-                    print (response.value as! String)
+                    self.appDelegate.showAlert(viewcontroller: self, message: "提交成功")
                 } else {
                     self.appDelegate.showAlert(viewcontroller: self, message: "寄件失败！ Please try again!")
                 }

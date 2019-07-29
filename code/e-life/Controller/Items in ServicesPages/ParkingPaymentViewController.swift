@@ -50,7 +50,7 @@ class ParkingPaymentViewController: UIViewController {
     @IBAction func pay(_ sender: Any) {
         AF.request(payURL, method: .post, parameters: ["username": self.appDelegate.username, "type": "tingche"]).responseJSON { (response) in
             if (response.response?.statusCode == 200) {
-                self.paymentAmount.text =  "0"
+                self.paymentAmount.text =  "已交付"
             }
         }
     }

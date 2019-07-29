@@ -99,7 +99,11 @@ class MailNotificationTableViewController: UIViewController, UITableViewDataSour
                 if let json = response.value{
                     let noti = JSON(json)
                     self.notiArray = noti["Traces"].arrayValue.reversed()
-                    self.tableView.reloadData()
+                    if (self.notiArray.isEmpty) {
+                        self.appDelegate.showAlert(viewcontroller: self, message: "找不到该快递订单！\n请注意快递单号和快递公司")
+                    } else {
+                        self.tableView.reloadData()
+                    }
                 }
             } else {
                 self.appDelegate.showAlert(viewcontroller: self, message: "找不到该快递订单！\n请注意快递单号和快递公司")

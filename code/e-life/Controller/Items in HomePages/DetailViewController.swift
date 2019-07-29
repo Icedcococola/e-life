@@ -105,7 +105,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
                 self.supplier.text = data["store"].stringValue
                 self.price.text = data["price"].stringValue
                 self.leftAmount.text = data["remainingnum"].stringValue
-                self.timer.text = data["deadline"].stringValue
+                let deadline = data["deadline"].stringValue
+                self.timer.text = String(deadline.prefix(10))
                 self.detailDataText.text = data["detail"].stringValue
                 self.imageUrl = data["img"].stringValue
                 self.image.downloaded(from: self.imageUrl)

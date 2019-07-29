@@ -55,6 +55,7 @@ class MapDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
+        print (imageUrl)
         imageView.downloaded(from: imageUrl)
     }
 }

@@ -93,7 +93,7 @@ class MapScreen: UIViewController {
     func addAnnotation() {
         print(storeArray.count)
         storeArray.forEach { (store) in
-            let annotation = MyAnnotation(title: store["storename"].stringValue, discipline: store["type"].stringValue, coordinate: CLLocationCoordinate2D(latitude: store["latitude"].doubleValue, longitude: store["longitude"].doubleValue), discount: store["discount"].stringValue, address: store["address"].stringValue, imageUrl: store["image"].stringValue)
+            let annotation = MyAnnotation(title: store["storename"].stringValue, discipline: store["type"].stringValue, coordinate: CLLocationCoordinate2D(latitude: store["latitude"].doubleValue, longitude: store["longitude"].doubleValue), discount: store["discount"].stringValue, address: store["address"].stringValue, imageUrl: store["img"].stringValue)
             storeAnnotation.append(annotation)
         }
         mapView.addAnnotations(storeAnnotation)
@@ -154,7 +154,7 @@ class MapScreen: UIViewController {
                 if let json = response.value {
                     let data = JSON(json).arrayValue
                     self.storeArray = data
-                    
+                    print (data)
                     self.addAnnotation()
                 }
             } else {
@@ -183,6 +183,7 @@ extension MapScreen : MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         let annView = view.annotation as! MyAnnotation
         let mapDetail = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "mapDetail") as! MapDetailViewController
+        print (annView.imageUrl)
         mapDetail.storeName = annView.title!
         mapDetail.discount = annView.discount
         mapDetail.address = annView.address

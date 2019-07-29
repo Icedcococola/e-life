@@ -25,12 +25,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         UIImage(named: "LatestNotification")!,
         UIImage(named: "Activity")!,
         UIImage(named: "SecondRow")!,
-        UIImage(named: "PostNotification")!,
+        UIImage(named: "FindKuaidi")!,
         UIImage(named: "SendPost")!,
         UIImage(named: "Forum")!,
         UIImage(named: "NearMe")!,
         UIImage(named: "Shopping")!,
-        UIImage(named: "FindKuaidi")!
+        UIImage(named: "PostNotification")!,
     ]
     let ID : [String] = [
         "1",

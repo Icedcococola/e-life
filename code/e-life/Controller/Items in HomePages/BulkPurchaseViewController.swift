@@ -54,6 +54,7 @@ class BulkPurchaseViewController: UIViewController, tablViewCellDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         responsiveDesign()
+        fetchData()
         // Do any additional setup after loading the view.
         
         if #available(iOS 10.0, *) {
@@ -191,7 +192,8 @@ extension BulkPurchaseViewController : UITableViewDataSource, UITableViewDelegat
             cell.id = supplierProductArray[indexPath.row]["goodsid"].stringValue
             cell.productName.text = supplierProductArray[indexPath.row]["goodsname"].stringValue
             cell.participants.text = supplierProductArray[indexPath.row]["remainingnum"].stringValue
-            cell.timer.text = supplierProductArray[indexPath.row]["deadline"].stringValue
+            let deadline = supplierProductArray[indexPath.row]["deadline"].stringValue
+            cell.timer.text = "截止：" + String(deadline.prefix(10))
             cell.price.text = supplierProductArray[indexPath.row]["price"].stringValue
             cellToReturn = cell
         }

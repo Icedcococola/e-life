@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5372C8A9419536758A4D0E79 /* Pods_e_life.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7916DD5BCA42922CB2DC81AA /* Pods_e_life.framework */; };
 		9505FFE022CB34F400462721 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9505FFDF22CB34F400462721 /* PayViewController.swift */; };
 		9505FFE222CB371700462721 /* ParkingPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9505FFE122CB371700462721 /* ParkingPaymentViewController.swift */; };
 		9505FFE422CB437100462721 /* WuYeNotiTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9505FFE322CB437100462721 /* WuYeNotiTableTableViewController.swift */; };
@@ -26,6 +25,8 @@
 		9596F4BA22D03B41002833D4 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9596F4B922D03B41002833D4 /* ForumViewController.swift */; };
 		9596F4BC22D04710002833D4 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9596F4BB22D04710002833D4 /* NewPostViewController.swift */; };
 		9596F4C022D04D37002833D4 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9596F4BF22D04D37002833D4 /* CommentViewController.swift */; };
+		95983C9222EADCCC008828A2 /* TrPaySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95983C9022EADCCC008828A2 /* TrPaySdk.framework */; };
+		95983C9322EADCCC008828A2 /* paysdkboundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 95983C9122EADCCC008828A2 /* paysdkboundle.bundle */; };
 		95B8449122C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B8449022C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift */; };
 		95B8449322C9B3CC00D84A65 /* SendPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B8449222C9B3CC00D84A65 /* SendPostViewController.swift */; };
 		95BAC2EF22CED88A00639B0D /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAC2EE22CED88A00639B0D /* ChangePasswordViewController.swift */; };
@@ -53,6 +54,7 @@
 		95EB54C922CC888F00E25003 /* PasswordRecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB54C822CC888F00E25003 /* PasswordRecoveryViewController.swift */; };
 		95EB54CD22CC963E00E25003 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB54CC22CC963E00E25003 /* NewPasswordViewController.swift */; };
 		95EB54CF22CC9DA900E25003 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB54CE22CC9DA900E25003 /* MainViewController.swift */; };
+		B1BA1523E3CAD4D2F14E578C /* Pods_e_life.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 292F0F0ED6B9043FA8D151A6 /* Pods_e_life.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,9 +71,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1CC3ECF2AEB79E555C689118 /* Pods-e-life.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-e-life.release.xcconfig"; path = "Target Support Files/Pods-e-life/Pods-e-life.release.xcconfig"; sourceTree = "<group>"; };
-		218E7FAA27A5ECC7C691DB87 /* Pods-e-life.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-e-life.debug.xcconfig"; path = "Target Support Files/Pods-e-life/Pods-e-life.debug.xcconfig"; sourceTree = "<group>"; };
-		7916DD5BCA42922CB2DC81AA /* Pods_e_life.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_e_life.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		292F0F0ED6B9043FA8D151A6 /* Pods_e_life.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_e_life.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44BBF0CAFD4706C306FCD24F /* Pods-e-life.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-e-life.release.xcconfig"; path = "Target Support Files/Pods-e-life/Pods-e-life.release.xcconfig"; sourceTree = "<group>"; };
+		7E1B73846EF1E9868B2675AE /* Pods-e-life.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-e-life.debug.xcconfig"; path = "Target Support Files/Pods-e-life/Pods-e-life.debug.xcconfig"; sourceTree = "<group>"; };
 		9505FFDF22CB34F400462721 /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		9505FFE122CB371700462721 /* ParkingPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingPaymentViewController.swift; sourceTree = "<group>"; };
 		9505FFE322CB437100462721 /* WuYeNotiTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WuYeNotiTableTableViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +94,9 @@
 		9596F4B922D03B41002833D4 /* ForumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
 		9596F4BB22D04710002833D4 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		9596F4BF22D04D37002833D4 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		95983C9022EADCCC008828A2 /* TrPaySdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TrPaySdk.framework; sourceTree = "<group>"; };
+		95983C9122EADCCC008828A2 /* paysdkboundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = paysdkboundle.bundle; sourceTree = "<group>"; };
+		95983C9522EADD41008828A2 /* elife-bridge-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "elife-bridge-header.h"; sourceTree = "<group>"; };
 		95B8449022C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyNoticeTableViewController.swift; sourceTree = "<group>"; };
 		95B8449222C9B3CC00D84A65 /* SendPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPostViewController.swift; sourceTree = "<group>"; };
 		95BAC2EE22CED88A00639B0D /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
@@ -126,7 +131,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5372C8A9419536758A4D0E79 /* Pods_e_life.framework in Frameworks */,
+				95983C9222EADCCC008828A2 /* TrPaySdk.framework in Frameworks */,
+				B1BA1523E3CAD4D2F14E578C /* Pods_e_life.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,16 +142,16 @@
 		1215041EE1902D9EBFF6DE67 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				218E7FAA27A5ECC7C691DB87 /* Pods-e-life.debug.xcconfig */,
-				1CC3ECF2AEB79E555C689118 /* Pods-e-life.release.xcconfig */,
+				7E1B73846EF1E9868B2675AE /* Pods-e-life.debug.xcconfig */,
+				44BBF0CAFD4706C306FCD24F /* Pods-e-life.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		848AEB3B8499DFBD63571B2A /* Frameworks */ = {
+		3F113C3F92D605947B321870 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7916DD5BCA42922CB2DC81AA /* Pods_e_life.framework */,
+				292F0F0ED6B9043FA8D151A6 /* Pods_e_life.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -229,7 +235,7 @@
 				957129E622C9DADF0059DCEE /* e-life */,
 				957129E522C9DADF0059DCEE /* Products */,
 				1215041EE1902D9EBFF6DE67 /* Pods */,
-				848AEB3B8499DFBD63571B2A /* Frameworks */,
+				3F113C3F92D605947B321870 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -244,6 +250,8 @@
 		957129E622C9DADF0059DCEE /* e-life */ = {
 			isa = PBXGroup;
 			children = (
+				95983C9022EADCCC008828A2 /* TrPaySdk.framework */,
+				95983C9122EADCCC008828A2 /* paysdkboundle.bundle */,
 				957129E722C9DADF0059DCEE /* AppDelegate.swift */,
 				950BE8A422D734CE0058FAE1 /* Model */,
 				95EB54CA22CC88C000E25003 /* Controller */,
@@ -252,6 +260,7 @@
 				95712A0122CA062C0059DCEE /* Animation */,
 				957129F022C9DAE00059DCEE /* LaunchScreen.storyboard */,
 				957129F322C9DAE00059DCEE /* Info.plist */,
+				95983C9522EADD41008828A2 /* elife-bridge-header.h */,
 			);
 			path = "e-life";
 			sourceTree = "<group>";
@@ -324,12 +333,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 957129F622C9DAE00059DCEE /* Build configuration list for PBXNativeTarget "e-life" */;
 			buildPhases = (
-				B6AF822998EEAE8D4EC967B1 /* [CP] Check Pods Manifest.lock */,
+				43147216849A3CA4DDC55945 /* [CP] Check Pods Manifest.lock */,
 				957129E022C9DADF0059DCEE /* Sources */,
 				957129E122C9DADF0059DCEE /* Frameworks */,
 				957129E222C9DADF0059DCEE /* Resources */,
-				252E8DAE23464F103505F850 /* [CP] Embed Pods Frameworks */,
 				950F627222EA979E00CFE467 /* Embed Frameworks */,
+				FA7012839C0954EE791A29ED /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -378,6 +387,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95983C9322EADCCC008828A2 /* paysdkboundle.bundle in Resources */,
 				957129F222C9DAE00059DCEE /* LaunchScreen.storyboard in Resources */,
 				95DD032622D2D54D0096E89D /* MainPages.storyboard in Resources */,
 				957129FA22C9E0930059DCEE /* bus.json in Resources */,
@@ -392,7 +402,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		252E8DAE23464F103505F850 /* [CP] Embed Pods Frameworks */ = {
+		43147216849A3CA4DDC55945 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-e-life-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA7012839C0954EE791A29ED /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -422,28 +454,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-e-life/Pods-e-life-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B6AF822998EEAE8D4EC967B1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-e-life-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -633,7 +643,7 @@
 		};
 		957129F722C9DAE00059DCEE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 218E7FAA27A5ECC7C691DB87 /* Pods-e-life.debug.xcconfig */;
+			baseConfigurationReference = 7E1B73846EF1E9868B2675AE /* Pods-e-life.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -643,6 +653,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/BMKLocationKit/framework",
 					"$(PROJECT_DIR)/AlipaySDK",
+					"$(PROJECT_DIR)/e-life/Release-PaySdk",
+					"$(PROJECT_DIR)/Release-PaySdk",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -652,16 +664,42 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Starscream/Starscream.framework/Headers\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyJSON/SwiftyJSON.framework/Headers\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios/Lottie.framework/Headers\"",
+					"$(PROJECT_DIR)/e-life/TrPaySDK.framework/Headers",
 				);
 				INFOPLIST_FILE = "e-life/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Lottie\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SocketIO\"",
+					"-framework",
+					"\"Starscream\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"UIKit\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "PalameMon.e-life";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/e-life/elife-bridge-header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -669,7 +707,7 @@
 		};
 		957129F822C9DAE00059DCEE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1CC3ECF2AEB79E555C689118 /* Pods-e-life.release.xcconfig */;
+			baseConfigurationReference = 44BBF0CAFD4706C306FCD24F /* Pods-e-life.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -679,6 +717,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/BMKLocationKit/framework",
 					"$(PROJECT_DIR)/AlipaySDK",
+					"$(PROJECT_DIR)/e-life/Release-PaySdk",
+					"$(PROJECT_DIR)/Release-PaySdk",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -688,16 +728,42 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Starscream/Starscream.framework/Headers\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyJSON/SwiftyJSON.framework/Headers\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios/Lottie.framework/Headers\"",
+					"$(PROJECT_DIR)/e-life/TrPaySDK.framework/Headers",
 				);
 				INFOPLIST_FILE = "e-life/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Lottie\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SocketIO\"",
+					"-framework",
+					"\"Starscream\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"UIKit\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "PalameMon.e-life";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/e-life/elife-bridge-header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
