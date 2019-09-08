@@ -15,9 +15,9 @@
     <el-col :span="18">
 
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="margin-top:4%">
-      <el-form-item label="商家名称" prop="title" style="margin-bottom:4%;">
+      <el-form-item label="商家名称" prop="storename" style="margin-bottom:4%;">
         <el-col style="width:50%">
-           <el-input v-model="ruleForm.title" placeholder="请输入商家名称" ></el-input>
+           <el-input v-model="ruleForm.storename" disabled></el-input>
         </el-col>
        </el-form-item>
 
@@ -90,10 +90,7 @@ export default {
   {
     commit(formName)
     {
-      if(this[formName].title.split(" ").join("").length === 0 ){
-          this.$confirm('商家名不可为空')
-      }
-      else if(this[formName].detail.split(" ").join("").length === 0){
+      if(this[formName].detail.split(" ").join("").length === 0){
         this.$confirm('商品详情不可为空')
 
       }
@@ -120,7 +117,7 @@ export default {
                  // community:window.sessionStorage.getItem('community'),
                   img:this.imageUrl,
                   price:this[formName].price,
-                  store:this[formName].title,
+                  store:window.sessionStorage.getItem('storename'),
                   totalnum:this[formName].num
                 }
               }
@@ -133,7 +130,7 @@ export default {
                     //this.$router.push({name:"查看活动安排"});
                   //}
                   this.$message({type:'success',message:'提交成功！'});
-                  this.$router.push({name:"LaunchedDemands"});
+                  this.$router.push({name:"DemandstoLaunch"});
                       
                   
                 }
@@ -309,12 +306,14 @@ export default {
         num:'',
         detail:'',
         date:'',
-        picture:''
+        picture:'',
+        storename:window.sessionStorage.getItem('storename')
+
         
       },
       
       rules:{
-        title:[
+        storename:[
           {required:true, message:'商家名称不可为空', trigger:'blur'},
           
         ],

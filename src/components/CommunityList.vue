@@ -3,7 +3,7 @@
 
     <el-row type="flex" class="row-bg" justify="end">
       <el-col :span="14">
-        <div class="tit" style="font-size:250%; height:50px; color:#858585;text-align:left;"><i class="el-icon-menu"></i>{{title}}</div>
+        <div class="tit" style="font-size:250%; height:50px; color:#858585;text-align:left;"><i class="el-icon-document"></i>{{title}}</div>
       </el-col>
       <el-col :span='8'>
           <el-input v-model="search" class="search" icon="search" placeholder="请输入要搜索的标题关键字"></el-input>
@@ -12,7 +12,6 @@
         <el-button icon="el-icon-search" circle></el-button>
       </el-col>
    
-
     </el-row>
     <el-row>
     <div style="width:100%;background:#c4c4c4;height:1px;margin-top:10px;margin-bottom:30px;padding:0px;overflow:hidden;"></div>
@@ -30,53 +29,29 @@
         align="center">
       </el-table-column>
       <el-table-column
+        prop="storeid"
+        label="社区编号"
+        width="90"
+        align="center">
+      </el-table-column>
+      <el-table-column
         prop="community"
-        label="社区"
-        width="150"
+        label="社区名称"
+        width="230"
         align="center">
-      </el-table-column>
-      <el-table-column
-        prop="desiredid"
-        label="商品id"
-        width="100"
-        align="center">
-      </el-table-column>
-      <el-table-column
-        prop="goods"
-        label="商品名"
-        width="180"
-        align="center">
-      </el-table-column>
-      <el-table-column
-        prop="heat"
-        label="热度"
-        width="100"
-        align="center">
-      </el-table-column>
-      <el-table-column
-        prop="publisher"
-        label="publisher"
-        width="120"
-        align="center">
-      </el-table-column>
-      <el-table-column
-        prop="deadline"
-        label="截止时间"
-        width="100"
-        align="center">
-      </el-table-column>
+      </el-table-column>      
       <el-table-column
         prop="op"
-        label="操作"
+        label="申请入驻"
         width="150"
         align="center"
         fixed="right">
         <template slot-scope="scope">
-            <el-button type="primary" @click="topage(scope.row.desiredid)" icon="el-icon-upload" round>发布</el-button>
+            <el-button type="primary" @click="topage(scope.row.community)" icon="el-icon-plus" circle></el-button>
           </template>
       </el-table-column>
     </el-table>
-    
+
     <div class="block">
     
     <el-pagination
@@ -91,15 +66,15 @@
 
 <script>
  export default {
-      mounted:function(){
+     /* mounted:function(){
         this.getTableData();
       },
-      
+      */
       computed:{
 
         searchData:function(){
           var search = this.search;
-          if(search)   {
+          if(search){
             return this.tableData.filter(function(dt){
               return Object.keys(dt).some(function(key){
                 return String(dt[key]).toLowerCase().indexOf(search) > -1
@@ -113,40 +88,79 @@
 
       methods:
       {
+        topage(commname){
+           //var fd  = new FormData()
+           //fd.append("latestnewsid",storeid)
+           this.$confirm('确定提交入驻该社区的申请？')
+           .then(()=>{
+               this.axios.get('/api/Store/applycom',{
+            params:{
+              storename:window.sessionStorage.getItem('storename'),
+              community:commname
+            }
+          }
+          ).then((response)=>{
+            if(response.status === 200){
+                this.$message({
+                  message: '已提交申请',
+                  type: 'success'
+                });
+            }
+          })
+
+           })
+          },/*
         topage(lalala){
-          //this.axios.get('/api/Activity/findbyid',{
-          //  params:{
-          //    activityid:lalala
-          //  }
-          //}).then((response)=>{
-          //  this.$confirm(response.data.detail,'活动详情')
-          //  console.log(response)
-          //})
-          this.$store.commit('SET_DESIREDID',lalala)
-          this.$router.push({
-              name:"EditDemands",
-              
+          var fd  = new FormData()
+          fd.append("activityid",lalala)
+          this.axios.post('/api/Activity/findbyid',fd,{
+            headers:{
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }}
+          ).then((response)=>{
+            this.$confirm(response.data.detail,'活动详情')
+            console.log(response)
           })
           
-          
         },
-
+*/
+        
         current_change:function(currentPage){
            this.currentPage = currentPage;
         },
+        /*
         deleteLine(id,index){
           this.$confirm('确认删除？',
                         '提示',
                         {confirmButtonText:'确定',cancelButtonText:'取消'}
           ).then(()=>{
-            this.axios.get('/api/Activity/delete',{
-              params:{
-                activityid:id
+            this.clicked = true
+            var fd = new FormData()
+            fd.append("activityid",id)
+            this.axios.post('/api/Activity/delete',fd,{
+              headers:{
+                  'Content-Type': 'application/x-www-form-urlencoded'
               }
-            }).then((response)=>{
+            }
+            ).then((response)=>{
               if(response.status === 200){
                 this.searchData.splice(index,1);
                 this.$message({type:'success',message:'删除成功!'});
+                this.clicked = false 
+              }
+            })
+            .catch(error => {
+              this.clicked = false
+              console.log(error.response.status)
+              if(error.response.status === 404){
+                this.$router.push({
+                  name:'fof'
+                })
+              }
+              if(error.response.status === 500){
+                this.$router.push({
+                  name:'fot'
+                })
               }
             })
 
@@ -154,16 +168,18 @@
           }
           )
         },
+*/
+
 
         getTableData(){
-          
-          this.axios.get('/api/Goods/listdesired',{
-            params:{
-              community:window.sessionStorage.getItem('community')
-            }
+          //var fd = new FormData()
+          //fd.append("community",window.sessionStorage.getItem('community'))
+          this.axios.get('/api/Store/findallcom',{
+          params:{
+            community:window.sessionStorage.getItem('storename')
+          }
           })
           .then((response)=>{
-            console.log(response.data)
             var dt = response.data;
             this.tableData = dt;
           })
@@ -171,23 +187,22 @@
       },
       data() {
         return {
-          currentPage:1,
+          
           pagesize:5,
-          title:'商品需求管理',
+          currentPage:1,
+          title:'可入驻的社区列表',
           input: '',
           search: '',
-          tableData: [{
-            community:"llaal",
-            heat:5,
-            desiredid:1,
-            publisher:'yjz',
-            deadline:'2019-07-08'
-
+          tableData: [
+          {
+             storeid:5868,
+             community:'SJTU MINHANG'
+          },
+          {
+            storeid:61767,
+            community:'SJTU XUHUI'
           }]
         }
       }
     }
 </script>
-
-
-

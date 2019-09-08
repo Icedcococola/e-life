@@ -12,13 +12,13 @@
            <div style="font-size:50%; height:50px; color:#2A8FF7;display:flex;align-items:center;justify-content:flex-end;">
             <el-dropdown @command="tologin">
               <span class="el-dropdown-link" style="color:#2a8ff7;">
-              <el-button type="text" class="button" >物业管理员<i class="el-icon-arrow-down el-icon--right"></i>
+              <el-button type="text" class="button" >商家管理员<i class="el-icon-arrow-down el-icon--right"></i>
               </el-button>
               
               </span>
              <el-dropdown-menu slot="dropdown">
                
-              <el-dropdown-item disabled>{{communityname}}管理员</el-dropdown-item>
+              <el-dropdown-item disabled>{{this.storename}}管理员</el-dropdown-item>
               <el-dropdown-item command="c" divided>登出</el-dropdown-item>
              </el-dropdown-menu>
             </el-dropdown>
@@ -38,77 +38,54 @@
       class="el-menu-vertical-demo"
       router
       style="background:#ffffff;width:99%;font-size:20px">
-      <el-submenu index="1">
+      <el-menu-item index="StoreCommunity">
         <template slot="title">
           <i class="el-icon-news"></i>
-          <span>查看已发布信息</span>
+          <span>查看已入驻社区</span>
         </template>
-      <el-menu-item-group style="background:#ffffff;">
-        <template slot="title"></template>
-        <el-menu-item index="/LaunchedActivities" >活动安排</el-menu-item>
-        <el-menu-item index="/LaunchedNews" >最新资讯</el-menu-item>
-        <el-menu-item index="/LaunchedNotice" >物业通知</el-menu-item>
-        <el-menu-item index="/LaunchedUrgent" >紧急通知</el-menu-item>
-      </el-menu-item-group>
-      </el-submenu>
+      </el-menu-item>
 
-      <el-submenu index="2">
+      <el-menu-item index="CommunityList">
         <template slot="title">
           <i class="el-icon-edit"></i>
-          <span>编辑新通知</span>
+          <span>申请入驻新社区</span>
         </template>
-      <el-menu-item-group style="background:#ffffff;">
-        <template slot="title"></template>
-        <el-menu-item index="/EditActivities">活动安排</el-menu-item>
-        <el-menu-item index="/EditNews" >最新资讯</el-menu-item>
-        <el-menu-item index="/EditNotice" >物业通知</el-menu-item>
-        <el-menu-item index="/EditUrgent" >紧急通知</el-menu-item>
-      </el-menu-item-group>
-      </el-submenu>
-      
-      <el-submenu index="3">
+      </el-menu-item>
+
+      <el-menu-item index="StoreDesired">
         <template slot="title">
-          <i class="el-icon-edit-outline"></i>
+          <i class="el-icon-edit"></i>
           <span>团购需求管理</span>
         </template>
-      <el-menu-item-group style="background:#ffffff;">
-        <template slot="title"></template>
-        <el-menu-item index="/LaunchedDemands">查看已上架商品</el-menu-item>
-        <el-menu-item index="/ListAllApply" >查看上架申请</el-menu-item>
-      </el-menu-item-group>
-      </el-submenu>
-      
-      <el-submenu index="4">
-        <template slot="title">
-          <i class="el-icon-edit-outline"></i>
-          <span>商户管理</span>
-        </template>
-      <el-menu-item-group style="background:#ffffff;">
-        <template slot="title"></template>
-        <el-menu-item index="/StoreApplyList">商户入驻申请</el-menu-item>
-      </el-menu-item-group>
-      </el-submenu>
-            
+      </el-menu-item>
+
       <el-submenu index="5">
         <template slot="title">
           <i class="el-icon-edit-outline"></i>
-          <span>服务管理</span>
+          <span>成为服务提供商</span>
         </template>
       <el-menu-item-group style="background:#ffffff;">
         <template slot="title"></template>
-        <el-menu-item index="/ListRepair">物业维修</el-menu-item>
-        <el-menu-item index="/ServiceApplyList" >服务提供商</el-menu-item>
-        <el-menu-item index="/Service" >电脑维修</el-menu-item>
-
+        <el-menu-item index="/ApplyForService">申请成为服务提供商</el-menu-item>
+        
+        
+      </el-menu-item-group>
+      </el-submenu>
+     
+     
+      <el-submenu index="6">
+        <template slot="title">
+          <i class="el-icon-edit-outline"></i>
+          <span>周边优惠</span>
+        </template>
+      <el-menu-item-group style="background:#ffffff;">
+        <template slot="title"></template>
+        <el-menu-item index="/StoreDiscount">查看本店优惠</el-menu-item>
+        <el-menu-item index="/ApplyForDiscount">申请加入周边优惠</el-menu-item>
+        
       </el-menu-item-group>
       </el-submenu>
 
-      <el-menu-item index="DiscountApply">
-        <template slot="title">
-          <i class="el-icon-edit"></i>
-          <span>周边优惠</span>
-        </template>
-      </el-menu-item>
     </el-menu>
     </el-aside>
     <el-aside style="width:10px;">
@@ -146,12 +123,13 @@ export default {
     show(){
       var a= window.sessionStorage.getItem('community')
       var b = window.sessionStorage.getItem('storename')
-      this.$confirm('欢迎您，'+a+'管理员！','提示')
+      this.$confirm('欢迎您，'+b+'管理员！','提示')
     }
   },
   data() {
     return {
-      communityname:window.sessionStorage.getItem('community')
+      communityname:window.sessionStorage.getItem('community'),
+      storename:window.sessionStorage.getItem('storename')
     }
   }
 }

@@ -6,7 +6,7 @@
       
      <el-card :body-style="{ padding: '0px' }" >
       <img src="@/assets/wy.jpg" class="image" @click="wuye">
-      <div class="x" style="padding: 25px;font-size:120%">
+      <div class="x" style="padding: 20px;font-size:18px">
         我是物业管理员
         <div class="bottom clearfix">
         </div>
@@ -18,8 +18,19 @@
     <el-col :span="6">
      <el-card :body-style="{ padding: '0px' }" >
       <img src="@/assets/yb.jpg" class="image" @click="parcel">
-      <div class="y" style="padding: 25px;font-size:18px">
+      <div class="y" style="padding: 20px;font-size:18px">
         我是邮包管理员
+        <div class="bottom clearfix">
+        </div>
+      </div>
+     </el-card>
+    </el-col>
+     
+    <el-col :span="6">
+     <el-card :body-style="{ padding: '0px' }" >
+      <img src="@/assets/true.jpg" class="image" @click="store">
+      <div class="y" style="padding: 20px;font-size:18px">
+        我是商家
         <div class="bottom clearfix">
         </div>
       </div>
@@ -65,7 +76,15 @@
 
 <script>
 export default {
+  mounted:function(){
+    this.setdefault();
+    
+  },
   methods:{
+    setdefault(){
+       this.$store.commit('SET_COMMUNITY','SJTU MINHANG');
+       this.$store.commit('SET_STORENAME','abcdefg')
+    },
     wuye(){
       this.$router.push({
           name:'wuyeLogin'
@@ -76,6 +95,11 @@ export default {
           name:'parcelLogin'
         });
     },
+    store(){
+      this.$router.push({
+          name:'storelogin'
+      });
+    }
   },
 
   data: () => ({
