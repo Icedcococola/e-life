@@ -11,7 +11,8 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 
-class DetailViewController: UIViewController, UITextFieldDelegate {
+class DetailViewController: UIViewController, UITextFieldDelegate
+{
     
     var id : String = ""
     var imageUrl = ""
@@ -20,7 +21,6 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var price: UILabel!
     @IBOutlet var leftAmount: UILabel!
     @IBOutlet var timer: UILabel!
-    @IBOutlet var detail: UILabel!
     @IBOutlet var add: UIButton!
     @IBOutlet var buyAmount: UITextField!
     
@@ -123,7 +123,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
                 SVProgressHUD.showSuccess(withStatus: "加入成功")
                 self.fetchData()
             } else {
-                SVProgressHUD.showError(withStatus: "加入失败")
+                SVProgressHUD.showError(withStatus: "加入失败！请注意您的网络")
             }
         }
     }

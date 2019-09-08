@@ -47,7 +47,7 @@ class RequestViewController: UIViewController {
             if (response.response?.statusCode == 200) {
                 self.navigationController?.popViewController(animated: true)
             } else {
-                self.appDelegate.showAlert(viewcontroller: self, message: "网络不。Please try again!")
+                self.appDelegate.showAlert(viewcontroller: self, message: "发布失败！请注意您的网络！")
             }
         }
     }

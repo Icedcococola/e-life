@@ -40,7 +40,7 @@ class KuaidiNotiViewController: UIViewController {
                     self.tableView.reloadData()
                 }
             } else{
-                self.appDelegate.showAlert(viewcontroller: self, message: "您没有快递！")
+                self.appDelegate.showAlert(viewcontroller: self, message: "加载失败！请注意您的网络")
             }
         }
     }
@@ -53,7 +53,7 @@ extension KuaidiNotiViewController : UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellKuaidi
-        cell.company.text = "您的" + notiArray[indexPath.row]["company"].stringValue + "已到达"
+        cell.company.text = "您的 " + notiArray[indexPath.row]["company"].stringValue + " 已到达"
         cell.num.text = notiArray[indexPath.row]["packageid"].stringValue
         
         let whiteRoundedView : UIView = UIView(frame: CGRect(x: 8, y: 5, width: self.view.frame.size.width - 20, height: 3000))

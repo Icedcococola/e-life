@@ -40,7 +40,7 @@ class AddFriendViewController: UIViewController {
         } else {
             SVProgressHUD.show(withStatus: "正在找好友")
             AF.request(addURL, method: .post, parameters: ["applied": name, "applyfor": self.appDelegate.username]).responseJSON { (response) in if (response.response?.statusCode != 200) {
-                    SVProgressHUD.showError(withStatus: "Please Try Again!")
+                    SVProgressHUD.showError(withStatus: "添加好友失败！请注意您的网络！")
                 } else {
                     if let json = response.value {
                         SVProgressHUD.dismiss()
@@ -51,7 +51,7 @@ class AddFriendViewController: UIViewController {
                             self.appDelegate.showAlert(viewcontroller: self, message: "该用户名不存在")
                         } else {
                             self.appDelegate.socket.emit("add friend", ["username": self.appDelegate.username, "name": name])
-                            self.appDelegate.showAlert(viewcontroller: self, message: "好友申请已发送")
+                            self.appDelegate.showSuccessAlert(viewcontroller: self, message: "好友申请已发送")
                         }
                     }
                 }

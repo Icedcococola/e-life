@@ -23,11 +23,7 @@ class EmergencyNoticeTableViewController: UIViewController, UITableViewDataSourc
     @IBOutlet var tableView: UITableView!
     
     
-    var notiArray : [JSON] = [
-        ["title": "I am the title", "detail": "I am the detail"],
-        ["title": "I am the title", "detail": "I am the detail"],
-        ["title": "I am the title", "detail": "I am the detail"]
-    ]
+    var notiArray : [JSON] = []
     let URL = "http://elifedemo.vipgz1.idcfengye.com/Emergencynotice/findAll"
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -93,11 +89,16 @@ class EmergencyNoticeTableViewController: UIViewController, UITableViewDataSourc
     // Mark: - Fetch Data from server
     func fetchData(){
         AF.request(URL, method: .post, parameters: ["community": self.appDelegate.community]).responseJSON { (response) in
-            if let json = response.value{
-                let notifications = JSON(json).arrayValue
-                self.notiArray = notifications
-                self.tableView.reloadData()
+            if (response.response?.statusCode == 200) {
+                if let json = response.value{
+                    let notifications = JSON(json).arrayValue
+                    self.notiArray = notifications
+                    self.tableView.reloadData()
+                    self.refreshControl.endRefreshing()
+                }
+            } else {
                 self.refreshControl.endRefreshing()
+                self.appDelegate.showAlert(viewcontroller: self, message: "加载失败！请注意您的网络")
             }
         }
     }

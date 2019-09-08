@@ -11,6 +11,7 @@ import CoreLocation
 import MapKit
 import Alamofire
 import SwiftyJSON
+import SVProgressHUD
 
 class MyAnnotation : NSObject,MKAnnotation {
     let title: String?
@@ -76,11 +77,11 @@ class MapScreen: UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     //Mark:- Need to Change this
-    let storeURL = "http://elifedemo.vipgz1.idcfengye.com/Store/findall"
+    let storeURL = "http://elifedemo.vipgz1.idcfengye.com/Discount/listall"
     
     var storeArray : [JSON] = []
     
-    var storeAnnotation = [MyAnnotation]()
+    @IBOutlet var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,12 +92,10 @@ class MapScreen: UIViewController {
     }
     
     func addAnnotation() {
-        print(storeArray.count)
         storeArray.forEach { (store) in
             let annotation = MyAnnotation(title: store["storename"].stringValue, discipline: store["type"].stringValue, coordinate: CLLocationCoordinate2D(latitude: store["latitude"].doubleValue, longitude: store["longitude"].doubleValue), discount: store["discount"].stringValue, address: store["address"].stringValue, imageUrl: store["img"].stringValue)
-            storeAnnotation.append(annotation)
+            mapView.addAnnotation(annotation)
         }
-        mapView.addAnnotations(storeAnnotation)
     }
     
     func centerUserLocation() {
@@ -127,7 +126,6 @@ class MapScreen: UIViewController {
                 mapView.showsUserLocation = true
                 centerUserLocation()
                 fetchData()
-                //addAnnotation()
                 locationManager.startUpdatingLocation()
                 break
             case .denied:
@@ -154,7 +152,6 @@ class MapScreen: UIViewController {
                 if let json = response.value {
                     let data = JSON(json).arrayValue
                     self.storeArray = data
-                    print (data)
                     self.addAnnotation()
                 }
             } else {
@@ -191,5 +188,34 @@ extension MapScreen : MKMapViewDelegate {
         
         self.navigationController?.pushViewController(mapDetail, animated: true)
         
+    }
+}
+
+extension MapScreen : UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print (storeArray)
+    
+        let name = searchBar.text!
+        var found : Bool = false
+        if (name.isEmpty) {
+            appDelegate.showAlert(viewcontroller: self, message: "商店名称不能为空")
+        } else {
+            for store in storeArray {
+                if (store["storename"].stringValue == name){
+                    let mapDetail = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "mapDetail") as! MapDetailViewController
+                    mapDetail.storeName = name
+                    mapDetail.discount = store["discount"].stringValue
+                    mapDetail.address = store["address"].stringValue
+                    mapDetail.imageUrl = store["img"].stringValue
+                    mapDetail.phone = store["phonenum"].stringValue
+                self.navigationController?.pushViewController(mapDetail, animated: true)
+                    found = true
+                }
+            }
+            
+            if !found {
+                appDelegate.showAlert(viewcontroller: self, message: "找不到该名称的商店")
+            }
+        }
     }
 }

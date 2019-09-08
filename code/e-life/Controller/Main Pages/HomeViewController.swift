@@ -22,15 +22,24 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     let functionalitiesImages : [UIImage] = [
         UIImage(named: "EmergencyNotification")!,
+//        UIImage(named: "EmergencyNotification")!,
+//        UIImage(named: "EmergencyNotification")!,
+//        UIImage(named: "EmergencyNotification")!,
+//        UIImage(named: "EmergencyNotification")!,
+//        UIImage(named: "EmergencyNotification")!,
+//        UIImage(named: "EmergencyNotification")!,
+//        UIImage(named: "EmergencyNotification")!,
+//        UIImage(named: "EmergencyNotification")!,
+//        UIImage(named: "EmergencyNotification")!,
         UIImage(named: "LatestNotification")!,
         UIImage(named: "Activity")!,
         UIImage(named: "SecondRow")!,
-        UIImage(named: "FindKuaidi")!,
+        UIImage(named: "KuaidiFinder")!,
         UIImage(named: "SendPost")!,
         UIImage(named: "Forum")!,
         UIImage(named: "NearMe")!,
         UIImage(named: "Shopping")!,
-        UIImage(named: "PostNotification")!,
+        UIImage(named: "KuaidiNoti")!,
     ]
     let ID : [String] = [
         "1",
@@ -81,9 +90,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func fetchData(){
-        AF.request(dataURL, method: .post, parameters: ["community": appDelegate.community]).responseJSON { (response) in if let json = response.value {
-                let data = JSON(json)
-                self.latestNotice.text = data["detail"].stringValue
+        AF.request(dataURL, method: .post, parameters: ["community": appDelegate.community]).responseJSON { (response) in
+            if (response.response?.statusCode == 200) {
+                if let json = response.value {
+                    let data = JSON(json)
+                    self.latestNotice.text = data["detail"].stringValue
+                }
+            } else {
+                self.latestNotice.text = "加载失败！请注意您的网络！"
+                self.latestNotice.textColor = .red
             }
         }
     }

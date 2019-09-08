@@ -14,8 +14,13 @@
 		950BE8A322D734130058FAE1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 950BE8A122D734130058FAE1 /* Model.xcdatamodeld */; };
 		952793B722C99C1300A4C472 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952793B622C99C1300A4C472 /* CollectionViewCell.swift */; };
 		95376A0E22D5C09C009E556E /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95376A0D22D5C09C009E556E /* NewCommentViewController.swift */; };
-		9545B4F222D5D71A00DBAF76 /* ChangeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9545B4F122D5D71A00DBAF76 /* ChangeNameViewController.swift */; };
 		9559D5AD22CAF52A00916AB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9559D5AC22CAF52A00916AB1 /* Assets.xcassets */; };
+		9560F64C2316626400531CC8 /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9560F64B2316626400531CC8 /* DeliveryViewController.swift */; };
+		9560F64E2316627200531CC8 /* ComputerRepairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9560F64D2316627200531CC8 /* ComputerRepairViewController.swift */; };
+		9560F6502316628200531CC8 /* PropertyRepairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9560F64F2316628200531CC8 /* PropertyRepairViewController.swift */; };
+		9560F652231671DF00531CC8 /* MarketDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9560F651231671DF00531CC8 /* MarketDetailViewController.swift */; };
+		9560F6542316720300531CC8 /* PropertyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9560F6532316720300531CC8 /* PropertyDetailsViewController.swift */; };
+		9560F6562316721C00531CC8 /* ComputerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9560F6552316721C00531CC8 /* ComputerDetailsViewController.swift */; };
 		957129E822C9DADF0059DCEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957129E722C9DADF0059DCEE /* AppDelegate.swift */; };
 		957129EA22C9DADF0059DCEE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957129E922C9DADF0059DCEE /* LoginViewController.swift */; };
 		957129ED22C9DADF0059DCEE /* LoginAndRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957129EB22C9DADF0059DCEE /* LoginAndRegister.storyboard */; };
@@ -25,12 +30,8 @@
 		9596F4BA22D03B41002833D4 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9596F4B922D03B41002833D4 /* ForumViewController.swift */; };
 		9596F4BC22D04710002833D4 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9596F4BB22D04710002833D4 /* NewPostViewController.swift */; };
 		9596F4C022D04D37002833D4 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9596F4BF22D04D37002833D4 /* CommentViewController.swift */; };
-		95983C9222EADCCC008828A2 /* TrPaySdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95983C9022EADCCC008828A2 /* TrPaySdk.framework */; };
-		95983C9322EADCCC008828A2 /* paysdkboundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 95983C9122EADCCC008828A2 /* paysdkboundle.bundle */; };
 		95B8449122C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B8449022C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift */; };
 		95B8449322C9B3CC00D84A65 /* SendPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B8449222C9B3CC00D84A65 /* SendPostViewController.swift */; };
-		95BAC2EF22CED88A00639B0D /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAC2EE22CED88A00639B0D /* ChangePasswordViewController.swift */; };
-		95BAC2F122CED89300639B0D /* ChangePhoneNumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAC2F022CED89300639B0D /* ChangePhoneNumViewController.swift */; };
 		95BAC2F322CEDB7B00639B0D /* InfoBindingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAC2F222CEDB7B00639B0D /* InfoBindingViewController.swift */; };
 		95BAC2F522CEE2CA00639B0D /* LatestNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAC2F422CEE2CA00639B0D /* LatestNewsViewController.swift */; };
 		95BAC2F722CEF78600639B0D /* BulkPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BAC2F622CEF78600639B0D /* BulkPurchaseViewController.swift */; };
@@ -81,8 +82,13 @@
 		950BE8A222D734130058FAE1 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		952793B622C99C1300A4C472 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		95376A0D22D5C09C009E556E /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
-		9545B4F122D5D71A00DBAF76 /* ChangeNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameViewController.swift; sourceTree = "<group>"; };
 		9559D5AC22CAF52A00916AB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9560F64B2316626400531CC8 /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
+		9560F64D2316627200531CC8 /* ComputerRepairViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputerRepairViewController.swift; sourceTree = "<group>"; };
+		9560F64F2316628200531CC8 /* PropertyRepairViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyRepairViewController.swift; sourceTree = "<group>"; };
+		9560F651231671DF00531CC8 /* MarketDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDetailViewController.swift; sourceTree = "<group>"; };
+		9560F6532316720300531CC8 /* PropertyDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsViewController.swift; sourceTree = "<group>"; };
+		9560F6552316721C00531CC8 /* ComputerDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputerDetailsViewController.swift; sourceTree = "<group>"; };
 		957129E422C9DADF0059DCEE /* e-life.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "e-life.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		957129E722C9DADF0059DCEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		957129E922C9DADF0059DCEE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -94,13 +100,9 @@
 		9596F4B922D03B41002833D4 /* ForumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
 		9596F4BB22D04710002833D4 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		9596F4BF22D04D37002833D4 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
-		95983C9022EADCCC008828A2 /* TrPaySdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TrPaySdk.framework; sourceTree = "<group>"; };
-		95983C9122EADCCC008828A2 /* paysdkboundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = paysdkboundle.bundle; sourceTree = "<group>"; };
 		95983C9522EADD41008828A2 /* elife-bridge-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "elife-bridge-header.h"; sourceTree = "<group>"; };
 		95B8449022C9AF9E00D84A65 /* EmergencyNoticeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyNoticeTableViewController.swift; sourceTree = "<group>"; };
 		95B8449222C9B3CC00D84A65 /* SendPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPostViewController.swift; sourceTree = "<group>"; };
-		95BAC2EE22CED88A00639B0D /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
-		95BAC2F022CED89300639B0D /* ChangePhoneNumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneNumViewController.swift; sourceTree = "<group>"; };
 		95BAC2F222CEDB7B00639B0D /* InfoBindingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBindingViewController.swift; sourceTree = "<group>"; };
 		95BAC2F422CEE2CA00639B0D /* LatestNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestNewsViewController.swift; sourceTree = "<group>"; };
 		95BAC2F622CEF78600639B0D /* BulkPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkPurchaseViewController.swift; sourceTree = "<group>"; };
@@ -131,7 +133,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95983C9222EADCCC008828A2 /* TrPaySdk.framework in Frameworks */,
 				B1BA1523E3CAD4D2F14E578C /* Pods_e_life.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,6 +162,12 @@
 			children = (
 				9505FFDF22CB34F400462721 /* PayViewController.swift */,
 				9505FFE122CB371700462721 /* ParkingPaymentViewController.swift */,
+				9560F64B2316626400531CC8 /* DeliveryViewController.swift */,
+				9560F64D2316627200531CC8 /* ComputerRepairViewController.swift */,
+				9560F64F2316628200531CC8 /* PropertyRepairViewController.swift */,
+				9560F651231671DF00531CC8 /* MarketDetailViewController.swift */,
+				9560F6532316720300531CC8 /* PropertyDetailsViewController.swift */,
+				9560F6552316721C00531CC8 /* ComputerDetailsViewController.swift */,
 			);
 			path = "Items in ServicesPages";
 			sourceTree = "<group>";
@@ -218,9 +225,6 @@
 		9545B4F022D5D71A00DBAF76 /* Items in MePage */ = {
 			isa = PBXGroup;
 			children = (
-				9545B4F122D5D71A00DBAF76 /* ChangeNameViewController.swift */,
-				95BAC2EE22CED88A00639B0D /* ChangePasswordViewController.swift */,
-				95BAC2F022CED89300639B0D /* ChangePhoneNumViewController.swift */,
 				95BAC2F222CEDB7B00639B0D /* InfoBindingViewController.swift */,
 				95D3937822DD713000548840 /* FriendViewController.swift */,
 				95D3937A22DD762E00548840 /* AddFriendViewController.swift */,
@@ -250,8 +254,6 @@
 		957129E622C9DADF0059DCEE /* e-life */ = {
 			isa = PBXGroup;
 			children = (
-				95983C9022EADCCC008828A2 /* TrPaySdk.framework */,
-				95983C9122EADCCC008828A2 /* paysdkboundle.bundle */,
 				957129E722C9DADF0059DCEE /* AppDelegate.swift */,
 				950BE8A422D734CE0058FAE1 /* Model */,
 				95EB54CA22CC88C000E25003 /* Controller */,
@@ -387,7 +389,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95983C9322EADCCC008828A2 /* paysdkboundle.bundle in Resources */,
 				957129F222C9DAE00059DCEE /* LaunchScreen.storyboard in Resources */,
 				95DD032622D2D54D0096E89D /* MainPages.storyboard in Resources */,
 				957129FA22C9E0930059DCEE /* bus.json in Resources */,
@@ -466,32 +467,35 @@
 				95DD033A22D2D62F0096E89D /* MeViewController.swift in Sources */,
 				9505FFE622CB522B00462721 /* MailNotificationTableViewController.swift in Sources */,
 				95BAC2F722CEF78600639B0D /* BulkPurchaseViewController.swift in Sources */,
+				9560F6542316720300531CC8 /* PropertyDetailsViewController.swift in Sources */,
 				9505FFE022CB34F400462721 /* PayViewController.swift in Sources */,
 				95EB54C922CC888F00E25003 /* PasswordRecoveryViewController.swift in Sources */,
 				95DF180C22E854F700BDC74C /* KuaidiNotiViewController.swift in Sources */,
 				95D3937722DD58EA00548840 /* RequestViewController.swift in Sources */,
 				952793B722C99C1300A4C472 /* CollectionViewCell.swift in Sources */,
 				9505FFE422CB437100462721 /* WuYeNotiTableTableViewController.swift in Sources */,
+				9560F6562316721C00531CC8 /* ComputerDetailsViewController.swift in Sources */,
 				9505FFE222CB371700462721 /* ParkingPaymentViewController.swift in Sources */,
 				95D3932D22CC2F68002A3867 /* RegisterViewController.swift in Sources */,
 				95BAC2F522CEE2CA00639B0D /* LatestNewsViewController.swift in Sources */,
+				9560F652231671DF00531CC8 /* MarketDetailViewController.swift in Sources */,
 				957129EA22C9DADF0059DCEE /* LoginViewController.swift in Sources */,
 				95CA951E22DDA319007E5D66 /* FriendRequestViewController.swift in Sources */,
 				95DB367322E69C2E00315E86 /* MapViewController.swift in Sources */,
 				95D3937922DD713000548840 /* FriendViewController.swift in Sources */,
-				95BAC2EF22CED88A00639B0D /* ChangePasswordViewController.swift in Sources */,
 				95BAC2F322CEDB7B00639B0D /* InfoBindingViewController.swift in Sources */,
+				9560F64C2316626400531CC8 /* DeliveryViewController.swift in Sources */,
+				9560F64E2316627200531CC8 /* ComputerRepairViewController.swift in Sources */,
 				9596F4BC22D04710002833D4 /* NewPostViewController.swift in Sources */,
 				95EB54CF22CC9DA900E25003 /* MainViewController.swift in Sources */,
-				95BAC2F122CED89300639B0D /* ChangePhoneNumViewController.swift in Sources */,
 				95376A0E22D5C09C009E556E /* NewCommentViewController.swift in Sources */,
 				95DD033C22D2D62F0096E89D /* TableViewCell.swift in Sources */,
 				95EB54CD22CC963E00E25003 /* NewPasswordViewController.swift in Sources */,
 				9596F4BA22D03B41002833D4 /* ForumViewController.swift in Sources */,
 				9596F4C022D04D37002833D4 /* CommentViewController.swift in Sources */,
 				95DD033422D2D62F0096E89D /* ServicesViewController.swift in Sources */,
-				9545B4F222D5D71A00DBAF76 /* ChangeNameViewController.swift in Sources */,
 				9596F4B822D02780002833D4 /* ActivityViewController.swift in Sources */,
+				9560F6502316628200531CC8 /* PropertyRepairViewController.swift in Sources */,
 				95DD032E22D2D62F0096E89D /* HomeViewController.swift in Sources */,
 				95B8449322C9B3CC00D84A65 /* SendPostViewController.swift in Sources */,
 				957129E822C9DADF0059DCEE /* AppDelegate.swift in Sources */,
@@ -666,6 +670,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios/Lottie.framework/Headers\"",
 					"$(PROJECT_DIR)/e-life/TrPaySDK.framework/Headers",
 				);
+				IBSC_WARNINGS = NO;
 				INFOPLIST_FILE = "e-life/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -730,6 +735,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios/Lottie.framework/Headers\"",
 					"$(PROJECT_DIR)/e-life/TrPaySDK.framework/Headers",
 				);
+				IBSC_WARNINGS = NO;
 				INFOPLIST_FILE = "e-life/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

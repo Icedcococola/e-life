@@ -83,11 +83,14 @@ class ForumViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func fetchData(){
-        AF.request(URL, method: .post, parameters: ["community": self.community]).responseJSON { (response) in
-            if let json = response.value{
-                let posts = JSON(json).arrayValue
-                self.postArray = posts
-                self.tableView.reloadData()
+        AF.request(URL, method: .post, parameters: ["community": self.community]).responseJSON { (response) in if (response.response?.statusCode == 200) {
+                if let json = response.value{
+                    let posts = JSON(json).arrayValue
+                    self.postArray = posts
+                    self.tableView.reloadData()
+                }
+            } else {
+                self.appDelegate.showAlert(viewcontroller: self, message: "加载失败！请注意您的网络")
             }
         }
     }

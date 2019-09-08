@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -446,6 +447,7 @@
                         <outlet property="titleTop" destination="0ne-JZ-UaQ" id="W7V-gL-cL4"/>
                         <outlet property="veriLabel" destination="cGh-97-5Yv" id="5uf-NU-SZK"/>
                         <outlet property="verification" destination="B2W-5u-MG4" id="Wud-aR-ZN3"/>
+                        <outlet property="verifyButton" destination="hNr-bD-vlV" id="Rnw-LY-u1Q"/>
                         <segue destination="DdI-af-wCs" kind="show" identifier="gotoNewPassword" id="qMd-b7-iNT"/>
                     </connections>
                 </viewController>
@@ -559,6 +561,6 @@
         <image name="LoginBackground" width="288" height="340"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="foQ-pi-kkN"/>
+        <segue reference="Hhs-y6-UHg"/>
     </inferredMetricsTieBreakers>
 </document>

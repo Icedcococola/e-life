@@ -111,12 +111,17 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     
     // Mark: - Fetch activity data from server
     func fetchData(){
-        AF.request(URL, method: .post, parameters: ["community": self.appDelegate.community]).responseJSON { (response) in
-            if let json = response.value{
-                let activities = JSON(json).arrayValue
-                self.activitiesArray = activities
-                self.tableView.reloadData()
-                self.refreshControl.endRefreshing()
+        AF.request(URL, method: .post, parameters: ["community": self.appDelegate.community]).responseJSON {
+            (response) in
+            if (response.response?.statusCode == 200) {
+                if let json = response.value{
+                    let activities = JSON(json).arrayValue
+                    self.activitiesArray = activities
+                    self.tableView.reloadData()
+                    self.refreshControl.endRefreshing()
+                }
+            } else {
+                self.appDelegate.showAlert(viewcontroller: self, message: "加载失败！请注意您的网络！")
             }
         }
     }

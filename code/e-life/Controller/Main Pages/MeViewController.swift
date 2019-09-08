@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 import CoreData
 
 class MeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {

@@ -84,11 +84,10 @@ class SendPostViewController: UIViewController{
         goodNameInput.resignFirstResponder()
         remark.resignFirstResponder()
     }
-//
+    
     func genOrderNum(){
         orderNumber = Double.random(in: 0..<1000)
     }
-    
     
     @IBAction func submit(_ sender: Any) {
         print ("Submit")
@@ -168,7 +167,6 @@ class SendPostViewController: UIViewController{
     }
 }
 
-
 extension SendPostViewController : UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -238,9 +236,6 @@ extension SendPostViewController : UIPickerViewDelegate, UIPickerViewDataSource{
 }
 
 extension SendPostViewController : UIScrollViewDelegate {
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        print ("touch begin")
-//    }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         print ("scrolling")
@@ -266,7 +261,6 @@ extension SendPostViewController : UIScrollViewDelegate {
         remark.resignFirstResponder()
 
     }
-    
 }
 
 

@@ -1,6 +1,0 @@
-framework module TrPaySdk {
-  umbrella header "TrPaySdk.h"
-
-  export *
-  module * { export * }
-}

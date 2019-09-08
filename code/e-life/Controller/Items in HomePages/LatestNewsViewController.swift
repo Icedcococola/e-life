@@ -50,11 +50,15 @@ class LatestNewsViewController: UIViewController {
     // Mark: - Fetch data from server
     func fetchData() {
         AF.request(URL, method: .post, parameters: ["community": community]).responseJSON { (response) in
-            if let json = response.value{
-                let latestNewsArray = JSON(json).arrayValue
-                self.newsArray = latestNewsArray
-                self.tableView.reloadData()
-                self.refreshControl.endRefreshing()
+            if (response.response?.statusCode == 200) {
+                if let json = response.value{
+                    let latestNewsArray = JSON(json).arrayValue
+                    self.newsArray = latestNewsArray
+                    self.tableView.reloadData()
+                    self.refreshControl.endRefreshing()
+                }
+            } else {
+                self.appDelegate.showAlert(viewcontroller: self, message: "加载失败！请注意您的网络！")
             }
         }
         

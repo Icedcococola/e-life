@@ -90,9 +90,12 @@ class MailNotificationTableViewController: UIViewController, UITableViewDataSour
         return cell
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        kuadiNumInput.resignFirstResponder()
+    }
+    
     // Mark: - Fetch data from server
     func fetchData(){
-        print (chosenCompany)
         AF.request(URL, method: .get, parameters: ["expNo": kuadiNumInput.text!, "expCode": chosenCompany]).responseJSON { (response) in
             print (response)
             if response.response?.statusCode == 200 {

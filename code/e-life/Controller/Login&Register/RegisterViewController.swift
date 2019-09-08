@@ -159,7 +159,8 @@ class RegisterViewController: UIViewController {
         } else {
             // Mark : - Request server to send verification number
             SVProgressHUD.show(withStatus: "正在发送短信")
-            verifyButton.titleLabel?.text = "请稍微等待"
+            verifyButton.setTitle("请稍微等待", for: .disabled)
+            //verifyButton.titleLabel?.text = "请稍微等待"
         AF.request("http://elifedemo.vipgz1.idcfengye.com/User/verify", method: .post, parameters: ["phonenum" : phonenumber.text!]).responseJSON { (response) in
                 switch response.response?.statusCode {
                     case 200:
@@ -174,7 +175,7 @@ class RegisterViewController: UIViewController {
                         }
                     default :
                         SVProgressHUD.dismiss()
-                        self.appDelegate.showAlert(viewcontroller: self, message: "Error! Please try again!")
+                        self.appDelegate.showAlert(viewcontroller: self, message: "验证码发送失败！请注意您的网络")
                     }
             }
         }
@@ -191,6 +192,8 @@ class RegisterViewController: UIViewController {
             appDelegate.showAlert(viewcontroller: self, message: "手机号码不能为空")
         } else if (verification.text!.isEmpty || verification.text! != verificationNum) {
             appDelegate.showAlert(viewcontroller: self, message: "验证码不正确")
+        } else if (chosenCommunity.isEmpty) {
+            appDelegate.showAlert(viewcontroller: self, message: "请选择小区！")
         }
         
         else {
@@ -208,7 +211,7 @@ class RegisterViewController: UIViewController {
                 if (response.response?.statusCode != 200) {
                     SVProgressHUD.dismiss()
                     SVProgressHUD.setMaximumDismissTimeInterval(2)
-                    SVProgressHUD.showError(withStatus: "无法注册")
+                    SVProgressHUD.showError(withStatus: "注册失败！请注意您的网络")
                 } else {
                     let status : Int = JSON(response.value!)["num"].intValue
                     if (self.verification.text! != self.verificationNum) {

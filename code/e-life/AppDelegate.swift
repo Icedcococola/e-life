@@ -162,6 +162,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         viewcontroller.present(alert, animated: true, completion: nil)
     }
     
+    public func showSuccessAlert (viewcontroller : UIViewController, message : String) {
+        let alert = UIAlertController(title: "成功", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+        viewcontroller.present(alert, animated: true, completion: nil)
+    }
+    
     func resetAllRecords(in entity : String) // entity = Your_Entity_Name
     {
         let context = ( UIApplication.shared.delegate as! AppDelegate ).persistentContainer.viewContext

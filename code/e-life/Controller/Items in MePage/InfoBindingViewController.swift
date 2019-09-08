@@ -46,7 +46,7 @@ class InfoBindingViewController: UIViewController {
             AF.request(URL, method: .post, parameters: ["email": email.text!]).responseJSON { (response) in
                 if (response.response?.statusCode != 200) {
                     SVProgressHUD.dismiss()
-                    SVProgressHUD.showError(withStatus: "Error! Please Try Again")
+                    SVProgressHUD.showError(withStatus: "验证码发送失败！请注意您的网络!")
                 } else {
                     SVProgressHUD.dismiss()
                     SVProgressHUD.showSuccess(withStatus: "验证码已发送")
@@ -78,7 +78,7 @@ class InfoBindingViewController: UIViewController {
                     SVProgressHUD.showSuccess(withStatus: "信息绑定成功")
                 } else {
                     SVProgressHUD.dismiss()
-                    SVProgressHUD.showError(withStatus: "绑定失败")
+                    SVProgressHUD.showError(withStatus: "绑定失败! 请注意您的网络")
                 }
                 self.navigationController?.popViewController(animated: true)
             }

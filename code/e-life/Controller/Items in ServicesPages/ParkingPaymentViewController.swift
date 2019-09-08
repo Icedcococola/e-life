@@ -42,7 +42,13 @@ class ParkingPaymentViewController: UIViewController {
                 if let json = response.value {
                     SVProgressHUD.dismiss()
                     let price = JSON(json)["num"].stringValue
-                    self.paymentAmount.text = price + "元"
+                    if (price == "0") {
+                        self.paymentAmount.text = "已交付"
+                        self.payButton.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.2)
+                        self.payButton.isEnabled = false
+                    } else {
+                        self.paymentAmount.text = price + "元"
+                    }
                 }
             }
         }

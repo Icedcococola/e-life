@@ -22,6 +22,7 @@ class PasswordRecoveryViewController: UIViewController {
     @IBOutlet var veriLabel: UILabel!
     @IBOutlet var titleTop: NSLayoutConstraint!
     @IBOutlet var titleBottom: NSLayoutConstraint!
+    @IBOutlet var verifyButton: UIButton!
     
     var verificationNum : String = ""
     
@@ -116,6 +117,7 @@ class PasswordRecoveryViewController: UIViewController {
             appDelegate.showAlert(viewcontroller: self, message: "手机号码不能为空")
         } else {
             SVProgressHUD.show(withStatus: "正在发送短信")
+            verifyButton.setTitle("请稍微等待", for: .disabled)
             //Mark: - Request server to send verification
             AF.request(URL, method: .post, parameters: ["phonenum" : phonenum.text!]).responseJSON { (response) in
                 if (response.response?.statusCode == 200){

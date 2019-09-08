@@ -58,7 +58,7 @@ class FriendRequestViewController: UIViewController, friendTableDelegate{
     func fetchData(){
         AF.request(URL, method: .post, parameters: ["applied": self.appDelegate.username]).responseJSON { (response) in
             if (response.response?.statusCode != 200) {
-                SVProgressHUD.showError(withStatus: "Error！")
+                SVProgressHUD.showError(withStatus: "加载失败！请注意您的网络！")
             } else {
                 if let json = response.value {
                     let friendArray = JSON(json).arrayValue
@@ -123,6 +123,4 @@ extension FriendRequestViewController : UITableViewDelegate, UITableViewDataSour
         }
         return cell
     }
-    
-    
 }

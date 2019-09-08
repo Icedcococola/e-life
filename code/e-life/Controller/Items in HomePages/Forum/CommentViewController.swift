@@ -26,7 +26,7 @@ class CommentViewController: UIViewController, UITableViewDataSource {
     let commentURL = "http://elifedemo.vipgz1.idcfengye.com/Comments/findbyid"
     let postURL = "http://elifedemo.vipgz1.idcfengye.com/Post/findbyid"
     var id : String?
-    
+     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     @IBOutlet var addCommentButton: UIButton!
     @IBOutlet var postArticle: UITextView!
     
@@ -78,18 +78,26 @@ class CommentViewController: UIViewController, UITableViewDataSource {
     //Mark: - Fetch comment from server
     func fetchData(){
         AF.request(commentURL, method: .post, parameters: ["postid": id]).responseJSON { (response) in
-            if let json = response.value{
-                let comments = JSON(json).arrayValue
-                self.commentArray = comments
-                self.tableView.reloadData()
+            if (response.response?.statusCode == 200) {
+                if let json = response.value{
+                    let comments = JSON(json).arrayValue
+                    self.commentArray = comments
+                    self.tableView.reloadData()
+                }
+            } else {
+                self.appDelegate.showAlert(viewcontroller: self, message: "加载失败！请注意您的网络！")
             }
         }
         
         AF.request(postURL, method: .post, parameters: ["postid": id]).responseJSON { (response) in
-            if let json = response.value{
-                let postsDetail = JSON(json)
-                //self.postDeatil = postsDetail
-                self.postArticle.text = postsDetail["article"].stringValue
+            if (response.response?.statusCode == 200) {
+                if let json = response.value{
+                    let postsDetail = JSON(json)
+                    //self.postDeatil = postsDetail
+                    self.postArticle.text = postsDetail["article"].stringValue
+                }
+            } else {
+                self.appDelegate.showAlert(viewcontroller: self, message: "加载失败！请注意您的网络！")
             }
         }
     }

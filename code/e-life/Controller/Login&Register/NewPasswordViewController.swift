@@ -123,7 +123,7 @@ class NewPasswordViewController: UIViewController {
                 if (response.response?.statusCode != 200) {
                     SVProgressHUD.dismiss()
                     SVProgressHUD.setDefaultMaskType(.black)
-                    SVProgressHUD.showError(withStatus: "修改失败. Please Try Again!")
+                    SVProgressHUD.showError(withStatus: "修改失败! 请注意您的网络")
                 } else {
                     SVProgressHUD.dismiss()
                     self.performSegue(withIdentifier: "gotoLogIn", sender: nil)

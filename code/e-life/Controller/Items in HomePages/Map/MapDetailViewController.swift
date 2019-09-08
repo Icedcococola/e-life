@@ -14,6 +14,8 @@ class MapDetailViewController: UIViewController {
     var address : String = ""
     var discount : String = ""
     var imageUrl : String = ""
+    var phone : String = ""
+    @IBOutlet var phoneNum: UILabel!
     @IBOutlet var storeNameLabel: UILabel!
     @IBOutlet var discountLabel: UILabel!
     @IBOutlet var addressLabel: UILabel!
@@ -25,12 +27,12 @@ class MapDetailViewController: UIViewController {
     //constraint
     @IBOutlet var imageHeight: NSLayoutConstraint!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         storeNameLabel.text = storeName
         discountLabel.text = discount
         addressLabel.text = address
+        phoneNum.text = phone
         
         let screenHeight = self.view.frame.height
         if (screenHeight < 569) {

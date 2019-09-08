@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
+import Alamofire
 
 class ServicesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -19,14 +19,17 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     let functionItems : [UIImage] = [
         UIImage(named: "MarketDelivery")!,
-        UIImage(named: "Maintainance")!,
+        UIImage(named: "Maintanance")!,
         UIImage(named: "ComputerRepair")!,
         UIImage(named: "Paying")!,
         UIImage(named: "ParkingPayment")!
     ]
     let ID : [String] = [
         "1",
-        "2"
+        "2",
+        "3",
+        "4",
+        "5"
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,40 +72,45 @@ class ServicesViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch (indexPath.row){
-            case 0:
-                AF.request(callURL, method: .get, parameters: ["community": self.appDelegate.community, "type": "0"]).responseJSON { (response) in
-                    if let json = response.value {
-                        let phonenum = JSON(json)["phonenum"].stringValue
-                        self.callNumber(phoneNumber: phonenum)
-                    }
-                }
-            case 1:
-                AF.request(callURL, method: .get, parameters: ["community": self.appDelegate.community, "type": "1"]).responseJSON { (response) in
-                    if let json = response.value {
-                        let phonenum = JSON(json)["phonenum"].stringValue
-                        self.callNumber(phoneNumber: phonenum)
-                    }
-            }
-            case 2:
-                AF.request(callURL, method: .get, parameters: ["community": self.appDelegate.community, "type": "2"]).responseJSON { (response) in
-                    if let json = response.value {
-                        let phonenum = JSON(json)["phonenum"].stringValue
-                        self.callNumber(phoneNumber: phonenum)
-                    }
-            }
-            default:
-                let id = ID[indexPath.row-3]
-                let viewController = storyboard?.instantiateViewController(withIdentifier: id)
-                navigationController?.pushViewController(viewController!, animated: true)
-        }
+        let id = ID[indexPath.row]
+        let viewController = storyboard?.instantiateViewController(withIdentifier: id)
+        navigationController?.pushViewController(viewController!, animated: true)
     }
+//        switch (indexPath.row){
+//            case 0:
+//                AF.request(callURL, method: .get, parameters: ["community": self.appDelegate.community, "type": "0"]).responseJSON { (response) in
+//                    if let json = response.value {
+//                        let phonenum = JSON(json)["phonenum"].stringValue
+//                        self.callNumber(phoneNumber: phonenum)
+//                    }
+//                }
+//            case 1:
+//                AF.request(callURL, method: .get, parameters: ["community": self.appDelegate.community, "type": "1"]).responseJSON { (response) in
+//                    if let json = response.value {
+//                        let phonenum = JSON(json)["phonenum"].stringValue
+//                        self.callNumber(phoneNumber: phonenum)
+//                    }
+//            }
+//            case 2:
+//                AF.request(callURL, method: .get, parameters: ["community": self.appDelegate.community, "type": "2"]).responseJSON { (response) in
+//                    if let json = response.value {
+//                        let phonenum = JSON(json)["phonenum"].stringValue
+//                        self.callNumber(phoneNumber: phonenum)
+//                    }
+//            }
+//            default:
+//                let id = ID[indexPath.row]
+//                let viewController = storyboard?.instantiateViewController(withIdentifier: id)
+//                navigationController?.pushViewController(viewController!, animated: true)
+//        }
     func callNumber(phoneNumber: String) {
         if let url = URL(string: "tel://\(phoneNumber)") {
             if #available(iOS 10, *) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                print("Calling")
             } else {
                 UIApplication.shared.openURL(url as URL)
+                print("Calling")
             }
         }
     }
